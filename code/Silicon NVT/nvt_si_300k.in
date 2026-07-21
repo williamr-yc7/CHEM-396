@@ -1,0 +1,29 @@
+# type 1 = Si, type 2 = O, confirmed by NPT density test
+
+# ---- Setup ----
+units		metal
+atom_style 	atomic
+dimension	3
+boundary        p p p              # periodic in x, y, z
+
+# ---- Build the system ----
+lattice         diamond 5.47576      # diamond lattice, NPT-equilibrated lattice constant at 300 K (from V = 4433 A^3)
+region          box block 0 3 0 3 0 3 units lattice
+create_box      1 box
+create_atoms    1 region box       # fill with type 1
+mass 		1 28.0855          # type 1 = Si mass
+
+# ---- Potential ----
+pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/22.almtp
+
+# ---- Initial conditions ----
+velocity	all create 300 33342 loop geom   # 300 K, zero net momentum
+
+# ---- Run settings ----
+fix		1 all nvt temp 300.0 300.0 0.1
+timestep 	0.001              # 1 fs
+thermo_style	custom step temp press vol pe
+thermo		100
+dump 		1 all atom 100 dump_nvt_si.lammpstrj
+run		5000
+write_data	nvt_si.end_sim

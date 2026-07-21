@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{authblk} % Required for author affiliations
+\usepackage{indentfirst} % Indent first paragraph of sections
+\usepackage{amssymb} % For mathematical symbols
+\usepackage{amsthm} % For theorem environments
+\usepackage{amsmath} % For advanced math typesetting
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{pgfplots} % For plots
+\usepackage{tikz} % For drawing shapes
+\usepackage{float} % For [H] float option
+
+\graphicspath{{figures/}}
+\reversemarginpar
+\hypersetup{
+    colorlinks=true,
+}
+\begin{document}
+
+% ---------- Title ----------
+\title{Generation of Amorphous Silicon Models via Melt-Quench Molecular Dynamics with Moment Tensor Potentials}
+\author[1]{William Homier}
+\author[2]{\\Supervisor: Prof. Lena Simine}
+\author[3]{Co-mentor: Ata Madanchi}
+\affil[1]{McGill University Chemistry, 801 Sherbrooke St. West, Montréal, QC H3A 2T8, Canada}
+\date{July \(27^{th}\), 2026}
+\setcounter{Maxaffil}{0}
+\renewcommand\Affilfont{\itshape\small}
+\maketitle
+
+\noindent\rule{\textwidth}{0.4pt}
+\thispagestyle{empty}
+\begin{abstract}
+\end{abstract}
+\noindent\rule{\textwidth}{0.4pt}
+\clearpage
+
+\newpage
+
+\section{Introduction}
+% Why amorphous silicon matters (thin-film PV, sensors, etc.)
+% Continuous Random Network (CRN) model, Zachariasen rules
+% Coordination defects (dangling bonds, floating bonds), ring statistics
+% Why simulation: experimental structure determination is indirect
+
+\subsection{Objectives}
+% State the goals of the summer project explicitly
+
+\section{Background and Methods}
+
+\subsection{Molecular Dynamics and the Melt-Quench Protocol}
+% MD basics: integrating Newton's equations, thermostats/barostats
+% Melt-quench: heat crystalline Si past melting, equilibrate liquid, quench at controlled rate
+% Why quench rate matters for defect concentration
+
+\subsection{Interatomic Potentials: From DFT to MTP}
+% Limits of DFT at MD scales, limits of empirical potentials (SW, Tersoff)
+% Machine-learned potentials; Moment Tensor Potentials and the MLIP package
+% Active learning / MAP if relevant
+
+\subsection{Computational Setup}
+% LAMMPS + MLIP interface, custom build
+% Narval/Rorqual (DRAC), Slurm, system size, timestep, ensembles (NVT/NPT)
+% Note the architecture issue and resolution if resolved by submission
+
+\section{Preliminary Results}
+% RDF g(r) of liquid and quenched structures
+% Coordination number distribution, angle distributions
+% Comparison to literature / experimental benchmarks
+% VMD visualizations of the network
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{rdf.png}
+    \caption{Placeholder: radial distribution function of quenched a-Si.}
+    \label{fig:rdf}
+\end{figure}
+
+\section{Discussion}
+% What the preliminary results indicate
+% Current limitations (quench rates faster than experiment, system size)
+
+\section{Remaining Work and Timeline}
+% Production runs, analysis (ring statistics, defect counts), possibly ARTn
+% Rough week-by-week plan to end of term
+
+\section{Conclusion}
+% 1 short paragraph
+
+\section*{Acknowledgements}
+% Simine, Madanchi, DRAC/Calcul Quebec resources, Ali Kerrache if fix lands
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}   % create references.bib
+
+\end{document}

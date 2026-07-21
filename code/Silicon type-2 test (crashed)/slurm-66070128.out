@@ -1,0 +1,32 @@
+LAMMPS (12 Jun 2025)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:99)
+  using 1 OpenMP thread(s) per MPI task
+Lattice spacing in x,y,z = 5.431 5.431 5.431
+Created orthogonal box = (0 0 0) to (16.293 16.293 16.293)
+  1 by 1 by 1 MPI processor grid
+Created 216 atoms
+  using lattice units in orthogonal box = (0 0 0) to (16.293 16.293 16.293)
+  create_atoms CPU = 0.000 seconds
+The scaling is : 6.00e-02.
+There are 2 species.
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 7.7
+  ghost atom cutoff = 7.7
+  binsize = 3.85, bins = 5 5 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair mtp, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.001
+Per MPI rank memory allocation (min/avg/max) = 3.111 | 3.111 | 3.111 Mbytes
+   Step          Temp          Press          Volume         PotEng    
+         0   300           -2244661        4325.1699     -124389.6     
+ERROR on proc 0: Neighbor list overflow, boost neigh_modify one
+For more information see https://docs.lammps.org/err0036 (src/npair_bin.cpp:248)
