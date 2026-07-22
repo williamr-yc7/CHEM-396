@@ -60,7 +60,7 @@
 \contentsline {subsection}{\numberline {B.1}PuTTY}{27}{subsection.B.1}%
 \contentsline {subsubsection}{\numberline {B.1.1}Navigating and editing files (Linux)}{27}{subsubsection.B.1.1}%
 \contentsline {subsubsection}{\numberline {B.1.2}Build Environment Commands}{27}{subsubsection.B.1.2}%
-\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{27}{subsubsection.B.1.3}%
+\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{28}{subsubsection.B.1.3}%
 \contentsline {subsubsection}{\numberline {B.1.4}CMake Options Used in the Build Scripts}{28}{subsubsection.B.1.4}%
 \contentsline {subsubsection}{\numberline {B.1.5}Running LAMMPS}{28}{subsubsection.B.1.5}%
 \contentsline {subsection}{\numberline {B.2}Tk Console}{28}{subsection.B.2}%

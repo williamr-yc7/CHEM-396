@@ -615,7 +615,7 @@ The same run was then repeated on 8 cores with \texttt{pruned\_1.almtp} in place
 \paragraph{The two potentials prefer different volumes.}
 An unexpected result came out of the same test. With \texttt{22.almtp}, the pressure at a box volume of $4433$~\AA$^3$ fluctuated around zero, meaning the atoms sit at a spacing that potential is content with. With \texttt{pruned\_1.almtp} in the identical box, the pressure instead held steady at about $-12{,}400$~bar. A negative pressure means the atoms are pulling inward: this potential would prefer a smaller box than the one it has been given.
 
-This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. This has been raised with the group for confirmation.
+This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. %To change after response from Lena
 
 % ===========================================================
 %  4. RESULTS
