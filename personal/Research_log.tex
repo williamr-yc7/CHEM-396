@@ -585,6 +585,38 @@ A second run was then performed with the box fixed, building the lattice at the 
 \paragraph{Computational cost.}
 Both runs used a single CPU core and took roughly 20 minutes for 5000 steps: about 4 steps per second, or $0.3$~ns of simulated time per day, with over $99\%$ of that time spent computing forces. An earlier attempt at 20{,}000 steps ran past the requested time limit. It is also worth noting that LAMMPS buffers its thermodynamic output\footnote{It stores the output in a temporary location before writing it to the log file.}, so an empty log file does not mean a run has stalled; the growth of the trajectory file is a better sign of progress. This speed is fine for the melt stage, which only needs tens of picoseconds, but it is a serious problem for the cooling stage: cooling at $1$~K/ps from 3000~K to 300~K means $2.7$~ns of simulation, or about nine days on a single core. Running in parallel, using a larger system on the GPU build, or switching to a cheaper pruned potential will be needed before the full melt-quench protocol is practical.
 
+\subsubsection{Parallel Scaling and Potential Cost}
+\marginpar{July 22, 2026}
+The single-core timings from the previous runs made the cooling stage impractical, so the next step was to find out how much of that cost could be removed. Two things were tested: running across several CPU cores at once, and switching from the melt-stable potential to a cheaper pruned one.
+
+\paragraph{Parallel scaling.}
+The same 5000-step NVT run was repeated on 1, 4, and 8 cores of a single node. Running in parallel requires two changes to the submission script: requesting more tasks with \texttt{--ntasks}, and launching LAMMPS through \texttt{srun} rather than calling it directly, so that SLURM starts one copy of the program per task and connects them through MPI. Narval also requires memory to be requested per core (\texttt{--mem-per-cpu}) rather than as a total once more than one task is used.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccc}
+\hline
+Cores & Wall time & Speedup & Atoms per core \\
+\hline
+1 & 22:55 & $1.0\times$ & 216 \\
+4 & 5:07 & $4.5\times$ & 54 \\
+8 & 2:43 & $8.4\times$ & 27 \\
+\hline
+\end{tabular}
+\caption{Wall time for a 5000-step NVT run of 216 silicon atoms using \texttt{22.almtp}, on one node.}
+\label{tab:scaling}
+\end{table}
+
+The scaling is close to linear up to 8 cores. The limit is nonetheless in sight: the time spent on communication between cores rose from $0.4\%$ of the total at 4 cores to $4\%$ at 8, and with only 27 atoms per core the workload is becoming too thin to divide further. Eight cores was therefore adopted as the default for systems of this size.
+
+\paragraph{Cost of the pruned potential.}
+The same run was then repeated on 8 cores with \texttt{pruned\_1.almtp} in place of \texttt{22.almtp}. It completed in 14 seconds rather than 2 minutes 43 seconds, roughly $12\times$ faster. Taken together with the parallel speedup, this removes the obstacle identified previously: a cooling run that would have taken over a week on a single core with the melt-stable potential is now a matter of hours.
+
+\paragraph{The two potentials prefer different volumes.}
+An unexpected result came out of the same test. With \texttt{22.almtp}, the pressure at a box volume of $4433$~\AA$^3$ fluctuated around zero, meaning the atoms sit at a spacing that potential is content with. With \texttt{pruned\_1.almtp} in the identical box, the pressure instead held steady at about $-12{,}400$~bar. A negative pressure means the atoms are pulling inward: this potential would prefer a smaller box than the one it has been given.
+
+This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. This has been raised with the group for confirmation.
+
 % ===========================================================
 %  4. RESULTS
 % ===========================================================
