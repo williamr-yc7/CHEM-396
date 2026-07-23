@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  22 JUL 2026 18:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  23 JUL 2026 15:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -624,7 +624,7 @@ l.107
        [1
 
 ]
-<c-Si-vs-a-Si.jpg, id=381, 561.09625pt x 358.33875pt>
+<c-Si-vs-a-Si.jpg, id=391, 561.09625pt x 358.33875pt>
 File: c-Si-vs-a-Si.jpg Graphic file (type jpg)
 <use c-Si-vs-a-Si.jpg>
 Package pdftex.def Info: c-Si-vs-a-Si.jpg  used on input line 116.
@@ -634,7 +634,7 @@ Overfull \hbox (8.60127pt too wide) in paragraph at lines 127--128
 []\OT1/cmr/m/n/10 Originally pro-posed for sil-ica glasses ($\OML/cmm/m/it/10 SiO[]$\OT1/cmr/m/n/10 ), the model posits a non-crystalline,
  []
 
-<Continuous Random Network.png, id=384, 1541.76pt x 1027.84pt>
+<Continuous Random Network.png, id=394, 1541.76pt x 1027.84pt>
 File: Continuous Random Network.png Graphic file (type png)
 <use Continuous Random Network.png>
 Package pdftex.def Info: Continuous Random Network.png  used on input line 133.
@@ -650,7 +650,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has
                                                   \__shipout_drop_firstpage_...
 l.157 
        <./Continuous Random Network.png (PNG copy)>]
-<Wooten-Winer-Weaire.png, id=406, 1027.84pt x 1541.76pt>
+<Wooten-Winer-Weaire.png, id=416, 1027.84pt x 1541.76pt>
 File: Wooten-Winer-Weaire.png Graphic file (type png)
 <use Wooten-Winer-Weaire.png>
 Package pdftex.def Info: Wooten-Winer-Weaire.png  used on input line 160.
@@ -661,7 +661,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has
                                                   \__shipout_drop_firstpage_...
 l.166 
        <./Wooten-Winer-Weaire.png (PNG copy)>] [5] [6]
-<paracrystallinity.png, id=432, 1541.76pt x 1027.84pt>
+<paracrystallinity.png, id=442, 1541.76pt x 1027.84pt>
 File: paracrystallinity.png Graphic file (type png)
 <use paracrystallinity.png>
 Package pdftex.def Info: paracrystallinity.png  used on input line 221.
@@ -672,134 +672,134 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has
                                                   \__shipout_drop_firstpage_...
 l.231 \end{definition}
                        <./paracrystallinity.png (PNG copy)>] [8] [9] [10]
-Overfull \hbox (3.2588pt too wide) in paragraph at lines 311--312
+Overfull \hbox (3.2588pt too wide) in paragraph at lines 321--322
 \OT1/cmr/m/it/10 in-ter-atomic po-ten-tials (MLIPs) are com-pu-ta-tional mod-els that use ma-chine learn-
  []
 
-[11] [12] [13]
-Overfull \hbox (11.30617pt too wide) in paragraph at lines 387--388
+[11] [12] [13] [14]
+Overfull \hbox (11.30617pt too wide) in paragraph at lines 410--411
 []\OT1/cmr/m/n/10 Structural qual-ity was checked with stan-dard structural-analysis tools (OVITO,
  []
 
-[14] [15] [16] [17] [18]
-Overfull \hbox (7.56699pt too wide) in paragraph at lines 469--470
-[][]\OT1/cmr/bx/n/10 Definition 29 \OT1/cmr/m/n/10 (Vi-sual Molec-u-lar Dy-nam-ics)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Vi-sual Molec-u-lar Dy-nam-ics (VMD)
+[15] [16] [17] [18] [19]
+Overfull \hbox (7.56699pt too wide) in paragraph at lines 506--507
+[][]\OT1/cmr/bx/n/10 Definition 32 \OT1/cmr/m/n/10 (Vi-sual Molec-u-lar Dy-nam-ics)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Vi-sual Molec-u-lar Dy-nam-ics (VMD)
  []
 
-[19]
-<VMDtestLJSub.png, id=554, 745.78625pt x 485.31313pt>
+[20] [21]
+<VMDtestLJSub.png, id=576, 745.78625pt x 485.31313pt>
 File: VMDtestLJSub.png Graphic file (type png)
 <use VMDtestLJSub.png>
-Package pdftex.def Info: VMDtestLJSub.png  used on input line 506.
+Package pdftex.def Info: VMDtestLJSub.png  used on input line 543.
 (pdftex.def)             Requested size: 276.00105pt x 179.60007pt.
- [20] [21
+ [22
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.528 \end{verbatim}
-                     <./VMDtestLJSub.png>]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 528--528
+l.552 
+       <./VMDtestLJSub.png>]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 565--565
 []    \OT1/cmtt/m/n/10 module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda[] 
  []
 
-[22] [23] [24] [25
+[23] [24] [25] [26] [27
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.614 
+l.656 
       ]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 649.
- [26]
-Overfull \hbox (3.30426pt too wide) in paragraph at lines 662--663
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 688.
+
+Overfull \hbox (3.30426pt too wide) in paragraph at lines 701--702
 []\OT1/cmr/m/n/10 # Write ev-ery-thing be-tween the mark-
  []
 
-
-Overfull \hbox (11.33052pt too wide) in paragraph at lines 669--670
+[28]
+Overfull \hbox (11.33052pt too wide) in paragraph at lines 708--709
 []\OT1/cmr/m/n/10 # Ac-
  []
 
 
-Overfull \hbox (95.7462pt too wide) in paragraph at lines 676--677
-[]
- []
-
-[27]
-Overfull \hbox (27.4968pt too wide) in paragraph at lines 677--678
+Overfull \hbox (95.7462pt too wide) in paragraph at lines 715--716
 []
  []
 
 
-Overfull \hbox (1.27971pt too wide) in paragraph at lines 695--696
+Overfull \hbox (27.4968pt too wide) in paragraph at lines 716--717
+[]
+ []
+
+[29]
+Overfull \hbox (1.27971pt too wide) in paragraph at lines 734--735
 []\OT1/cmr/m/n/10 # Com-piles CPU code for the AVX2
  []
 
-[28]
-Overfull \hbox (17.94229pt too wide) in paragraph at lines 718--719
+
+Overfull \hbox (17.94229pt too wide) in paragraph at lines 757--758
 []\OT1/cmr/m/n/10 # Loads a LAMMPS
  []
 
-
-Overfull \hbox (10.42555pt too wide) in paragraph at lines 732--733
+[30]
+Overfull \hbox (10.42555pt too wide) in paragraph at lines 771--772
 []\OT1/cmr/m/n/10 # De-fines a lat-tice type (could be face-centred-
  []
 
 
-Overfull \hbox (16.56985pt too wide) in paragraph at lines 735--736
+Overfull \hbox (16.56985pt too wide) in paragraph at lines 774--775
 []\OT1/cmr/m/n/10 # De-fines a cu-bic re-gion named
  []
 
-[29]
-Overfull \hbox (9.29886pt too wide) in paragraph at lines 739--740
+
+Overfull \hbox (9.29886pt too wide) in paragraph at lines 778--779
 []\OT1/cmr/m/n/10 # As-signs ran-dom ini-
  []
 
-[30]
-Overfull \hbox (2.03362pt too wide) in paragraph at lines 761--762
+[31]
+Overfull \hbox (2.03362pt too wide) in paragraph at lines 800--801
 []\OT1/cmr/m/n/10 # Points the shell to the custom-built LAMMPS ex-e-cutable
  []
 
-
-Overfull \hbox (5.60664pt too wide) in paragraph at lines 763--764
+[32]
+Overfull \hbox (5.60664pt too wide) in paragraph at lines 802--803
 []\OT1/cmr/m/n/10 # Ex-
  []
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 796--797
+
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
 
  []
 
-
-Overfull \hbox (31.7956pt too wide) in paragraph at lines 808--809
+[33]
+Overfull \hbox (31.7956pt too wide) in paragraph at lines 847--848
 []\OT1/cmr/m/n/10 Digital Re-search Al-liance of Canada. ``LAMMPS.'' [][]$\OT1/cmtt/m/n/10 https : / / docs . alliancecan .
  []
 
 
-Overfull \hbox (29.28058pt too wide) in paragraph at lines 809--810
+Overfull \hbox (29.28058pt too wide) in paragraph at lines 848--849
 \OT1/cmr/m/n/10 Glass-formers'' (dataset). [][]$\OT1/cmtt/m/n/10 https : / / aip . figshare . com / collections / MAPping _
  []
 
-[32] [33] (Research_log.aux)
+[34] (Research_log.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `Research_log.out' has not changed.
-(rerunfilecheck)             Checksum: E6FFEAB368688B1F5D2991048EBD5D56;12318.
+(rerunfilecheck)             Checksum: 3CC0EFC8FDBEA23360F1A51CC7AA1D73;12646.
  ) 
 Here is how much of TeX's memory you used:
- 49374 strings out of 467871
- 1286124 string characters out of 5418377
+ 49383 strings out of 467871
+ 1286252 string characters out of 5418377
  2031725 words of memory out of 5000000
- 77514 multiletter control sequences out of 15000+600000
+ 77516 multiletter control sequences out of 15000+600000
  638448 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,118p,1317b,639s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,9n,118p,1317b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\erenr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Research_log.pdf (36 pages, 5875824 bytes).
+Output written on Research_log.pdf (37 pages, 5885645 bytes).
 PDF statistics:
- 794 PDF objects out of 1000 (max. 8388607)
- 192 named destinations out of 1000 (max. 500000)
- 574 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 817 PDF objects out of 1000 (max. 8388607)
+ 199 named destinations out of 1000 (max. 500000)
+ 590 words of extra memory for PDF output out of 10000 (max. 10000000)
 

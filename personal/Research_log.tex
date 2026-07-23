@@ -229,6 +229,16 @@ Support for the paracrystalline picture comes from fluctuation electron microsco
 \begin{definition}[Molecular Dynamics]
     Molecular dynamics (MD) is a computational method for simulating the physical movements of atoms and molecules.
 \end{definition}
+\begin{definition}[Force Field]
+    A force field is the complete set of functions and fitted parameters used to compute the energy and forces of a system. In practice the terms ``force field'' and ``interatomic potential'' are used interchangeably, though ``force field'' is more common in chemistry and biomolecular simulation, and ``potential'' in materials physics.
+\end{definition}
+
+Potentials differ in where their parameters come from, which is the usual way of classifying them:
+\begin{itemize}
+    \item \textbf{Ab initio} (``from first principles''): the energy is computed directly from quantum mechanics with no parameters fitted to data. DFT is the standard example. Accurate but expensive.
+    \item \textbf{Empirical and semi-empirical:} a fixed mathematical form is chosen on physical grounds, and its parameters are then fitted to reproduce known data, either experimental measurements or ab initio calculations. The Lennard-Jones and Stillinger-Weber potentials are of this kind. ``Semi-empirical'' signals that the functional form carries real physics while the numbers inside it are fitted. Cheap, but limited by the rigidity of the chosen form.
+    \item \textbf{Machine-learned:} no fixed functional form at all. The relationship between structure and energy is learned from a large set of ab initio reference calculations. MTPs belong here.
+\end{itemize}
 MD simulations evolve a system of atoms in time by integrating Newton's equations of motion. To do this we need the forces on each atom at every timestep, which means we need a model of the potential energy as a function of atomic positions. This model is the interatomic potential.
 
 \begin{definition}[Interatomic Potential]
@@ -378,6 +388,19 @@ The system is then moved along the negative-curvature direction while the energy
 \subsubsection{Falling}
 The system is nudged just past the saddle along the unstable direction and relaxed normally, settling into a new local minimum on the other side of the barrier.
 
+\subsubsection{Event Acceptance}
+\begin{definition}[Activated Event]
+    An activated event is a single transition in which the system leaves one local energy minimum, crosses a saddle point, and settles into another. ``Activated'' refers to the energy input needed to get over the barrier.
+\end{definition}
+
+Each completed ARTn cycle (activation, relaxation, falling) proposes one such event, which is then accepted or rejected using the Metropolis criterion:
+\begin{equation}
+    P_{\text{acc}} = \min\!\left[1, \exp\!\left(-\frac{E_{\text{final}} - E_{\text{initial}}}{T}\right)\right],
+\end{equation}
+where $E_{\text{initial}}$ and $E_{\text{final}}$ are the energies of the starting and ending minima, and $T$ is an artificial temperature parameter (set to $0.25$~eV in Zongo et al.). Any event that lowers the energy is always accepted, since the exponent is then positive and the expression exceeds one. Events that raise the energy are accepted with a probability that falls off exponentially with how much they raise it, which is what allows the search to escape shallow traps rather than becoming stuck in the first minimum it finds. The parameter $T$ controls how permissive this is: a larger value accepts more uphill moves.
+
+This is also what is meant by ARTn ``capturing rare events''. In ordinary molecular dynamics, a barrier crossing only happens when a thermal fluctuation is large enough to push the system over, so high barriers are crossed very infrequently and may not be observed at all within an accessible simulation time. ARTn does not wait for such a fluctuation; it constructs a barrier crossing deliberately at every step, and so samples transitions that MD would effectively never reach.
+
 \subsubsection{ARTn-MTP Models of Amorphous Silicon}
 
 Zongo et al. (2025) is the central benchmark study for this project. It combines ARTn with the unified Si/O/SiO\textsubscript{2} MTP of Zongo et al. (2024) to build seven a-Si models, ranging from 216 to 4096 atoms, and compares them against melt-quench MD using the same potential, as well as against experimental data and other high-quality models from the literature. One important point is that the MTP training set contained no a-Si configurations, so these simulations also test how well the potential transfers to the amorphous phase.
@@ -422,6 +445,20 @@ The test system is the 80:20 Kob-Andersen mixture, a standard model glass-former
 A low $\Omega$ means the particle sits in an unusual, unlikely arrangement, a sign that it is about to rearrange or is rearranging right now. A high $\Omega$ means the opposite: it sits in a very typical, stable spot.
 
 The authors then compare $\Omega$ against particle rearrangements identified separately in the MD trajectory\footnote{These rearrangement events are called h-excitations in the paper.}. The temporary dips and bumps in $\Omega$ line up with these events: about 88\% of the rearrangements show up as a dip and the rest as a bump. If the detection thresholds are pushed very close to the baseline, the method becomes extremely sensitive and catches nearly 100\% of the rearrangements, but it then also flags many particles that do not appear to be moving. Rather than discard these, the authors show they actually reflect real activity nearby: these flagged particles tend to have an unusual number of already-moving neighbours, so $\Omega$ is picking up rearrangements happening around the particle, not just in it. MAP therefore gives an interpretable way to spot the structural warning signs of motion without needing any labelled examples, useful both for studying how glasses relax and for catching unusual regions in melt-quench simulations.
+
+\subsection{Thermodynamic Ensembles}
+\begin{definition}[Thermodynamic Ensemble]
+    A thermodynamic ensemble is the set of macroscopic quantities held fixed during a simulation. The choice of ensemble determines which physical conditions the simulated system is subject to, and therefore which quantities are free to fluctuate.
+\end{definition}
+
+Three ensembles are used in this project, named by the quantities they conserve:
+\begin{itemize}
+    \item \textbf{NVE} (microcanonical): constant number of atoms, volume, and total energy. Newton's equations are integrated with no thermostat, so the system exchanges nothing with its surroundings. Because total energy should be exactly conserved, this ensemble is a useful check on whether the integration is numerically stable.
+    \item \textbf{NVT} (canonical): constant number, volume, and temperature. A thermostat exchanges energy with the system to hold the temperature at a target value, while the box stays fixed. This is the standard choice for production runs at a set temperature.
+    \item \textbf{NPT} (isothermal-isobaric): constant number, pressure, and temperature. In addition to the thermostat, a barostat allows the box to expand or contract so that the system reaches the target pressure. Since the volume is free to change, this is the ensemble used to find the density a potential actually prefers.
+\end{itemize}
+
+The distinction matters in practice because the box size is only a free parameter under NPT. Running NVT at the wrong volume forces the system into a compressed or stretched state, which shows up as a persistent non-zero pressure.
 
 \subsection{LAMMPS}
 
@@ -617,6 +654,8 @@ An unexpected result came out of the same test. With \texttt{22.almtp}, the pres
 
 This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. %To change after response from Lena
 
+
+\marginpar{July 23, 2026}
 % ===========================================================
 %  4. RESULTS
 % ===========================================================

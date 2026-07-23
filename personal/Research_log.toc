@@ -11,64 +11,66 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Interatomic Potentials in Molecular Dynamics}{8}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Lennard-Jones Potential}{8}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}Other Interatomic Potentials}{9}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Embedded Atom Method}{9}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.4}Embedded Atom Method}{10}{subsubsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.3}Density Functional Theory}{10}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Machine Learning Interatomic Potentials}{11}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Moment Tensor Potential}{11}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Why MTP?}{11}{subsubsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5}Moment Tensor Potential}{12}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Why MTP?}{12}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.5.2}Kokkos-accelerated Moment Tensor Potential}{12}{subsubsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.6}Activation Relaxation Technique Nouveau}{13}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Activation}{13}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Relaxation}{13}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Falling}{13}{subsubsection.2.6.3}%
-\contentsline {subsubsection}{\numberline {2.6.4}ARTn-MTP Models of Amorphous Silicon}{14}{subsubsection.2.6.4}%
-\contentsline {subsection}{\numberline {2.7}Morphological Autoregressive Protocol}{15}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}The MAP Framework}{15}{subsubsection.2.7.1}%
-\contentsline {subsubsection}{\numberline {2.7.2}MAP as an Anomaly Detector}{16}{subsubsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.8}LAMMPS}{17}{subsection.2.8}%
-\contentsline {subsubsection}{\numberline {2.8.1}The Input Script}{17}{subsubsection.2.8.1}%
-\contentsline {subsubsection}{\numberline {2.8.2}Combining LAMMPS with the MTP}{17}{subsubsection.2.8.2}%
-\contentsline {subsection}{\numberline {2.9}WinSCP}{18}{subsection.2.9}%
-\contentsline {subsection}{\numberline {2.10}PuTTY}{18}{subsection.2.10}%
-\contentsline {subsubsection}{\numberline {2.10.1}Interactive Jobs}{18}{subsubsection.2.10.1}%
-\contentsline {subsection}{\numberline {2.11}Visual Molecular Dynamics}{19}{subsection.2.11}%
-\contentsline {section}{\numberline {3}Methodology}{19}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Simulation Workflow}{19}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Toolchain Validation: Lennard-Jones Melt}{20}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Job Submission Script}{20}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Output and Validation}{20}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Test in VMD with test.in}{20}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Building LAMMPS with the Moment Tensor Potential}{21}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Compiling on a Compute Node}{21}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Debugging the Build}{22}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Debugging the GPU Build}{23}{subsubsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.5}Simulation Protocol for Amorphous Silicon}{23}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}First Silicon Runs: NPT Equilibration and NVT Production}{24}{subsubsection.3.5.1}%
-\contentsline {paragraph}{Atom type mapping.}{24}{section*.2}%
-\contentsline {paragraph}{NPT equilibration.}{24}{section*.3}%
-\contentsline {paragraph}{NVT production.}{24}{section*.4}%
-\contentsline {paragraph}{Computational cost.}{25}{section*.5}%
-\contentsline {subsubsection}{\numberline {3.5.2}Parallel Scaling and Potential Cost}{25}{subsubsection.3.5.2}%
-\contentsline {paragraph}{Parallel scaling.}{25}{section*.6}%
-\contentsline {paragraph}{Cost of the pruned potential.}{26}{section*.7}%
-\contentsline {paragraph}{The two potentials prefer different volumes.}{26}{section*.8}%
-\contentsline {section}{\numberline {4}Results}{26}{section.4}%
-\contentsline {section}{\numberline {5}Discussion}{26}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{26}{section.6}%
-\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{26}{appendix.A}%
-\contentsline {section}{\numberline {B}Command References}{27}{appendix.B}%
-\contentsline {subsection}{\numberline {B.1}PuTTY}{27}{subsection.B.1}%
-\contentsline {subsubsection}{\numberline {B.1.1}Navigating and editing files (Linux)}{27}{subsubsection.B.1.1}%
-\contentsline {subsubsection}{\numberline {B.1.2}Build Environment Commands}{27}{subsubsection.B.1.2}%
-\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{27}{subsubsection.B.1.3}%
-\contentsline {subsubsection}{\numberline {B.1.4}CMake Options Used in the Build Scripts}{28}{subsubsection.B.1.4}%
-\contentsline {subsubsection}{\numberline {B.1.5}Running LAMMPS}{28}{subsubsection.B.1.5}%
-\contentsline {subsection}{\numberline {B.2}Tk Console}{28}{subsection.B.2}%
-\contentsline {subsubsection}{\numberline {B.2.1}Navigating to the files}{28}{subsubsection.B.2.1}%
-\contentsline {subsubsection}{\numberline {B.2.2}Loading a single configuration (data file)}{29}{subsubsection.B.2.2}%
-\contentsline {subsubsection}{\numberline {B.2.3}Loading a full trajectory (many frames)}{29}{subsubsection.B.2.3}%
-\contentsline {subsubsection}{\numberline {B.2.4}Drawing the simulation box}{29}{subsubsection.B.2.4}%
-\contentsline {subsection}{\numberline {B.3}Input Script}{29}{subsection.B.3}%
-\contentsline {subsection}{\numberline {B.4}Job Submission Script}{31}{subsection.B.4}%
-\contentsline {section}{\numberline {C}Further Viewing and References}{32}{appendix.C}%
-\contentsline {section}{\numberline {D}Bibliography}{33}{appendix.D}%
+\contentsline {subsubsection}{\numberline {2.6.1}Activation}{14}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Relaxation}{14}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Falling}{14}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Event Acceptance}{14}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}ARTn-MTP Models of Amorphous Silicon}{15}{subsubsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.7}Morphological Autoregressive Protocol}{16}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}The MAP Framework}{16}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}MAP as an Anomaly Detector}{17}{subsubsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.8}Thermodynamic Ensembles}{18}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}LAMMPS}{19}{subsection.2.9}%
+\contentsline {subsubsection}{\numberline {2.9.1}The Input Script}{19}{subsubsection.2.9.1}%
+\contentsline {subsubsection}{\numberline {2.9.2}Combining LAMMPS with the MTP}{19}{subsubsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.10}WinSCP}{20}{subsection.2.10}%
+\contentsline {subsection}{\numberline {2.11}PuTTY}{20}{subsection.2.11}%
+\contentsline {subsubsection}{\numberline {2.11.1}Interactive Jobs}{20}{subsubsection.2.11.1}%
+\contentsline {subsection}{\numberline {2.12}Visual Molecular Dynamics}{20}{subsection.2.12}%
+\contentsline {section}{\numberline {3}Methodology}{21}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Simulation Workflow}{21}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Toolchain Validation: Lennard-Jones Melt}{21}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Job Submission Script}{21}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Output and Validation}{22}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Test in VMD with test.in}{22}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Building LAMMPS with the Moment Tensor Potential}{23}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Compiling on a Compute Node}{23}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Debugging the Build}{23}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Debugging the GPU Build}{24}{subsubsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.5}Simulation Protocol for Amorphous Silicon}{25}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}First Silicon Runs: NPT Equilibration and NVT Production}{25}{subsubsection.3.5.1}%
+\contentsline {paragraph}{Atom type mapping.}{26}{section*.2}%
+\contentsline {paragraph}{NPT equilibration.}{26}{section*.3}%
+\contentsline {paragraph}{NVT production.}{26}{section*.4}%
+\contentsline {paragraph}{Computational cost.}{26}{section*.5}%
+\contentsline {subsubsection}{\numberline {3.5.2}Parallel Scaling and Potential Cost}{27}{subsubsection.3.5.2}%
+\contentsline {paragraph}{Parallel scaling.}{27}{section*.6}%
+\contentsline {paragraph}{Cost of the pruned potential.}{27}{section*.7}%
+\contentsline {paragraph}{The two potentials prefer different volumes.}{27}{section*.8}%
+\contentsline {section}{\numberline {4}Results}{28}{section.4}%
+\contentsline {section}{\numberline {5}Discussion}{28}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{28}{section.6}%
+\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{28}{appendix.A}%
+\contentsline {section}{\numberline {B}Command References}{28}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}PuTTY}{28}{subsection.B.1}%
+\contentsline {subsubsection}{\numberline {B.1.1}Navigating and editing files (Linux)}{28}{subsubsection.B.1.1}%
+\contentsline {subsubsection}{\numberline {B.1.2}Build Environment Commands}{29}{subsubsection.B.1.2}%
+\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{29}{subsubsection.B.1.3}%
+\contentsline {subsubsection}{\numberline {B.1.4}CMake Options Used in the Build Scripts}{30}{subsubsection.B.1.4}%
+\contentsline {subsubsection}{\numberline {B.1.5}Running LAMMPS}{30}{subsubsection.B.1.5}%
+\contentsline {subsection}{\numberline {B.2}Tk Console}{30}{subsection.B.2}%
+\contentsline {subsubsection}{\numberline {B.2.1}Navigating to the files}{30}{subsubsection.B.2.1}%
+\contentsline {subsubsection}{\numberline {B.2.2}Loading a single configuration (data file)}{30}{subsubsection.B.2.2}%
+\contentsline {subsubsection}{\numberline {B.2.3}Loading a full trajectory (many frames)}{30}{subsubsection.B.2.3}%
+\contentsline {subsubsection}{\numberline {B.2.4}Drawing the simulation box}{30}{subsubsection.B.2.4}%
+\contentsline {subsection}{\numberline {B.3}Input Script}{30}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Job Submission Script}{32}{subsection.B.4}%
+\contentsline {section}{\numberline {C}Further Viewing and References}{34}{appendix.C}%
+\contentsline {section}{\numberline {D}Bibliography}{34}{appendix.D}%
