@@ -204,6 +204,8 @@ a-Si is used predominantly as a semiconductor for large-area and flexible electr
     \item \textbf{Photovoltaics and solar power.} It is used in lightweight, flexible, and semi-transparent thin-film solar panels. Although less efficient than crystalline silicon, a-Si panels perform well in low-light conditions.
     \item \textbf{Medical X-ray imaging.} In large-area digital X-ray flat-panel detectors, a-Si arrays convert X-rays into high-resolution digital images.
     \item \textbf{Sensors and scanners.} a-Si is deployed in document scanners, electronic whiteboards, and optical colour sensors because it can cover large surface areas.
+    \item \textbf{Gravitational wave detectors} Like LIGO\footnote{Laser Interferometer Gravitational-Wave Observatory.} use a-Si coatings on mirrors to reduce thermal noise and improve sensitivity.
+    \item \textbf{Quantum computers} Use a-Si in superconducting qubits and Josephson junctions\footnote{Josephson junctions are weak links between two superconductors that allow for the flow of Cooper pairs.}, where its low defect density and tunable properties help maintain coherence.
 \end{itemize}
 
 \subsubsection{The Paracrystallinity Debate}
@@ -655,7 +657,46 @@ An unexpected result came out of the same test. With \texttt{22.almtp}, the pres
 This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. %To change after response from Lena
 
 
+\subsubsection{Choosing the Ensemble and Setting the Cooling Rate}
 \marginpar{July 23, 2026}
+Two questions had to be settled before the melt could be run: which thermodynamic ensemble to use, and how to impose a cooling rate in LAMMPS.
+
+\paragraph{Ensemble.}
+Zongo et al. (2025) never mention NVT: the only ensemble they name is NPT, for the final 150~ps equilibration at 300~K. Since the aim is to reproduce their protocol, NPT is used throughout. This also resolves the potential-volume mismatch found earlier on its own, since the box is free to relax to whatever volume the current potential prefers after a switch.
+
+\paragraph{Cooling rate.}
+LAMMPS has no command that sets a cooling rate directly. Instead, \texttt{fix npt} takes a starting and a target temperature, and ramps linearly between them over the course of the \texttt{run} that follows. The rate is therefore implied by the length of that run rather than specified:
+\begin{equation}
+    \text{rate} = \frac{\Delta T}{N_{\text{steps}} \times \Delta t},
+\end{equation}
+where $\Delta t$ is the timestep. For the paper's cooling rate of 1~K/ps from 2500~K to 300~K, the temperature drop of 2200~K implies 2200~ps of simulated time, which at a 1~fs timestep is $2.2 \times 10^6$ steps.
+
+\paragraph{Projected cost.}
+Combining this with the timings measured previously gives a concrete estimate for the full protocol. On 8 cores, \texttt{pruned\_1} runs at roughly 357 steps/s and \texttt{22.almtp} at roughly 31 steps/s.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\hline
+Stage & Simulated time & Steps & Estimated wall time \\
+\hline
+Heating (300--2500~K) & 30~ps & $3.0 \times 10^4$ & $\sim$16~min \\
+Hold at 2500~K & 1~ns & $1.0 \times 10^6$ & $\sim$9~h \\
+Cooling (1~K/ps) & 2.2~ns & $2.2 \times 10^6$ & $\sim$1.7~h \\
+\hline
+\end{tabular}
+\caption{Projected cost of the melt-quench protocol for 216 atoms on 8 cores, assuming the melt-stable potential for heating and the hold, and \texttt{pruned\_1} for cooling.}
+\label{tab:projected_cost}
+\end{table}
+
+The hold at 2500~K dominates, despite involving less than half the steps of the cooling stage, because the melt-stable potential is roughly twelve times more expensive per step. Whether the hold genuinely requires the melt-stable potential, or whether the switch to a pruned one can happen earlier, has been raised with the group. These figures also assume the cost per step stays as measured on a static 300~K crystal; a hot liquid rearranges continuously and will trigger neighbour-list rebuilds that the earlier runs did not, so the true cost will be somewhat higher.
+
+\paragraph{First melt run.}
+The heating stage was then set up: the same 216-atom diamond lattice, with \texttt{fix npt} ramping from 300~K to 2500~K while holding the pressure at 0~bar, run for 30{,}000 steps to give the 30~ps heating time used in the paper. The thermostat damping constant was kept at $0.1$~ps, roughly a hundred timesteps, which is the usual choice; a value comparable to the length of the run itself would leave the thermostat too sluggish to follow the ramp at all.
+
+\paragraph{Choice of potential for the hold.}
+Whether the 1~ns hold at 2500~K requires the melt-stable potential or could use a cheaper pruned one was raised with the group. Since both potential types are being used here for the first time, the decision was to run the hold both ways and compare the resulting structures directly, treating the difference as a test of where the pruned potentials break down at high temperature rather than as a cost question alone.
+
 % ===========================================================
 %  4. RESULTS
 % ===========================================================
@@ -781,7 +822,8 @@ LAMMPS reads an input script line by line, in order, so commands must appear bef
     \item[pair\_coeff 1 1 1.0 1.0 2.5] \# Sets the interaction parameters between type-1 atoms: $\epsilon = 1.0$, $\sigma = 1.0$, and cutoff $2.5$.
     \item[neighbor 0.3 bin] \# When LAMMPS looks up which atoms are close enough to interact, it keeps a list of nearby neighbours. This adds a small $0.3$ buffer (a ``skin'') around each atom's cutoff so that atoms drifting slightly closer are already on the list. Without the buffer, the list would have to be rebuilt every single step, which is slow.
     \item[neigh\_modify delay 5 every 1] \# Controls neighbour-list rebuild frequency: wait at least 5 steps, then check every step.
-    \item[\texttt{fix <ID> <group> <integrator>}] \# Applies a time-integration scheme to a group of atoms. The first argument is a user-chosen ID naming this fix (commonly just `1'), so it can be referred to or deleted later; the second is the group of atoms it applies to (`all' means every atom in the simulation). The integrator is either `nve' (constant number, volume, and energy), `nvt' (constant number, volume, and temperature), or `npt' (constant number, pressure, and temperature, where the box is allowed to change size).
+    \item[\texttt{fix <ID> <group> <integrator>}] \# Applies a time-integration scheme to a group of atoms. The first argument is a user-chosen ID naming this fix (commonly just `1'); the second is the group of atoms it applies to (`all' means every atom in the simulation). The integrator is either `nve' (constant number, volume, and energy), `nvt' (constant number, volume, and temperature), or `npt' (constant number, pressure, and temperature, where the box is allowed to change size).
+    \item[\texttt{fix <ID> <group> npt temp <T\_start> <T\_stop> <T\_damp> iso <P\_start> <P\_stop> <P\_damp>}] \# Runs the NPT ensemble with concrete values. The three numbers after `temp' are the starting temperature, the target temperature, and the damping constant\footnote{The damping constant controls how quickly the thermostat pulls the system back to the target, in picoseconds.}. The three after `iso'\footnote{The box is rescaled equally in all three directions.} are the same for pressure. When the start and stop temperatures differ, as in \texttt{temp 300.0 2500.0 0.1}, LAMMPS ramps linearly between them over the run, which is how heating and cooling rates are set.
     \item[thermo\_style custom step temp press vol pe] \# Chooses which quantities are printed in the thermodynamic output. `custom' means the list is user-specified: here the timestep number, temperature, pressure, box volume, and potential energy. Tracking `vol' is essential in NPT runs, where the box size changes and must be monitored for convergence.
     \item[thermo 5] \# Prints thermodynamic output\footnote{Thermodynamic output includes properties like temperature, pressure, and energy.} every 5 timesteps.
     \item[dump 1 all atom 100 dump.lammpstrj] \# Writes the atomic positions to a trajectory file every 100 timesteps, in a format readable by VMD.
