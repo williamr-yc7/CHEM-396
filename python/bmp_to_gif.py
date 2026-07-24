@@ -2,11 +2,11 @@ from PIL import Image
 import glob
 import os
 
-# ---- EDIT THIS to your VMD working directory ----
 folder = r"C:\Users\erenr\Documents\McGill\Research\Chem396-Amorphous-Silicon\VMD"
 
 files = sorted(glob.glob(os.path.join(folder, "*.bmp")))
-gif_path = os.path.join(folder, "melt_216_22almtp_2500K.gif")
+sim_name = input("Enter the simulation name (e.g., melt_216_22almtp_2500K): ")
+gif_path = os.path.join(folder, f"{sim_name}.gif")
 
 if not files:
     print("No .bmp files found — check the folder path.")
@@ -28,6 +28,6 @@ else:
     if os.path.exists(gif_path) and os.path.getsize(gif_path) > 0:
         for f in files:
             os.remove(f)
-        print(f"Done: GIF created and {len(files)} .bmp frames deleted.")
+        print(f"Done: GIF created and {len(files)} .bmp frames deleted")
     else:
-        print("GIF was not created properly — frames left untouched.")
+        print("GIF was not created properly and frames left untouched")
