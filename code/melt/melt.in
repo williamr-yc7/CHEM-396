@@ -1,0 +1,31 @@
+# Melt stage: heating crystalline silicon from 300 K to 2500 K over 30 ps
+# 216 atoms, NPT throughout (box free to resize at 0 bar)
+# type 1 = Si, type 2 = O (confirmed by density test); only Si used here
+
+# ---- Setup ----
+units		metal              # eV, Angstroms, kelvin, ps
+atom_style 	atomic
+dimension	3
+boundary        p p p              # periodic in x, y, z
+
+# ---- Build the system ----
+lattice         diamond 5.431      # c-Si literature lattice constant
+region          box block 0 3 0 3 0 3 units lattice
+create_box      1 box
+create_atoms    1 region box       # 8 atoms/cell x 27 cells = 216 atoms
+mass 		1 28.0855          # Si
+
+# ---- Potential ----
+pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/22.almtp
+
+# ---- Initial conditions ----
+velocity	all create 300 33342 loop geom   # 300 K, zero net momentum
+
+# ---- Run settings ----
+fix		1 all npt temp 300.0 2500.0 0.1 iso 0 0 1.0   # box free to resize at 0 bar
+timestep 	0.001              # 1 fs
+thermo_style	custom step temp press vol pe
+thermo		100
+dump 		1 all atom 100 dump_melt.lammpstrj
+run		30000
+write_data	melt.end_sim

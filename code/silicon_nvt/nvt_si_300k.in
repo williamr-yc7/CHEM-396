@@ -14,7 +14,7 @@ create_atoms    1 region box       # fill with type 1
 mass 		1 28.0855          # type 1 = Si mass
 
 # ---- Potential ----
-pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/22.almtp
+pair_style 	mtp /home/williamh/sio_mtps/pruned/pruned_1.almtp # original_for_melt/22.almtp
 
 # ---- Initial conditions ----
 velocity	all create 300 33342 loop geom   # 300 K, zero net momentum

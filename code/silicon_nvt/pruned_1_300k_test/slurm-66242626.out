@@ -1,42 +1,14 @@
 LAMMPS (12 Jun 2025)
 OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:99)
   using 1 OpenMP thread(s) per MPI task
-# type 1 = Si, type 2 = O, confirmed by NPT density test
-
-# ---- Setup ----
-units		metal
-atom_style 	atomic
-dimension	3
-boundary        p p p              # periodic in x, y, z
-
-# ---- Build the system ----
-lattice         diamond 5.47576      # diamond lattice, NPT-equilibrated lattice constant at 300 K (from V = 4433 A^3)
 Lattice spacing in x,y,z = 5.47576 5.47576 5.47576
-region          box block 0 3 0 3 0 3 units lattice
-create_box      1 box
 Created orthogonal box = (0 0 0) to (16.42728 16.42728 16.42728)
   2 by 2 by 2 MPI processor grid
-create_atoms    1 region box       # fill with type 1
 Created 216 atoms
   using lattice units in orthogonal box = (0 0 0) to (16.42728 16.42728 16.42728)
   create_atoms CPU = 0.001 seconds
-mass 		1 28.0855          # type 1 = Si mass
-
-# ---- Potential ----
-pair_style 	mtp /home/williamh/sio_mtps/pruned/pruned_1.almtp # original_for_melt/22.almtp
 The scaling is : 3.41e-02.
 There are 2 species.
-
-# ---- Initial conditions ----
-velocity	all create 300 33342 loop geom   # 300 K, zero net momentum
-
-# ---- Run settings ----
-fix		1 all nvt temp 300.0 300.0 0.1
-timestep 	0.001              # 1 fs
-thermo_style	custom step temp press vol pe
-thermo		100
-dump 		1 all atom 100 dump_nvt_si.lammpstrj
-run		5000
 Neighbor list info ...
   update: every = 1 steps, delay = 0 steps, check = yes
   max neighbors/atom: 2000, page size: 100000
@@ -49,6 +21,10 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.001
 Per MPI rank memory allocation (min/avg/max) = 3.077 | 3.077 | 3.077 Mbytes
    Step          Temp          Press          Volume         PotEng    
          0   300           -15334.707      4432.9923     -137317.77    
@@ -130,6 +106,5 @@ Total # of neighbors = 18576
 Ave neighs/atom = 86
 Neighbor list builds = 0
 Dangerous builds = 0
-write_data	nvt_si.end_sim
 System init for write_data ...
 Total wall time: 0:00:14
