@@ -60,23 +60,24 @@
 \contentsline {paragraph}{Projected cost.}{29}{section*.11}%
 \contentsline {paragraph}{First melt run.}{29}{section*.12}%
 \contentsline {paragraph}{Choice of potential for the hold.}{29}{section*.13}%
-\contentsline {section}{\numberline {4}Results}{30}{section.4}%
-\contentsline {section}{\numberline {5}Discussion}{30}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{30}{section.6}%
-\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{30}{appendix.A}%
-\contentsline {section}{\numberline {B}Command References}{30}{appendix.B}%
-\contentsline {subsection}{\numberline {B.1}PuTTY}{30}{subsection.B.1}%
-\contentsline {subsubsection}{\numberline {B.1.1}Navigating and editing files (Linux)}{30}{subsubsection.B.1.1}%
-\contentsline {subsubsection}{\numberline {B.1.2}Build Environment Commands}{31}{subsubsection.B.1.2}%
-\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{31}{subsubsection.B.1.3}%
-\contentsline {subsubsection}{\numberline {B.1.4}CMake Options Used in the Build Scripts}{31}{subsubsection.B.1.4}%
-\contentsline {subsubsection}{\numberline {B.1.5}Running LAMMPS}{32}{subsubsection.B.1.5}%
-\contentsline {subsection}{\numberline {B.2}Tk Console}{32}{subsection.B.2}%
-\contentsline {subsubsection}{\numberline {B.2.1}Navigating to the files}{32}{subsubsection.B.2.1}%
-\contentsline {subsubsection}{\numberline {B.2.2}Loading a single configuration (data file)}{32}{subsubsection.B.2.2}%
-\contentsline {subsubsection}{\numberline {B.2.3}Loading a full trajectory (many frames)}{32}{subsubsection.B.2.3}%
-\contentsline {subsubsection}{\numberline {B.2.4}Drawing the simulation box}{32}{subsubsection.B.2.4}%
-\contentsline {subsection}{\numberline {B.3}Input Script}{32}{subsection.B.3}%
-\contentsline {subsection}{\numberline {B.4}Job Submission Script}{34}{subsection.B.4}%
-\contentsline {section}{\numberline {C}Further Viewing and References}{36}{appendix.C}%
-\contentsline {section}{\numberline {D}Bibliography}{36}{appendix.D}%
+\contentsline {subsubsection}{\numberline {3.5.4}First Melt and the 2500 K Hold}{29}{subsubsection.3.5.4}%
+\contentsline {section}{\numberline {4}Results}{31}{section.4}%
+\contentsline {section}{\numberline {5}Discussion}{31}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{31}{section.6}%
+\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{31}{appendix.A}%
+\contentsline {section}{\numberline {B}Command References}{31}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}PuTTY}{31}{subsection.B.1}%
+\contentsline {subsubsection}{\numberline {B.1.1}Navigating and editing files (Linux)}{31}{subsubsection.B.1.1}%
+\contentsline {subsubsection}{\numberline {B.1.2}Build Environment Commands}{32}{subsubsection.B.1.2}%
+\contentsline {subsubsection}{\numberline {B.1.3}Job Submission Commands}{32}{subsubsection.B.1.3}%
+\contentsline {subsubsection}{\numberline {B.1.4}CMake Options Used in the Build Scripts}{32}{subsubsection.B.1.4}%
+\contentsline {subsubsection}{\numberline {B.1.5}Running LAMMPS}{33}{subsubsection.B.1.5}%
+\contentsline {subsection}{\numberline {B.2}Tk Console}{33}{subsection.B.2}%
+\contentsline {subsubsection}{\numberline {B.2.1}Navigating to the files}{33}{subsubsection.B.2.1}%
+\contentsline {subsubsection}{\numberline {B.2.2}Loading a single configuration (data file)}{33}{subsubsection.B.2.2}%
+\contentsline {subsubsection}{\numberline {B.2.3}Loading a full trajectory (many frames)}{33}{subsubsection.B.2.3}%
+\contentsline {subsubsection}{\numberline {B.2.4}Drawing the simulation box}{33}{subsubsection.B.2.4}%
+\contentsline {subsection}{\numberline {B.3}Input Script}{33}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Job Submission Script}{35}{subsection.B.4}%
+\contentsline {section}{\numberline {C}Further Viewing and References}{37}{appendix.C}%
+\contentsline {section}{\numberline {D}Bibliography}{37}{appendix.D}%

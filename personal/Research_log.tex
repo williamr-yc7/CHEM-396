@@ -697,6 +697,21 @@ The heating stage was then set up: the same 216-atom diamond lattice, with \text
 \paragraph{Choice of potential for the hold.}
 Whether the 1~ns hold at 2500~K requires the melt-stable potential or could use a cheaper pruned one was raised with the group. Since both potential types are being used here for the first time, the decision was to run the hold both ways and compare the resulting structures directly, treating the difference as a test of where the pruned potentials break down at high temperature rather than as a cost question alone.
 
+\subsubsection{First Melt and the 2500 K Hold}
+\marginpar{July 24, 2026}
+The heating run from the previous day was checked and had melted successfully. The temperature reached the 2500~K target, and two signatures confirmed the crystal had become a liquid: the pressure now swung over a range of order $10^4$~bar rather than the $10^3$ of the solid, and the number of neighbour-list rebuilds rose from zero (nothing moves in a static crystal) to 400, the direct signature of atoms diffusing. Loading the trajectory into VMD showed the ordered diamond lattice visibly breaking apart into a disordered liquid over the course of the run.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{melt_216_22almtp_2500K_final.png}
+    \caption{Snapshot of the 216-atom system during the melt, visualized in VMD. The starting configuration is the ordered diamond lattice; over the 30~ps heating ramp to 2500~K it breaks down into a disordered liquid.}
+    \label{fig:melt_vmd}
+\end{figure}
+
+With a melted configuration in hand, the next stage of the protocol was set up: the 1~ns hold at 2500~K. Rather than rebuilding a lattice, this run continues directly from the melted state using \texttt{read\_data} on the saved configuration, with \texttt{fix npt} now holding both the start and target temperature at 2500~K. Following the group's suggestion, the hold is being run with both the melt-stable (\texttt{22.almtp}) and a pruned potential and compared, since both are being used here for the first time and it is not yet known how the pruned potentials behave at high temperature. At the measured single-potential speeds this is roughly a nine-hour run, so it was submitted to run overnight.
+
+A second melt using \texttt{26.almtp} was also launched in the background, to check whether the two melt-stable potentials produce the same behaviour.
+
 % ===========================================================
 %  4. RESULTS
 % ===========================================================
@@ -812,6 +827,7 @@ LAMMPS reads an input script line by line, in order, so commands must appear bef
     \item[lattice <lattice\_type> <density>] \# Defines a lattice type (could be face-centred-cubic lattice by typing `fcc' or diamond lattice by typing `diamond') at reduced number density (i.e. `$0.8442$'). This sets the scaffold of points on which atoms will later be placed, but creates no atoms itself.
     \item[dimension 3] \# Sets the dimensionality of the simulation to 3D.
     \item[boundary p p p] \# Sets periodic boundary conditions in all three dimensions.
+    \item[\texttt{read\_data <filename>}] \# Reads a LAMMPS data file containing a complete atomic configuration, including box size, atom positions, and velocities. This is an alternative to creating a lattice and populating it with atoms.
     \item[region box block 0 15 0 15 0 15 units lattice] \# Defines a cubic region named box, spanning $0$ to $15$ lattice units along each axis.
     \item[create\_box 1 box] \# Creates the simulation box from that region, with space for a single atom type.
     \item[create\_atoms 1 region <region\_name>] \# Populates the named region (e.g. `box') with type-1 atoms on the lattice points defined earlier. For example, a $15^3$ fcc region with four atoms per unit cell yields $13{,}500$ atoms, while a $3^3$ diamond region with eight atoms per unit cell yields $216$.
