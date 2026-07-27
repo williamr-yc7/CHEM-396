@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1785172115.87495 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/report/Report.tex" "Report.pdf" "Report" 1785172123.87354 0
+["pdflatex"] 1785192258.03333 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/report/Report.tex" "Report.pdf" "Report" 1785192260.4063 0
   "../personal/VMDtestLJSub.png" 1782831395 386947 54b81fe3aac6cf458e3483c665b58839 ""
   "../personal/melt_216_22almtp_2500K_final.png" 1784930517 65749 19dfc6a73c9d053705422d83f2e7619d ""
   "C:/Users/erenr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1784216524 82507 a9eef8696c92627b87e9975edea03b2a ""
@@ -92,11 +92,11 @@
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/tools/indentfirst.sty" 1761901070 1618 30b01152766afcef2ed8f904cfdd3cc6 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "Report.aux" 1785172122 9394 6fd18ccd5733f21b6e315910ad82e473 "pdflatex"
-  "Report.out" 1785172122 6107 6fd393ef4f219e3778bbddc7bda90aad "pdflatex"
-  "Report.tex" 1785172105 34695 b34eaeae301c2d15115186248e9b1a2e ""
-  "Report.toc" 1785172122 3082 2428c7b17df80da140bdf0aa6607cd24 "pdflatex"
-  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/report/Report.tex" 1785172105 34695 b34eaeae301c2d15115186248e9b1a2e ""
+  "Report.aux" 1785192260 9585 c3a0578ce8e9092bcdb7c33c40282c0e "pdflatex"
+  "Report.out" 1785192260 6256 30538274e86cb986afb6f354b8d88939 "pdflatex"
+  "Report.tex" 1785192256 37332 834d9a08aa8b6a1d61e3b574a6db316c ""
+  "Report.toc" 1785192260 3166 d7fc733d2ecd17f36eb64b13178320a7 "pdflatex"
+  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/report/Report.tex" 1785192256 37332 834d9a08aa8b6a1d61e3b574a6db316c ""
   "scaling.png" 1785167174 62659 d4967ccad0eec178bd5278b3b10c44c8 ""
   "walltime.png" 1785167176 66043 1582af3fa595c0d8e823a76d859090fd ""
   (generated)

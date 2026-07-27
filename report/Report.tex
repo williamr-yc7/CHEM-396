@@ -27,7 +27,7 @@
 
 \noindent\rule{\textwidth}{0.4pt}
 \begin{abstract}
-    \noindent This report covers the first six weeks (June 15 to July 27, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main result so far is a working toolchain on Narval: two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. Using a 216-atom system, the potential's undocumented atom-type mapping was identified, and the equilibrium lattice constant was measured at 0.8\% above the experimental value, an overestimate expected from the GGA training data. A combination of parallelization and a cheaper pruned potential reduced the projected cost of the full melt-quench protocol to a single overnight run, though the protocol itself is not yet complete. A 30~ps ramp to 2500~K gave a confirmed liquid, and the 1~ns hold at 2500~K is currently running. One question remains open so far: the melt-stable and pruned potentials prefer different volumes, which running under NPT throughout should absorb. The quench to 300~K and the structural analysis remain to be done, along with a comparison against Zongo et al.\ (2025) and experiment, and the application of MAP.
+    \noindent This report covers the first six weeks (June 15 to July 27, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main deliverable so far is a working toolchain on Narval: two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. With that in place, a 216-atom system was used to characterize the supplied potentials, the undocumented atom-type mapping was identified, the equilibrium lattice constant was measured at 0.8\% above the experimental value, and the melt-stable and pruned potentials were found to prefer different volumes, a mismatch that running under NPT throughout should absorb. Parallelization and a cheaper pruned potential together cut the projected cost of the full protocol to a single overnight run. A 30 ps ramp to 2500 K gave a confirmed liquid, and the 1 ns hold is currently executing. The quench to 300 K, the structural analysis, the comparison against Zongo et al. (2025) and experiment, and the application of MAP remain to be done.
 \end{abstract}
 \noindent\rule{\textwidth}{0.4pt}
 \clearpage
@@ -75,7 +75,7 @@ A long-standing debate asks whether real a-Si is a pure CRN or contains small cr
 MD simulations advance atoms in time by integrating Newton's equations, which requires the force on each atom at every step, and hence a model of the potential energy as a function of atomic positions. Potentials are usually classified by where their parameters come from. Ab initio methods like DFT compute the energy from quantum mechanics directly: accurate but expensive, with cost growing roughly as the cube of the number of electrons. Empirical potentials (Lennard-Jones, Stillinger-Weber, Tersoff, EAM) fit a fixed functional form to data which is cheap but limited by the rigidity of the form. A simple pair potential like Lennard-Jones cannot describe silicon at all, since silicon demands specific bond angles and LJ has no angular term. Machine-learned potentials have no fixed form; the structure-energy relationship is learned from a large set of DFT reference calculations.
 
 \subsection{Moment Tensor Potentials}
-MTPs are machine-learned potentials whose accuracy can be dialed up in a controlled way by adding more basis functions, at the cost of speed (the level of the potential). They are physically consistent (invariant under rotations, reflections, and relabelling), scale linearly with the number of atoms, and handle multiple elements.
+MTPs (Shapeev, 2016) are machine-learned potentials whose accuracy can be dialed up in a controlled way by adding more basis functions, at the cost of speed (the level of the potential). They are physically consistent (invariant under rotations, reflections, and relabelling), scale linearly with the number of atoms, and handle multiple elements.
 
 Until recently the MTP had no GPU version. Meng et al.\ (2026) added one inside the LAMMPS Kokkos package, a portability layer that lets one version of the code run on CPUs and different GPUs. Benchmarks on Narval show the optimized CPU variant reaching up to $2\times$ over the older MLIP-3 code, with the GPU variants much faster and scaling to million-atom systems. The GPU variants are intended for roughly 2000 atoms or more per GPU. This Kokkos version is the one used in this project.
 
@@ -125,7 +125,7 @@ LAMMPS has no explicit cooling-rate command; \texttt{fix npt} ramps linearly bet
 \end{equation}
 At the benchmark rate of 1~K/ps, cooling from 2500~K to 300~K takes $2.2\times10^6$ steps.
 
-Zongo et al.\ only ever name NPT, so NPT is used throughout. As discussed in Section~\ref{sec:disc_mismatch}, this also absorbs the volume mismatch between the two potential families automatically.
+Zongo et al.\ only ever mention NPT, so NPT is used throughout. As discussed in Section~\ref{sec:disc_mismatch}, this also absorbs the volume mismatch between the two potential families automatically.
 
 % ===========================================================
 \section{Results}
@@ -195,7 +195,7 @@ The potential file declares two species but does not say which is which. This wa
 \label{sec:npt}
 An NPT run at 300~K and 0~bar let the box relax: the volume grew from 4325~\AA$^3$ to about 4433~\AA$^3$, a lattice constant of 5.476~\AA, 0.8\% above the measured 5.431~\AA. This overestimate is expected from the GGA functional used to produce the training data. Pressure swung over thousands of bar, normal for 216 atoms since fluctuations scale as $N^{-1/2}$. A follow-up NVT run with the box fixed at the settled constant showed pressure hovering near zero and steady potential energy, confirming the system is no longer strained.
 
-Both runs used one CPU core and took about 20 minutes for 5000 steps, or roughly 0.3~ns of simulated time per day, with over 99\% of the time in force evaluation. That is fine for a 30~ps melt but hopeless for cooling: 1~K/ps from 3000~K to 300~K is 2.7~ns, about nine days on one core. This motivated the optimization work below.
+Both runs used one CPU core and took about 20 minutes for 5000 steps, or roughly 0.3~ns of simulated time per day, with over 99\% of the time in force evaluation. That is fine for a 30~ps melt but hopeless for cooling: 1~K/ps from 2500~K to 300~K is 2.2~ns, about seven days on one core. This motivated the optimization work below.
 
 \subsection{Parallel scaling and pruned-potential cost}
 \label{sec:scaling}
@@ -219,7 +219,7 @@ Cores & Wall time & Speedup & Atoms per core \\
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{scaling.png}
-    \caption{Parallel speedup of the 5000-step NVT run against the ideal linear case. Scaling is near-linear to 8 cores; the superlinear values likely reflect cache effects at small per-core atom counts.}
+    \caption{Parallel speedup of the 5000-step NVT run against the ideal linear case. Scaling is near-linear to 8 cores; the superlinear value at 4 cores likely reflects cache effects at small per-core atom counts.}
     \label{fig:scaling}
 \end{figure}
 
@@ -285,11 +285,14 @@ Identifying which atom type corresponds to silicon was a small step, but every l
 The $-12{,}400$~bar result matters because it is a property of the protocol, not of any one run: the workflow deliberately switches potentials midway, and the equilibrium volume of one is not the equilibrium volume of the other. Two interpretations are possible. One is that this is a technical artifact to be managed: running everything under NPT lets the barostat relax the box to whatever the current potential prefers within a few picoseconds of the switch, which is the approach adopted and also matches the benchmark study. Another possible interpretation is that a disagreement of this size means the pruned potentials describe a measurably different material. Under NPT the disagreement will not appear as an error; it will show up as a difference in the final density of the quenched structure. Since a-Si density (2.28~g/cm$^3$) is one of the quantities compared against experiment, this will be tracked explicitly. The paired hold runs are a first test of how far apart the two families actually are.
 
 \subsection{Feasibility}
-The cost measurements turned an infeasible protocol into a feasible one: nine days on one core became under two hours for the cooling stage. The remaining bottleneck is the 1~ns hold, the one stage that currently needs the expensive melt-stable potential. If the pruned potentials prove stable at 2500~K, the whole protocol fits in a single overnight allocation, making it practical to generate an ensemble of independent structures rather than one, which matters because 216-atom statistics from a single sample are unreliable.
+The cost measurements turned an infeasible protocol into a feasible one: seven days on one core became under two hours for the cooling stage. The remaining bottleneck is the 1~ns hold, the one stage that currently needs the expensive melt-stable potential. If the pruned potentials prove stable at 2500~K, the whole protocol fits in a single overnight allocation, making it practical to generate an ensemble of independent structures rather than one, which matters because 216-atom statistics from a single sample are unreliable.
 
 \subsection{System size}
 \label{sec:disc_size}
 The 216-atom size was chosen to match the smallest Zongo et al.\ models and to keep iteration fast. Its limits are clear: fluctuations scale as $N^{-1/2}$, so single measurements are noisy, and a 16~\AA{} box is a small number of correlation lengths for ring statistics and medium-range order. Zongo et al.\ found crystallinity depends little on system size, which is reassuring. Repeating the protocol at 512 and 4096 atoms is planned for the final weeks to strengthen the statistics, and at those sizes the parallel scaling headroom reopens.
+
+\subsection{What this enables}
+The work reported here is almost entirely infrastructure, and it is worth stating plainly what it buys. With the toolchain built and the protocol costed, the remaining effort shifts from software to physics. The quenched structures will support quantitative comparison against experimental a-Si and against the ARTn-MTP models of Zongo et al.\ (2025), and in particular they will test that paper's central claim about the melt-quench route: that it tends to trap crystalline grains where ARTn does not. Because the cost is now low enough to generate an ensemble rather than a single structure, that question can be asked statistically rather than anecdotally, and the same structures then feed directly into MAP.
 
 \subsection{Limitations}
 \begin{itemize}[nosep]
@@ -326,14 +329,16 @@ The main anticipated challenges are the possible instability of the pruned poten
 Date (2026) & Milestone \\
 \midrule
 June 15 & Project start \\
+June 22 & Background reading completed and summarized in research log \\
+June 30 & Lennard-Jones benchmark run and visualized in VMD \\
+July 1 to 13 & Debugging of the supplied LAMMPS-MTP build scripts \\
 July 13 & CPU build debugged and validated \\
 July 14 & GPU (Kokkos) build debugged and validated \\
 July 21 & First silicon runs: species mapping, NPT equilibration, NVT production \\
 July 22 & Parallel scaling and potential cost measured; volume mismatch found \\
 July 23 & Ensemble and cooling rate settled; first melt launched \\
 July 24 & Melt confirmed; 1~ns hold and second melt launched \\
-July 27 & Interim report \\
-Aug 31 & Project end \\
+July 28 & Interim report \\
 \bottomrule
 \end{tabular}
 \caption{Chronology of the work reported here.}
@@ -379,16 +384,26 @@ lmp -k on g 1 -sf kk -pk kokkos newton on neigh half -in test.in
 For multi-core runs, LAMMPS is launched through \texttt{srun} and memory is requested with \texttt{--mem-per-cpu} rather than \texttt{--mem}.
 
 \section{Bibliography}
-% Ensure BibTeX sees entries even if \cite isn't used in the text
-\nocite{*}
 \begin{thebibliography}{9}
-\bibitem{zongo2025} Zongo, K., et al. ``ARTn-MTP models of amorphous silicon.'' \textit{Physical Review B}, 2025.
-\bibitem{zongo2024} Zongo, K., et al. ``A unified moment tensor potential for silicon, oxygen, and silica.'' 2024.
-\bibitem{madanchi2024} Madanchi, A., et al. ``Simulations of Disordered Matter in 3D with the Morphological Autoregressive Protocol (MAP).'' \textit{ACS Physical Chemistry Au}, 2024.
-\bibitem{madanchi2026} Madanchi, A., and Simine, L. ``MAPping Dynamic Heterogeneity in Supercooled Glass-formers.'' 2026.
-\bibitem{meng2026} Meng, et al. ``Kokkos-accelerated Moment Tensor Potentials in LAMMPS.'' 2026.
-\bibitem{treacy2012} Treacy, M. M. J., and Borisenko, K. B. ``The Local Structure of Amorphous Silicon.'' \textit{Science}, 2012.
-\bibitem{rosset2025} Rosset, L., Drabold, D. A., and Deringer, V. L. ``Signatures of paracrystallinity in amorphous silicon.'' 2025.
+
+\bibitem{zongo2025} Zongo, K., Sun, H., Ouellet-Plamondon, C., Mousseau, N., and B\'eland, L. K. ``Amorphous silicon structures generated using a moment tensor potential and the activation relaxation technique \emph{nouveau}.'' \textit{Physical Review B} \textbf{111}, 214209 (2025). \href{https://doi.org/10.1103/w12r-gwzb}{doi:10.1103/w12r-gwzb}. Preprint: arXiv:2501.10549.
+
+\bibitem{zongo2024} Zongo, K., Sun, H., Ouellet-Plamondon, C., and B\'eland, L. K. ``A unified moment tensor potential for silicon, oxygen, and silica.'' \textit{npj Computational Materials} \textbf{10}, 218 (2024). \href{https://doi.org/10.1038/s41524-024-01390-8}{doi:10.1038/s41524-024-01390-8}.
+
+\bibitem{shapeev2016} Shapeev, A. V. ``Moment tensor potentials: a class of systematically improvable interatomic potentials.'' \textit{Multiscale Modeling \& Simulation} \textbf{14}(3), 1153--1173 (2016). \href{https://doi.org/10.1137/15M1054183}{doi:10.1137/15M1054183}.
+
+\bibitem{meng2026} Meng, Z., Zongo, K., Torres, E., Maxwell, C., Grant, R. E., and B\'eland, L. K. ``A Kokkos-accelerated moment tensor potential implementation for LAMMPS.'' \textit{SoftwareX} (2026). Preprint: arXiv:2510.00193 (2025).
+
+\bibitem{madanchi2024} Madanchi, A., Kilgour, M., Zysk, F., K\"uhne, T. D., and Simine, L. ``Simulations of disordered matter in 3D with the morphological autoregressive protocol (MAP) and convolutional neural networks.'' \textit{The Journal of Chemical Physics} \textbf{160}, 024101 (2024). \href{https://doi.org/10.1063/5.0174615}{doi:10.1063/5.0174615}.
+
+\bibitem{madanchi2026} Madanchi, A., and Simine, L. ``MAPping dynamic heterogeneity in supercooled glass-formers.'' \textit{The Journal of Chemical Physics} \textbf{164}, 071101 (2026). \href{https://doi.org/10.1063/5.0309814}{doi:10.1063/5.0309814}.
+
+\bibitem{madanchi2025review} Madanchi, A., Azek, E., Zongo, K., B\'eland, L. K., Mousseau, N., and Simine, L. ``Is the future of materials amorphous? Challenges and opportunities in simulations of amorphous materials.'' \textit{ACS Physical Chemistry Au} \textbf{5}(1), 3--16 (2025). \href{https://doi.org/10.1021/acsphyschemau.4c00063}{doi:10.1021/acsphyschemau.4c00063}.
+
+\bibitem{treacy2012} Treacy, M. M. J., and Borisenko, K. B. ``The local structure of amorphous silicon.'' \textit{Science} \textbf{335}(6071), 950--953 (2012). \href{https://doi.org/10.1126/science.1214780}{doi:10.1126/science.1214780}.
+
+\bibitem{rosset2025} Rosset, L. A. M., Drabold, D. A., and Deringer, V. L. ``Signatures of paracrystallinity in amorphous silicon from machine-learning-driven molecular dynamics.'' \textit{Nature Communications} \textbf{16}, 2360 (2025). \href{https://doi.org/10.1038/s41467-025-57406-4}{doi:10.1038/s41467-025-57406-4}.
+
 \end{thebibliography}
 
 \end{document}
