@@ -170,13 +170,6 @@ INPUT ..\personal\VMDtestLJSub.png
 INPUT ..\personal\VMDtestLJSub.png
 INPUT ..\personal\VMDtestLJSub.png
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
-INPUT .\walltime.png
-INPUT .\walltime.png
-INPUT .\walltime.png
-INPUT .\walltime.png
-INPUT .\walltime.png
-INPUT .\walltime.png
-INPUT .\walltime.png
 INPUT .\scaling.png
 INPUT .\scaling.png
 INPUT .\scaling.png
@@ -184,6 +177,13 @@ INPUT .\scaling.png
 INPUT .\scaling.png
 INPUT .\scaling.png
 INPUT .\scaling.png
+INPUT .\walltime.png
+INPUT .\walltime.png
+INPUT .\walltime.png
+INPUT .\walltime.png
+INPUT .\walltime.png
+INPUT .\walltime.png
+INPUT .\walltime.png
 INPUT ..\personal\melt_216_22almtp_2500K_final.png
 INPUT ..\personal\melt_216_22almtp_2500K_final.png
 INPUT ..\personal\melt_216_22almtp_2500K_final.png

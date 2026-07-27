@@ -99,8 +99,7 @@ LAMMPS is the standard open-source MD engine used here. It reads a plain-text in
 
 \subsection{Toolchain validation: Lennard-Jones melt}
 \label{sec:ljmethod}
-Before touching silicon, a standard Lennard-Jones melt was run to confirm the full pipeline (job submission, LAMMPS execution, output, visualization) worked. The system is 13{,}500 atoms on an fcc lattice at reduced density 0.8442, \texttt{pair\_style lj/cut 2.5}, initial reduced temperature 1.44, integrated in NVE for 10{,}000 steps. This is the canonical LAMMPS benchmark %this sentence has  high vocab for me...
-. The same input was later reused as the acceptance test for both custom builds.
+Before touching silicon, a standard Lennard-Jones melt was run to confirm the full pipeline (job submission, LAMMPS execution, output, visualization) worked. The system is 13{,}500 atoms on an fcc lattice at reduced density 0.8442, \texttt{pair\_style lj/cut 2.5}, initial reduced temperature 1.44, integrated in NVE for 10{,}000 steps. This test case was chosen because it is the standard LAMMPS example, so the expected behaviour is well known. The same input was later reused as the acceptance test for both custom builds.
 
 \subsection{Building LAMMPS with the MTP}
 \label{sec:build}
@@ -146,7 +145,7 @@ On the stock module build, the total energy per atom stayed essentially constant
 \label{sec:buildresults}
 Neither supplied build script produced a working binary as distributed. Five faults were identified and fixed (Table~\ref{tab:buildfaults}).
 
-For the CPU build: the binary crashed with ``Illegal instruction'' because it was compiled for the wrong CPU architecture (fixed with \texttt{-march=core-avx2}); an inverted conditional in the copy block silently skipped the MTP source files, producing a binary without MTP support; and the archive contained stale nested CMake caches from the support staff's own build, which \texttt{--fresh} does not reset, so the whole \texttt{\_build} directory had to be deleted before rebuilding. After a clean rebuild, \texttt{lmp -h} listed ML-MTP with the \texttt{mtp} pair styles available.
+For the CPU build: the binary crashed with ``Illegal instruction'' because it was compiled for the wrong CPU architecture (fixed with \texttt{-march=core-avx2}); an inverted conditional in the copy block silently skipped the MTP source files, producing a binary without MTP support; and the archive contained stale nested CMake caches from a previous build, which \texttt{--fresh} does not reset, so the whole \texttt{\_build} directory had to be deleted before rebuilding. After a clean rebuild, \texttt{lmp -h} listed ML-MTP with the \texttt{mtp} pair styles available.
 
 For the GPU build: the \texttt{KOKKOS} source folder was never copied, so the \texttt{mtp/kk} styles were absent; the CUDA backend of Kokkos was never enabled (fixed with the \texttt{kokkos-cuda} preset and \texttt{-DKokkos\_ARCH\_AMPERE80=ON} for Narval's A100s); and two options had to be removed, since \texttt{-march=core-avx2} breaks the NVIDIA compiler and the OpenCL \texttt{GPU} package fails and is redundant next to Kokkos.
 
@@ -188,17 +187,9 @@ Build & Hardware & Wall time & Relative speed \\
 \label{tab:builds}
 \end{table}
 
-%Why show the 5000 steps Si run here whilst its talked about later on or maybe did I miss it before?
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{walltime.png}
-    \caption{Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref{tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run of Section~\ref{sec:scaling}.}
-    \label{fig:walltime}
-\end{figure}
-
 \subsection{Atom type mapping}
 \label{sec:mapping}
-The potential file declares two species but does not say which is which. This was settled by direct test: running the 216-atom diamond lattice as type 1 gave a stable run at 2.27~g/cm$^3$, close to the 2.33~g/cm$^3$ of c-Si, while running it as type 2 gave a starting pressure of $-2.24\times10^6$~bar and the box collapsed within a few steps. Type 1 is silicon, type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system of Zongo et al.\ (2024).
+The potential file declares two species but does not say which is which. This was settled by direct test: running the 216-atom diamond lattice as type 1 gave a stable run at 2.27~g/cm$^3$, close to the 2.33~g/cm$^3$ of c-Si, while running it as type 2 gave a starting pressure of $-2.24\times10^6$~bar and the box collapsed within a few steps. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system of Zongo et al.\ (2024).
 
 \subsection{Equilibrium volume under the melt-stable potential}
 \label{sec:npt}
@@ -208,9 +199,7 @@ Both runs used one CPU core and took about 20 minutes for 5000 steps, or roughly
 
 \subsection{Parallel scaling and pruned-potential cost}
 \label{sec:scaling}
-The same 5000-step NVT run was repeated on 1, 4, and 8 cores (Table~\ref{tab:scaling}). Scaling is close to linear out to 8 cores, but the limit is in sight:%but the limit is in sight... too fancy
- communication rose from 0.4\% of the total at 4 cores to 4\% at 8, and at 27 atoms per core the workload is getting thin %too fancy
- . Eight cores was adopted as the default. %Explain why not more than 8
+The same 5000-step NVT run was repeated on 1, 4, and 8 cores (Table~\ref{tab:scaling} and Fig.~\ref{fig:scaling}). Scaling is close to linear out to 8 cores. Going beyond 8 cores was not attempted, because two costs grow as the core count rises: the fraction of time spent on communication between cores went from 0.4\% at 4 cores to 4\% at 8, and with only 27 atoms left per core, there is not much work remaining to split up. Adding more cores would mostly add communication overhead for little gain, so 8 cores was used for all later runs.
 
 \begin{table}[H]
 \centering
@@ -234,7 +223,14 @@ Cores & Wall time & Speedup & Atoms per core \\
     \label{fig:scaling}
 \end{figure}
 
-Swapping \texttt{22.almtp} for \texttt{pruned\_1.almtp} on 8 cores cut the run from 2~min 43~s to 14~s, about $12\times$ faster (357 vs.\ 31 steps/s). Combined with the parallel speedup, this is roughly a hundredfold reduction over the starting point.
+Swapping \texttt{22.almtp} for \texttt{pruned\_1.almtp} on 8 cores cut the run from 2~min 43~s to 14~s, about $12\times$ faster (357 vs.\ 31 steps/s). Combined with the parallel speedup, this is roughly a hundredfold reduction over the starting point. Figure~\ref{fig:walltime} summarizes both wall-time comparisons: the CPU vs GPU builds on the Lennard-Jones benchmark, and the two potentials on the silicon run.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{walltime.png}
+    \caption{Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref{tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run.}
+    \label{fig:walltime}
+\end{figure}
 
 \subsection{The two potentials prefer different volumes}
 \label{sec:mismatch}
@@ -261,8 +257,7 @@ Cooling (1~K/ps) & 2.2~ns & $2.2\times10^6$ & $\sim$1.7~h \\
 
 \subsection{The melt}
 \label{sec:melt}
-The heating stage ran the 216-atom lattice under \texttt{fix npt}, ramping 300~K to 2500~K at 0~bar over 30{,}000 steps (30~ps), with a thermostat damping of 0.1~ps. The run melted successfully. Two signatures confirmed the liquid. First, the pressure fluctuations grew by an order of magnitude (order $10^4$~bar vs.\ $10^3$ in the solid), and second is the neighbour-list rebuilds rose from zero to 400, the direct signature %too fancy
- of atoms diffusing. VMD confirms it visually, by showcasing the diamond lattice breaking apart into a disordered liquid (Fig.~\ref{fig:melt_vmd}).
+The heating stage ran the 216-atom lattice under \texttt{fix npt}, ramping 300~K to 2500~K at 0~bar over 30{,}000 steps (30~ps), with a thermostat damping of 0.1~ps. The run melted successfully, and two signatures confirmed the liquid. First, the pressure fluctuations grew by an order of magnitude (order $10^4$~bar vs.\ $10^3$ in the solid). Second, the number of neighbour-list rebuilds rose from zero to 400; rebuilds only happen when atoms move far enough to change their neighbours, so this shows the atoms are diffusing rather than vibrating in place. VMD confirms it visually, by showcasing the diamond lattice breaking apart into a disordered liquid (Fig.~\ref{fig:melt_vmd}).
 
 \begin{figure}[H]
     \centering
@@ -280,12 +275,10 @@ Three runs are currently executing or queued: (1) the 1~ns hold at 2500~K with \
 \label{sec:discussion}
 
 \subsection{The toolchain as a deliverable}
-%This subsection is literally insulat alliance canada which we shouldnt, either soften or remove
-A large fraction of the elapsed time went into producing two working binaries rather than physics. An important outcome of this stage is that the five faults in Table~\ref{tab:buildfaults} were not user error: the archive as distributed could not produce a functioning binary on Narval, and three of the faults would silently produce either a crash or a binary missing the package it was built for. The corrected scripts are reusable by the group. The GPU build is validated but unused for silicon so far, which is expected: Meng et al.\ (2026) intend the GPU variants for roughly 2000+ atoms per GPU, far above 216. It becomes relevant if the system size grows (Section~\ref{sec:disc_size}).
+A large fraction of the elapsed time went into producing two working binaries rather than physics. The supplied build scripts required several environment-specific corrections before compiling on Narval (Table~\ref{tab:buildfaults}), which is a normal part of deploying research software on a shared cluster; the debugging was done with helpful follow-up guidance from Alliance support. The corrected scripts are now documented and reusable by the group, so this cost will not be paid again. The GPU build is validated but unused for silicon so far, which is expected: Meng et al.\ (2026) intend the GPU variants for roughly 2000+ atoms per GPU, far above 216. It becomes relevant if the system size grows (Section~\ref{sec:disc_size}).
 
-\subsection{Undocumented species mapping}
-%What??
-The mapping result is small but important, since every later run depends on it. A misassignment would not always produce an obvious error; it happened to produce a catastrophic collapse here, but a subtler mislabelling in a multi-species run could produce plausible-looking but wrong results. The takeaway is that undocumented species mappings should be checked against a reference structure with an independently known value (here, the density of c-Si) before any production run.
+\subsection{Verifying the atom type mapping}
+Identifying which atom type corresponds to silicon was a small step, but every later run depends on it. Had the types been assigned the wrong way around, the mistake would not always be obvious: in this case it caused an immediate, unmistakable collapse of the box, but in a system containing both silicon and oxygen, a wrong assignment could instead produce results that look reasonable while being physically wrong. Checking the assignment against a quantity with a known value, here the density of c-Si, is a cheap way to rule this out, and is worth doing for any potential file whose species are not documented.
 
 \subsection{The potential handoff problem}
 \label{sec:disc_mismatch}
@@ -296,7 +289,7 @@ The cost measurements turned an infeasible protocol into a feasible one: nine da
 
 \subsection{System size}
 \label{sec:disc_size}
-The 216-atom size was chosen to match the smallest Zongo et al.\ models and to keep iteration fast. Its limits are clear: fluctuations scale as $N^{-1/2}$, so single measurements are noisy, and a 16~\AA{} box is a small number of correlation lengths for ring statistics and medium-range order. Zongo et al.\ found crystallinity depends little on system size, which is reassuring, but if time permits, repeating at 512 and 4096 atoms would strengthen the statistics, and at those sizes the parallel scaling headroom reopens.
+The 216-atom size was chosen to match the smallest Zongo et al.\ models and to keep iteration fast. Its limits are clear: fluctuations scale as $N^{-1/2}$, so single measurements are noisy, and a 16~\AA{} box is a small number of correlation lengths for ring statistics and medium-range order. Zongo et al.\ found crystallinity depends little on system size, which is reassuring. Repeating the protocol at 512 and 4096 atoms is planned for the final weeks to strengthen the statistics, and at those sizes the parallel scaling headroom reopens.
 
 \subsection{Limitations}
 \begin{itemize}[nosep]
@@ -316,10 +309,10 @@ The toolchain is built, validated, and fast enough for the planned protocol. The
     \item \textbf{Run the quench} at 1~K/ps from 2500~K to 300~K under \texttt{pruned\_1} (about 2 hours on 8 cores), producing the first a-Si structure. The final density will be tracked closely, since the volume disagreement between the potential families is expected to surface there.
     \item \textbf{Structural analysis}: coordination statistics, bond-angle distribution, ring statistics, and structure factor, compared against Zongo et al.\ (2025) and experiment, including a check for residual crystallinity.
     \item \textbf{Apply MAP} to the resulting structures.
-    \item \textbf{If time permits}: repeat at 512 or 4096 atoms to strengthen the statistics, and generate an ensemble of independent structures if the pruned potentials prove usable for the hold. %Replace cuz time will permit! I have to, replace all the similar looking "If time permits in this paper cuz i dont like this i will do everything!!
+    \item \textbf{Scale up and repeat}: rerun the protocol at 512 and 4096 atoms to strengthen the structural statistics, and generate an ensemble of independent 216-atom structures once the cheapest stable combination of potentials is established.
 \end{enumerate}
 
-The main anticipated challenges are the possible instability of the pruned potentials in the melt, which the paired hold runs will settle, and the small system size, which limits the reliability of ring statistics from any single sample. 
+The main anticipated challenges are the possible instability of the pruned potentials in the melt, which the paired hold runs will settle, and the small system size, which limits the reliability of ring statistics from any single sample.
 
 % ===========================================================
 \appendix

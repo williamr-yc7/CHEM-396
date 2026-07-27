@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  27 JUL 2026 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  27 JUL 2026 13:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -375,15 +375,15 @@ l.71
 <../personal/VMDtestLJSub.png, id=225, 745.78625pt x 485.31313pt>
 File: ../personal/VMDtestLJSub.png Graphic file (type png)
 <use ../personal/VMDtestLJSub.png>
-Package pdftex.def Info: ../personal/VMDtestLJSub.png  used on input line 140.
+Package pdftex.def Info: ../personal/VMDtestLJSub.png  used on input line 139.
 (pdftex.def)             Requested size: 328.82707pt x 213.97534pt.
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 160--160
+Underfull \hbox (badness 10000) in paragraph at lines 159--159
 []\OT1/cmr/m/n/10 Illegal in-struc-tion (core
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 []\OT1/cmtt/m/n/10 kokkos-cuda \OT1/cmr/m/n/10 pre-set +
  []
 
@@ -391,67 +391,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--169
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.190 
+l.189 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.190 
+l.189 
        <../personal/VMDtestLJSub.png>]
-<walltime.png, id=247, 542.025pt x 245.718pt>
-File: walltime.png Graphic file (type png)
-<use walltime.png>
-Package pdftex.def Info: walltime.png  used on input line 194.
-(pdftex.def)             Requested size: 446.26582pt x 202.31491pt.
+<scaling.png, id=249, 375.804pt x 260.172pt>
+File: scaling.png Graphic file (type png)
+<use scaling.png>
+Package pdftex.def Info: scaling.png  used on input line 221.
+(pdftex.def)             Requested size: 281.85587pt x 195.14041pt.
  [6
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214 
+l.225 
       
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.214 
-       <./walltime.png>]
-<scaling.png, id=260, 375.804pt x 260.172pt>
-File: scaling.png Graphic file (type png)
-<use scaling.png>
-Package pdftex.def Info: scaling.png  used on input line 232.
-(pdftex.def)             Requested size: 281.85587pt x 195.14041pt.
- [7
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.246 
-      
+l.225 
+      ]
+<walltime.png, id=258, 542.025pt x 245.718pt>
+File: walltime.png Graphic file (type png)
+<use walltime.png>
+Package pdftex.def Info: walltime.png  used on input line 230.
+(pdftex.def)             Requested size: 446.26582pt x 202.31491pt.
+ [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.239 \subsection
+                 {Projected cost of the full protocol}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.246 
-       <./scaling.png>]
-<../personal/melt_216_22almtp_2500K_final.png, id=273, 245.41687pt x 238.39063pt>
+l.239 \subsection
+                 {Projected cost of the full protocol} <./scaling.png> <./walltime.png>]
+<../personal/melt_216_22almtp_2500K_final.png, id=272, 245.41687pt x 238.39063pt>
 File: ../personal/melt_216_22almtp_2500K_final.png Graphic file (type png)
 <use ../personal/melt_216_22almtp_2500K_final.png>
-Package pdftex.def Info: ../personal/melt_216_22almtp_2500K_final.png  used on input line 269.
+Package pdftex.def Info: ../personal/melt_216_22almtp_2500K_final.png  used on input line 264.
 (pdftex.def)             Requested size: 234.8775pt x 228.16125pt.
  [8
 pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.285 
+l.272 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.285 
+l.272 
        <../personal/melt_216_22almtp_2500K_final.png>] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 366--367
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 384--385
+Underfull \hbox (badness 10000) in paragraph at lines 377--378
 
  []
 
@@ -461,9 +461,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 384--385
 pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.385 
+l.378 
       ]
-Overfull \hbox (31.47652pt too wide) in paragraph at lines 386--387
+Overfull \hbox (31.47652pt too wide) in paragraph at lines 379--380
 []\OT1/cmr/m/n/10.95 For multi-core runs, LAMMPS is launched through \OT1/cmtt/m/n/10.95 srun \OT1/cmr/m/n/10.95 and mem-ory is re-quested with \OT1/cmtt/m/n/10.95 --mem-per-cpu
  []
 
@@ -473,18 +473,18 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 702E0B41EC79ABAA482DC8FEC8092110;6086.
+(rerunfilecheck)             Checksum: 6FD393EF4F219E3778BBDDC7BDA90AAD;6107.
  ) 
 Here is how much of TeX's memory you used:
  10454 strings out of 467871
  163213 string characters out of 5418377
- 590457 words of memory out of 5000000
+ 590432 words of memory out of 5000000
  39126 multiletter control sequences out of 15000+600000
  636617 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,1369b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\erenr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (14 pages, 731781 bytes).
+Output written on Report.pdf (14 pages, 732635 bytes).
 PDF statistics:
  393 PDF objects out of 1000 (max. 8388607)
  83 named destinations out of 1000 (max. 500000)
