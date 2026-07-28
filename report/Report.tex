@@ -201,13 +201,12 @@ conventional diamond cubic cells, so the lattice constant follows as
       = \left(\frac{4433~\text{\AA}^3}{27}\right)^{1/3} = 5.476~\text{\AA},
     \label{eq:latconst}
 \end{equation}
-which exceeds the experimental value $a_{\exp} = 5.431$~\AA{} \cite{expref} by
+which exceeds the experimental value $a_{\exp} = 5.431$~\AA{} by
 \begin{equation}
     \frac{a - a_{\exp}}{a_{\exp}} = \frac{5.476 - 5.431}{5.431} = 0.83\%.
     \label{eq:latdev}
 \end{equation}
-An overestimate of this size is expected from the GGA exchange-correlation functional
-used to produce the training data. Pressure swung over thousands of bar during the run,
+Pressure swung over thousands of bar during the run,
 which is normal for 216 atoms since fluctuations scale as $N^{-1/2}$. A follow-up NVT
 run with the box fixed at the settled constant showed pressure hovering near zero and
 steady potential energy, confirming the system is no longer strained.
@@ -227,7 +226,7 @@ adequate for a 30~ps melt but not for the quench. By Eq.~\ref{eq:rate}, cooling 
       = 6.0\times10^5~\text{s} \approx 7~\text{days}
     \label{eq:onecore}
 \end{equation}
-on a single core. This motivated the optimization work below.
+on a single core.
 
 \subsection{Parallel scaling and pruned-potential cost}
 \label{sec:scaling}
@@ -306,48 +305,45 @@ Three runs are currently executing or queued: (1) the 1~ns hold at 2500~K with \
 \section{Discussion}
 \label{sec:discussion}
 
-\subsection{The toolchain as a deliverable}
-A large fraction of the elapsed time went into producing two working binaries rather than physics. The supplied build scripts required several environment-specific corrections before compiling on Narval (Table~\ref{tab:buildfaults}), which is a normal part of deploying research software on a shared cluster; the debugging was done with helpful follow-up guidance from Alliance support. The corrected scripts are now documented and reusable by the group, so this cost will not be paid again. The GPU build is validated but unused for silicon so far, which is expected: Meng et al.\ (2026) intend the GPU variants for roughly 2000+ atoms per GPU, far above 216. It becomes relevant if the system size grows (Section~\ref{sec:disc_size}).
+\subsection{Building the toolchain}
+Much of the time this term went into getting two working builds in place before any physics could be run. The build scripts needed a few changes to work on Narval (Table~\ref{tab:buildfaults}), which is normal when setting up research software on a shared cluster, and Alliance support helped sort out the remaining issues. The fixed scripts are now written up and can be reused by the group, so this step should be quick next time. The GPU build works but has not been needed for silicon yet, which is expected: Meng et al.\ (2026) designed the GPU version for systems of roughly 2000 atoms or more per GPU, well above the 216 used here. It becomes useful if the system grows (Section~\ref{sec:disc_size}).
 
-\subsection{Verifying the atom type mapping}
-Identifying which atom type corresponds to silicon was a small step, but every later run depends on it. Had the types been assigned the wrong way around, the mistake would not always be obvious: in this case it caused an immediate, unmistakable collapse of the box, but in a system containing both silicon and oxygen, a wrong assignment could instead produce results that look reasonable while being physically wrong. Checking the assignment against a quantity with a known value, here the density of c-Si, is a cheap way to rule this out, and is worth doing for any potential file whose species are not documented.
+\subsection{Checking the atom type mapping}
+Working out which atom type stands for silicon was a small step, but everything later depends on it. If the types had been swapped, the problem would not always be easy to spot. Here it made the box collapse right away, which is hard to miss, but in a system holding both silicon and oxygen a swap could give results that look fine while being wrong. Comparing against a known value, in this case the density of c-Si, is a quick way to check this.
 
-\subsection{The potential handoff problem}
+\subsection{Switching between potentials}
 \label{sec:disc_mismatch}
-The $-12{,}400$~bar result matters because it is a property of the protocol, not of any one run: the workflow deliberately switches potentials midway, and the equilibrium volume of one is not the equilibrium volume of the other. Two interpretations are possible. One is that this is a technical artifact to be managed: running everything under NPT lets the barostat relax the box to whatever the current potential prefers within a few picoseconds of the switch, which is the approach adopted and also matches the benchmark study. Another possible interpretation is that a disagreement of this size means the pruned potentials describe a measurably different material. Under NPT the disagreement will not appear as an error; it will show up as a difference in the final density of the quenched structure. Since a-Si density (2.28~g/cm$^3$) is one of the quantities compared against experiment, this will be tracked explicitly. The paired hold runs are a first test of how far apart the two families actually are.
+The $-12{,}400$~bar reading is worth noting because it comes from the protocol itself rather than from one particular run: the workflow changes potentials partway through, and the volume one potential prefers is not the volume the other prefers. There are two ways to read this. The first is that it is a technical detail to be handled: running under NPT lets the barostat adjust the box to suit the current potential within a few picoseconds of the switch, which is the approach taken here and the one used in the benchmark study. The second is that a gap this size suggests the pruned potentials describe a slightly different material. Under NPT the gap will not show up as an error, but as a difference in the final density of the quenched structure. Since a-Si density (2.28~g/cm$^3$) is one of the values compared with experiment, it will be tracked directly. The paired hold runs give a first look at how close the two families really are.
 
 \subsection{Feasibility}
-The cost measurements turned an infeasible protocol into a feasible one: seven days on one core became under two hours for the cooling stage. The remaining bottleneck is the 1~ns hold, the one stage that currently needs the expensive melt-stable potential. If the pruned potentials prove stable at 2500~K, the whole protocol fits in a single overnight allocation, making it practical to generate an ensemble of independent structures rather than one, which matters because 216-atom statistics from a single sample are unreliable.
+The timing tests brought the protocol into reach, seven days on one core came down to under two hours for the cooling stage. The main cost left is the 1~ns hold, the one stage that still needs the more expensive melt-stable potential. If the pruned potentials hold up at 2500~K, the full protocol fits into a single overnight run, which makes it practical to build a set of independent structures instead of just one. That matters because results from a single 216-atom sample carry a lot of uncertainty.
 
 \subsection{System size}
 \label{sec:disc_size}
-The 216-atom size was chosen to match the smallest Zongo et al.\ models and to keep iteration fast. Its limits are clear: fluctuations scale as $N^{-1/2}$, so single measurements are noisy, and a 16~\AA{} box is a small number of correlation lengths for ring statistics and medium-range order. Zongo et al.\ found crystallinity depends little on system size, which is reassuring. Repeating the protocol at 512 and 4096 atoms is planned for the final weeks to strengthen the statistics, and at those sizes the parallel scaling headroom reopens.
+The 216-atom size was chosen to match the smallest Zongo et al.\ models and to keep runs quick. The trade-offs are clear, fluctuations go as $N^{-1/2}$, so single measurements are noisy, and a 16~\AA{} box covers only a few correlation lengths for ring statistics and medium-range order. Zongo et al.\ found that crystallinity depends only weakly on system size, which is encouraging. Running the same protocol at 512 and 4096 atoms is planned for the final weeks to firm up the statistics, and at those sizes the parallel scaling becomes useful again.
 
-\subsection{What this enables}
-The work reported here is almost entirely infrastructure, and it is worth stating plainly what it buys. With the toolchain built and the protocol costed, the remaining effort shifts from software to physics. The quenched structures will support quantitative comparison against experimental a-Si and against the ARTn-MTP models of Zongo et al.\ (2025), and in particular they will test that paper's central claim about the melt-quench route: that it tends to trap crystalline grains where ARTn does not. Because the cost is now low enough to generate an ensemble rather than a single structure, that question can be asked statistically rather than anecdotally, and the same structures then feed directly into MAP.
-
-\subsection{Limitations}
+\subsection{Still to come}
 \begin{itemize}[nosep]
-    \item No structural characterization yet: no coordination statistics, bond-angle distributions, ring statistics, or structure factors.
-    \item Cost projections are extrapolated from a static 300~K crystal and will underestimate the liquid stages.
-    \item Melt confirmation is qualitative; a radial distribution function from the melt trajectory should be computed.
-    \item Only \texttt{22.almtp} is characterized in any detail, with one cost measurement for \texttt{pruned\_1}. The other three potentials are untested.
+    \item Structural analysis has not been done yet: coordination statistics, bond-angle distributions, ring statistics, and structure factors are all next on the list.
+    \item Cost estimates come from a static 300~K crystal, so the liquid stages will run somewhat slower than projected.
+    \item Melt confirmation so far is visual; a radial distribution function from the melt trajectory would make it firm.
+    \item Only \texttt{22.almtp} has been looked at closely, with one timing measurement for \texttt{pruned\_1}. The other three potentials are next.
 \end{itemize}
 
 % ===========================================================
 \section{Status and Future Work}
-The toolchain is built, validated, and fast enough for the planned protocol. The species mapping, equilibrium volume, and potential costs have been measured, the melt is confirmed, and three runs (two holds and a second melt) are currently executing. The remaining work, in order:
+The toolchain is built, checked, and quick enough for the planned protocol. The species mapping, equilibrium volume, and potential costs have all been measured, the melt is confirmed, and three runs (two holds and a second melt) are running now. The work left, in order:
 
 \begin{enumerate}[nosep]
-    \item \textbf{Complete the hold runs} (in progress) and compare the melt-stable and pruned structures, which will show whether the pruned potentials survive 2500~K and how far apart the two families are.
-    \item \textbf{Compute a radial distribution function} from the melt trajectory, to confirm the liquid quantitatively rather than visually.
-    \item \textbf{Run the quench} at 1~K/ps from 2500~K to 300~K under \texttt{pruned\_1} (about 2 hours on 8 cores), producing the first a-Si structure. The final density will be tracked closely, since the volume disagreement between the potential families is expected to surface there.
-    \item \textbf{Structural analysis}: coordination statistics, bond-angle distribution, ring statistics, and structure factor, compared against Zongo et al.\ (2025) and experiment, including a check for residual crystallinity.
+    \item \textbf{Finish the hold runs} (in progress) and compare the melt-stable and pruned structures, which will show whether the pruned potentials hold up at 2500~K and how close the two families are.
+    \item \textbf{Compute a radial distribution function} from the melt trajectory, so the liquid is confirmed by numbers rather than by eye.
+    \item \textbf{Run the quench} at 1~K/ps from 2500~K to 300~K using \texttt{pruned\_1} (about 2 hours on 8 cores), giving the first a-Si structure. The final density will be watched closely, since the volume difference between the two potential families is likely to show up there.
+    \item \textbf{Structural analysis}: coordination statistics, bond-angle distribution, ring statistics, and structure factor, compared with Zongo et al.\ (2025) and with experiment, including a look for leftover crystallinity.
     \item \textbf{Apply MAP} to the resulting structures.
-    \item \textbf{Scale up and repeat}: rerun the protocol at 512 and 4096 atoms to strengthen the structural statistics, and generate an ensemble of independent 216-atom structures once the cheapest stable combination of potentials is established.
+    \item \textbf{Scale up and repeat}: run the protocol again at 512 and 4096 atoms to firm up the structural statistics, and build a set of independent 216-atom structures once the cheapest stable pairing of potentials is known.
 \end{enumerate}
 
-The main anticipated challenges are the possible instability of the pruned potentials in the melt, which the paired hold runs will settle, and the small system size, which limits the reliability of ring statistics from any single sample.
+The two things to watch are whether the pruned potentials stay stable in the melt, which the paired hold runs will answer, and the small system size, which limits how much weight ring statistics from any single sample can carry.
 
 % ===========================================================
 \appendix
