@@ -31,44 +31,49 @@
 \newlabel{sec:buildresults}{{4.2}{5}{Diagnosis and correction of the MTP builds}{subsection.4.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Build faults in the supplied LAMMPS-MTP archive and their fixes.}}{5}{table.1}\protected@file@percent }
 \newlabel{tab:buildfaults}{{1}{5}{Build faults in the supplied LAMMPS-MTP archive and their fixes}{table.1}{}}
+\citation{expref}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Validation of both builds on the 10{,}000-step, 13{,}500-atom LJ melt.}}{6}{table.2}\protected@file@percent }
 \newlabel{tab:builds}{{2}{6}{Validation of both builds on the 10{,}000-step, 13{,}500-atom LJ melt}{table.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Atom type mapping}{6}{subsection.4.3}\protected@file@percent }
 \newlabel{sec:mapping}{{4.3}{6}{Atom type mapping}{subsection.4.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Equilibrium volume under the melt-stable potential}{6}{subsection.4.4}\protected@file@percent }
 \newlabel{sec:npt}{{4.4}{6}{Equilibrium volume under the melt-stable potential}{subsection.4.4}{}}
+\newlabel{eq:latconst}{{2}{6}{Equilibrium volume under the melt-stable potential}{equation.2}{}}
+\newlabel{eq:latdev}{{3}{6}{Equilibrium volume under the melt-stable potential}{equation.3}{}}
+\newlabel{eq:throughput}{{4}{6}{Equilibrium volume under the melt-stable potential}{equation.4}{}}
+\newlabel{eq:onecore}{{5}{6}{Equilibrium volume under the melt-stable potential}{equation.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Parallel scaling and pruned-potential cost}{6}{subsection.4.5}\protected@file@percent }
 \newlabel{sec:scaling}{{4.5}{6}{Parallel scaling and pruned-potential cost}{subsection.4.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Wall time for a 5000-step NVT run of 216 Si atoms with \texttt  {22.almtp}.}}{6}{table.3}\protected@file@percent }
-\newlabel{tab:scaling}{{3}{6}{Wall time for a 5000-step NVT run of 216 Si atoms with \texttt {22.almtp}}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Wall time for a 5000-step NVT run of 216 Si atoms with \texttt  {22.almtp}.}}{7}{table.3}\protected@file@percent }
+\newlabel{tab:scaling}{{3}{7}{Wall time for a 5000-step NVT run of 216 Si atoms with \texttt {22.almtp}}{table.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Parallel speedup of the 5000-step NVT run against the ideal linear case. Scaling is near-linear to 8 cores; the superlinear value at 4 cores likely reflects cache effects at small per-core atom counts.}}{7}{figure.2}\protected@file@percent }
 \newlabel{fig:scaling}{{2}{7}{Parallel speedup of the 5000-step NVT run against the ideal linear case. Scaling is near-linear to 8 cores; the superlinear value at 4 cores likely reflects cache effects at small per-core atom counts}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref {tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run.}}{7}{figure.3}\protected@file@percent }
-\newlabel{fig:walltime}{{3}{7}{Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref {tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}The two potentials prefer different volumes}{7}{subsection.4.6}\protected@file@percent }
-\newlabel{sec:mismatch}{{4.6}{7}{The two potentials prefer different volumes}{subsection.4.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref {tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run.}}{8}{figure.3}\protected@file@percent }
+\newlabel{fig:walltime}{{3}{8}{Wall-time comparisons. Left: CPU vs GPU builds on the Lennard-Jones benchmark (Table~\ref {tab:builds}). Right: melt-stable vs pruned potential on the 5000-step silicon run}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}The two potentials prefer different volumes}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:mismatch}{{4.6}{8}{The two potentials prefer different volumes}{subsection.4.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Projected cost of the full protocol}{8}{subsection.4.7}\protected@file@percent }
 \newlabel{sec:projected}{{4.7}{8}{Projected cost of the full protocol}{subsection.4.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Projected cost for 216 atoms on 8 cores (melt-stable for heating and hold, \texttt  {pruned\_1} for cooling).}}{8}{table.4}\protected@file@percent }
 \newlabel{tab:projected_cost}{{4}{8}{Projected cost for 216 atoms on 8 cores (melt-stable for heating and hold, \texttt {pruned\_1} for cooling)}{table.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.8}The melt}{8}{subsection.4.8}\protected@file@percent }
 \newlabel{sec:melt}{{4.8}{8}{The melt}{subsection.4.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The 216-atom system during the melt, visualized in VMD.}}{8}{figure.4}\protected@file@percent }
-\newlabel{fig:melt_vmd}{{4}{8}{The 216-atom system during the melt, visualized in VMD}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The 216-atom system during the melt, visualized in VMD.}}{9}{figure.4}\protected@file@percent }
+\newlabel{fig:melt_vmd}{{4}{9}{The 216-atom system during the melt, visualized in VMD}{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Runs in progress}{9}{subsection.4.9}\protected@file@percent }
 \newlabel{sec:inprogress}{{4.9}{9}{Runs in progress}{subsection.4.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
 \newlabel{sec:discussion}{{5}{9}{Discussion}{section.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The toolchain as a deliverable}{9}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Verifying the atom type mapping}{9}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The potential handoff problem}{9}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:disc_mismatch}{{5.3}{9}{The potential handoff problem}{subsection.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Feasibility}{9}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Verifying the atom type mapping}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The potential handoff problem}{10}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:disc_mismatch}{{5.3}{10}{The potential handoff problem}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Feasibility}{10}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}System size}{10}{subsection.5.5}\protected@file@percent }
 \newlabel{sec:disc_size}{{5.5}{10}{System size}{subsection.5.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}What this enables}{10}{subsection.5.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Limitations}{10}{subsection.5.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Status and Future Work}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Limitations}{11}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Status and Future Work}{11}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {A}Project Timeline}{12}{appendix.A}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Chronology of the work reported here.}}{12}{table.5}\protected@file@percent }
 \newlabel{tab:timeline}{{5}{12}{Chronology of the work reported here}{table.5}{}}

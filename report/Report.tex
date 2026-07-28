@@ -27,7 +27,7 @@
 
 \noindent\rule{\textwidth}{0.4pt}
 \begin{abstract}
-    \noindent This report covers the first six weeks (June 15 to July 27, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main deliverable so far is a working toolchain on Narval: two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. With that in place, a 216-atom system was used to characterize the supplied potentials, the undocumented atom-type mapping was identified, the equilibrium lattice constant was measured at 0.8\% above the experimental value, and the melt-stable and pruned potentials were found to prefer different volumes, a mismatch that running under NPT throughout should absorb. Parallelization and a cheaper pruned potential together cut the projected cost of the full protocol to a single overnight run. A 30 ps ramp to 2500 K gave a confirmed liquid, and the 1 ns hold is currently executing. The quench to 300 K, the structural analysis, the comparison against Zongo et al. (2025) and experiment, and the application of MAP remain to be done.
+    \noindent This report covers the first six weeks (June 15 to July 27, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main deliverable so far is a working toolchain on Narval, two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. With that in place, a 216-atom system was used to characterize the supplied potentials, the undocumented atom-type mapping was identified, the equilibrium lattice constant was measured at 0.8\% above the experimental value, and the melt-stable and pruned potentials were found to prefer different volumes, a mismatch that running under NPT throughout should absorb. Parallelization and a cheaper pruned potential together cut the projected cost of the full protocol to a single overnight run. A 30 ps ramp to 2500 K gave a confirmed liquid, and the 1 ns hold is currently executing. The quench to 300 K, the structural analysis, the comparison against Zongo et al. (2025) and experiment, and the application of MAP remain to be done.
 \end{abstract}
 \noindent\rule{\textwidth}{0.4pt}
 \clearpage
@@ -193,9 +193,41 @@ The potential file declares two species but does not say which is which. This wa
 
 \subsection{Equilibrium volume under the melt-stable potential}
 \label{sec:npt}
-An NPT run at 300~K and 0~bar let the box relax: the volume grew from 4325~\AA$^3$ to about 4433~\AA$^3$, a lattice constant of 5.476~\AA, 0.8\% above the measured 5.431~\AA. This overestimate is expected from the GGA functional used to produce the training data. Pressure swung over thousands of bar, normal for 216 atoms since fluctuations scale as $N^{-1/2}$. A follow-up NVT run with the box fixed at the settled constant showed pressure hovering near zero and steady potential energy, confirming the system is no longer strained.
+An NPT run at 300~K and 0~bar let the box relax. The volume grew from its initial
+4325~\AA$^3$ and settled at $V = 4433$~\AA$^3$. The cell is $3\times3\times3$
+conventional diamond cubic cells, so the lattice constant follows as
+\begin{equation}
+    a = \left(\frac{V}{27}\right)^{1/3}
+      = \left(\frac{4433~\text{\AA}^3}{27}\right)^{1/3} = 5.476~\text{\AA},
+    \label{eq:latconst}
+\end{equation}
+which exceeds the experimental value $a_{\exp} = 5.431$~\AA{} \cite{expref} by
+\begin{equation}
+    \frac{a - a_{\exp}}{a_{\exp}} = \frac{5.476 - 5.431}{5.431} = 0.83\%.
+    \label{eq:latdev}
+\end{equation}
+An overestimate of this size is expected from the GGA exchange-correlation functional
+used to produce the training data. Pressure swung over thousands of bar during the run,
+which is normal for 216 atoms since fluctuations scale as $N^{-1/2}$. A follow-up NVT
+run with the box fixed at the settled constant showed pressure hovering near zero and
+steady potential energy, confirming the system is no longer strained.
 
-Both runs used one CPU core and took about 20 minutes for 5000 steps, or roughly 0.3~ns of simulated time per day, with over 99\% of the time in force evaluation. That is fine for a 30~ps melt but hopeless for cooling: 1~K/ps from 2500~K to 300~K is 2.2~ns, about seven days on one core. This motivated the optimization work below.
+Both runs used one CPU core and took 22~min 55~s for 5000 steps
+(Table~\ref{tab:scaling}), a throughput of
+\begin{equation}
+    r_1 = \frac{5000~\text{steps}}{1375~\text{s}} = 3.64~\text{steps/s},
+    \label{eq:throughput}
+\end{equation}
+or $r_1 \Delta t \times 86400~\text{s/day} = 0.31$~ns of simulated time per day at the
+1~fs timestep, with over 99\% of the wall time spent in force evaluation. That is
+adequate for a 30~ps melt but not for the quench. By Eq.~\ref{eq:rate}, cooling at
+1~K/ps over $\Delta T = 2200$~K requires $N = 2.2\times10^6$ steps, and at $r_1$ this is
+\begin{equation}
+    t = \frac{2.2\times10^6~\text{steps}}{3.64~\text{steps/s}}
+      = 6.0\times10^5~\text{s} \approx 7~\text{days}
+    \label{eq:onecore}
+\end{equation}
+on a single core. This motivated the optimization work below.
 
 \subsection{Parallel scaling and pruned-potential cost}
 \label{sec:scaling}
