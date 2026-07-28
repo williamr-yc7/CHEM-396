@@ -19,7 +19,7 @@
 \author{William R. Homier}
 \affil{Department of Physics, McGill University}
 \affil{Supervisor: Prof.\ Lena Simine \quad Co-mentor: Ata Madanchi}
-\date{July 27, 2026}
+\date{July 28, 2026}
 \setcounter{Maxaffil}{0}
 \renewcommand\Affilfont{\itshape\small}
 \maketitle
@@ -27,7 +27,7 @@
 
 \noindent\rule{\textwidth}{0.4pt}
 \begin{abstract}
-    \noindent This report covers the first six weeks (June 15 to July 27, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main deliverable so far is a working toolchain on Narval, two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. With that in place, a 216-atom system was used to characterize the supplied potentials, the undocumented atom-type mapping was identified, the equilibrium lattice constant was measured at 0.8\% above the experimental value, and the melt-stable and pruned potentials were found to prefer different volumes, a mismatch that running under NPT throughout should absorb. Parallelization and a cheaper pruned potential together cut the projected cost of the full protocol to a single overnight run. A 30 ps ramp to 2500 K gave a confirmed liquid, and the 1 ns hold is currently executing. The quench to 300 K, the structural analysis, the comparison against Zongo et al. (2025) and experiment, and the application of MAP remain to be done.
+    \noindent This report covers the first six weeks (June 15 to July 28, 2026) of a project to build models of amorphous silicon by melt-quench molecular dynamics using Moment Tensor Potentials. The main deliverable so far is a working toolchain on Narval, two custom LAMMPS builds with the ML-MTP package, one on CPU and one on GPU through Kokkos, both of which required debugging of the supplied build scripts before they ran. With that in place, a 216-atom system was used to characterize the supplied potentials, the undocumented atom-type mapping was identified, the equilibrium lattice constant was measured at 0.8\% above the experimental value, and the melt-stable and pruned potentials were found to prefer different volumes, a mismatch that running under NPT throughout should absorb. Parallelization and a cheaper pruned potential together cut the projected cost of the full protocol to a single overnight run. A 30 ps ramp to 2500 K gave a confirmed liquid, and the 1 ns hold is currently executing. The quench to 300 K, the structural analysis, the comparison against Zongo et al. (2025) and experiment, and the application of MAP remain to be done.
 \end{abstract}
 \noindent\rule{\textwidth}{0.4pt}
 \clearpage
@@ -420,7 +420,7 @@ For multi-core runs, LAMMPS is launched through \texttt{srun} and memory is requ
 
 \bibitem{shapeev2016} Shapeev, A. V. ``Moment tensor potentials: a class of systematically improvable interatomic potentials.'' \textit{Multiscale Modeling \& Simulation} \textbf{14}(3), 1153--1173 (2016). \href{https://doi.org/10.1137/15M1054183}{doi:10.1137/15M1054183}.
 
-\bibitem{meng2026} Meng, Z., Zongo, K., Torres, E., Maxwell, C., Grant, R. E., and B\'eland, L. K. ``A Kokkos-accelerated moment tensor potential implementation for LAMMPS.'' \textit{SoftwareX} (2026). Preprint: arXiv:2510.00193 (2025).
+\bibitem{meng2026} Meng, Z., Zongo, K., Torres, E., Maxwell, C., Grant, R., and B\'eland, L. K. ``A Kokkos-accelerated moment tensor potential implementation for LAMMPS.'' \textit{SoftwareX} \textbf{33}, 102524 (2026). \href{https://doi.org/10.1016/j.softx.2026.102524}{doi:10.1016/j.softx.2026.102524}. Preprint: arXiv:2510.00193.
 
 \bibitem{madanchi2024} Madanchi, A., Kilgour, M., Zysk, F., K\"uhne, T. D., and Simine, L. ``Simulations of disordered matter in 3D with the morphological autoregressive protocol (MAP) and convolutional neural networks.'' \textit{The Journal of Chemical Physics} \textbf{160}, 024101 (2024). \href{https://doi.org/10.1063/5.0174615}{doi:10.1063/5.0174615}.
 

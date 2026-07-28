@@ -11,6 +11,7 @@
 \usepackage{tikz} % For drawing shapes
 \usepackage{circuitikz}
 \usepackage{float} % For [H] float option
+\usepackage{booktabs} % Better rules for tables (provides \toprule, \midrule, \bottomrule)
 
 \pgfplotsset{compat=1.18} % Set compatibility level
 \newtheorem{theorem}{Theorem}
@@ -462,21 +463,44 @@ Three ensembles are used in this project, named by the quantities they conserve:
 
 The distinction matters in practice because the box size is only a free parameter under NPT. Running NVT at the wrong volume forces the system into a compressed or stretched state, which shows up as a persistent non-zero pressure.
 
+\subsection{Narval}
+\begin{definition}[Narval]
+    Narval is a general purpose cluster designed for a variety of workloads. Built by Dell Canada and CDW Canada it is located at the École de technologie supérieure in Montreal. The cluster is named in honour of the narwhal, a species of whale which has occasionally been observed in the Gulf of St. Lawrence.
+\end{definition}
+
+\subsubsection{Compiling on a Compute Node}
+Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and should be run on a compute node rather than the shared login node, which is shared and reserved for lightweight tasks. A compute node is requested from the SLURM scheduler with an interactive allocation:
+\begin{verbatim}
+    salloc --account=ctb-simine --gres=gpu:1 --cpus-per-task=8
+    --mem=16G --time=1:00:00
+\end{verbatim}
+Once the scheduler grants the node (the prompt changes from \texttt{narval1} to a compute node such as \texttt{ng10403}), the required software environment is loaded and the GPU build script is run:
+
+\begin{verbatim}
+    cd ~/LMP_MTP
+    module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda
+    sh ./build-lmp-mtp-gpu.sh
+\end{verbatim}
+The \texttt{module load} line activates the compiler (\texttt{gcc}), the GPU toolkit (\texttt{CUDA})\footnote{CUDA is a parallel computing platform and programming model developed by NVIDIA}, and supporting math and build libraries, none of which are available until explicitly requested.
+
 \subsection{LAMMPS}
 
 \begin{definition}[LAMMPS]
-    Large-scale Atomic/Molecular Massively Parallel Simulator (LAMMPS), developed and distributed by Sandia National Laboratories, is a standard open-source code for particle-based materials simulation. It is scientific software typically run on remote computing clusters, accessed in this project through PuTTY. It is the classical MD engine used in this project.
+    Large-scale Atomic/Molecular Massively Parallel Simulator (LAMMPS), developed and distributed by Sandia National Laboratories, is an open-source code for classical particle-based materials simulation. It is the molecular dynamics code used in this project, run on a remote computing cluster accessed via SSH (PuTTY).
 \end{definition}
 
-LAMMPS is parallelized with MPI\footnote{Message Passing Interface is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.} and OpenMP\footnote{OpenMP is a programming model and application programming interface (API) for parallel programming in C/C++ and Fortran.} and can offload work to GPUs, which is what allows the MTP force evaluations described above to run efficiently on Narval\footnote{Narval is a high-performance computing cluster at École de technologie supérieure (ÉTS) in Montréal.}.
+\subsubsection{Simulation Workflow}
 
-\subsubsection{The Input Script}
-
-LAMMPS is a simulation engine that reads an `input script': a plain-text file containing a sequence of LAMMPS commands that specify the system, the interatomic potential, and the simulation steps to perform. The user writes this recipe, and LAMMPS executes it. The input script is written in the LAMMPS command language (commands such as `units', `read\_data', `pair\_style', and `run'), which is distinct from general-purpose languages like Python or C++. LAMMPS itself is implemented in C++, but the user never edits that source code.
+A LAMMPS run in this project involves three files:
+\begin{itemize}
+    \item The input script (with `.in', `.melt', and `.lmp' as file extensions) is the recipe written in LAMMPS' command syntax.
+    \item The shell script (with `.sh' as its file extension) is a short bash script that launches LAMMPS and feeds it the input script, typically through a line of the form `lmp\_serial -in test.in'\footnote{The word `serial' indicates the run used a single processor core with no parallelism, which is appropriate for a small test case.}.
+    \item The log file (log.lammps) is generated automatically by LAMMPS during the run and records the thermodynamic output (temperature, energy, and pressure at each step), along with timing information and any error messages.
+\end{itemize}
 
 \subsubsection{Combining LAMMPS with the MTP}
 
-LAMMPS handles the mechanics of a simulation (tracking atomic positions, building neighbour lists, and integrating Newton's equations of motion) but it is agnostic about where the forces come from. The interatomic potential is supplied as a separate, interchangeable module selected through the \texttt{pair\_style} command. Combining LAMMPS with the MTP therefore means installing an MTP pair style into LAMMPS. Because the mtp pair styles are not part of the standard distribution, LAMMPS must be compiled from source with the ML-MTP package included (the custom build described in the Methodology). Once built, the trained potential is used by pointing the input script at the model file, e.g. \texttt{pair\_style mtp model.almtp}: at every timestep, LAMMPS passes each atom's local neighbourhood to the MTP, which returns the energies and forces that LAMMPS then uses to advance the system. The division of labour is clean: the MTP decides how atoms interact, and LAMMPS decides what happens next.
+LAMMPS handles the mechanics of a simulation (tracking atomic positions, building neighbour lists, and integrating Newton's equations of motion) but it is agnostic about where the forces come from. The interatomic potential is supplied as a separate, interchangeable module selected through the \texttt{pair\_style} command. Combining LAMMPS with the MTP therefore means installing an MTP pair style into LAMMPS. Once built, the trained potential is used by pointing the input script at the model file, e.g. \texttt{pair\_style mtp model.almtp}: at every timestep, LAMMPS passes each atom's local neighbourhood to the MTP, which returns the energies and forces that LAMMPS then uses to advance the system. The division of labour is clean: the MTP decides how atoms interact, and LAMMPS decides what happens next.
 
 \subsection{WinSCP}
 
@@ -519,26 +543,15 @@ Once a structure is loaded, the drawing method is set to VDW so atoms render as 
 % ===========================================================
 \section{Methodology}
 
-\subsection{Simulation Workflow}
-
-A LAMMPS run in this project involves three files. The input script (e.g. test.in) is the recipe, it lists the commands LAMMPS executes, one instruction per line. The file extension is only a naming convention (.in, .melt, and .lmp are all common) and has no effect on how LAMMPS reads it. The shell script (e.g. `run\_lmp\_serial.sh') is a short bash script that launches LAMMPS and feeds it the input script, typically through a line of the form `lmp\_serial -in test.in'. The word ``serial'' indicates the run used a single processor core with no parallelism, which is appropriate for a small test case. Finally, the log file (log.lammps) is generated automatically by LAMMPS during the run and records the thermodynamic output (temperature, energy, and pressure at each step), along with timing information and any error messages. The log file is the primary record used to confirm that a run completed successfully.
-
-The overall workflow is therefore: the user writes the input script, the shell script launches LAMMPS with that script, LAMMPS runs the simulation, and the results are written to the log file (and to any dump files specified in the script) for analysis.
-
 \subsection{Toolchain Validation: Lennard-Jones Melt}
 
 Before simulating amorphous silicon, a standard Lennard-Jones (LJ) melt was run on Narval to confirm that the full toolchain (job submission, LAMMPS execution, and output writing) functioned correctly. This is a generic LJ fluid and not a-Si; its only purpose is validation. A line-by-line annotation of the input script is given in Appendix~\ref{InputScript}.
 
-\subsubsection{Job Submission Script}
-
-The simulation was submitted to the Narval scheduler (SLURM) using a batch script, detailed in Appendix~\ref{JSS}.
-
 \subsubsection{Output and Validation}
+The total energy per atom remained essentially constant at approximately $-4.62$\footnote{Here energy is negative to signify it would cost energy to pull this system apart.} throughout the run. Because the NVE ensemble conserves energy, this constancy confirms that the integration was stable and the simulation parameters were sound. The temperature\footnote{In reduced LJ units, temperature is dimensionless (measured in units of $\epsilon/k_B$).} relaxed from its initial value of $1.44$ to a steady value near $0.70$ as the initial lattice melted and equilibrated. The run completed $10{,}000$ steps on $13{,}500$ atoms in roughly $95$ seconds of wall time, with no dangerous neighbour-list builds reported, confirming a working toolchain.
 
-LAMMPS records thermodynamic data to \texttt{log.lammps}, reporting the step number, temperature, pairwise potential energy, molecular energy, total energy, and pressure. The total energy per atom remained essentially constant at approximately $-4.62$\footnote{Here energy is negative to signify it would cost energy to pull this system apart.} throughout the run. Because the NVE ensemble conserves energy, this constancy confirms that the integration was stable and the simulation parameters were sound. The temperature relaxed from its initial value of $1.44$\footnote{In reduced LJ units, temperature is dimensionless (measured in units of $\epsilon/k_B$).} to a steady value near $0.70$ as the initial lattice melted and equilibrated. The run completed $10{,}000$ steps on $13{,}500$ atoms in roughly $95$ seconds of wall time, with no dangerous neighbour-list builds reported, confirming a working toolchain.
 
-
-\subsection{Test in VMD with test.in}
+\subsubsection{VMD visualisation}
 The next step was to visualize the completed LJ melt. The trajectory file \texttt{dump.lammpstrj} produced by the run was transferred to the local machine with WinSCP and loaded into VMD, giving a 3D animation of 101 frames (the initial configuration plus one frame per 100 timesteps). The animation shows the initial fcc lattice melting into a disordered fluid, shown in Fig.~\ref{fig:test_in_vmd}.
 \begin{figure}[H]
     \centering
@@ -552,95 +565,115 @@ The next step was to visualize the completed LJ melt. The trajectory file \textt
 
 The Lennard-Jones test used the standard LAMMPS installation already provided on Narval (loaded as a module). Simulating silicon with an MTP instead requires a custom build, because the mtp pair styles are not part of standard LAMMPS. The code was provided by Alliance technical support as an archive, `LMP\_MTP.tar.gz', placed in the home directory. It bundles the LAMMPS source, the MTP source files, and two build scripts: one for a CPU-only build (`build-lmp-mtp-cpu.sh') and one for the GPU (Kokkos) build (`build-lmp-mtp-gpu.sh').
 
-\subsubsection{Compiling on a Compute Node}
-Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and should be run on a compute node rather than the shared login node, which is shared and reserved for lightweight tasks. A compute node is requested from the SLURM scheduler with an interactive allocation:
-\begin{verbatim}
-    salloc --account=ctb-simine --gres=gpu:1 --cpus-per-task=8
-    --mem=16G --time=1:00:00
-\end{verbatim}
-Once the scheduler grants the node (the prompt changes from \texttt{narval1} to a compute node such as \texttt{ng10403}), the required software environment is loaded and the GPU build script is run:
-
-\begin{verbatim}
-    cd ~/LMP_MTP
-    module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda
-    sh ./build-lmp-mtp-gpu.sh
-\end{verbatim}
-The \texttt{module load} line activates the compiler (\texttt{gcc}), the GPU toolkit (\texttt{CUDA})\footnote{CUDA is a parallel computing platform and programming model developed by NVIDIA}, and supporting math and build libraries, none of which are available until explicitly requested. The build script is intended to compile LAMMPS with the MTP package and install the executable to \texttt{$\sim$/software/lammps-mtp-gpu}. In practice, both scripts required several corrections before producing working binaries, described next.
-
-\subsubsection{Debugging the Build}
+\subsubsection{Debugging the CPU Build}
 \marginpar{July 13, 2026}
-Initial builds produced an executable that crashed immediately with an ``Illegal instruction (core dumped)'' error. Follow-up instructions from Alliance support identified two fixes to the build scripts: adding the option
-\begin{verbatim}
-    -DCMAKE_CXX_FLAGS="-march=core-avx2"
-\end{verbatim}
-to the CMake configure line (the root cause of the crash, since the binary had been compiled for a CPU architecture incompatible with Narval's nodes), and correcting a logic error in the ML-MTP copy block, where an inverted condition (\texttt{if [ ! -d ...]}) silently skipped copying the MTP source files, producing a binary without MTP support. Both scripts were edited accordingly, along with a syntax fix in the GPU script where a comment had ended up glued to the end of the CMake command.
-
-The first rebuild through the command
-\begin{verbatim}
-    bash build-lmp-mtp-cpu.sh
-\end{verbatim}
-ran but failed to produce a new binary\footnote{The compiled executable}: the installed \texttt{lmp} still crashed, and its timestamp showed it was the old executable from the original (broken) build, meaning the new install step had never completed. The build log revealed CMake errors in the spglib\footnote{Spglib is an open-source C library used to identify crystal symmetries, determine space groups and find primitive cells} and phana\footnote{Phana is a utility specifically designed to read binary data from LAMMPS. It analyzes this data and generates phonon dispersion curves and phonon density of states (DOS). It relies on Spglib to map symmetry and generate specific q-points.} sub-builds, complaining that their cache files had been created under a different user's home directory. The distributed archive had been packaged after support staff compiled it themselves, so it contained stale CMake cache files with their paths baked in, and the \texttt{--fresh} option only resets the top-level cache, not the nested sub-project caches. The fix was to delete the entire \texttt{\_build} directory before rebuilding, forcing every component to configure from scratch.
-
-After a clean rebuild, \texttt{lmp -h} ran without crashing and listed \texttt{ML-MTP} among the installed packages, with \texttt{mtp} and \texttt{mtp/extrapolation} available as pair styles. Final validation
-\begin{verbatim}
-~/software/lammps-mtp-cpu/bin/lmp -h | grep -i mtp
-\end{verbatim}
-was a 10{,}000-step, 13{,}500-atom Lennard-Jones melt submitted through SLURM to a compute node, which completed in 4 minutes 16 seconds of wall time with no dangerous neighbour-list builds. The CPU build is now fully functional on Narval. The GPU (Kokkos) build required further debugging, described next.
-
-\subsubsection{Debugging the GPU Build}
-\marginpar{July 14, 2026}
-The GPU build required three further fixes. First, the script copies only the \texttt{ML-MTP} source folder, but the repository also ships a \texttt{KOKKOS} folder containing the GPU variants of the pair styles; this had to be copied into `\texttt{src/KOKKOS/}' as well, or the `\texttt{mtp/kk}' styles are absent. Second, the CUDA backend of Kokkos was never enabled, so the binary could not run on a GPU; adding the `\texttt{kokkos-cuda}' preset and `\texttt{-DKokkos\_ARCH\_AMPERE80=ON}' (targeting Narval's A100 GPUs) fixed this. Third, two options had to be removed:
-\begin{verbatim}
--DCMAKE_CXX_FLAGS="-march=core-avx2"
-\end{verbatim}
-(correct for the CPU build) causes compilation errors under the NVIDIA compiler, and the OpenCL-based \texttt{GPU} package (\texttt{-DPKG\_GPU=ON}) also fails and is redundant alongside Kokkos.
-
-After these corrections the GPU build compiled successfully, with \texttt{mtp/kk} and \texttt{mtp/extrapolation/kk} present. It was validated on an A100 node with the same Lennard-Jones test, completing in $15.6$ seconds versus $4$ minutes $16$ seconds for the CPU build, a speedup of roughly $16$ times.
-
-\subsection{Simulation Protocol for Amorphous Silicon}
-Ata provided five silicon MTPs for this project, split into two groups. Two are melt-stable (levels 22 and 26), fitted explicitly to remain robust at the high temperatures of a melt. The other three are pruned potentials (\texttt{pruned\_1}, \texttt{pruned\_2}, \texttt{pruned\_3}), ordered by increasing computational cost and accuracy, but potentially unstable in a melt. The amorphous silicon is produced by a melt-quench protocol, following Ata's recommended workflow:
-
-\begin{enumerate}
-    \item \textbf{Melt.} Starting from a c-Si lattice, a melt-stable potential (level 22 or 26) is used to heat the atoms to roughly 4500--5000 K, turning the ordered crystal into a hot liquid. A snapshot of the atomic positions and velocities is saved at the end of this stage.
-    \item \textbf{Hand off.} The snapshot is reloaded, but the potential is switched to a pruned one. The atoms are unchanged; only the tool computing the forces changes.
-    \item \textbf{Cool (quench).} The same atoms are simulated onward from the snapshot, now cooled slowly\footnote{slower than stage 1, to let a realistic amorphous network settle, but still nowhere near slow enough to crystallize.} from the melt temperature down to 300 K. Because the cooling is too rapid for the atoms to re-crystallize, the disordered liquid structure is frozen in place, yielding amorphous silicon.
-\end{enumerate}
-
-\subsubsection{First Silicon Runs: NPT Equilibration and NVT Production}
-\marginpar{July 21, 2026}
-With both LAMMPS builds working, the first silicon simulations were run. The standard molecular dynamics workflow is to first run the system under NPT, where the box is allowed to change size until it settles, record the box size it settles at, and then restart the simulation under NVT with the box locked at that size. This way the main run is performed at the density the potential itself prefers, rather than at one chosen in advance.
-
-The system was a 216-atom diamond lattice ($3 \times 3 \times 3$ unit cells at eight atoms per cell) built at the crystalline lattice constant of $5.431$~\AA, with periodic boundaries and \texttt{units metal}, so that temperatures are in kelvin and distances in \AA ngstroms. The melt-stable potential (\texttt{22.almtp}) was loaded with \texttt{pair\_style mtp}; the repository documentation confirms that \texttt{pair\_coeff} is not required for these pair styles. Atoms were given starting velocities at 300~K with no overall drift, and the simulation advanced in steps of 1~fs.
-
-\paragraph{Atom type mapping.}
-The potential file header states \texttt{species\_count = 2}, and LAMMPS confirms at startup that there are two species, but neither the file nor its documentation says which atom type is which element. This was settled by testing. Running the diamond lattice as type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured value of $2.33$~g/cm$^3$ for crystalline silicon. Running the same system as type 2 gave a starting pressure of $-2.24 \times 10^6$~bar, and the box collapsed within a few steps, ending with a neighbour-list overflow error. Type 1 is therefore silicon and type 2 oxygen, which fits a potential trained on the Si/O/SiO$_2$ system.
-
-\paragraph{NPT equilibration.}
-The NPT run held the temperature at 300~K and the pressure at 0~bar, with the box allowed to expand or contract equally in all three directions. The damping constants, which set how quickly the thermostat and barostat pull the system back toward the target values, were $0.1$ and $1.0$~ps respectively. The volume grew from its starting value of $4325$~\AA$^3$ and settled around $4433$~\AA$^3$, giving a box side of $16.43$~\AA{} and a lattice constant of $5.476$~\AA. This is about $0.8\%$ larger than the measured value of $5.431$~\AA, an overestimate that is expected from the GGA exchange-correlation functional used to produce the training data. The pressure swung over a range of several thousand bar, which is normal for a system of only 216 atoms, since these swings shrink as $N^{-1/2}$ and are therefore large in small systems.
-
-\paragraph{NVT production.}
-A second run was then performed with the box fixed, building the lattice at the settled constant of $5.47576$~\AA{} and using \texttt{fix nvt}. The volume stayed locked at $4433$~\AA$^3$ as expected, and the pressure now hovered around zero (values of order $10^2$--$10^3$~bar) instead of the large swings seen under NPT, confirming that the system is no longer being squeezed or stretched. The potential energy stayed steady throughout, with no drift.
-
-\paragraph{Computational cost.}
-Both runs used a single CPU core and took roughly 20 minutes for 5000 steps: about 4 steps per second, or $0.3$~ns of simulated time per day, with over $99\%$ of that time spent computing forces. An earlier attempt at 20{,}000 steps ran past the requested time limit. It is also worth noting that LAMMPS buffers its thermodynamic output\footnote{It stores the output in a temporary location before writing it to the log file.}, so an empty log file does not mean a run has stalled; the growth of the trajectory file is a better sign of progress. This speed is fine for the melt stage, which only needs tens of picoseconds, but it is a serious problem for the cooling stage: cooling at $1$~K/ps from 3000~K to 300~K means $2.7$~ns of simulation, or about nine days on a single core. Running in parallel, using a larger system on the GPU build, or switching to a cheaper pruned potential will be needed before the full melt-quench protocol is practical.
-
-\subsubsection{Parallel Scaling and Potential Cost}
-\marginpar{July 22, 2026}
-The single-core timings from the previous runs made the cooling stage impractical, so the next step was to find out how much of that cost could be removed. Two things were tested: running across several CPU cores at once, and switching from the melt-stable potential to a cheaper pruned one.
-
-\paragraph{Parallel scaling.}
-The same 5000-step NVT run was repeated on 1, 4, and 8 cores of a single node. Running in parallel requires two changes to the submission script: requesting more tasks with \texttt{--ntasks}, and launching LAMMPS through \texttt{srun} rather than calling it directly, so that SLURM starts one copy of the program per task and connects them through MPI. Narval also requires memory to be requested per core (\texttt{--mem-per-cpu}) rather than as a total once more than one task is used.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{cccc}
+\small
+\begin{tabular}{p{0.30\textwidth}|p{0.28\textwidth}|p{0.34\textwidth}}
+\toprule
+Symptom & Cause & Fix \\
+\midrule
+Illegal instruction (core dumped) & Binary compiled for a CPU architecture incompatible with Narval's nodes & Add \texttt{-DCMAKE\_CXX\_FLAGS="-march=core-avx2"} \\
 \hline
-Cores & Wall time & Speedup & Atoms per core \\
+ML-MTP absent from \texttt{lmp -h} & Inverted conditional (\texttt{if [ ! -d ...]}) skipped the source copy & Correct the conditional logic by removing the `!' \\
 \hline
-1 & 22:55 & $1.0\times$ & 216 \\
-4 & 5:07 & $4.5\times$ & 54 \\
-8 & 2:43 & $8.4\times$ & 27 \\
+Rebuild produced no new binary & Stale nested CMake caches with another user's paths baked in; \texttt{--fresh} resets only the top level & Delete \texttt{\_build} entirely before rebuilding \\
+\bottomrule
+\end{tabular}
+\caption{CPU build faults in the supplied LAMMPS-MTP archive and their fixes.}
+\label{tab:buildfaults-cpu}
+\end{table}
+
+After a clean rebuild, \texttt{lmp -h} listed \texttt{ML-MTP} with \texttt{mtp} and \texttt{mtp/extrapolation} available as pair styles. Validation was a 10{,}000-step, 13{,}500-atom Lennard-Jones melt submitted through SLURM, completing in 4~min 16~s of wall time with no dangerous neighbour-list builds.
+
+\subsubsection{Debugging the GPU Build}
+\marginpar{July 14, 2026}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.30\textwidth}|p{0.28\textwidth}|p{0.34\textwidth}}
+\toprule
+Symptom & Cause & Fix \\
+\midrule
+\texttt{mtp/kk} styles absent & Script copies only \texttt{ML-MTP}; the \texttt{KOKKOS} folder was never copied & Copy it into \texttt{src/KOKKOS/} \\
 \hline
+Binary would not run on GPU & Kokkos CUDA backend not enabled & \texttt{kokkos-cuda} preset $+$ \texttt{-DKokkos\_ARCH\_AMPERE80=ON} (A100) \\
+\hline
+Compilation errors under NVIDIA compiler & \texttt{-march=core-avx2} inherited from the CPU script & Remove the flag \\
+\hline
+\texttt{GPU} package build failure & OpenCL-based \texttt{-DPKG\_GPU=ON}, redundant alongside Kokkos & Remove the option \\
+\bottomrule
+\end{tabular}
+\caption{GPU (Kokkos) build faults and their fixes.}
+\label{tab:buildfaults-gpu}
+\end{table}
+
+The GPU build then compiled with \texttt{mtp/kk} and \texttt{mtp/extrapolation/kk} present, and ran the same Lennard-Jones test on an A100 node in $15.6$~s against 4~min 16~s on CPU, a speedup of roughly $16\times$.
+
+\subsection{Simulation Protocol for Amorphous Silicon}
+Ata provided five silicon MTPs for this project, split into two groups. Two are melt-stable (levels 22 and 26), fitted explicitly to remain robust at the high temperatures of a melt. The other three are pruned potentials (\texttt{pruned\_1}, \texttt{pruned\_2}, \texttt{pruned\_3}), ordered by increasing computational cost and accuracy, but potentially unstable in a melt. The amorphous silicon is produced by a melt-quench protocol:
+
+\begin{enumerate}
+    \item \textbf{Melt.} Heat a c-Si lattice to about 2500~K with a melt-stable potential, and save a snapshot.
+    \item \textbf{Hold.} Hold the melt at temperature for 1~ns to erase memory of the crystal.
+    \item \textbf{Hand off.} Reload the snapshot with a pruned potential; the atoms are unchanged, only the force model changes.
+    \item \textbf{Quench.} Cool from the melt temperature to 300~K, fast enough that the liquid structure freezes in as a-Si rather than recrystallizing.
+\end{enumerate}
+
+\subsubsection{Atom Type Mapping}
+\marginpar{July 21, 2026}
+The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for crystalline silicon. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
+
+\subsubsection{First Silicon Runs and Choice of Ensemble}
+Both ensembles (NVT and NPT) were tested on a 216-atom diamond lattice ($3\times3\times3$ unit cells, $a=5.431$~\AA, periodic, \texttt{units metal}, 1~fs timestep). The intended workflow was NPT equilibration to find the box size the potential prefers, followed by NVT production at that fixed volume.
+
+The protocol was subsequently fixed to NPT only, following Zongo et al., so the NVT stage was dropped. The runs below are retained here as a benchmark of the potentials and of parallel scaling.
+
+NPT test was ran at 300~K and 0~bar expanded the box from $4325$ to $4433$~\AA$^3$, corresponding to $a=5.476$~\AA. This is $0.8\%$ above the measured value of $5.431$~\AA, an overestimate consistent with the PBE\footnote{} reference data used to train the potential.
+
+The NVT test was then performed with the lattice rebuilt at $a=5.476$~\AA{}, the volume stayed locked, the pressure settled to order $10^2$--$10^3$~bar rather than the several-thousand-bar swings seen under NPT, and the potential energy showed no drift.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|l|r|r|r}
+\toprule
+Potential & Ensemble & Cores & Pair time (s) & Wall time \\
+\midrule
+\texttt{22.almtp}  & NVT & 1 & 1374.7 & 22:55 \\
+\texttt{pruned\_1} & NVT & 8 & 12.6   & 00:14 \\
+\midrule
+\texttt{22.almtp}  & NPT & 1 & 1222.6 & 20:24 \\
+\bottomrule
+\end{tabular}
+\caption{Cost of 5000 steps on 216 atoms. Force evaluation dominates throughout ($\geq 92\%$ of loop time) and no neighbour-list rebuilds occurred in any run.}
+\label{tab:firstruns}
+\end{table}
+
+\paragraph{The two potentials prefer different volumes.}
+An unexpected result came out of the NVT tests. With \texttt{22.almtp}, the pressure at a box volume of $4433$~\AA$^3$ fluctuated around zero, meaning the atoms sit at a spacing that potential is content with. With \texttt{pruned\_1.almtp} in the identical box, the pressure instead held steady at about $-12{,}400$~bar. A negative pressure means the atoms are pulling inward: this potential would prefer a smaller box than the one it has been given.
+
+\subsubsection{Parallel Scaling}
+\marginpar{July 22, 2026}
+The single-core timings from the previous runs made the cooling stage impractical, so the next step was to find out how much of that cost could be removed.
+
+The same 5000-step NVT run was repeated on 1, 4, and 8 cores of a single node. Running in parallel requires some changes to the submission script, such as launching LAMMPS through \texttt{srun} rather than calling it directly, so that SLURM starts one copy of the program per task and connects them through MPI.
+
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|l|r|r|r|r|r}
+\toprule
+Potential & Ensemble & Cores & Pair time (s) & Wall time & Speedup & APC\footnote{Atoms per core.} \\
+\midrule
+\texttt{22.almtp}  & NVT & 1 & 1374.7 & 22:55 & 1.0$\times$ & 216 \\
+\texttt{22.almtp}  & NVT & 4 & 305.9  & 05:07 & 4.5$\times$ & 54 \\
+\texttt{22.almtp}  & NVT & 8 & 153.8  & 02:43 & 8.4$\times$ & 27 \\
+\bottomrule
 \end{tabular}
 \caption{Wall time for a 5000-step NVT run of 216 silicon atoms using \texttt{22.almtp}, on one node.}
 \label{tab:scaling}
@@ -648,58 +681,62 @@ Cores & Wall time & Speedup & Atoms per core \\
 
 The scaling is close to linear up to 8 cores. The limit is nonetheless in sight: the time spent on communication between cores rose from $0.4\%$ of the total at 4 cores to $4\%$ at 8, and with only 27 atoms per core the workload is becoming too thin to divide further. Eight cores was therefore adopted as the default for systems of this size.
 
-\paragraph{Cost of the pruned potential.}
-The same run was then repeated on 8 cores with \texttt{pruned\_1.almtp} in place of \texttt{22.almtp}. It completed in 14 seconds rather than 2 minutes 43 seconds, roughly $12\times$ faster. Taken together with the parallel speedup, this removes the obstacle identified previously: a cooling run that would have taken over a week on a single core with the melt-stable potential is now a matter of hours.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../report/scaling.png}
+    \caption{Parallel speedup of the 5000-step NVT run against the ideal linear case. Scaling is near-linear to 8 cores; the superlinear value at 4 cores likely reflects cache effects at small per-core atom counts.}
+    \label{fig:scaling}
+\end{figure}
 
-\paragraph{The two potentials prefer different volumes.}
-An unexpected result came out of the same test. With \texttt{22.almtp}, the pressure at a box volume of $4433$~\AA$^3$ fluctuated around zero, meaning the atoms sit at a spacing that potential is content with. With \texttt{pruned\_1.almtp} in the identical box, the pressure instead held steady at about $-12{,}400$~bar. A negative pressure means the atoms are pulling inward: this potential would prefer a smaller box than the one it has been given.
 
-This matters for the melt-quench protocol, where the potential is deliberately switched partway through. The equilibrium box size found with one potential is not the equilibrium box size for another, so the volume cannot simply be carried across the handoff. The likely correction is to repeat the NPT equilibration after switching potentials, so that the cooling stage begins from a box the pruned potential is actually content with, and then run NVT at that new size. %To change after response from Lena
-
-
-\subsubsection{Choosing the Ensemble and Setting the Cooling Rate}
+\subsubsection{Setting the Cooling Rate}
 \marginpar{July 23, 2026}
-Two questions had to be settled before the melt could be run: which thermodynamic ensemble to use, and how to impose a cooling rate in LAMMPS.
+A question had to be settled before the melt could be run: how to impose a cooling rate in LAMMPS.
 
-\paragraph{Ensemble.}
-Zongo et al. (2025) never mention NVT: the only ensemble they name is NPT, for the final 150~ps equilibration at 300~K. Since the aim is to reproduce their protocol, NPT is used throughout. This also resolves the potential-volume mismatch found earlier on its own, since the box is free to relax to whatever volume the current potential prefers after a switch.
-
-\paragraph{Cooling rate.}
 LAMMPS has no command that sets a cooling rate directly. Instead, \texttt{fix npt} takes a starting and a target temperature, and ramps linearly between them over the course of the \texttt{run} that follows. The rate is therefore implied by the length of that run rather than specified:
 \begin{equation}
     \text{rate} = \frac{\Delta T}{N_{\text{steps}} \times \Delta t},
 \end{equation}
-where $\Delta t$ is the timestep. For the paper's cooling rate of 1~K/ps from 2500~K to 300~K, the temperature drop of 2200~K implies 2200~ps of simulated time, which at a 1~fs timestep is $2.2 \times 10^6$ steps.
+where $\Delta t$ is the timestes and $\Delta T$ the difference in temperature. Using Zongo's cooling rate of 1~K/ps from 2500~K to 300~K, the temperature drop of 2200~K implies 2200~ps of simulated time, which at a 1~fs timestep is $2.2 \times 10^6$ steps.
 
-\paragraph{Projected cost.}
-Combining this with the timings measured previously gives a concrete estimate for the full protocol. On 8 cores, \texttt{pruned\_1} runs at roughly 357 steps/s and \texttt{22.almtp} at roughly 31 steps/s.
+\subsubsection{Projected Cost}
+Throughput on 8 cores follows directly from the 5000-step benchmarks of Table~\ref{tab:firstruns} and~\ref{tab:scaling}:
+\begin{equation*}
+    \texttt{22.almtp}: \; \frac{5000~\text{steps}}{163~\text{s}} = 30.7~\text{steps/s},
+    \qquad
+    \texttt{pruned\_1}: \; \frac{5000~\text{steps}}{14~\text{s}} = 357~\text{steps/s},
+\end{equation*}
+where $163$~s and $14$~s are the measured wall times ($2$:$43$ and $0$:$14$). The pruned potential is therefore $357/30.7 \approx 12$ times cheaper per step. At a 1~fs timestep, each stage of the protocol converts to a step count and a wall time as $t_{\text{wall}} = N_{\text{steps}} / r$:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{lccc}
-\hline
-Stage & Simulated time & Steps & Estimated wall time \\
-\hline
-Heating (300--2500~K) & 30~ps & $3.0 \times 10^4$ & $\sim$16~min \\
-Hold at 2500~K & 1~ns & $1.0 \times 10^6$ & $\sim$9~h \\
-Cooling (1~K/ps) & 2.2~ns & $2.2 \times 10^6$ & $\sim$1.7~h \\
-\hline
+\begin{tabular}{l|c|c|c|c}
+\toprule
+Stage & Potential & Simulated time & Steps & Estimated wall time \\
+\midrule
+Heating (300--2500~K) & \texttt{22.almtp} & 30~ps & $3.0 \times 10^4$ & 16~min \\
+Hold at 2500~K & \texttt{22.almtp} & 1~ns & $1.0 \times 10^6$ & 9.1~h \\
+Cooling (1~K/ps) & \texttt{pruned\_1} & 2.2~ns & $2.2 \times 10^6$ & 1.7~h \\
+\midrule
+Total & & 3.2~ns & $3.2 \times 10^6$ & 11~h \\
+\bottomrule
 \end{tabular}
-\caption{Projected cost of the melt-quench protocol for 216 atoms on 8 cores, assuming the melt-stable potential for heating and the hold, and \texttt{pruned\_1} for cooling.}
+\caption{Projected cost of the melt-quench protocol for 216 atoms on 8 cores, using the melt-stable potential for heating and the hold and \texttt{pruned\_1} for cooling. Cooling from 2500~K to 300~K at 1~K/ps fixes the cooling stage at 2200~ps.}
 \label{tab:projected_cost}
 \end{table}
 
-The hold at 2500~K dominates, despite involving less than half the steps of the cooling stage, because the melt-stable potential is roughly twelve times more expensive per step. Whether the hold genuinely requires the melt-stable potential, or whether the switch to a pruned one can happen earlier, has been raised with the group. These figures also assume the cost per step stays as measured on a static 300~K crystal; a hot liquid rearranges continuously and will trigger neighbour-list rebuilds that the earlier runs did not, so the true cost will be somewhat higher.
+The hold at 2500~K dominates despite involving less than half the steps of the cooling stage, purely because of the factor of twelve in cost per step. Whether the hold genuinely requires the melt-stable potential, or whether the switch to a pruned one can happen earlier, has been raised with the group. These figures also assume the cost per step stays as measured on a static 300~K crystal; a hot liquid rearranges continuously and will trigger neighbour-list rebuilds that the earlier runs did not (all benchmark runs recorded zero rebuilds), so the true cost will be somewhat higher.
 
-\paragraph{First melt run.}
-The heating stage was then set up: the same 216-atom diamond lattice, with \texttt{fix npt} ramping from 300~K to 2500~K while holding the pressure at 0~bar, run for 30{,}000 steps to give the 30~ps heating time used in the paper. The thermostat damping constant was kept at $0.1$~ps, roughly a hundred timesteps, which is the usual choice; a value comparable to the length of the run itself would leave the thermostat too sluggish to follow the ramp at all.
 
-\paragraph{Choice of potential for the hold.}
-Whether the 1~ns hold at 2500~K requires the melt-stable potential or could use a cheaper pruned one was raised with the group. Since both potential types are being used here for the first time, the decision was to run the hold both ways and compare the resulting structures directly, treating the difference as a test of where the pruned potentials break down at high temperature rather than as a cost question alone.
+% ===========================================================
+%  4. RESULTS
+% ===========================================================
+\section{Results}
+\subsection{Simulation of 216 Amorphous Silicon Atoms}
 
-\subsubsection{First Melt and the 2500 K Hold}
+\subsubsection{Melt P22}
 \marginpar{July 24, 2026}
-The heating run from the previous day was checked and had melted successfully. The temperature reached the 2500~K target, and two signatures confirmed the crystal had become a liquid: the pressure now swung over a range of order $10^4$~bar rather than the $10^3$ of the solid, and the number of neighbour-list rebuilds rose from zero (nothing moves in a static crystal) to 400, the direct signature of atoms diffusing. Loading the trajectory into VMD showed the ordered diamond lattice visibly breaking apart into a disordered liquid over the course of the run.
+The heating run melted successfully. The temperature reached the 2500~K target, and two signatures confirmed the crystal had become a liquid: the pressure swung over a range of order $10^4$~bar rather than the $10^3$ of the solid, and the number of neighbour-list rebuilds rose from zero (nothing moves in a static crystal) to 400, the direct signature of atoms diffusing. Loading the trajectory into VMD showed the ordered diamond lattice visibly breaking apart into a disordered liquid over the course of the run.
 
 \begin{figure}[H]
     \centering
@@ -708,15 +745,43 @@ The heating run from the previous day was checked and had melted successfully. T
     \label{fig:melt_vmd}
 \end{figure}
 
-With a melted configuration in hand, the next stage of the protocol was set up: the 1~ns hold at 2500~K. Rather than rebuilding a lattice, this run continues directly from the melted state using \texttt{read\_data} on the saved configuration, with \texttt{fix npt} now holding both the start and target temperature at 2500~K. Following the group's suggestion, the hold is being run with both the melt-stable (\texttt{22.almtp}) and a pruned potential and compared, since both are being used here for the first time and it is not yet known how the pruned potentials behave at high temperature. At the measured single-potential speeds this is roughly a nine-hour run, so it was submitted to run overnight.
+\subsubsection{Hold P22}
+\marginpar{July 28, 2026}
+With a melted configuration in hand, the 1~ns hold at 2500~K was set up. Rather than rebuilding a lattice, this run continues directly from the melted state using \texttt{read\_data} on the saved configuration, with \texttt{fix npt} holding both the start and target temperature at 2500~K. Following the group's suggestion, the hold was run with the melt-stable potential and with two pruned potentials for comparison.
 
-A second melt using \texttt{26.almtp} was also launched in the background, to check whether the two melt-stable potentials produce the same behaviour.
+The \texttt{22.almtp} hold ran to completion in 10~h 35~min on 8 cores. The temperature held around 2500~K throughout and the potential energy stayed stable near $-137{,}165$~eV with no drift, confirming the liquid is well behaved over the full nanosecond. Neighbour-list rebuilds numbered 30{,}215, as expected for a continuously diffusing liquid and in sharp contrast to the near-zero counts of the solid runs.
 
-% ===========================================================
-%  4. RESULTS
-% ===========================================================
-\section{Results}
+\subsubsection{Hold pruned\_1}
+The same hold was repeated with \texttt{pruned\_1.almtp}. Crucially it did not become unstable: temperature and potential energy tracked the level-22 hold closely, with no blow-up despite the documentation's warning that pruned potentials may be unstable in melts. It finished $11.7\times$ faster.
 
+\subsubsection{Hold pruned\_2}
+The hold was also run with \texttt{pruned\_2.almtp}, the next level up in accuracy and cost. It too remained stable at 2500~K and sat between \texttt{pruned\_1} and the melt-stable potential in speed, $4.2\times$ faster than level 22, as expected from its intermediate cost.
+
+\subsubsection{Melt P26}
+The melt using \texttt{26.almtp} completed successfully, reaching 2500~K with the same signatures seen for \texttt{22.almtp}: violent pressure fluctuations and a jump in neighbour-list rebuilds (374 here against 400 for the level-22 melt). The two melt-stable potentials therefore behave equivalently for the purpose of melting. Level 26 was, however, markedly slower, consistent with its being the higher-level and more expensive potential.
+
+\subsubsection{Benchmark Summary}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|l|c|r|r|r|r}
+\toprule
+Run & Potential & Steps & Wall time & Steps/s & Rebuilds & Neighs/atom \\
+\midrule
+Melt (30~ps) & \texttt{22.almtp}       & $3.0\times10^4$ & 0:17:47  & 28.1  & 400    & 91.0 \\
+Melt (30~ps) & \texttt{26.almtp}       & $3.0\times10^4$ & 0:44:13  & 11.3  & 374    & 92.5 \\
+\midrule
+Hold (1~ns)  & \texttt{22.almtp}       & $1.0\times10^6$ & 10:35:32 & 26.2  & 30{,}215 & 94.8 \\
+Hold (1~ns)  & \texttt{pruned\_2.almtp} & $1.0\times10^6$ & 2:30:32  & 110.7 & 30{,}164 & 94.8 \\
+Hold (1~ns)  & \texttt{pruned\_1.almtp} & $1.0\times10^6$ & 0:54:24  & 307.2 & 30{,}200 & 91.2 \\
+\bottomrule
+\end{tabular}
+\caption{Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 99\%$ CPU use in every run). All holds start from the \texttt{22.almtp} melted configuration. No run recorded any dangerous neighbour-list builds.}
+\label{tab:melt_hold_bench}
+\end{table}
+
+Two points follow from Table~\ref{tab:melt_hold_bench}. First, the pruned potentials give a factor of $11.7$ (\texttt{pruned\_1}) and $4.2$ (\texttt{pruned\_2}) over the melt-stable potential at fixed system size and step count, with rebuild counts and average neighbour numbers essentially unchanged, so the speedup is a genuine reduction in force-evaluation cost and not an artefact of a differently behaved trajectory. Second, the measured hold cost of 10.6~h exceeds the 9.1~h projected in Table~\ref{tab:projected_cost} by about $16\%$, which is the penalty from the 30{,}215 neighbour-list rebuilds that the static 300~K benchmark did not incur, as anticipated.
 
 % ===========================================================
 %  5. DISCUSSION
