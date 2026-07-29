@@ -760,6 +760,13 @@ The hold was also run with \texttt{pruned\_2.almtp}, the next level up in accura
 \subsubsection{Melt P26}
 The melt using \texttt{26.almtp} completed successfully, reaching 2500~K with the same signatures seen for \texttt{22.almtp}: violent pressure fluctuations and a jump in neighbour-list rebuilds (374 here against 400 for the level-22 melt). The two melt-stable potentials therefore behave equivalently for the purpose of melting. Level 26 was, however, markedly slower, consistent with its being the higher-level and more expensive potential.
 
+\marginpar{July 29, 2026}
+\subsubsection{Hold pruned\_3}
+The final pruned variant, \texttt{pruned\_3.almtp}, also completed the full nanosecond without instability, in 6~h 31~min. Temperature held near 2500~K and the potential energy settled at $-137{,}161.5$~eV, matching the level-22 hold to within $0.002\%$. With 30{,}243 rebuilds and 94.47 neighbours per atom it is statistically indistinguishable from the reference trajectory in structure-agnostic terms. Its speedup over level 22 is only $1.6\times$, the smallest of the three pruned potentials, which is exactly what its position as the most expensive and most accurate pruned variant predicts. All three pruned potentials therefore survive a nanosecond in the liquid, and the cost ordering \texttt{pruned\_1} $<$ \texttt{pruned\_2} $<$ \texttt{pruned\_3} $<$ level 22 is reproduced cleanly by the timings.
+
+\marginpar{July 30, 2026}
+\subsubsection{Hold P26}
+
 \subsubsection{Benchmark Summary}
 
 \begin{table}[H]
@@ -775,6 +782,7 @@ Melt (30~ps) & \texttt{26.almtp}       & $3.0\times10^4$ & 0:44:13  & 11.3  & 37
 Hold (1~ns)  & \texttt{22.almtp}       & $1.0\times10^6$ & 10:35:32 & 26.2  & 30{,}215 & 94.8 \\
 Hold (1~ns)  & \texttt{pruned\_2.almtp} & $1.0\times10^6$ & 2:30:32  & 110.7 & 30{,}164 & 94.8 \\
 Hold (1~ns)  & \texttt{pruned\_1.almtp} & $1.0\times10^6$ & 0:54:24  & 307.2 & 30{,}200 & 91.2 \\
+Hold (1~ns)  & \texttt{pruned\_3.almtp} & $1.0\times10^6$ & 6:31:03  & 42.6  & 30{,}243 & 94.5 \\
 \bottomrule
 \end{tabular}
 \caption{Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 99\%$ CPU use in every run). All holds start from the \texttt{22.almtp} melted configuration. No run recorded any dangerous neighbour-list builds.}
@@ -910,6 +918,7 @@ LAMMPS reads an input script line by line, in order, so commands must appear bef
     \item[thermo 5] \# Prints thermodynamic output\footnote{Thermodynamic output includes properties like temperature, pressure, and energy.} every 5 timesteps.
     \item[dump 1 all atom 100 dump.lammpstrj] \# Writes the atomic positions to a trajectory file every 100 timesteps, in a format readable by VMD.
     \item[run 10000] \# Runs the simulation for $10{,}000$ timesteps.
+    \item[\texttt{restart <steps> <file1> <file2>}] \# writes a binary snapshot of the full simulation state (positions, velocities, box, fix internals) every \texttt{<steps>} steps, alternating between the two filenames so the latest and one fallback are always on disk. Not for analysis; its only use is \texttt{read\_restart} to resume a run killed before completion.
     \item[write\_data <filename>] \# Writes the final atomic configuration to a file for later analysis or restart.
 \end{description}
 
