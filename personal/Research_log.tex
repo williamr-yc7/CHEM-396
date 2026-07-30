@@ -766,6 +766,7 @@ The final pruned variant, \texttt{pruned\_3.almtp}, also completed the full nano
 
 \marginpar{July 30, 2026}
 \subsubsection{Hold P26}
+The hold was repeated with \texttt{26.almtp}, this time starting from the \texttt{26.almtp} melt so that melt and hold use the same potential. It was run for 400~ps rather than the full nanosecond; at 10.4~steps/s against 26.2 for level 22, a full nanosecond would have consumed the same wall time budget for no additional information. Indeed the two runs occupied almost identical wall time, 10:42:19 for 400{,}000 steps against 10:35:32 for $10^6$. It remained stable throughout, the potential energy settling at $-137{,}159.7$~eV against $-137{,}166.3$~eV for the level-22 hold (means over the last five printed steps), a difference of 0.03~eV/atom and well inside $k_BT = 0.22$~eV at 2500~K. The slowdown factor of $2.53$ tracks the melt ratio of $2.49$ almost exactly, so the level-26 premium is a fixed per-force-evaluation cost rather than anything state-dependent. Normalised to 1~ns it would take 26.8~h. Rebuilds (12{,}134) and neighbours per atom (93.6) are in line with every other run once scaled to the shorter trajectory.
 
 \subsubsection{Benchmark Summary}
 
@@ -776,20 +777,21 @@ The final pruned variant, \texttt{pruned\_3.almtp}, also completed the full nano
 \toprule
 Run & Potential & Steps & Wall time & Steps/s & Rebuilds & Neighs/atom \\
 \midrule
-Melt (30~ps) & \texttt{22.almtp}       & $3.0\times10^4$ & 0:17:47  & 28.1  & 400    & 91.0 \\
-Melt (30~ps) & \texttt{26.almtp}       & $3.0\times10^4$ & 0:44:13  & 11.3  & 374    & 92.5 \\
+Melt (30~ps)  & \texttt{22.almtp}       & $3.0\times10^4$ & 0:17:47  & 28.1  & 400      & 91.0 \\
+Melt (30~ps)  & \texttt{26.almtp}       & $3.0\times10^4$ & 0:44:13  & 11.3  & 374      & 92.5 \\
 \midrule
-Hold (1~ns)  & \texttt{22.almtp}       & $1.0\times10^6$ & 10:35:32 & 26.2  & 30{,}215 & 94.8 \\
-Hold (1~ns)  & \texttt{pruned\_2.almtp} & $1.0\times10^6$ & 2:30:32  & 110.7 & 30{,}164 & 94.8 \\
-Hold (1~ns)  & \texttt{pruned\_1.almtp} & $1.0\times10^6$ & 0:54:24  & 307.2 & 30{,}200 & 91.2 \\
-Hold (1~ns)  & \texttt{pruned\_3.almtp} & $1.0\times10^6$ & 6:31:03  & 42.6  & 30{,}243 & 94.5 \\
+Hold (1~ns)   & \texttt{22.almtp}       & $1.0\times10^6$ & 10:35:32 & 26.2  & 30{,}215 & 94.8 \\
+Hold (0.4~ns) & \texttt{26.almtp}       & $4.0\times10^5$ & 10:42:19 & 10.4  & 12{,}134 & 93.6 \\
+Hold (1~ns)   & \texttt{pruned\_2.almtp} & $1.0\times10^6$ & 2:30:32  & 110.7 & 30{,}164 & 94.8 \\
+Hold (1~ns)   & \texttt{pruned\_1.almtp} & $1.0\times10^6$ & 0:54:24  & 307.2 & 30{,}200 & 91.2 \\
+Hold (1~ns)   & \texttt{pruned\_3.almtp} & $1.0\times10^6$ & 6:31:03  & 42.6  & 30{,}243 & 94.5 \\
 \bottomrule
 \end{tabular}
-\caption{Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 99\%$ CPU use in every run). All holds start from the \texttt{22.almtp} melted configuration. No run recorded any dangerous neighbour-list builds.}
+\caption{Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 98.7\%$ CPU use in every run). The \texttt{22.almtp} and pruned holds start from the \texttt{22.almtp} melted configuration; the \texttt{26.almtp} hold starts from the \texttt{26.almtp} melt and was run for 0.4~ns, so its throughput rather than its wall time is the comparable quantity. No run recorded any dangerous neighbour-list builds.}
 \label{tab:melt_hold_bench}
 \end{table}
 
-Two points follow from Table~\ref{tab:melt_hold_bench}. First, the pruned potentials give a factor of $11.7$ (\texttt{pruned\_1}) and $4.2$ (\texttt{pruned\_2}) over the melt-stable potential at fixed system size and step count, with rebuild counts and average neighbour numbers essentially unchanged, so the speedup is a genuine reduction in force-evaluation cost and not an artefact of a differently behaved trajectory. Second, the measured hold cost of 10.6~h exceeds the 9.1~h projected in Table~\ref{tab:projected_cost} by about $16\%$, which is the penalty from the 30{,}215 neighbour-list rebuilds that the static 300~K benchmark did not incur, as anticipated.
+Three points follow from Table~\ref{tab:melt_hold_bench}. First, the pruned potentials give a factor of $11.7$ (\texttt{pruned\_1}) and $4.2$ (\texttt{pruned\_2}) over the melt-stable potential at fixed system size and step count, with rebuild counts and average neighbour numbers essentially unchanged, so the speedup is a genuine reduction in force-evaluation cost and not an artefact of a differently behaved trajectory. Against \texttt{26.almtp} the same comparison gives $29.6$ and $10.7$. Second, the measured \texttt{22.almtp} hold cost of 10.6~h exceeds the 9.1~h projected in Table~\ref{tab:projected_cost} by about $16\%$, which is the penalty from the 30{,}215 neighbour-list rebuilds that the static 300~K benchmark did not incur, as anticipated. Third, the rebuild rate is invariant across all potentials at roughly $3.0\times10^{-2}$ rebuilds per step, as it must be, since it is set by the thermostat temperature and the neighbour skin rather than by the descriptor level.
 
 % ===========================================================
 %  5. DISCUSSION
