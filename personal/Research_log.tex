@@ -312,6 +312,44 @@ and summing over the six pairs gives $6 \times \tfrac{4}{9} = \tfrac{8}{3}$. Mul
 
 Crystalline silicon sits at $q = 1$ by construction. Amorphous silicon falls slightly below it, since the network preserves fourfold coordination while broadening the bond-angle distribution. Liquid silicon falls further still as the coordination number rises toward six and the tetrahedral geometry is lost entirely.
 
+\subsubsection{Summary of Phase Signatures}
+
+Each metric alone is ambiguous. The radial distribution function of a-Si resembles that of a liquid at short range, the coordination number of a liquid can drift toward four on cooling, and a solid at high temperature can show a large mean square displacement plateau. Melting and amorphisation are therefore identified by the agreement of all four indicators rather than by any one of them.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.16\textwidth}|p{0.22\textwidth}|p{0.22\textwidth}|p{0.24\textwidth}}
+\toprule
+Metric & Crystalline (c-Si) & Liquid Si ($2500$~K) & Amorphous (a-Si) \\
+\midrule
+$g(r)$, Sec.~\ref{RDF}
+    & Sharp peaks persisting undamped to large $r$
+    & Broad first peak, weak second, flat beyond
+    & Sharp first and second peaks, third weak or absent \\
+\hline
+Coordination number, Sec.~\ref{CN}
+    & $4$ exactly
+    & $\approx 6$
+    & $\approx 4$, defects below a few \% \\
+\hline
+MSD, Sec.~\ref{MSD}
+    & Plateaus, order $0.1$~\AA$^2$
+    & Linear and unbounded
+    & Plateaus \\
+\hline
+Tetrahedral order $q$, Sec.~\ref{TOP}
+    & $1$ by construction
+    & Falls toward $0$
+    & Slightly below $1$, broadened by bond-angle spread \\
+\bottomrule
+\end{tabular}
+\caption{Signatures distinguishing the three phases of silicon. The density row is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT thermodynamic output: melting must contract the box rather than expand it.}
+\label{tab:phase_signatures}
+\end{table}
+
+Two practical constraints govern how these quantities are computed in this project. First, all four are meaningful only when averaged over a trajectory at a single equilibrated state; averaging across a heating or cooling ramp mixes configurations from different phases into one curve that describes neither. The structural analysis is therefore performed on the isothermal hold runs rather than on the melt or quench ramps. Second, $g(r)$ under periodic boundary conditions is only defined out to half the box length, which for the 216-atom cell used here limits the accessible range to roughly $8$~\AA.
+
 \subsection{Interatomic Potentials}
 
 \subsubsection{Interatomic Potentials in Molecular Dynamics}

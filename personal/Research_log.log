@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  30 JUL 2026 16:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  30 JUL 2026 16:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -630,7 +630,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.86 ...er Viewing and References}{42}{appendix.D}
+l.86 ...Job Submission Script}{41}{subsection.C.4}
                                                   % [2])
 \tf@toc=\write5
 \openout5 = `Research_log.toc'.
@@ -648,7 +648,7 @@ l.108
        [1
 
 ]
-<c-Si-vs-a-Si.jpg, id=479, 561.09625pt x 358.33875pt>
+<c-Si-vs-a-Si.jpg, id=484, 561.09625pt x 358.33875pt>
 File: c-Si-vs-a-Si.jpg Graphic file (type jpg)
 <use c-Si-vs-a-Si.jpg>
 Package pdftex.def Info: c-Si-vs-a-Si.jpg  used on input line 117.
@@ -658,7 +658,7 @@ Overfull \hbox (8.60127pt too wide) in paragraph at lines 128--129
 []\OT1/cmr/m/n/10 Originally pro-posed for sil-ica glasses ($\OML/cmm/m/it/10 SiO[]$\OT1/cmr/m/n/10 ), the model posits a non-crystalline,
  []
 
-<Continuous Random Network.png, id=482, 1541.76pt x 1027.84pt>
+<Continuous Random Network.png, id=487, 1541.76pt x 1027.84pt>
 File: Continuous Random Network.png Graphic file (type png)
 <use Continuous Random Network.png>
 Package pdftex.def Info: Continuous Random Network.png  used on input line 134.
@@ -674,7 +674,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has
                                                   \__shipout_drop_firstpage_...
 l.158 
        <./Continuous Random Network.png (PNG copy)>]
-<Wooten-Winer-Weaire.png, id=505, 1027.84pt x 1541.76pt>
+<Wooten-Winer-Weaire.png, id=510, 1027.84pt x 1541.76pt>
 File: Wooten-Winer-Weaire.png Graphic file (type png)
 <use Wooten-Winer-Weaire.png>
 Package pdftex.def Info: Wooten-Winer-Weaire.png  used on input line 161.
@@ -685,7 +685,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has
                                                   \__shipout_drop_firstpage_...
 l.167 
        <./Wooten-Winer-Weaire.png (PNG copy)>] [5] [6]
-<paracrystallinity.png, id=533, 1541.76pt x 1027.84pt>
+<paracrystallinity.png, id=538, 1541.76pt x 1027.84pt>
 File: paracrystallinity.png Graphic file (type png)
 <use paracrystallinity.png>
 Package pdftex.def Info: paracrystallinity.png  used on input line 224.
@@ -695,286 +695,359 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.242 F
-       ormally, for a system of $N$ atoms at number density $\rho = N/V$, <./paracrystallinity.png (PNG copy)>] [9] [10] [11] [12] [13] [14]
-Overfull \hbox (3.2588pt too wide) in paragraph at lines 410--411
+       ormally, for a system of $N$ atoms at number density $\rho = N/V$, <./paracrystallinity.png (PNG copy)>] [9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
+[]$\OML/cmm/m/it/9 g\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 r\OT1/cmr/m/n/9 )$,
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 327--328
+[]\OT1/cmr/m/n/9 Sharp peaks per-
+ []
+
+
+Underfull \hbox (badness 2689) in paragraph at lines 327--328
+\OT1/cmr/m/n/9 sist-ing un-damped
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 328--329
+[]\OT1/cmr/m/n/9 Broad first peak,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
+[]\OT1/cmr/m/n/9 Sharp first and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+[]\OT1/cmr/m/n/9 Coordination
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+\OT1/cmr/m/n/9 num-ber,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+[]\OT1/cmr/m/n/9 MSD,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 337--338
+[]\OT1/cmr/m/n/9 Plateaus, or-der
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
+[]\OT1/cmr/m/n/9 Linear and un-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+[]\OT1/cmr/m/n/9 Tetrahedral
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+\OT1/cmr/m/n/9 or-der $\OML/cmm/m/it/9 q$\OT1/cmr/m/n/9 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
+[]\OT1/cmr/m/n/9 Slightly be-low $1$,
+ []
+
+[11
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.352 
+      ] [12] [13] [14]
+Overfull \hbox (3.2588pt too wide) in paragraph at lines 448--449
 \OT1/cmr/m/it/10 in-ter-atomic po-ten-tials (MLIPs) are com-pu-ta-tional mod-els that use ma-chine learn-
  []
 
-[15] [16] [17]
-Overfull \hbox (11.30617pt too wide) in paragraph at lines 499--500
+[15] [16] [17] [18]
+Overfull \hbox (11.30617pt too wide) in paragraph at lines 537--538
 []\OT1/cmr/m/n/10 Structural qual-ity was checked with stan-dard structural-analysis tools (OVITO,
  []
 
-[18] [19] [20] [21]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 569--569
+[19] [20]
+Overfull \vbox (2.07448pt too high) has occurred while \output is active []
+
+ [21] [22]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 607--607
 []    \OT1/cmtt/m/n/10 module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda[] 
  []
 
-[22] [23]
-Overfull \hbox (7.56699pt too wide) in paragraph at lines 618--619
+[23] [24]
+Overfull \hbox (7.56699pt too wide) in paragraph at lines 656--657
 [][]\OT1/cmr/bx/n/10 Definition 37 \OT1/cmr/m/n/10 (Vi-sual Molec-u-lar Dy-nam-ics)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Vi-sual Molec-u-lar Dy-nam-ics (VMD)
  []
 
-[24]
-<VMDtestLJSub.png, id=701, 745.78625pt x 485.31313pt>
+[25]
+<VMDtestLJSub.png, id=717, 745.78625pt x 485.31313pt>
 File: VMDtestLJSub.png Graphic file (type png)
 <use VMDtestLJSub.png>
-Package pdftex.def Info: VMDtestLJSub.png  used on input line 644.
+Package pdftex.def Info: VMDtestLJSub.png  used on input line 682.
 (pdftex.def)             Requested size: 276.00105pt x 179.60007pt.
- [25]
-Underfull \hbox (badness 2564) in paragraph at lines 664--664
+ [26
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.691 
+       <./VMDtestLJSub.png>]
+Underfull \hbox (badness 2564) in paragraph at lines 702--702
 []\OT1/cmr/m/n/9 Illegal in-struc-tion (core
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 664--664
+Underfull \hbox (badness 5374) in paragraph at lines 702--702
 \OT1/cmr/m/n/9 CPU ar-chi-tec-ture in-
  []
 
 
-Underfull \hbox (badness 3386) in paragraph at lines 664--664
+Underfull \hbox (badness 3386) in paragraph at lines 702--702
 \OT1/cmr/m/n/9 com-pat-i-ble with Nar-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--665
+Underfull \hbox (badness 10000) in paragraph at lines 702--703
 []\OT1/cmr/m/n/9 Add
  []
 
 
-Overfull \hbox (50.15329pt too wide) in paragraph at lines 664--665
+Overfull \hbox (50.15329pt too wide) in paragraph at lines 702--703
 \OT1/cmtt/m/n/9 -DCMAKE[]CXX[]FLAGS="-march=core-avx2"| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 666--666
+Underfull \hbox (badness 10000) in paragraph at lines 704--704
 []\OT1/cmr/m/n/9 ML-MTP ab-sent from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--668
+Underfull \hbox (badness 10000) in paragraph at lines 706--706
 []\OT1/cmr/m/n/9 Stale nested CMake
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--668
+Underfull \hbox (badness 10000) in paragraph at lines 706--706
 \OT1/cmr/m/n/9 caches with an-other
  []
 
 
-Overfull \hbox (8.39937pt too wide) in paragraph at lines 660--671
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 698--709
  [][] 
  []
 
-[26
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.674 
-       <./VMDtestLJSub.png>]
-Overfull \hbox (2.77545pt too wide) in paragraph at lines 675--676
+
+Overfull \hbox (2.77545pt too wide) in paragraph at lines 713--714
 []\OT1/cmr/m/n/10 After a clean re-build, \OT1/cmtt/m/n/10 lmp -h \OT1/cmr/m/n/10 listed \OT1/cmtt/m/n/10 ML-MTP \OT1/cmr/m/n/10 with \OT1/cmtt/m/n/10 mtp \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 mtp/extrapolation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--687
+Underfull \hbox (badness 10000) in paragraph at lines 725--725
 []\OT1/cmr/m/n/9 Script copies only
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--687
+Underfull \hbox (badness 10000) in paragraph at lines 725--725
 \OT1/cmtt/m/n/9 ML-MTP\OT1/cmr/m/n/9 ; the \OT1/cmtt/m/n/9 KOKKOS
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--690
+Underfull \hbox (badness 10000) in paragraph at lines 727--728
 []\OT1/cmtt/m/n/9 kokkos-cuda \OT1/cmr/m/n/9 pre-set $+$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--690
+Underfull \hbox (badness 10000) in paragraph at lines 727--728
 \OT1/cmtt/m/n/9 -DKokkos[]ARCH[]AMPERE80=ON
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 691--691
+Underfull \hbox (badness 10000) in paragraph at lines 729--729
 []\OT1/cmtt/m/n/9 -march=core-avx2 \OT1/cmr/m/n/9 in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--693
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
 []\OT1/cmr/m/n/9 OpenCL-based
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--693
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
 \OT1/cmtt/m/n/9 -DPKG[]GPU=ON\OT1/cmr/m/n/9 , re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--693
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
 \OT1/cmr/m/n/9 dun-dant along-side
  []
 
 
-Overfull \hbox (8.39937pt too wide) in paragraph at lines 683--696
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 721--734
  [][] 
  []
 
 [27
-pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.702 \subsection
-                 {Simulation Protocol for Amorphous Silicon}
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.702 \subsection
-                 {Simulation Protocol for Amorphous Silicon}] [28]
-<../report/scaling.png, id=734, 375.804pt x 260.172pt>
-File: ../report/scaling.png Graphic file (type png)
-<use ../report/scaling.png>
-Package pdftex.def Info: ../report/scaling.png  used on input line 772.
-(pdftex.def)             Requested size: 207.0021pt x 143.3094pt.
- [29
+l.737 
+      ] [28
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.776 
-      
+l.753 
+      ] [29
 pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.776 
-      ]
-Overfull \hbox (7.32896pt too wide) detected at line 794
+l.784 \marginpar{July 22, 2026}
+                               ]
+<../report/scaling.png, id=752, 375.804pt x 260.172pt>
+File: ../report/scaling.png Graphic file (type png)
+<use ../report/scaling.png>
+Package pdftex.def Info: ../report/scaling.png  used on input line 810.
+(pdftex.def)             Requested size: 207.0021pt x 143.3094pt.
+ [30
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.821 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.821 \begin{equation}
+                       <../report/scaling.png>]
+Overfull \hbox (7.32896pt too wide) detected at line 832
 [] \OT1/cmr/m/n/10 :  [] = 30\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7 []\OML/cmm/m/it/10 ;  [] \OT1/cmr/m/n/10 :  [] = 357 []\OML/cmm/m/it/10 ;
  []
 
 
-Overfull \hbox (47.51416pt too wide) in paragraph at lines 799--810
+Overfull \hbox (47.51416pt too wide) in paragraph at lines 837--848
  [][] 
  []
 
-[30
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.813 
-       <../report/scaling.png>]
-<melt_216_22almtp_2500K_final.png, id=753, 245.41687pt x 238.39063pt>
-File: melt_216_22almtp_2500K_final.png Graphic file (type png)
-<use melt_216_22almtp_2500K_final.png>
-Package pdftex.def Info: melt_216_22almtp_2500K_final.png  used on input line 835.
-(pdftex.def)             Requested size: 172.5pt x 167.56706pt.
- [31
-pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.839 
-      ] [32
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.852 \subsubsection
-                    {Melt P26} <./melt_216_22almtp_2500K_final.png>]
-Overfull \hbox (50.42738pt too wide) in paragraph at lines 868--882
- [][] 
- []
-
-[33] [34
+[31
 pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.899 \clearpage
+l.862 \marginpar{July 24, 2026}
+                               ]
+<melt_216_22almtp_2500K_final.png, id=769, 245.41687pt x 238.39063pt>
+File: melt_216_22almtp_2500K_final.png Graphic file (type png)
+<use melt_216_22almtp_2500K_final.png>
+Package pdftex.def Info: melt_216_22almtp_2500K_final.png  used on input line 873.
+(pdftex.def)             Requested size: 172.5pt x 167.56706pt.
+ [32
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.883 
+       <./melt_216_22almtp_2500K_final.png>] [33]
+Overfull \hbox (50.42738pt too wide) in paragraph at lines 906--920
+ [][] 
+ []
+
+[34
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.937 \clearpage
                 ] [35
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 935.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 973.
 
-Overfull \hbox (3.30426pt too wide) in paragraph at lines 948--949
+Overfull \hbox (3.30426pt too wide) in paragraph at lines 986--987
 []\OT1/cmr/m/n/10 # Write ev-ery-thing be-tween the mark-
  []
 
 
-Overfull \hbox (11.33052pt too wide) in paragraph at lines 955--956
+Overfull \hbox (11.33052pt too wide) in paragraph at lines 993--994
 []\OT1/cmr/m/n/10 # Ac-
  []
 
 [36]
-Overfull \hbox (95.7462pt too wide) in paragraph at lines 962--963
+Overfull \hbox (95.7462pt too wide) in paragraph at lines 1000--1001
 []
  []
 
 
-Overfull \hbox (27.4968pt too wide) in paragraph at lines 963--964
+Overfull \hbox (27.4968pt too wide) in paragraph at lines 1001--1002
 []
  []
 
 [37]
-Overfull \hbox (1.27971pt too wide) in paragraph at lines 981--982
+Overfull \hbox (1.27971pt too wide) in paragraph at lines 1019--1020
 []\OT1/cmr/m/n/10 # Com-piles CPU code for the AVX2
  []
 
 
-Overfull \hbox (17.94229pt too wide) in paragraph at lines 1004--1005
+Overfull \hbox (17.94229pt too wide) in paragraph at lines 1042--1043
 []\OT1/cmr/m/n/10 # Loads a LAMMPS
  []
 
 [38]
-Overfull \hbox (16.56985pt too wide) in paragraph at lines 1022--1023
+Overfull \hbox (16.56985pt too wide) in paragraph at lines 1060--1061
 []\OT1/cmr/m/n/10 # De-fines a cu-bic re-gion named
  []
 
 
-Overfull \hbox (9.29886pt too wide) in paragraph at lines 1026--1027
+Overfull \hbox (9.29886pt too wide) in paragraph at lines 1064--1065
 []\OT1/cmr/m/n/10 # As-signs ran-dom ini-
  []
 
 [39]
-Overfull \hbox (287.89445pt too wide) in paragraph at lines 1034--1035
+Overfull \hbox (287.89445pt too wide) in paragraph at lines 1072--1073
 []
  []
 
 
-Overfull \hbox (97.4261pt too wide) in paragraph at lines 1035--1036
+Overfull \hbox (97.4261pt too wide) in paragraph at lines 1073--1074
 []
  []
 
 [40]
-Overfull \hbox (2.03362pt too wide) in paragraph at lines 1052--1053
+Overfull \hbox (2.03362pt too wide) in paragraph at lines 1090--1091
 []\OT1/cmr/m/n/10 # Points the shell to the custom-built LAMMPS ex-e-cutable
  []
 
 
-Overfull \hbox (5.60664pt too wide) in paragraph at lines 1054--1055
+Overfull \hbox (5.60664pt too wide) in paragraph at lines 1092--1093
 []\OT1/cmr/m/n/10 # Ex-
  []
 
 [41]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1088
+Underfull \hbox (badness 10000) in paragraph at lines 1125--1126
 
  []
 
 
-Overfull \hbox (31.7956pt too wide) in paragraph at lines 1099--1100
+Overfull \hbox (31.7956pt too wide) in paragraph at lines 1137--1138
 []\OT1/cmr/m/n/10 Digital Re-search Al-liance of Canada. ``LAMMPS.'' [][]$\OT1/cmtt/m/n/10 https : / / docs . alliancecan .
  []
 
 
-Overfull \hbox (29.28058pt too wide) in paragraph at lines 1100--1101
+Overfull \hbox (29.28058pt too wide) in paragraph at lines 1138--1139
 \OT1/cmr/m/n/10 Glass-formers'' (dataset). [][]$\OT1/cmtt/m/n/10 https : / / aip . figshare . com / collections / MAPping _
  []
 
 [42]
-Overfull \hbox (6.6279pt too wide) in paragraph at lines 1103--1104
+Overfull \hbox (6.6279pt too wide) in paragraph at lines 1141--1142
 []\OT1/cmr/m/n/10 Steihardt pa-ram-e-ters. [][]$\OT1/cmtt/m/n/10 https : / / www . youtube . com / watch ? v = ou0uKgK35lE$[][]\OT1/cmr/m/n/10 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1149
 [][][]$\OT1/cmtt/m/n/10 https : / / www . sciencedirect . com / science / article / abs / pii /
  []
 
@@ -984,13 +1057,13 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `Research_log.out' has not changed.
-(rerunfilecheck)             Checksum: 73465979B9B5FBC0185CD21A0A284C1A;15299.
+(rerunfilecheck)             Checksum: 46BA3AB5C5E6F41093451DAD1853BE53;15511.
  ) 
 Here is how much of TeX's memory you used:
- 49576 strings out of 467871
- 1289415 string characters out of 5418377
- 2034784 words of memory out of 5000000
- 77650 multiletter control sequences out of 15000+600000
+ 49580 strings out of 467871
+ 1289484 string characters out of 5418377
+ 2035105 words of memory out of 5000000
+ 77652 multiletter control sequences out of 15000+600000
  640895 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,16n,118p,1184b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -998,9 +1071,9 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.32} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\erenr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Research_log.pdf (47 pages, 6099276 bytes).
+Output written on Research_log.pdf (47 pages, 6105343 bytes).
 PDF statistics:
- 1017 PDF objects out of 1200 (max. 8388607)
- 248 named destinations out of 1000 (max. 500000)
- 736 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1027 PDF objects out of 1200 (max. 8388607)
+ 250 named destinations out of 1000 (max. 500000)
+ 744 words of extra memory for PDF output out of 10000 (max. 10000000)
 
