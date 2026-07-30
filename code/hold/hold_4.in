@@ -1,0 +1,26 @@
+# Hold stage: holding liquid silicon at 2500 K for 1 ns (1,000,000 steps)
+# 216 atoms, NPT (box free to resize at 0 bar), potential 22.almtp
+# continues from the melted configuration in ../melt/potential_22/
+# type 1 = Si, type 2 = O (confirmed by density test); only Si used here
+
+# ---- Setup ----
+units		metal              # eV, Angstroms, kelvin, ps
+atom_style 	atomic
+dimension	3
+boundary        p p p              # periodic in x, y, z
+
+# ---- Build the system ----
+read_data ../melt/potential_22/melt.end_sim
+
+# ---- Potential ----
+pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/26.almtp
+
+# ---- Run settings ----
+fix		1 all npt temp 2500.0 2500.0 0.1 iso 0 0 1.0   # box free to resize at 0 bar
+timestep 	0.001              # 1 fs
+thermo_style	custom step temp press vol pe
+thermo		100
+dump 		1 all atom 100 potential_26/dump_hold_216_2500K_26.lammpstrj
+run 		400000
+restart 	100000 hold26.restart.a hold26.restart.b
+write_data	potential_26/hold_216_2500K_26.end_sim

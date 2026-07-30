@@ -16,7 +16,7 @@ create_atoms    1 region box       # 8 atoms/cell x 27 cells = 216 atoms
 mass 		1 28.0855          # Si
 
 # ---- Potential ----
-pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/22.almtp
+pair_style 	mtp /home/williamh/sio_mtps/original_for_melt/26.almtp
 
 # ---- Initial conditions ----
 velocity	all create 300 33342 loop geom   # 300 K, zero net momentum
@@ -26,6 +26,6 @@ fix		1 all npt temp 300.0 2500.0 0.1 iso 0 0 1.0   # box free to resize at 0 bar
 timestep 	0.001              # 1 fs
 thermo_style	custom step temp press vol pe
 thermo		100
-dump 		1 all atom 100 dump_melt.lammpstrj
+dump 		1 all atom 100 dump_melt_216_26almtp_2500K.lammpstrj
 run		30000
-write_data	melt.end_sim
+write_data	melt_216_26almtp_2500K.end_sim
