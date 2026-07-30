@@ -2,3 +2,4 @@ LMP_MTP.tar.gz
 LMP_MTP/
 build/
 .vscode/
+.gitignore

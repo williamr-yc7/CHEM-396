@@ -115,7 +115,7 @@ The density of a-Si is about $2.28 \text{ g/cm}^3$, a little less than that of c
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{c-Si-vs-a-Si.jpg}
-    \caption{Schematic comparison of crystalline silicon (c-Si) and amorphous silicon (a-Si).}
+    \caption{Schematic comparison of c-Si and a-Si.}
     \label{fig:crystalline_vs_amorphous}
 \end{figure}
 
@@ -159,16 +159,16 @@ At the core of the algorithm is a local operation called a bond transposition. I
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Wooten-Winer-Weaire.png}
-    \caption{Schematic of the Wooten-Winer-Weaire (WWW) algorithm for generating continuous random network models of amorphous silicon.}
+    \caption{Schematic of the Wooten-Winer-Weaire (WWW) algorithm for generating continuous random network models of a-Si.}
     \label{fig:WWW_algorithm}
 \end{figure}
 
-In an ideal CRN, every atom remains fourfold coordinated, but long-range periodic order is lost. Bond lengths stay tightly clustered near the crystalline value, while bond angles are spread around the tetrahedral angle of $109.47^\circ$ (typically with a root-mean-square spread on the order of $10^\circ$). The dihedral angles\footnote{Dihedral angles are the angles between two planes, in this case the planes formed by the atoms in the molecular structure.} become essentially random. This is the key difference from perfectly periodic crystalline silicon (c-Si), where both bond lengths and angles take sharp fixed values.
+In an ideal CRN, every atom remains fourfold coordinated, but long-range periodic order is lost. Bond lengths stay tightly clustered near the crystalline value, while bond angles are spread around the tetrahedral angle of $109.47^\circ$ (typically with a root-mean-square spread on the order of $10^\circ$). The dihedral angles\footnote{Dihedral angles are the angles between two planes, in this case the planes formed by the atoms in the molecular structure.} become essentially random. This is the key difference from perfectly periodic c-Si, where both bond lengths and angles take sharp fixed values.
 
 \subsubsection{Coordination Defects}
 \begin{definition}[Coordination Defect]
     \label{C.D}
-    A coordination defect in amorphous silicon is an atom that deviates from the ideal fourfold coordination, such as a dangling bond (threefold) or a floating bond (fivefold).    
+    A coordination defect in a-Si is an atom that deviates from the ideal fourfold coordination, such as a dangling bond (threefold) or a floating bond (fivefold).    
 \end{definition}
 \begin{definition}[Dangling Bond]
     A dangling bond is an unsatisfied chemical bond on an atom that is fixed in place. It occurs when an atom is missing one of its expected neighbors, leaving an unpaired electron. This makes the site chemically very reactive and can also create local magnetic moments and signals in electron spin resonance (ESR).
@@ -184,12 +184,12 @@ Crucially, the concentration of coordination defects is not intrinsic to a-Si bu
     A ring is a closed loop of bonds connecting atoms, like following bonds from atom to atom until you return to the starting point.
 \end{definition}
 \begin{definition}[Ring Defect]
-    Ring defects describe how these loops vary in size in amorphous silicon. In c-Si, every loop contains exactly six atoms (a six-membered ring). In a-Si, most rings are still six-membered, but many are not. The most important are five- and seven-membered rings, which correspond to loops that are either too small or too stretched compared to the crystal structure. These distortions create local strain, change bond angles, and can introduce electronic gap states.
+    Ring defects describe how these loops vary in size in a-Si. In c-Si, every loop contains exactly six atoms (a six-membered ring). In a-Si, most rings are still six-membered, but many are not. The most important are five- and seven-membered rings, which correspond to loops that are either too small or too stretched compared to the crystal structure. These distortions create local strain, change bond angles, and can introduce electronic gap states.
 \end{definition}
 
 \begin{definition}[Medium-Range Order]
     %A ring defect is a specific structural feature that refers to one identifiable loop in the atomic network. Medium-range order (MRO) is a broader description of how structured the material is over distances beyond nearest neighbors, capturing patterns and correlations over a few atomic spacings.
-    Medium-range order (MRO) refers to structure that persists beyond nearest neighbors, over a few atomic spacings, without extending to the long-range periodicity of a crystal. In amorphous silicon it appears in ring statistics, where certain ring sizes (especially 5-, 6-, and 7-membered) occur preferentially, and in recurring local motifs or clusters that influence the material's properties.
+    Medium-range order (MRO) refers to structure that persists beyond nearest neighbors, over a few atomic spacings, without extending to the long-range periodicity of a crystal. In a-Si it appears in ring statistics, where certain ring sizes (especially 5-, 6-, and 7-membered) occur preferentially, and in recurring local motifs or clusters that influence the material's properties.
 \end{definition}
 
 In realistic a-Si models the ring distribution peaks around five-, six-, and seven-membered rings. Three-membered rings are essentially absent, and four-membered rings are rare because both are heavily strained\footnote{The bonds are forced into shapes they don't want to be in, so they store energy and are unstable, like a bent spring that wants to snap back.}.
@@ -202,7 +202,7 @@ a-Si is used predominantly as a semiconductor for large-area and flexible electr
 
 \begin{itemize}
     \item \textbf{Active-matrix displays.} a-Si is the foundational material for the thin-film transistor (TFT) arrays in liquid-crystal displays (LCDs), controlling individual pixels in laptops and televisions.
-    \item \textbf{Photovoltaics and solar power.} It is used in lightweight, flexible, and semi-transparent thin-film solar panels. Although less efficient than crystalline silicon, a-Si panels perform well in low-light conditions.
+    \item \textbf{Photovoltaics and solar power.} It is used in lightweight, flexible, and semi-transparent thin-film solar panels. Although less efficient than c-Si, a-Si panels perform well in low-light conditions.
     \item \textbf{Medical X-ray imaging.} In large-area digital X-ray flat-panel detectors, a-Si arrays convert X-rays into high-resolution digital images.
     \item \textbf{Sensors and scanners.} a-Si is deployed in document scanners, electronic whiteboards, and optical colour sensors because it can cover large surface areas.
     \item \textbf{Gravitational wave detectors} Like LIGO\footnote{Laser Interferometer Gravitational-Wave Observatory.} use a-Si coatings on mirrors to reduce thermal noise and improve sensitivity.
@@ -222,9 +222,125 @@ Support for the paracrystalline picture comes from fluctuation electron microsco
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{paracrystallinity.png}
-    \caption{Schematic illustration of the paracrystalline model of amorphous silicon (a-Si). Small crystal-like regions (paracrystallites) with short- to medium-range order are embedded within an otherwise disordered continuous random network. The highlighted ordered domains are illustrative and are not drawn to scale.}
+    \caption{Schematic illustration of the paracrystalline model of a-Si. Small crystal-like regions (paracrystallites) with short- to medium-range order are embedded within an otherwise disordered continuous random network. The highlighted ordered domains are illustrative and are not drawn to scale.}
     \label{fig:paracrystallinity}
 \end{figure}
+
+
+\subsection{Structural and Dynamical Characterization}
+\label{sec:metrics}
+
+A simulation produces nothing but a list of atomic positions at each timestep. Deciding whether that list represents a crystal, a liquid, or an amorphous solid requires reducing it to a small number of quantities that distinguish the three phases. Four are used in this project: the radial distribution function, the coordination number, the mean square displacement, and the bond-orientational order parameters. The first two describe structure, the third describes dynamics, and the fourth measures local symmetry directly.
+
+\subsubsection{Radial Distribution Function}
+\label{RDF}
+\begin{definition}[Radial Distribution Function]
+    The radial distribution function (RDF), written $g(r)$\footnote{Incidentally, $g(r)$ doubles as a bridge to two other things: the distance at which its oscillations die out is the correlation length $L_c$ that MAP relies on, and its Fourier transform is the static structure factor $S(q)$ that X-ray and neutron diffraction experiments measure directly.}, gives the probability of finding an atom at a distance $r$ from a reference atom, normalized by the probability expected for a uniform system of the same average density.
+\end{definition}
+A value $g(r) = 1$ means the local density at that separation equals the bulk average, the material has lost all local structure (completely random distribution), $g(r) > 1$ means atoms preferentially sit at that distance, and $g(r) = 0$ means that separation never occurs, since atoms are too close and their electron clouds overlap.
+
+Formally, for a system of $N$ atoms at number density $\rho = N/V$,
+\begin{equation}
+    g(r) = \frac{1}{4\pi r^{2}\, \rho N} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \delta\!\left(r - r_{ij}\right) \right\rangle,
+    \label{eq:rdf}
+\end{equation}
+where $r_{ij}$ is the separation between atoms $i$ and $j$, the angle brackets denote a time average over the trajectory, and the factor $4\pi r^{2}$ is the surface area of the spherical shell at radius $r$. Dividing by this shell area is what converts a raw count of neighbours into a density, since a shell far from the reference atom is larger and would otherwise contain more atoms purely for geometric reasons.
+
+The shape of $g(r)$ is the primary structural fingerprint of a phase:
+\begin{itemize}
+    \item \textbf{Crystalline silicon.} Sharp, well-separated peaks at the discrete neighbour shells of the diamond lattice (2.35, 3.84, 4.50~\AA), dropping to zero between them and persisting undamped to arbitrarily large $r$. That persistence is what long-range order means.
+    \item \textbf{Liquid silicon.} A single broad first peak near 2.45~\AA, a weak smeared second peak near 3.8~\AA, and nothing beyond: the oscillations damp to $g(r) \to 1$ within a few angstroms.
+    \item \textbf{Amorphous silicon.} Intermediate. The first peak stays sharp at 2.35~\AA{} and a distinct second peak survives at 3.84~\AA, since the tetrahedral angle of $109.47^\circ$ is preserved locally, but the third is weak or absent and $g(r) \to 1$ beyond roughly 7 to 8~\AA. Keeping the second peak while losing the third is what separates an amorphous network from a liquid.
+\end{itemize}
+
+\subsubsection{Coordination Number}
+\label{CN}
+\begin{definition}[Coordination Number]
+    The coordination number is the average number of nearest neighbours per atom, obtained by integrating the radial distribution function over the first neighbour shell.
+\end{definition}
+
+The running coordination number follows from $g(r)$ by integration,
+\begin{equation}
+    n(r) = 4\pi \rho \int_{0}^{r} g(r')\, r'^{2}\, \mathrm{d}r',
+    \label{eq:coord}
+\end{equation}
+and the coordination number proper is $n(r_{\text{cut}})$ evaluated at the first minimum of $g(r)$, which is the natural boundary between the first and second neighbour shells. For silicon this cutoff is conventionally taken as 2.85~\AA, the value used by Zongo et al. in their OVITO coordination analysis.
+
+In c-Si the coordination number is exactly 4 by construction. In a-Si it remains close to 4, and the deviation from it is the coordination-defect concentration discussed in Section~\ref{C.D}: threefold atoms are dangling bonds, fivefold atoms are floating bonds. In liquid silicon it rises to roughly 6, because melting destroys the directional covalent bonding and the liquid adopts a denser, more metallic packing. This same change is what makes liquid silicon denser than the crystal ($2.57$ against $2.33$~g/cm$^3$), an anomaly shared with water and one that provides an independent thermodynamic check on melting: under NPT the volume should contract, not expand, when the crystal melts.
+
+\subsubsection{Mean Square Displacement}
+\label{MSD}
+\begin{definition}[Mean Square Displacement]
+    The mean square displacement (MSD) measures how far atoms have travelled from their initial positions, averaged over all atoms:
+    \begin{equation}
+        \text{MSD}(t) = \frac{1}{N}\sum_{i=1}^{N} \left\langle \left| \mathbf{r}_i(t) - \mathbf{r}_i(0) \right|^{2} \right\rangle.
+        \label{eq:msd}
+    \end{equation}
+\end{definition}
+
+Unlike $g(r)$ and the coordination number, which are static and computed from a single configuration, the MSD is a dynamical quantity and requires a trajectory. It separates solids from liquids unambiguously:
+\begin{itemize}
+    \item \textbf{Solid.} Atoms vibrate about fixed lattice sites, so the MSD rises briefly and then plateaus at a small value of order $0.1$~\AA$^2$, set by the thermal vibration amplitude. The plateau grows with temperature but never becomes unbounded.
+    \item \textbf{Liquid.} Atoms diffuse without restriction, so after a short ballistic transient the MSD grows linearly and without bound. The slope gives the self-diffusion coefficient through the Einstein relation,
+    \begin{equation}
+        D = \lim_{t \to \infty} \frac{\text{MSD}(t)}{6t},
+        \label{eq:einstein}
+    \end{equation}
+    where the factor 6 is $2d$ for $d = 3$ dimensions. For liquid silicon near its melting point $D$ is of order $10^{-8}$~m$^2$/s, corresponding to an MSD growing by a few \AA$^2$ per picosecond.
+\end{itemize}
+
+A linear, unbounded MSD is the single most direct confirmation that a crystal has melted, since it demonstrates the atoms are genuinely diffusing rather than vibrating in place.
+
+\begin{remark}
+    The MSD must be computed from unwrapped coordinates. If atoms that cross a periodic boundary are folded back into the box, their apparent displacement resets and the MSD is silently corrupted. LAMMPS handles this internally in \texttt{compute msd}, which tracks image flags; a trajectory analysed externally must be dumped with unwrapped coordinates (\texttt{xu yu zu}) or with the image flags (\texttt{ix iy iz}) needed to reconstruct them. Under NPT there is a further subtlety, since box rescaling contributes an apparent displacement that is not diffusion.
+\end{remark}
+
+\subsubsection{Bond-Orientational Order Parameters}
+\label{BOO}
+\begin{definition}[Steinhardt Bond-Orientational Order Parameters]
+    The Steinhardt parameters $q_\ell$ quantify the rotational symmetry of an atom's local neighbourhood by expanding the directions to its neighbours in spherical harmonics. For atom $i$ with $N_b(i)$ neighbours,
+    \begin{equation}
+        q_{\ell m}(i) = \frac{1}{N_b(i)} \sum_{j=1}^{N_b(i)} Y_{\ell m}\!\left(\hat{\mathbf{r}}_{ij}\right),
+        \qquad
+        q_{\ell}(i) = \sqrt{ \frac{4\pi}{2\ell + 1} \sum_{m = -\ell}^{\ell} \left| q_{\ell m}(i) \right|^{2} },
+        \label{eq:steinhardt}
+    \end{equation}
+    where $Y_{\ell m}$ are the spherical harmonics and $\hat{\mathbf{r}}_{ij}$ is the unit vector from atom $i$ to neighbour $j$. The outer sum over $m$ makes $q_\ell$ invariant under rotation, so it depends on the shape of the neighbourhood and not on its orientation.
+\end{definition}
+
+Each crystal structure has a characteristic signature in $(q_4, q_6)$. The ideal diamond-cubic arrangement of c-Si gives $q_4 = 0.509$ and $q_6 = 0.628$, well separated from the values for other lattices. In a liquid the neighbour directions are close to random, the spherical harmonic contributions cancel, and both parameters collapse toward zero with a broad distribution and no sharp peak. a-Si sits between the two: the tetrahedral local geometry survives, so the distribution retains weight near the diamond values, but it is broadened by the spread in bond angles and shows no long-range correlation between neighbourhoods.
+
+These are the same parameters used by Madanchi and Simine to verify that MAP-generated structures reproduce the local symmetry statistics of their reference trajectories.
+
+\subsubsection{Summary of Phase Signatures}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|p{0.22\textwidth}|p{0.22\textwidth}|p{0.22\textwidth}}
+\toprule
+Metric & Crystalline (c-Si) & Liquid Si (2500~K) & Amorphous (a-Si) \\
+\midrule
+$g(r)$ & Sharp peaks persisting to large $r$ & Broad first peak, weak second, flat beyond & Sharp first and second peaks, no third \\
+\hline
+First peak position & 2.35~\AA & $\approx 2.45$~\AA & 2.35~\AA \\
+\hline
+Coordination number & 4 exactly & $\approx 6$ & $\approx 4$, defects below a few \% \\
+\hline
+MSD & Plateaus, order $0.1$~\AA$^2$ & Linear and unbounded & Plateaus \\
+\hline
+$(q_4, q_6)$ & $(0.509,\, 0.628)$, sharp & Near zero, broad & Broadened around tetrahedral values \\
+\hline
+Density & $2.33$~g/cm$^3$ & $2.57$~g/cm$^3$ & $2.28$~g/cm$^3$ \\
+\bottomrule
+\end{tabular}
+\caption{Signatures distinguishing the three phases of silicon. Melting is confirmed by the simultaneous appearance of all four liquid signatures, not by any one of them alone.}
+\label{tab:phase_signatures}
+\end{table}
+
+\begin{remark}
+    These metrics are only meaningful when averaged over a trajectory at a single, equilibrated thermodynamic state. Averaging $g(r)$ across a heating ramp mixes crystalline and liquid configurations into one curve that describes neither. The structural analysis in this project is therefore performed on the isothermal hold runs rather than on the melt ramps.
+\end{remark}
 
 \subsection{Interatomic Potentials}
 
@@ -278,7 +394,7 @@ Several families of potentials exist beyond LJ, each suited to different bonding
     \item \textbf{Bond order potentials.} Make bond strength depend on the number and type of neighbours. Examples include the Tersoff and Brenner potentials, widely used for carbon-based materials.
     \item \textbf{Embedded Atom Method (EAM).} Designed for metals and metal alloys. See the subsection below.
     \item \textbf{Screened Coulomb potentials.} For ionic systems where charge interactions are screened by other charges in the medium. Examples include the Yukawa and Debye-Hückel potentials.
-    \item \textbf{Non-parametric / machine learning potentials.} No fixed functional form. The potential is instead learned from data. Examples include Moment Tensor Potentials and neural network potentials. These can capture complex interactions and are increasingly used for materials with non-trivial bonding\footnote{Non-trivial bonding refers to bonding that is not simply pairwise, but involves more complex interactions.} such as amorphous silicon.
+    \item \textbf{Non-parametric / machine learning potentials.} No fixed functional form. The potential is instead learned from data. Examples include Moment Tensor Potentials and neural network potentials. These can capture complex interactions and are increasingly used for materials with non-trivial bonding\footnote{Non-trivial bonding refers to bonding that is not simply pairwise, but involves more complex interactions.} such as a-Si.
 \end{itemize}
 
 \subsubsection{Embedded Atom Method}
@@ -314,7 +430,7 @@ In practice the density is obtained through the Kohn-Sham scheme, which replaces
 
 Since $E_{xc}$ has to be approximated, the accuracy of a DFT calculation depends on how good that approximation is. Two common ones are the local density approximation (LDA), which estimates $E_{xc}$ from the electron density at each point, and the generalized gradient approximation (GGA), which also looks at how quickly the density is changing from point to point.
 
-The problem with DFT is its cost. The amount of computing time grows roughly as the cube of the number of electrons, so doubling the system size makes it about eight times more expensive. This quickly becomes impractical for the long simulations and large atom counts needed to model amorphous silicon. The workaround is to run DFT only on a limited set of atomic arrangements to get accurate reference energies and forces, then train a potential like the MTP to reproduce those results at a tiny fraction of the cost.
+The problem with DFT is its cost. The amount of computing time grows roughly as the cube of the number of electrons, so doubling the system size makes it about eight times more expensive. This quickly becomes impractical for the long simulations and large atom counts needed to model a-Si. The workaround is to run DFT only on a limited set of atomic arrangements to get accurate reference energies and forces, then train a potential like the MTP to reproduce those results at a tiny fraction of the cost.
 
 % ===========================================================
 %  MLIPs
@@ -412,7 +528,7 @@ Most models were built by randomly filling a simulation box at a fixed density (
 
 Structural quality was checked with standard structural-analysis tools (OVITO, the R.I.N.G.S code, and ISAACS), along with LAMMPS pseudosimulations\footnote{Pseudosimulation is a computational technique that mimics the behavior of a real system using simplified models.} for the radial and angular distributions\footnote{OVITO was used for coordination analysis with a 2.85 Angstrom bond cutoff, R.I.N.G.S for ring statistics using the King criterion, and ISAACS for the structure factor.}. The results match experiment and the 100{,}000-atom 100k-GAP18 reference model closely: bond angles centre on the tetrahedral value of $109.5^\circ$ with a spread near $10^\circ$, and ring statistics peak at 5-, 6-, and 7-membered rings, with no 3-membered rings and very few 4-membered rings.
 
-The mechanical and energetic properties agree just as well. The bulk modulus averages about 75 GPa across all models, well below the 98.3 GPa of crystalline silicon, matching the softer nature of a-Si. The excess energy (how far above crystalline silicon's energy each model sits) averages 0.167 eV/atom for the ARTn-MTP models versus 0.191 eV/atom for the MD-generated ones, both inside the experimental window of 0.135 to 0.205 eV/atom.
+The mechanical and energetic properties agree just as well. The bulk modulus averages about 75 GPa across all models, well below the 98.3 GPa of c-Si, matching the softer nature of a-Si. The excess energy (how far above c-Si's energy each model sits) averages 0.167 eV/atom for the ARTn-MTP models versus 0.191 eV/atom for the MD-generated ones, both inside the experimental window of 0.135 to 0.205 eV/atom.
 
 Crystallinity was measured with the ``identify diamond structure'' modifier in OVITO, which flags atoms sitting in cubic or hexagonal diamond environments. Four models (216-R1, 512-R1, 512-R2, and 1000-R) showed zero crystallinity, and all four were generated from a random start with no MD prerun. From the full dataset the authors draw three trends: crystallinity depends little on system size; starting from a random state gives less crystallinity than starting from a melt-and-quench state\footnote{A melt-and-quench state is a simulation technique where a material is first heated to a liquid state and then rapidly cooled to form an amorphous structure.}; and fewer coordination defects tend to go with higher crystallinity.
 
@@ -545,7 +661,7 @@ Once a structure is loaded, the drawing method is set to VDW so atoms render as 
 
 \subsection{Toolchain Validation: Lennard-Jones Melt}
 
-Before simulating amorphous silicon, a standard Lennard-Jones (LJ) melt was run on Narval to confirm that the full toolchain (job submission, LAMMPS execution, and output writing) functioned correctly. This is a generic LJ fluid and not a-Si; its only purpose is validation. A line-by-line annotation of the input script is given in Appendix~\ref{InputScript}.
+Before simulating a-Si, a standard Lennard-Jones (LJ) melt was run on Narval to confirm that the full toolchain (job submission, LAMMPS execution, and output writing) functioned correctly. This is a generic LJ fluid and not a-Si; its only purpose is validation. A line-by-line annotation of the input script is given in Appendix~\ref{InputScript}.
 
 \subsubsection{Output and Validation}
 The total energy per atom remained essentially constant at approximately $-4.62$\footnote{Here energy is negative to signify it would cost energy to pull this system apart.} throughout the run. Because the NVE ensemble conserves energy, this constancy confirms that the integration was stable and the simulation parameters were sound. The temperature\footnote{In reduced LJ units, temperature is dimensionless (measured in units of $\epsilon/k_B$).} relaxed from its initial value of $1.44$ to a steady value near $0.70$ as the initial lattice melted and equilibrated. The run completed $10{,}000$ steps on $13{,}500$ atoms in roughly $95$ seconds of wall time, with no dangerous neighbour-list builds reported, confirming a working toolchain.
@@ -614,7 +730,7 @@ Compilation errors under NVIDIA compiler & \texttt{-march=core-avx2} inherited f
 The GPU build then compiled with \texttt{mtp/kk} and \texttt{mtp/extrapolation/kk} present, and ran the same Lennard-Jones test on an A100 node in $15.6$~s against 4~min 16~s on CPU, a speedup of roughly $16\times$.
 
 \subsection{Simulation Protocol for Amorphous Silicon}
-Ata provided five silicon MTPs for this project, split into two groups. Two are melt-stable (levels 22 and 26), fitted explicitly to remain robust at the high temperatures of a melt. The other three are pruned potentials (\texttt{pruned\_1}, \texttt{pruned\_2}, \texttt{pruned\_3}), ordered by increasing computational cost and accuracy, but potentially unstable in a melt. The amorphous silicon is produced by a melt-quench protocol:
+Ata provided five silicon MTPs for this project, split into two groups. Two are melt-stable (levels 22 and 26), fitted explicitly to remain robust at the high temperatures of a melt. The other three are pruned potentials (\texttt{pruned\_1}, \texttt{pruned\_2}, \texttt{pruned\_3}), ordered by increasing computational cost and accuracy, but potentially unstable in a melt. The a-Si is produced by a melt-quench protocol:
 
 \begin{enumerate}
     \item \textbf{Melt.} Heat a c-Si lattice to about 2500~K with a melt-stable potential, and save a snapshot.
@@ -625,7 +741,7 @@ Ata provided five silicon MTPs for this project, split into two groups. Two are 
 
 \subsubsection{Atom Type Mapping}
 \marginpar{July 21, 2026}
-The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for crystalline silicon. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
+The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for c-Si. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
 
 \subsubsection{First Silicon Runs and Choice of Ensemble}
 Both ensembles (NVT and NPT) were tested on a 216-atom diamond lattice ($3\times3\times3$ unit cells, $a=5.431$~\AA, periodic, \texttt{units metal}, 1~fs timestep). The intended workflow was NPT equilibration to find the box size the potential prefers, followed by NVT production at that fixed volume.
@@ -736,7 +852,7 @@ The hold at 2500~K dominates despite involving less than half the steps of the c
 
 \subsubsection{Melt P22}
 \marginpar{July 24, 2026}
-%To confirm that crystalline silicon (c-Si) has melted into a liquid at 2500 K in a simulation, look for the loss of long-range order in the radial distribution function (RDF), an increase in the coordination number, and high mean square displacement (MSD).
+%To confirm that c-Si (c-Si) has melted into a liquid at 2500 K in a simulation, look for the loss of long-range order in the radial distribution function (RDF), an increase in the coordination number, and high mean square displacement (MSD).
 The heating run melted successfully. The temperature reached the 2500~K target, and two signatures confirmed the crystal had become a liquid: 
 \begin{itemize}
     \item The pressure swung over a range of order $10^4$~bar rather than the $10^3$ of the solid.
