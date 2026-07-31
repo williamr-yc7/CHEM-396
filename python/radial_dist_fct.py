@@ -13,12 +13,7 @@ drc = input("dump.lammpstrj path: ")
 drc = os.path.abspath(os.path.join(script_dir, drc))
 print(f"Looking for file at: {drc}")
 # Change your universe initialization line to include the coordinate convention:
-u = mda.Universe(
-    drc, 
-    format="LAMMPSDUMP", 
-    topology_format="LAMMPSDUMP", 
-    lammps_coordinate_convention="scaled"
-)
+u = mda.Universe(drc, format="LAMMPSDUMP", topology_format="LAMMPSDUMP", lammps_coordinate_convention="scaled")
 
 # 2. Select the atom groups you want to analyze
 # "all" selects every atom. You can also use "type 1", "type 2", etc.

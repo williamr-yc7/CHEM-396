@@ -865,8 +865,8 @@ The hold at 2500~K dominates despite involving less than half the steps of the c
 The heating run melted successfully. The temperature reached the 2500~K target, and five signatures confirmed the crystal had become a liquid: 
 \begin{itemize}
     \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.45~\AA{} damping to $g(r)=1$ by 3.5~\AA. The first 3~ps show the diamond lattice instead: peaks at 2.37, 3.87, 4.54~\AA{} persisting to 8~\AA{} with minima near 0.15.
-    \item %Coordination Number test
-    \item %Mean Square Displacement
+    \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 3~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination, as the diamond lattice requires. The final 3~ps give a mean of 5.968, distributed over 3- to 8-fold environments and peaking at sixfold, the denser packing expected once directional covalent bonding is lost.
+    \item \textbf{Mean square displacement.} Flat at approximately $0.1$~\AA$^2$ for the first 25.5~ps, the plateau of atoms vibrating about fixed lattice sites, then rising linearly to 110~\AA$^2$ by the end of the ramp. Unbounded linear growth is the definitive signature of diffusion, and the transition coincides with the potential-energy jump and volume contraction seen in the thermodynamic output.
     \item %Tetrahedral Order Parameter
     \item %Density
 \end{itemize}
@@ -874,10 +874,20 @@ The heating run melted successfully. The temperature reached the 2500~K target, 
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[width=.8\linewidth]{../python/radial_dist_fct/melt_P22_rdf_output.png}
+        \includegraphics[width=1\linewidth]{../python/radial_dist_fct/melt_P22_rdf_output.png}
         \label{fig:sfig1}
     \end{subfigure}
-    \caption{(a) Radial distribution function;}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{../python/msd/melt_P22_msd_output.png}
+        \label{fig:sfig3}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{../python/coord_num/melt_P22_cn_output.png}
+        \label{fig:sfig2}
+    \end{subfigure}
+    \caption{(a) Radial distribution function; (b) Coordination number; (c) Mean square displacement; (d) ;}
     \label{fig:fig}
 \end{figure}
 

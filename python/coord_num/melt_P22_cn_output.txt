@@ -1,0 +1,14 @@
+# Bond cutoff: 3.15 A
+
+First 2 ps (crystal): mean = 4.000
+   4-fold: 100.0%
+
+Last 3 ps (liquid): mean = 5.968
+   2-fold: 0.2%
+   3-fold: 1.8%
+   4-fold: 9.8%
+   5-fold: 23.4%
+   6-fold: 32.9%
+   7-fold: 20.8%
+   8-fold: 8.8%
+   9-fold: 2.0%
