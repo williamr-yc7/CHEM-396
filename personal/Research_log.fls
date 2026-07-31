@@ -296,6 +296,9 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.st
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT .\Research_log.aux
+INPUT .\Research_log.aux
+INPUT Research_log.aux
 OUTPUT Research_log.aux
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -306,8 +309,14 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-s
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\graphics\color.sty
-OUTPUT Research_log.out
+INPUT .\Research_log.out
+INPUT .\Research_log.out
+INPUT Research_log.out
+INPUT Research_log.out
 OUTPUT Research_log.pdf
+INPUT .\Research_log.out
+INPUT .\Research_log.out
+OUTPUT Research_log.out
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
@@ -338,7 +347,10 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
 INPUT C:\Users\erenr\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-OUTPUT Research_log.toc
+INPUT .\Research_log.toc
+INPUT .\Research_log.toc
+INPUT Research_log.toc
+INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
@@ -347,8 +359,8 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+OUTPUT Research_log.toc
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT .\c-Si-vs-a-Si.jpg
 INPUT .\c-Si-vs-a-Si.jpg
@@ -416,7 +428,6 @@ INPUT ..\python\radial_dist_fct\melt_P22_rdf_output.png
 INPUT ..\python\radial_dist_fct\melt_P22_rdf_output.png
 INPUT ..\python\radial_dist_fct\melt_P22_rdf_output.png
 INPUT ..\python\radial_dist_fct\melt_P22_rdf_output.png
-INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\tools\.tex
 INPUT .\melt_216_22almtp_2500K_final.png
 INPUT .\melt_216_22almtp_2500K_final.png
 INPUT .\melt_216_22almtp_2500K_final.png
