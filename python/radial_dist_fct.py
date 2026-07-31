@@ -29,28 +29,33 @@ atoms_B = u.select_atoms("all")
 # 'nbins' is the number of histogram bins
 # 'range' sets the minimum and maximum distance in Angstroms (0 to cutoff)
 max_dist = float(input("Input max distance 'cutoff' in Angstroms: "))
-rdf_analyzer = rdf.InterRDF(atoms_A, atoms_B, nbins=100, range=(0.0, max_dist))
+half_box = u.dimensions[:3].min() / 2
+if max_dist > half_box:
+    print(f"Warning: cutoff {max_dist} exceeds L/2 = {half_box:.2f} A, truncating")
+    max_dist = half_box
+rdf_analyzer = rdf.InterRDF(atoms_A, atoms_B, nbins=100, range=(0.0, max_dist), exclusion_block=(1,1))
 
 # 4. Run the calculation across all frames in the dump file
 print("Calculating RDF... This may take a moment for large files.")
-rdf_analyzer.run()
+rdf_analyzer.run(start=0, stop=20)     # first 2 ps, crystal
+r_cold, g_cold = rdf_analyzer.results.bins.copy(), rdf_analyzer.results.rdf.copy()
 
-# 5. Extract results
-radii = rdf_analyzer.results.bins
-g_r = rdf_analyzer.results.rdf
+rdf_analyzer.run(start=-30)            # last 3 ps, liquid
+r_hot, g_hot = rdf_analyzer.results.bins, rdf_analyzer.results.rdf
 
 # 6. Save the calculated RDF data to a text file
 filename = input("Name the output.txt without extension: ")
 with open("python/radial_dist_fct/"+filename+".txt", "w") as f:
     f.write("# Radius(A)    g(r)\n")
-    for r, g in zip(radii, g_r):
+    for r, g in zip(r_hot, g_hot):
         f.write(f"{r:12.4f} {g:12.4f}\n")
 print("Data successfully saved to 'python_rdf_output.txt'")
 
 # 7. Plot the results
 plt.figure(figsize=(6, 4))
-plt.plot(radii, g_r, label="All-All RDF", color="blue", linewidth=2)
-plt.xlabel("Distance r ($\AA$)")
+plt.plot(r_cold, g_cold, label="First 2 ps (crystal)", color="red", linewidth=2)
+plt.plot(r_hot, g_hot, label="Last 3 ps (liquid)", color="blue", linewidth=2)
+plt.xlabel(r"Distance r ($\AA$)")
 plt.ylabel("g(r)")
 plt.title("Radial Distribution Function")
 plt.grid(True)

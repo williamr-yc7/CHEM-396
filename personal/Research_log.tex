@@ -12,6 +12,7 @@
 \usepackage{circuitikz}
 \usepackage{float} % For [H] float option
 \usepackage{booktabs} % Better rules for tables (provides \toprule, \midrule, \bottomrule)
+\usepackage{subcaption}
 
 \pgfplotsset{compat=1.18} % Set compatibility level
 \newtheorem{theorem}{Theorem}
@@ -861,11 +862,26 @@ The hold at 2500~K dominates despite involving less than half the steps of the c
 \subsubsection{Melt P22}
 \marginpar{July 24, 2026}
 %To confirm that c-Si (c-Si) has melted into a liquid at 2500 K in a simulation, look for the loss of long-range order in the radial distribution function (RDF), an increase in the coordination number, and high mean square displacement (MSD).
-The heating run melted successfully. The temperature reached the 2500~K target, and two signatures confirmed the crystal had become a liquid: 
+The heating run melted successfully. The temperature reached the 2500~K target, and five signatures confirmed the crystal had become a liquid: 
 \begin{itemize}
-    \item The pressure swung over a range of order $10^4$~bar rather than the $10^3$ of the solid.
-    \item The number of neighbour-list rebuilds rose from zero (nothing moves in a static crystal) to 400, the direct signature of atoms diffusing.
+    \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.45~\AA{} damping to $g(r)=1$ by 3.5~\AA. The first 3~ps show the diamond lattice instead: peaks at 2.37, 3.87, 4.54~\AA{} persisting to 8~\AA{} with minima near 0.15.
+    \item %Coordination Number test
+    \item %Mean Square Displacement
+    \item %Tetrahedral Order Parameter
+    \item %Density
 \end{itemize}
+%add a frame which will include all figures for the 5 signatures
+\begin{figure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{../python/radial_dist_fct/melt_P22_rdf_output.png}
+        \caption{1a}
+        \label{fig:sfig1}
+    \end{subfigure}
+    \caption{plots of....}
+    \label{fig:fig}
+\end{figure}
+
 Loading the trajectory into VMD showed the ordered diamond lattice visibly breaking apart into a disordered liquid over the course of the run.
 
 \begin{figure}[H]
