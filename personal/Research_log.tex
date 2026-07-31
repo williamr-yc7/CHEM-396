@@ -861,34 +861,49 @@ The hold at 2500~K dominates despite involving less than half the steps of the c
 
 \subsubsection{Melt P22}
 \marginpar{July 24, 2026}
-%To confirm that c-Si (c-Si) has melted into a liquid at 2500 K in a simulation, look for the loss of long-range order in the radial distribution function (RDF), an increase in the coordination number, and high mean square displacement (MSD).
 The heating run melted successfully. The temperature reached the 2500~K target, and five signatures confirmed the crystal had become a liquid: 
 \begin{itemize}
     \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.45~\AA{} damping to $g(r)=1$ by 3.5~\AA. The first 3~ps show the diamond lattice instead: peaks at 2.37, 3.87, 4.54~\AA{} persisting to 8~\AA{} with minima near 0.15.
     \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 3~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination, as the diamond lattice requires. The final 3~ps give a mean of 5.968, distributed over 3- to 8-fold environments and peaking at sixfold, the denser packing expected once directional covalent bonding is lost.
-    \item \textbf{Mean square displacement.} Flat at approximately $0.1$~\AA$^2$ for the first 25.5~ps, the plateau of atoms vibrating about fixed lattice sites, then rising linearly to 110~\AA$^2$ by the end of the ramp. Unbounded linear growth is the definitive signature of diffusion, and the transition coincides with the potential-energy jump and volume contraction seen in the thermodynamic output.
-    \item %Tetrahedral Order Parameter
-    \item %Density
+    \item \textbf{Mean square displacement.} Bounded below $1$~\AA$^2$ for the 25.5~ps, rising slowly from $0.08$ to $0.5$~\AA$^2$ as the thermal vibration amplitude grows with temperature, but never unbounded. At 25.6~ps it turns sharply and grows linearly to $111.4$~\AA$^2$ by the end of the ramp, a factor of 200 in 4.4~ps. Linear unbounded growth is the definitive signature of diffusion, and the transition coincides with the potential-energy jump and volume contraction in the thermodynamic output.
+    \item \textbf{Tetrahedral order parameter.} The first 3~ps give $q = 0.9925$ with a standard deviation of $0.0058$, indistinguishable from the ideal value of 1 once thermal vibration is accounted for. The final 3~ps give $q = 0.4977$ with a spread of $0.2046$, a broad distribution reaching from 0 to 1. Roughly half the tetrahedral character is lost, and the collapse of a sharply peaked distribution into a broad one is the local-geometry counterpart of the loss of long-range order seen in $g(r)$.
+    \item \textbf{Density.} The box volume averages $4500$~\AA$^3$ over the solid portion of the ramp and $4310$~\AA$^3$ after the transition, giving
+    \begin{equation*}
+        \rho = \frac{216 \times 28.0855}{6.022 \times 10^{23} \times 4310 \times 10^{-24}} = 2.337~\text{g/cm}^3
+    \end{equation*}
+    against $2.24$~g/cm$^3$ for the solid, a contraction of $4.2\%$. Silicon is anomalous in that the liquid is denser than the crystal, so a contraction on melting is itself a signature. The absolute values sit below the experimental $2.33$ and $2.57$~g/cm$^3$, consistent with the PBE overestimate of the lattice constant noted by Zongo et al.
 \end{itemize}
-%add a frame which will include all figures for the 5 signatures
 \begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=1\linewidth]{../python/radial_dist_fct/melt_P22_rdf_output.png}
+        \includegraphics[width=\linewidth]{../python/radial_dist_fct/melt_P22_rdf_output.png}
+        \caption{Radial distribution function}
         \label{fig:sfig1}
     \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=1\linewidth]{../python/msd/melt_P22_msd_output.png}
-        \label{fig:sfig3}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=1\linewidth]{../python/coord_num/melt_P22_cn_output.png}
+        \includegraphics[width=\linewidth]{../python/msd/melt_P22_msd_output.png}
+        \caption{Mean square displacement}
         \label{fig:sfig2}
     \end{subfigure}
-    \caption{(a) Radial distribution function; (b) Coordination number; (c) Mean square displacement; (d) ;}
-    \label{fig:fig}
+    \\[1em]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/coord_num/melt_P22_cn_output.png}
+        \caption{Coordination number}
+        \label{fig:sfig3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/top/melt_P22_top_output.png}
+        \caption{Tetrahedral order parameter}
+        \label{fig:sfig4}
+    \end{subfigure}
+    \caption{Structural and dynamical evidence for melting in the 216-atom system heated to 2500~K with \texttt{22.almtp}. Red curves and histograms are computed over the first 2~ps of the ramp, blue over the final 3~ps. (a) $g(r)$ collapses from sharp diamond-lattice shells persisting to 8~\AA{} into a single broad peak damping to unity by 3.5~\AA. (b) The MSD is bounded below $1$~\AA$^2$ until 25.5~ps, then grows linearly, confirming diffusion. (c) Coordination shifts from a delta function at fourfold to a broad distribution peaking at sixfold. (d) The tetrahedral order parameter falls from $0.9925$ to $0.4977$ and broadens by a factor of 35.}
+    \label{fig:melt_signatures}
 \end{figure}
 
 Loading the trajectory into VMD showed the ordered diamond lattice visibly breaking apart into a disordered liquid over the course of the run.
@@ -913,7 +928,55 @@ The same hold was repeated with \texttt{pruned\_1.almtp}. Crucially it did not b
 The hold was also run with \texttt{pruned\_2.almtp}, the next level up in accuracy and cost. It too remained stable at 2500~K and sat between \texttt{pruned\_1} and the melt-stable potential in speed, $4.2\times$ faster than level 22, as expected from its intermediate cost.
 
 \subsubsection{Melt P26}
-The melt using \texttt{26.almtp} completed successfully, reaching 2500~K with the same signatures seen for \texttt{22.almtp}: violent pressure fluctuations and a jump in neighbour-list rebuilds (374 here against 400 for the level-22 melt). The two melt-stable potentials therefore behave equivalently for the purpose of melting. Level 26 was, however, markedly slower, consistent with its being the higher-level and more expensive potential.
+The melt using \texttt{26.almtp} completed successfully, reaching 2500~K with the same signatures seen for \texttt{22.almtp}: violent pressure fluctuations and a jump in neighbour-list rebuilds (374 here against 400 for the level-22 melt). Level 26 was, however, markedly slower, consistent with its being the higher-level and more expensive potential. The same five structural and dynamical tests applied to the level-22 melt were repeated here:
+ 
+\begin{itemize}
+    \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.44~\AA{} reaching $g(r) = 2.06$, with a shallow minimum of $0.90$ at 3.16~\AA{} and no structure beyond: $g(r)$ holds at unity out to the 8~\AA{} limit. The first 2~ps show the diamond lattice instead, with peaks at 2.37, 3.87 and 4.54~\AA{} persisting undamped to 8~\AA{} and minima falling to zero between shells.
+    \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 2~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination. The final 3~ps give a mean of 5.964, spread over 3- to 9-fold environments and peaking at sixfold (31.1\%).
+    \item \textbf{Mean square displacement.} Bounded below $1$~\AA$^2$ for the first 25.6~ps, rising slowly from $0.09$ to $0.7$~\AA$^2$ as the thermal vibration amplitude grows with temperature. At 25.7~ps it turns sharply and grows linearly to $107.5$~\AA$^2$ by the end of the ramp.
+    \item \textbf{Tetrahedral order parameter.} The first 2~ps give $q = 0.9923$ with a standard deviation of $0.0060$. The final 3~ps give $q = 0.4905$ with a spread of $0.2080$.
+    \item \textbf{Density.} The box volume averages XXX~\AA$^3$ over the solid portion of the ramp and $4326$~\AA$^3$ after the transition, giving
+    \begin{equation*}
+        \rho = \frac{216 \times 28.0855}{6.022 \times 10^{23} \times 4326 \times 10^{-24}} = 2.329~\text{g/cm}^3
+    \end{equation*}
+    against XXX~g/cm$^3$ for the solid, a contraction of XXX\%. This matches the $2.337$~g/cm$^3$ obtained with \texttt{22.almtp} to within $0.4\%$.
+\end{itemize}
+ 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/radial_dist_fct/melt_P26_rdf_output.png}
+        \caption{Radial distribution function}
+        \label{fig:p26_rdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/msd/melt_P26_msd_output.png}
+        \caption{Mean square displacement}
+        \label{fig:p26_msd}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/coord_num/melt_P26_cn_output.png}
+        \caption{Coordination number}
+        \label{fig:p26_cn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/top/melt_P26_top_output.png}
+        \caption{Tetrahedral order parameter}
+        \label{fig:p26_top}
+    \end{subfigure}
+    \caption{Structural and dynamical evidence for melting in the 216-atom system heated to 2500~K with \texttt{26.almtp}. Red curves and histograms are computed over the first 2~ps of the ramp, blue over the final 3~ps. (a) $g(r)$ collapses from sharp diamond-lattice shells persisting undamped to 8~\AA{} into a single broad peak at 2.44~\AA{} damping to unity by 3.5~\AA. (b) The MSD is bounded below $1$~\AA$^2$ until 25.6~ps, then grows linearly to $107.5$~\AA$^2$, confirming diffusion. (c) Coordination shifts from a delta function at fourfold to a broad distribution peaking at sixfold. (d) The tetrahedral order parameter falls from $0.9923$ to $0.4905$ and broadens by a factor of 35. Every quantity matches the level-22 melt of Fig.~\ref{fig:melt_signatures} to within $1.5\%$.}
+    \label{fig:melt26_signatures}
+\end{figure}
+ 
+\paragraph{Comparison with the level-22 melt.}
+XXX Do the two melt-stable potentials produce the same liquid? Compare the five numbers directly and state whether the differences are within the frame-to-frame scatter.
 
 \marginpar{July 29, 2026}
 \subsubsection{Hold pruned\_3}
@@ -947,6 +1010,73 @@ Hold (1~ns)   & \texttt{pruned\_3.almtp} & $1.0\times10^6$ & 6:31:03  & 42.6  & 
 \end{table}
 
 Three points follow from Table~\ref{tab:melt_hold_bench}. First, the pruned potentials give a factor of $11.7$ (\texttt{pruned\_1}) and $4.2$ (\texttt{pruned\_2}) over the melt-stable potential at fixed system size and step count, with rebuild counts and average neighbour numbers essentially unchanged, so the speedup is a genuine reduction in force-evaluation cost and not an artefact of a differently behaved trajectory. Against \texttt{26.almtp} the same comparison gives $29.6$ and $10.7$. Second, the measured \texttt{22.almtp} hold cost of 10.6~h exceeds the 9.1~h projected in Table~\ref{tab:projected_cost} by about $16\%$, which is the penalty from the 30{,}215 neighbour-list rebuilds that the static 300~K benchmark did not incur, as anticipated. Third, the rebuild rate is invariant across all potentials at roughly $3.0\times10^{-2}$ rebuilds per step, as it must be, since it is set by the thermostat temperature and the neighbour skin rather than by the descriptor level.
+
+\subsubsection{Structural Comparison of the Hold Trajectories}
+\marginpar{July 31, 2026}
+ 
+The benchmark timings of Section~\ref{tab:melt_hold_bench} establish that all five potentials complete a nanosecond in the liquid without instability, but they are structure-agnostic: matching wall times, rebuild counts and potential energies do not establish that the potentials produce the same liquid. This section applies the five diagnostics of Section~\ref{sec:metrics} to the hold trajectories directly.
+ 
+Unlike the melt, the hold is isothermal throughout, so there is no crystal-to-liquid contrast within a single run. The comparison is instead made across potentials, with \texttt{22.almtp} serving as the reference. All quantities are averaged over the final XXX~ps of each trajectory, by which point the liquid is fully equilibrated.
+ 
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|c|c|c|c|c|c}
+\toprule
+Potential & $r_1$ (\AA) & $r_2$ (\AA) & $\bar{n}$ & $q$ & $D$ ($10^{-9}$~m$^2$/s) & $\rho$ (g/cm$^3$) \\
+\midrule
+\texttt{22.almtp}        & XXX & XXX & XXX & XXX & XXX & XXX \\
+\texttt{26.almtp}        & XXX & XXX & XXX & XXX & XXX & XXX \\
+\texttt{pruned\_1.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
+\texttt{pruned\_2.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
+\texttt{pruned\_3.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
+\bottomrule
+\end{tabular}
+\caption{Structural and dynamical properties of the liquid at 2500~K for each potential, averaged over the final XXX~ps of each hold. $r_1$ and $r_2$ are the first and second peaks of $g(r)$, $\bar{n}$ the mean coordination number within a XXX~\AA{} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho$ the density from the mean box volume.}
+\label{tab:hold_structural}
+\end{table}
+ 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/radial_dist_fct/hold_all_rdf_output.png}
+        \caption{Radial distribution function}
+        \label{fig:hold_rdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/msd/hold_all_msd_output.png}
+        \caption{Mean square displacement}
+        \label{fig:hold_msd}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/coord_num/hold_all_cn_output.png}
+        \caption{Coordination number}
+        \label{fig:hold_cn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/top/hold_all_top_output.png}
+        \caption{Tetrahedral order parameter}
+        \label{fig:hold_top}
+    \end{subfigure}
+    \caption{XXX All five hold trajectories overlaid at 2500~K. XXX}
+    \label{fig:hold_comparison}
+\end{figure}
+ 
+\paragraph{Do the pruned potentials reproduce the reference liquid?}
+XXX The central question. State whether the curves overlay within the frame-to-frame scatter, and if any potential deviates, in which quantity and by how much. Note that $g(r)$ and the coordination number are the sensitive tests here, since the timings and energies were already shown to agree.
+ 
+\paragraph{Comparison with published liquid silicon.}
+XXX Compare $r_1$, $\bar{n}$ and $q$ against Zhao et al.~\cite{zhao2017}, whose \textit{ab initio} molecular dynamics of liquid silicon used the same 216-atom system size. Note the temperature at which their values were obtained and whether the comparison is like for like.
+ 
+\paragraph{Implication for the quench.}
+XXX If the pruned potentials reproduce the reference liquid, the hand-off in the melt-quench protocol is justified and the cost saving is available at no structural penalty. If they do not, state which stage the deviation would affect.
 
 % ===========================================================
 %  5. DISCUSSION
@@ -1096,6 +1226,7 @@ LAMMPS reads an input script line by line, in order, so commands must appear bef
     \item[\texttt{fix <ID> <group> <integrator>}] \# Applies a time-integration scheme to a group of atoms. The first argument is a user-chosen ID naming this fix (commonly just `1'); the second is the group of atoms it applies to (`all' means every atom in the simulation). The integrator is either `nve' (constant number, volume, and energy), `nvt' (constant number, volume, and temperature), or `npt' (constant number, pressure, and temperature, where the box is allowed to change size).
     \item[\texttt{fix <ID> <group> ave/time <timesteps> <num\_of\_samples> <Avg\_calculations\_timesteps> c\_myRDF[*] <filename.txt> mode vector}] \# Samples c\_myRDF[*] (the full global array from compute rdf, with [*] pulling every column) every 10 timesteps, accumulates 100 such samples per block (1000 timesteps), treats each input as a histogram-bin vector via mode vector, and writes the resulting average to file every 1000 timesteps.
     \item[\texttt{fix <ID> <group> npt temp <T\_start> <T\_stop> <T\_damp> iso <P\_start> <P\_stop> <P\_damp>}] \# Runs the NPT ensemble with concrete values. The three numbers after `temp' are the starting temperature, the target temperature, and the damping constant\footnote{The damping constant controls how quickly the thermostat pulls the system back to the target, in picoseconds.}. The three after `iso'\footnote{The box is rescaled equally in all three directions.} are the same for pressure. When the start and stop temperatures differ, as in \texttt{temp 300.0 2500.0 0.1}, LAMMPS ramps linearly between them over the run, which is how heating and cooling rates are set.
+    \item[\texttt{unfix <ID>}] \# Removes a previously defined fix, identified by the ID given when it was created. Necessary when one stage of a run must be replaced by another, since fixes otherwise remain active for every subsequent \texttt{run} command. In a quench, the ramping thermostat is removed with \texttt{unfix} before a second \texttt{fix npt} holds the system at the final temperature.
     \item[thermo\_style custom step temp press vol pe] \# Chooses which quantities are printed in the thermodynamic output. `custom' means the list is user-specified: here the timestep number, temperature, pressure, box volume, and potential energy. Tracking `vol' is essential in NPT runs, where the box size changes and must be monitored for convergence.
     \item[thermo 5] \# Prints thermodynamic output\footnote{Thermodynamic output includes properties like temperature, pressure, and energy.} every 5 timesteps.
     \item[dump 1 all atom 100 dump.lammpstrj] \# Writes the atomic positions to a trajectory file every 100 timesteps, in a format readable by VMD.

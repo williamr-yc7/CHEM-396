@@ -1,59 +1,118 @@
 import os
+import numpy as np
 import MDAnalysis as mda
 from MDAnalysis.analysis import rdf
 import matplotlib.pyplot as plt
 
-# 1. Load your LAMMPS trajectory file
-# Note: 'format="LAMMPS"' handles standard .lammpstrj or .dump files
+# ---------------------------------------------------------------
+# Radial distribution function g(r) for a LAMMPS trajectory.
+#
+# Two modes:
+#   1 = single trajectory, split into an early and a late window.
+#       Used for the melt runs, where the same trajectory contains both
+#       the crystal and the liquid.
+#   2 = several trajectories, one window each, overlaid.
+#       Used for the holds, which are isothermal throughout, so there is
+#       no within-run contrast and the comparison is made across potentials.
+# ---------------------------------------------------------------
 
-# Get the directory where your python script lives
 script_dir = os.path.dirname(os.path.abspath(__file__))
+outdir = os.path.join(script_dir, "radial_dist_fct")
+os.makedirs(outdir, exist_ok=True)
 
-drc = input("dump.lammpstrj path: ")
-drc = os.path.abspath(os.path.join(script_dir, drc))
-print(f"Looking for file at: {drc}")
-# Change your universe initialization line to include the coordinate convention:
-u = mda.Universe(drc, format="LAMMPSDUMP", topology_format="LAMMPSDUMP", lammps_coordinate_convention="scaled")
+def load(path):
+    """Open a LAMMPS dump as an MDAnalysis Universe."""
+    full = os.path.abspath(os.path.join(script_dir, path))
+    print(f"Looking for file at: {full}")
+    return mda.Universe(full, format="LAMMPSDUMP", topology_format="LAMMPSDUMP",
+                        lammps_coordinate_convention="scaled")
 
-# 2. Select the atom groups you want to analyze
-# "all" selects every atom. You can also use "type 1", "type 2", etc.
-atoms_A = u.select_atoms("all")
-atoms_B = u.select_atoms("all")
+def compute(u, start, stop, max_dist):
+    """g(r) over the frames from start to stop.
 
-# 3. Configure the RDF Analysis
-# 'nbins' is the number of histogram bins
-# 'range' sets the minimum and maximum distance in Angstroms (0 to cutoff)
+    exclusion_block=(1,1) removes self-pairs. Without it every atom is paired
+    with itself at r = 0, and dividing by the near-zero shell volume of the
+    first bin produces a spurious spike thousands of times the true g(r).
+    """
+    atoms = u.select_atoms("all")
+    analyzer = rdf.InterRDF(atoms, atoms, nbins=100, range=(0.0, max_dist),
+                            exclusion_block=(1, 1))
+    analyzer.run(start=start, stop=stop)
+    return analyzer.results.bins.copy(), analyzer.results.rdf.copy()
+
+# ---------------------------------------------------------------
+mode = input("Mode: 1 = single file (melt, two windows), 2 = multiple files (holds): ").strip()
+
 max_dist = float(input("Input max distance 'cutoff' in Angstroms: "))
-half_box = u.dimensions[:3].min() / 2
-if max_dist > half_box:
-    print(f"Warning: cutoff {max_dist} exceeds L/2 = {half_box:.2f} A, truncating")
-    max_dist = half_box
-rdf_analyzer = rdf.InterRDF(atoms_A, atoms_B, nbins=100, range=(0.0, max_dist), exclusion_block=(1,1))
 
-# 4. Run the calculation across all frames in the dump file
-print("Calculating RDF... This may take a moment for large files.")
-rdf_analyzer.run(start=0, stop=20)     # first 2 ps, crystal
-r_cold, g_cold = rdf_analyzer.results.bins.copy(), rdf_analyzer.results.rdf.copy()
+datasets = []      # list of (label, radii, g(r))
 
-rdf_analyzer.run(start=-30)            # last 3 ps, liquid
-r_hot, g_hot = rdf_analyzer.results.bins, rdf_analyzer.results.rdf
+if mode == "1":
+    u = load(input("dump.lammpstrj path: "))
+    # Under periodic boundary conditions g(r) is only defined out to half the
+    # box length, since beyond that the minimum image no longer samples a full
+    # spherical shell.
+    half_box = u.dimensions[:3].min() / 2
+    if max_dist > half_box:
+        print(f"Warning: cutoff {max_dist} exceeds L/2 = {half_box:.2f} A, truncating")
+        max_dist = half_box
 
-# 6. Save the calculated RDF data to a text file
-filename = input("Name the output.txt without extension: ")
-with open("python/radial_dist_fct/"+filename+".txt", "w") as f:
-    f.write("# Radius(A)    g(r)\n")
-    for r, g in zip(r_hot, g_hot):
-        f.write(f"{r:12.4f} {g:12.4f}\n")
-print("Data successfully saved to 'python_rdf_output.txt'")
+    n = len(u.trajectory)
+    print("Calculating RDF... This may take a moment for large files.")
+    r, g = compute(u, 0, 20, max_dist)
+    datasets.append(("First 2 ps (crystal)", r, g))
+    r, g = compute(u, n - 30, n, max_dist)
+    datasets.append(("Last 3 ps (liquid)", r, g))
+    colours = ["red", "blue"]
 
-# 7. Plot the results
+else:
+    # Each file contributes one curve, computed over the same trailing window
+    # so the comparison across potentials is like for like.
+    nfiles = int(input("How many trajectories? "))
+    nframes = int(input("How many frames from the end of each run? "))
+    for i in range(nfiles):
+        path  = input(f"  [{i+1}] dump.lammpstrj path: ")
+        label = input(f"  [{i+1}] label for the legend (e.g. 22.almtp): ")
+        u = load(path)
+        half_box = u.dimensions[:3].min() / 2
+        if max_dist > half_box:
+            print(f"Warning: cutoff {max_dist} exceeds L/2 = {half_box:.2f} A, truncating")
+            max_dist = half_box
+        n = len(u.trajectory)
+        print(f"Calculating RDF for {label}...")
+        r, g = compute(u, n - nframes, n, max_dist)
+        datasets.append((label, r, g))
+    colours = ["red", "blue", "green", "orange", "purple", "brown", "black"]
+
+# ---------------------------------------------------------------
+filename = input("Name the output without extension: ")
+
+# One column of g(r) per dataset, sharing the radius axis of the first
+with open(os.path.join(outdir, filename + ".txt"), "w") as f:
+    f.write("# Radius(A)" + "".join(f"    g_{lbl}" for lbl, _, _ in datasets) + "\n")
+    for row in range(len(datasets[0][1])):
+        f.write(f"{datasets[0][1][row]:12.4f}" + "".join(f" {g[row]:12.4f}" for _, _, g in datasets) + "\n")
+
+# Peak positions, the numbers that go straight into the report table
+for label, r, g in datasets:
+    # First peak: highest point of the curve
+    i1 = np.argmax(g)
+    # First minimum after it, then the second peak beyond that
+    i_min = i1 + np.argmin(g[i1:])
+    i2 = i_min + np.argmax(g[i_min:]) if i_min < len(g) - 1 else i_min
+    print(f"{label}: r1 = {r[i1]:.2f} A (g = {g[i1]:.2f}), "
+          f"first min = {r[i_min]:.2f} A (g = {g[i_min]:.2f}), "
+          f"r2 = {r[i2]:.2f} A (g = {g[i2]:.2f})")
+print(f"Data saved to {filename}.txt")
+
+# ---------------------------------------------------------------
 plt.figure(figsize=(6, 4))
-plt.plot(r_cold, g_cold, label="First 2 ps (crystal)", color="red", linewidth=2)
-plt.plot(r_hot, g_hot, label="Last 3 ps (liquid)", color="blue", linewidth=2)
+for (label, r, g), col in zip(datasets, colours):
+    plt.plot(r, g, label=label, color=col, linewidth=2)
 plt.xlabel(r"Distance r ($\AA$)")
 plt.ylabel("g(r)")
 plt.title("Radial Distribution Function")
 plt.grid(True)
 plt.legend()
-plt.savefig("python/radial_dist_fct/"+filename+".png", dpi=300)
+plt.savefig(os.path.join(outdir, filename + ".png"), dpi=300)
 plt.show()

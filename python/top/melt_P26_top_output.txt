@@ -1,0 +1,2 @@
+First 2 ps (crystal): mean q = 0.9923, std = 0.0060
+Last 3 ps (liquid): mean q = 0.4905, std = 0.2080
