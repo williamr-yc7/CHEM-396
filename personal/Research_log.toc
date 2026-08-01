@@ -70,7 +70,7 @@
 \contentsline {subsubsection}{\numberline {4.1.9}Structural Comparison of the Hold Trajectories}{38}{subsubsection.4.1.9}%
 \contentsline {paragraph}{Do the pruned potentials reproduce the reference liquid?}{39}{section*.22}%
 \contentsline {paragraph}{Comparison with published liquid silicon.}{39}{section*.23}%
-\contentsline {paragraph}{Implication for the quench.}{40}{section*.24}%
+\contentsline {paragraph}{Implication for the quench.}{39}{section*.24}%
 \contentsline {section}{\numberline {5}Discussion}{40}{section.5}%
 \contentsline {section}{\numberline {6}Conclusion}{40}{section.6}%
 \contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{41}{appendix.A}%

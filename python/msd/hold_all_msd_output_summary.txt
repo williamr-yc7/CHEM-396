@@ -1,0 +1,5 @@
+potential 22: final MSD = 24338.89 A^2 after 1000.0 ps, D = 3.704e-08 m^2/s
+potential 26: final MSD = 12358.62 A^2 after 400.0 ps, D = 5.257e-08 m^2/s
+pruned_1: final MSD = 26885.16 A^2 after 1000.0 ps, D = 4.791e-08 m^2/s
+pruned_2: final MSD = 24304.80 A^2 after 1000.0 ps, D = 4.075e-08 m^2/s
+pruned_3: final MSD = 26419.62 A^2 after 1000.0 ps, D = 4.457e-08 m^2/s

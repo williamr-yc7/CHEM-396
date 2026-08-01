@@ -1,0 +1,5 @@
+potential 22: mean q = 0.4903, std = 0.2062
+potential 26: mean q = 0.4821, std = 0.2068
+pruned_1: mean q = 0.4966, std = 0.2018
+pruned_2: mean q = 0.4975, std = 0.2061
+pruned_3: mean q = 0.4852, std = 0.2056
