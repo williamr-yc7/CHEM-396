@@ -231,7 +231,7 @@ Support for the paracrystalline picture comes from fluctuation electron microsco
 \subsection{Structural and Dynamical Characterization}
 \label{sec:metrics}
 
-A simulation produces nothing but a list of atomic positions at each timestep. Deciding whether that list represents a crystal, a liquid, or an amorphous solid requires reducing it to a small number of quantities that distinguish the three phases. Four are used in this project: the radial distribution function, the coordination number, the mean square displacement, and the bond-orientational order parameters. The first two describe structure, the third describes dynamics, and the fourth measures local symmetry directly.
+A simulation produces nothing but a list of atomic positions at each timestep. Deciding whether that list represents a crystal, a liquid, or an amorphous solid requires reducing it to a small number of quantities that distinguish the three phases. Four are used in this project: the radial distribution function, the coordination number, the mean square displacement, and the tetrahedral order parameter. The first two describe structure, the third describes dynamics, and the fourth measures local geometry directly.
 
 \subsubsection{Radial Distribution Function}
 \label{RDF}
@@ -309,7 +309,7 @@ Both constants follow from the geometry. In a perfect tetrahedron every pair of 
 \begin{equation}
     \left\langle \left(\cos\theta + \tfrac{1}{3}\right)^{2} \right\rangle = \left\langle \cos^{2}\theta \right\rangle + \tfrac{2}{3}\left\langle \cos\theta \right\rangle + \tfrac{1}{9} = \tfrac{1}{3} + 0 + \tfrac{1}{9} = \tfrac{4}{9},
 \end{equation}
-and summing over the six pairs gives $6 \times \tfrac{4}{9} = \tfrac{8}{3}$. Multiplying by $3/8$ returns unity, so $\langle q \rangle = 0$. The parameter therefore runs from $1$ for ideal tetrahedral order to $0$ for a structureless arrangement, with no reference table required. This normalization matches that used by Zhao et al.~\cite{zhao2017}, who applied $q$ to \textit{ab initio} molecular dynamics of liquid silicon at the same system size of 216 atoms used here.
+and summing over the six pairs gives $6 \times \tfrac{4}{9} = \tfrac{8}{3}$. Multiplying by $3/8$ returns unity, so $\langle q \rangle = 0$. The parameter therefore runs from $1$ for ideal tetrahedral order to $0$ for a structureless arrangement, with no reference table required. This normalization matches that used by Zhao et al.~\cite{zhao2017}, who applied $q$ to \textit{ab initio} molecular dynamics of liquid silicon.
 
 Crystalline silicon sits at $q = 1$ by construction. Amorphous silicon falls slightly below it, since the network preserves fourfold coordination while broadening the bond-angle distribution. Liquid silicon falls further still as the coordination number rises toward six and the tetrahedral geometry is lost entirely.
 
@@ -345,7 +345,7 @@ Tetrahedral order $q$, Sec.~\ref{TOP}
     & Slightly below $1$, broadened by bond-angle spread \\
 \bottomrule
 \end{tabular}
-\caption{Signatures distinguishing the three phases of silicon. The density row is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT thermodynamic output: melting must contract the box rather than expand it.}
+\caption{Signatures distinguishing the three phases of silicon. Melting is confirmed by the agreement of all four rather than by any one alone. The density is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT output: melting must contract the box rather than expand it.}
 \label{tab:phase_signatures}
 \end{table}
 
@@ -594,6 +594,7 @@ The distinction matters in practice because the box size is only a free paramete
 \end{definition}
 
 \subsubsection{Compiling on a Compute Node}
+\label{sec:compile}
 Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and should be run on a compute node rather than the shared login node, which is shared and reserved for lightweight tasks. A compute node is requested from the SLURM scheduler with an interactive allocation:
 \begin{verbatim}
     salloc --account=ctb-simine --gres=gpu:1 --cpus-per-task=8
@@ -648,7 +649,7 @@ PuTTY uses the same login credentials as WinSCP, but instead of dragging and dro
     An interactive job is a compute-node session requested through the scheduler with \texttt{salloc}, which drops the user into a live shell on the allocated node instead of running a pre-written script.
 \end{definition}
 
-A regular batch job (\texttt{sbatch}) submits a fixed script to the queue and runs unattended; the user only sees the output afterwards. An interactive job instead gives direct command-line access to the compute node for the duration of the allocation, so commands can be typed, tested, and corrected in real time. This makes it the right tool for tasks that require trial and error, such as compiling software, debugging a crashing binary, or checking that modules load correctly, where waiting through the batch queue after every small change would be far too slow. Batch jobs remain preferable for long production runs, since they do not require the user to stay connected. In this project, interactive jobs were used to compile the custom LAMMPS-MTP build on a compute node (Section 3.4.2).
+A regular batch job (\texttt{sbatch}) submits a fixed script to the queue and runs unattended; the user only sees the output afterwards. An interactive job instead gives direct command-line access to the compute node for the duration of the allocation, so commands can be typed, tested, and corrected in real time. This makes it the right tool for tasks that require trial and error, such as compiling software, debugging a crashing binary, or checking that modules load correctly, where waiting through the batch queue after every small change would be far too slow. Batch jobs remain preferable for long production runs, since they do not require the user to stay connected. In this project, interactive jobs were used to compile the custom LAMMPS-MTP build on a compute node (Section~\ref{sec:compile}).
 
 
 \subsection{Visual Molecular Dynamics}
@@ -753,11 +754,12 @@ Ata provided five silicon MTPs for this project, split into two groups. Two are 
 The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for c-Si. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
 
 \subsubsection{First Silicon Runs and Choice of Ensemble}
+\label{sec:firstruns}
 Both ensembles (NVT and NPT) were tested on a 216-atom diamond lattice ($3\times3\times3$ unit cells, $a=5.431$~\AA, periodic, \texttt{units metal}, 1~fs timestep). The intended workflow was NPT equilibration to find the box size the potential prefers, followed by NVT production at that fixed volume.
 
 The protocol was subsequently fixed to NPT only, following Zongo et al., so the NVT stage was dropped. The runs below are retained here as a benchmark of the potentials and of parallel scaling.
 
-NPT test was ran at 300~K and 0~bar expanded the box from $4325$ to $4433$~\AA$^3$, corresponding to $a=5.476$~\AA. This is $0.8\%$ above the measured value of $5.431$~\AA, an overestimate consistent with the PBE\footnote{} reference data used to train the potential.
+The NPT test was run at 300~K and 0~bar and expanded the box from $4325$ to $4433$~\AA$^3$, corresponding to $a=5.476$~\AA. This is $0.8\%$ above the measured value of $5.431$~\AA, an overestimate consistent with the PBE\footnote{Perdew-Burke-Ernzerhof, the generalized gradient approximation exchange-correlation functional used to generate the MTP training data.} reference data used to train the potential.
 
 The NVT test was then performed with the lattice rebuilt at $a=5.476$~\AA{}, the volume stayed locked, the pressure settled to order $10^2$--$10^3$~bar rather than the several-thousand-bar swings seen under NPT, and the potential energy showed no drift.
 
@@ -822,7 +824,7 @@ LAMMPS has no command that sets a cooling rate directly. Instead, \texttt{fix np
 \begin{equation}
     \text{rate} = \frac{\Delta T}{N_{\text{steps}} \times \Delta t},
 \end{equation}
-where $\Delta t$ is the timestes and $\Delta T$ the difference in temperature. Using Zongo's cooling rate of 1~K/ps from 2500~K to 300~K, the temperature drop of 2200~K implies 2200~ps of simulated time, which at a 1~fs timestep is $2.2 \times 10^6$ steps.
+where $\Delta t$ is the timestep and $\Delta T$ the difference in temperature. Using Zongo's cooling rate of 1~K/ps from 2500~K to 300~K, the temperature drop of 2200~K implies 2200~ps of simulated time, which at a 1~fs timestep is $2.2 \times 10^6$ steps.
 
 \subsubsection{Projected Cost}
 Throughput on 8 cores follows directly from the 5000-step benchmarks of Table~\ref{tab:firstruns} and~\ref{tab:scaling}:
@@ -863,10 +865,10 @@ The hold at 2500~K dominates despite involving less than half the steps of the c
 \marginpar{July 24, 2026}
 The heating run melted successfully. The temperature reached the 2500~K target, and five signatures confirmed the crystal had become a liquid: 
 \begin{itemize}
-    \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.45~\AA{} damping to $g(r)=1$ by 3.5~\AA. The first 3~ps show the diamond lattice instead: peaks at 2.37, 3.87, 4.54~\AA{} persisting to 8~\AA{} with minima near 0.15.
-    \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 3~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination, as the diamond lattice requires. The final 3~ps give a mean of 5.968, distributed over 3- to 8-fold environments and peaking at sixfold, the denser packing expected once directional covalent bonding is lost.
+    \item \textbf{RDF.} Over the last 3~ps, a single broad peak at 2.45~\AA{} damping to $g(r)=1$ by 3.5~\AA. The first 2~ps show the diamond lattice instead: peaks at 2.37, 3.87, 4.54~\AA{} persisting undamped to 8~\AA{} with minima falling to zero between shells.
+    \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 2~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination, as the diamond lattice requires. The final 3~ps give a mean of 5.968, distributed over 3- to 8-fold environments and peaking at sixfold, the denser packing expected once directional covalent bonding is lost.
     \item \textbf{Mean square displacement.} Bounded below $1$~\AA$^2$ for the 25.5~ps, rising slowly from $0.08$ to $0.5$~\AA$^2$ as the thermal vibration amplitude grows with temperature, but never unbounded. At 25.6~ps it turns sharply and grows linearly to $111.4$~\AA$^2$ by the end of the ramp, a factor of 200 in 4.4~ps. Linear unbounded growth is the definitive signature of diffusion, and the transition coincides with the potential-energy jump and volume contraction in the thermodynamic output.
-    \item \textbf{Tetrahedral order parameter.} The first 3~ps give $q = 0.9925$ with a standard deviation of $0.0058$, indistinguishable from the ideal value of 1 once thermal vibration is accounted for. The final 3~ps give $q = 0.4977$ with a spread of $0.2046$, a broad distribution reaching from 0 to 1. Roughly half the tetrahedral character is lost, and the collapse of a sharply peaked distribution into a broad one is the local-geometry counterpart of the loss of long-range order seen in $g(r)$.
+    \item \textbf{Tetrahedral order parameter.} The first 2~ps give $q = 0.9925$ with a standard deviation of $0.0058$, indistinguishable from the ideal value of 1 once thermal vibration is accounted for. The final 3~ps give $q = 0.4977$ with a spread of $0.2046$, a broad distribution reaching from 0 to 1. Roughly half the tetrahedral character is lost, and the collapse of a sharply peaked distribution into a broad one is the local-geometry counterpart of the loss of long-range order seen in $g(r)$.
     \item \textbf{Density.} The box volume averages $4500$~\AA$^3$ over the solid portion of the ramp and $4310$~\AA$^3$ after the transition, giving
     \begin{equation*}
         \rho = \frac{216 \times 28.0855}{6.022 \times 10^{23} \times 4310 \times 10^{-24}} = 2.337~\text{g/cm}^3
@@ -917,7 +919,7 @@ Loading the trajectory into VMD showed the ordered diamond lattice visibly break
 
 \subsubsection{Hold P22}
 \marginpar{July 28, 2026}
-With a melted configuration in hand, the 1~ns hold at 2500~K was set up. Rather than rebuilding a lattice, this run continues directly from the melted state using \texttt{read\_data} on the saved configuration, with \texttt{fix npt} holding both the start and target temperature at 2500~K. Following the group's suggestion, the hold was run with the melt-stable potential and with two pruned potentials for comparison.
+With a melted configuration in hand, the 1~ns hold at 2500~K was set up. Rather than rebuilding a lattice, this run continues directly from the melted state using \texttt{read\_data} on the saved configuration, with \texttt{fix npt} holding both the start and target temperature at 2500~K. Following the group's suggestion, the hold was run with the melt-stable potential and with all three pruned potentials for comparison.
 
 The \texttt{22.almtp} hold ran to completion in 10~h 35~min on 8 cores. The temperature held around 2500~K throughout and the potential energy stayed stable near $-137{,}165$~eV with no drift, confirming the liquid is well behaved over the full nanosecond. Neighbour-list rebuilds numbered 30{,}215, as expected for a continuously diffusing liquid and in sharp contrast to the near-zero counts of the solid runs.
 
@@ -935,11 +937,11 @@ The melt using \texttt{26.almtp} completed successfully, reaching 2500~K with th
     \item \textbf{Coordination number.} Counted within a 3.15~\AA{} cutoff, the first minimum of the liquid $g(r)$. The first 2~ps give exactly 4.000 neighbours per atom with 100\% fourfold coordination. The final 3~ps give a mean of 5.964, spread over 3- to 9-fold environments and peaking at sixfold (31.1\%).
     \item \textbf{Mean square displacement.} Bounded below $1$~\AA$^2$ for the first 25.6~ps, rising slowly from $0.09$ to $0.7$~\AA$^2$ as the thermal vibration amplitude grows with temperature. At 25.7~ps it turns sharply and grows linearly to $107.5$~\AA$^2$ by the end of the ramp.
     \item \textbf{Tetrahedral order parameter.} The first 2~ps give $q = 0.9923$ with a standard deviation of $0.0060$. The final 3~ps give $q = 0.4905$ with a spread of $0.2080$.
-    \item \textbf{Density.} The box volume averages XXX~\AA$^3$ over the solid portion of the ramp and $4326$~\AA$^3$ after the transition, giving
+    \item \textbf{Density.} The box volume averages $4507$~\AA$^3$ over the solid portion of the ramp and $4326$~\AA$^3$ after the transition, giving
     \begin{equation*}
         \rho = \frac{216 \times 28.0855}{6.022 \times 10^{23} \times 4326 \times 10^{-24}} = 2.329~\text{g/cm}^3
     \end{equation*}
-    against XXX~g/cm$^3$ for the solid, a contraction of XXX\%. This matches the $2.337$~g/cm$^3$ obtained with \texttt{22.almtp} to within $0.4\%$.
+    against $2.235$~g/cm$^3$ for the solid, a contraction of $4.0\%$. This matches the $2.337$~g/cm$^3$ obtained with \texttt{22.almtp} to within $0.4\%$, and the contraction of $4.2\%$ seen there to within $0.2$ percentage points.
 \end{itemize}
  
 \begin{figure}[H]
@@ -1012,30 +1014,30 @@ Hold (1~ns)   & \texttt{pruned\_3.almtp} & $1.0\times10^6$ & 6:31:03  & 42.6  & 
 Three points follow from Table~\ref{tab:melt_hold_bench}. First, the pruned potentials give a factor of $11.7$ (\texttt{pruned\_1}) and $4.2$ (\texttt{pruned\_2}) over the melt-stable potential at fixed system size and step count, with rebuild counts and average neighbour numbers essentially unchanged, so the speedup is a genuine reduction in force-evaluation cost and not an artefact of a differently behaved trajectory. Against \texttt{26.almtp} the same comparison gives $29.6$ and $10.7$. Second, the measured \texttt{22.almtp} hold cost of 10.6~h exceeds the 9.1~h projected in Table~\ref{tab:projected_cost} by about $16\%$, which is the penalty from the 30{,}215 neighbour-list rebuilds that the static 300~K benchmark did not incur, as anticipated. Third, the rebuild rate is invariant across all potentials at roughly $3.0\times10^{-2}$ rebuilds per step, as it must be, since it is set by the thermostat temperature and the neighbour skin rather than by the descriptor level.
 
 \subsubsection{Structural Comparison of the Hold Trajectories}
-\marginpar{July 31, 2026}
- 
-The benchmark timings of Section~\ref{tab:melt_hold_bench} establish that all five potentials complete a nanosecond in the liquid without instability, but they are structure-agnostic: matching wall times, rebuild counts and potential energies do not establish that the potentials produce the same liquid. This section applies the five diagnostics of Section~\ref{sec:metrics} to the hold trajectories directly.
- 
-Unlike the melt, the hold is isothermal throughout, so there is no crystal-to-liquid contrast within a single run. The comparison is instead made across potentials, with \texttt{22.almtp} serving as the reference. All quantities are averaged over the final XXX~ps of each trajectory, by which point the liquid is fully equilibrated.
- 
+\marginpar{August 3, 2026}
+
+The benchmark timings of Table~\ref{tab:melt_hold_bench} establish that all five potentials complete a nanosecond in the liquid without instability, but they are structure-agnostic: matching wall times, rebuild counts and potential energies do not establish that the potentials produce the same liquid. This section applies the diagnostics of Section~\ref{sec:metrics} to the hold trajectories directly.
+
+Unlike the melt, the hold is isothermal throughout, so there is no crystal-to-liquid contrast within a single run. The comparison is instead made across potentials, with \texttt{22.almtp} serving as the reference. All quantities are computed over the final 30~ps of each trajectory, by which point the liquid is fully equilibrated, using the same 3.15~\AA{} bond cutoff throughout.
+
 \begin{table}[H]
 \centering
 \small
 \begin{tabular}{l|c|c|c|c|c|c}
 \toprule
-Potential & $r_1$ (\AA) & $r_2$ (\AA) & $\bar{n}$ & $q$ & $D$ ($10^{-9}$~m$^2$/s) & $\rho$ (g/cm$^3$) \\
+Potential & $r_1$ (\AA) & $r_{\min}$ (\AA) & $\bar{n}$ & $q$ & $D$ ($10^{-8}$~m$^2$/s) & $\rho$ (g/cm$^3$) \\
 \midrule
-\texttt{22.almtp}        & XXX & XXX & XXX & XXX & XXX & XXX \\
-\texttt{26.almtp}        & XXX & XXX & XXX & XXX & XXX & XXX \\
-\texttt{pruned\_1.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
-\texttt{pruned\_2.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
-\texttt{pruned\_3.almtp} & XXX & XXX & XXX & XXX & XXX & XXX \\
+\texttt{22.almtp}        & 2.44 & 3.24 & 5.960 & 0.4903 & 3.70 & 2.32 \\
+\texttt{26.almtp}        & 2.44 & 3.32 & 5.949 & 0.4821 & 5.26 & 2.31 \\
+\texttt{pruned\_1.almtp} & 2.44 & 3.24 & 5.925 & 0.4966 & 4.79 & 2.30 \\
+\texttt{pruned\_2.almtp} & 2.44 & 3.24 & 5.912 & 0.4975 & 4.08 & 2.29 \\
+\texttt{pruned\_3.almtp} & 2.44 & 3.32 & 5.970 & 0.4852 & 4.46 & 2.31 \\
 \bottomrule
 \end{tabular}
-\caption{Structural and dynamical properties of the liquid at 2500~K for each potential, averaged over the final XXX~ps of each hold. $r_1$ and $r_2$ are the first and second peaks of $g(r)$, $\bar{n}$ the mean coordination number within a XXX~\AA{} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho$ the density from the mean box volume.}
+\caption{Structural and dynamical properties of the liquid at 2500~K for each potential, computed over the final 30~ps of each hold. $r_1$ is the first peak of $g(r)$ and $r_{\min}$ the first minimum; the second peak is a shoulder of $g(r) \approx 1.02$ near 4~\AA{} and is too weak to locate reliably. $\bar{n}$ is the mean coordination number within a 3.15~\AA{} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho$ the density from the mean box volume. The \texttt{26.almtp} hold is 0.4~ns rather than 1~ns, so its dynamical statistics are correspondingly poorer.}
 \label{tab:hold_structural}
 \end{table}
- 
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.48\textwidth}
@@ -1065,18 +1067,32 @@ Potential & $r_1$ (\AA) & $r_2$ (\AA) & $\bar{n}$ & $q$ & $D$ ($10^{-9}$~m$^2$/s
         \caption{Tetrahedral order parameter}
         \label{fig:hold_top}
     \end{subfigure}
-    \caption{XXX All five hold trajectories overlaid at 2500~K. XXX}
+    \caption{All five hold trajectories at 2500~K, computed over the final 30~ps of each run. (a) The $g(r)$ curves are indistinguishable, sharing a first peak at 2.44~\AA{} and showing no structure beyond the first minimum. (b) The MSD is linear and unbounded for every potential, confirming a fully diffusive liquid; \texttt{26.almtp} is the only visible outlier and is also the only 0.4~ns run. (c) Coordination distributions overlay to within one percentage point at every coordination number. (d) The tetrahedral order parameter distributions are likewise indistinguishable, all peaking near $q = 0.5$.}
     \label{fig:hold_comparison}
 \end{figure}
- 
+
 \paragraph{Do the pruned potentials reproduce the reference liquid?}
-XXX The central question. State whether the curves overlay within the frame-to-frame scatter, and if any potential deviates, in which quantity and by how much. Note that $g(r)$ and the coordination number are the sensitive tests here, since the timings and energies were already shown to agree.
- 
+Yes, on every structural measure. The first peak of $g(r)$ falls at 2.44~\AA{} for all five potentials, the curves overlay to within the linewidth of Fig.~\ref{fig:hold_rdf}, and none shows structure beyond the first minimum. Mean coordination spans 5.912 to 5.970, a range of $1.0\%$, and the full distributions agree to within one percentage point at every coordination number. The tetrahedral order parameter spans 0.4821 to 0.4975, a range of $3.1\%$, with standard deviations identical to three decimal places.
+
+Crucially the pruned potentials do not deviate systematically from the reference. \texttt{pruned\_3} gives the highest mean coordination of any potential, above both melt-stable ones, while \texttt{pruned\_2} gives the lowest; the ordering does not follow the pruning level. The small differences are therefore scatter rather than a monotonic degradation with descriptor reduction.
+
+The dynamics are less tightly constrained. The self-diffusion coefficients span 3.70 to $5.26 \times 10^{-8}$~m$^2$/s, a spread of $42\%$, with \texttt{26.almtp} the outlier at the top. Two caveats apply. First, $D$ here is obtained from a single time origin rather than averaged over many, so its statistical uncertainty is far larger than that of the structural quantities. Second, the \texttt{26.almtp} hold is 0.4~ns against 1~ns for the others. The structural agreement is therefore the stronger result, and the diffusion spread should not be read as a physical difference between the potentials without a multiple-time-origin analysis.
+
 \paragraph{Comparison with published liquid silicon.}
-XXX Compare $r_1$, $\bar{n}$ and $q$ against Zhao et al.~\cite{zhao2017}, whose \textit{ab initio} molecular dynamics of liquid silicon used the same 216-atom system size. Note the temperature at which their values were obtained and whether the comparison is like for like.
- 
+A direct comparison is limited by temperature. Zhao et al.~\cite{zhao2017} report the same tetrahedrality parameter for liquid silicon from \textit{ab initio} molecular dynamics, but their study concerns the metastable and supercooled liquid, spanning 1032 to 1800~K, whereas the present hold is at 2500~K, roughly 800~K above the melting point of 1687~K. Their $q_\text{tetra}$ falls between 0.52 and 0.68 over that range, increasing as the temperature is lowered. The value of $0.490 \pm 0.008$ obtained here sits just below their coldest-temperature values, which is the expected ordering: tetrahedral character is progressively lost as the liquid is superheated, so a strongly superheated liquid should return a lower $q$ than any point in their range. The agreement is therefore consistent in trend rather than quantitative, and no like-for-like comparison is available without repeating the hold nearer the melting point.
+
+Zhao et al. report only $q_\text{tetra}$, the translational order parameter, the diffusion coefficient and the two-body excess entropy, so the first peak position and coordination number of the present liquid have no counterpart in that work.
+
 \paragraph{Implication for the quench.}
-XXX If the pruned potentials reproduce the reference liquid, the hand-off in the melt-quench protocol is justified and the cost saving is available at no structural penalty. If they do not, state which stage the deviation would affect.
+The pruned potentials reproduce the reference liquid to within a few percent on every structural measure, so the hand-off in the melt-quench protocol is structurally justified: a configuration passed from the melt-stable potential to a pruned one at the start of the quench is not distinguishable from one the pruned potential would have generated itself. Combined with the $11.7\times$ speedup of \texttt{pruned\_1} in Table~\ref{tab:melt_hold_bench}, the cost saving is available at no measurable structural penalty in the liquid phase.
+
+Whether the agreement survives the quench is a separate question. The potentials were shown in Section~\ref{sec:firstruns} to prefer different volumes in the solid, with \texttt{pruned\_1} holding a pressure of about $-12{,}400$~bar in a box where \texttt{22.almtp} sat at zero, so a divergence on cooling would not be surprising.
+
+
+\subsubsection{Quench P22}
+\subsubsection{Quench pruned\_1}
+\subsubsection{Quench pruned\_2}
+\subsubsection{Quench pruned\_3}
 
 % ===========================================================
 %  5. DISCUSSION
@@ -1113,13 +1129,13 @@ Point a unit vector $\vec{r}_{ij}$ at each neighbour $j$ of atom $i$ and average
 \end{equation}
 The $Y_{\ell m}$ are the functions that give atomic orbitals their shapes: $\ell$ fixes the lobe pattern on a sphere ($\ell = 0$ spherical, $\ell = 1$ the dumbbell, $\ell = 2$ the cloverleaf) and $m$ labels the orientations of that pattern\footnote{A hydrogen wavefunction factorizes as $\psi = R_{n\ell}(r)Y_{\ell m}(\theta,\varphi)$: the radial part $R$ describes how the amplitude falls off with distance, the angular part $Y$ describes the shape. Steinhardt keeps only the angular part, which is why distance drops out. For each $\ell$ there are $2\ell+1$ independent orientations, the same counting that gives three $p$ orbitals and five $d$ orbitals.}.
 
-The weight $\sigma(r_{ij})$ sets how much each neighbour counts, with the denominator normalizing the average. The simplest choice is an indicator, $1$ inside a cutoff and $0$ outside, but an atom vibrating near the cutoff is then repeatedly counted and dropped, and $q_\ell$ jumps each time. Allowing $\sigma$ to decay smoothly through intermediate values gives such atoms a fractional weight and removes the discontinuity, as does a Voronoi face-area weighting\footnote{Space is divided so that every point belongs to its nearest atom. Two atoms count as neighbours when their cells share a face, and $\sigma$ is taken as the area of that face: a large shared face means a strongly neighbouring atom, a sliver means a marginal one. This removes the cutoff parameter entirely (Mickel et al., 2013).}.
+The weight $\sigma(r_{ij})$ sets how much each neighbour counts, with the denominator normalizing the average. The simplest choice is an indicator, $1$ inside a cutoff and $0$ outside, but an atom vibrating near the cutoff is then repeatedly counted and dropped, and $q_\ell$ jumps each time. Allowing $\sigma$ to decay smoothly through intermediate values gives such atoms a fractional weight and removes the discontinuity, as does a Voronoi face-area weighting\footnote{Space is divided so that every point belongs to its nearest atom. Two atoms count as neighbours when their cells share a face, and $\sigma$ is taken as the area of that face: a large shared face means a strongly neighbouring atom, a sliver means a marginal one. This removes the cutoff parameter entirely~\cite{mickel2013}.}.
 
 The second equation collapses the $2\ell+1$ complex numbers $q_{\ell m}$ into one real number. Rotating the coordinate axes shuffles them among themselves but leaves the sum of their squares untouched, exactly as rotating a vector changes $v_x, v_y, v_z$ while preserving $|\vec{v}|$. Since the orientation of the simulation box is arbitrary, only $q_\ell$ carries physical meaning.
 
-The phases are then distinguished by cancellation. For $\ell \geq 1$ every lobe pattern averages to zero over the sphere, so it is positive on some regions and negative on others, much as $\sin x$ has humps above and below the axis. Randomly scattered neighbours therefore contribute with mixed signs and largely cancel, whereas neighbours sitting at the special positions of a lattice can land on lobes of matching sign and reinforce. Diamond-cubic c-Si gives $q_4 = 0.509$ and $q_6 = 0.628$; liquid silicon collapses toward zero with a broad spread and no sharp peak; a-Si retains weight near the diamond values but is broadened by the spread in bond angles.
+The phases are then distinguished by cancellation. For $\ell \geq 1$ every lobe pattern averages to zero over the sphere, so it is positive on some regions and negative on others, much as $\sin x$ has humps above and below the axis. Randomly scattered neighbours therefore contribute with mixed signs and largely cancel, whereas neighbours sitting at the special positions of a lattice can land on lobes of matching sign and reinforce. Computed directly from the ideal tetrahedral geometry, diamond-cubic c-Si gives $q_4 = 0.509$ and $q_6 = 0.628$; liquid silicon collapses toward zero with a broad spread and no sharp peak.
 
-Reference values are tabulated for fcc, hcp, bcc, and icosahedral clusters \cite{steinhardt1983}, but not for the diamond structure, since $q_4$ and $q_6$ cannot distinguish a tetrahedral environment from bcc: the bcc motif is two point-symmetric tetrahedra, and even-$\ell$ harmonics are blind to inversion. This degeneracy is why the tetrahedral order parameter of Section~\ref{TOP} is used in this project instead.
+Reference values are tabulated for fcc, hcp, bcc, and icosahedral clusters~\cite{steinhardt1983}. No diamond entry appears there, and the omission is not an oversight: $q_4$ and $q_6$ cannot distinguish a tetrahedral environment from bcc, since the bcc motif is two point-symmetric tetrahedra and even-$\ell$ harmonics are blind to inversion. A second problem compounds this at small neighbour counts. Randomly oriented neighbours do not give $q_\ell = 0$ but roughly $1/\sqrt{N_b}$, since the cross terms cancel while the diagonal terms survive; with only four neighbours the random value is $q_4 \approx 0.49$, effectively indistinguishable from the ideal tetrahedral $0.509$. Tetrahedral silicon is therefore the worst case for these parameters, which is why the tetrahedral order parameter of Section~\ref{TOP} is used in this project instead.
 
 \section{Command References}
 \subsection{PuTTY}
@@ -1294,7 +1310,7 @@ The `cuda' module loads the NVIDIA GPU toolkit, required for the GPU build.
     \item Madanchi and Simine. ``MAPping Dynamic Heterogeneity in Supercooled Glass-formers'' (dataset). \url{https://aip.figshare.com/collections/MAPping_Dynamic_Heterogeneity_in_Supercooled_Glass-formers/8291884}.
     \item Slurm Cheat Sheet for Interactive Jobs. \url{https://slurm.schedmd.com/pdfs/summary.pdf}.
     \item LAMMPS documentation. \url{https://docs.lammps.org/Manual.pdf}.
-    \item Steihardt parameters. \url{https://www.youtube.com/watch?v=ou0uKgK35lE}.
+    \item Steinhardt parameters. \url{https://www.youtube.com/watch?v=ou0uKgK35lE}.
 \end{itemize}
 
 \section{Bibliography}

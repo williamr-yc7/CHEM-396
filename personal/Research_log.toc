@@ -69,25 +69,29 @@
 \contentsline {subsubsection}{\numberline {4.1.8}Benchmark Summary}{37}{subsubsection.4.1.8}%
 \contentsline {subsubsection}{\numberline {4.1.9}Structural Comparison of the Hold Trajectories}{38}{subsubsection.4.1.9}%
 \contentsline {paragraph}{Do the pruned potentials reproduce the reference liquid?}{39}{section*.22}%
-\contentsline {paragraph}{Comparison with published liquid silicon.}{39}{section*.23}%
-\contentsline {paragraph}{Implication for the quench.}{39}{section*.24}%
-\contentsline {section}{\numberline {5}Discussion}{40}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{40}{section.6}%
-\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{41}{appendix.A}%
-\contentsline {section}{\numberline {B}Bond-Orientational Order Parameters}{41}{appendix.B}%
-\contentsline {section}{\numberline {C}Command References}{42}{appendix.C}%
-\contentsline {subsection}{\numberline {C.1}PuTTY}{42}{subsection.C.1}%
-\contentsline {subsubsection}{\numberline {C.1.1}Navigating and editing files (Linux)}{42}{subsubsection.C.1.1}%
-\contentsline {subsubsection}{\numberline {C.1.2}Build Environment Commands}{43}{subsubsection.C.1.2}%
-\contentsline {subsubsection}{\numberline {C.1.3}Job Submission Commands}{43}{subsubsection.C.1.3}%
-\contentsline {subsubsection}{\numberline {C.1.4}CMake Options Used in the Build Scripts}{43}{subsubsection.C.1.4}%
-\contentsline {subsubsection}{\numberline {C.1.5}Running LAMMPS}{44}{subsubsection.C.1.5}%
-\contentsline {subsection}{\numberline {C.2}Tk Console}{44}{subsection.C.2}%
-\contentsline {subsubsection}{\numberline {C.2.1}Navigating to the files}{44}{subsubsection.C.2.1}%
-\contentsline {subsubsection}{\numberline {C.2.2}Loading a single configuration (data file)}{44}{subsubsection.C.2.2}%
-\contentsline {subsubsection}{\numberline {C.2.3}Loading a full trajectory (many frames)}{44}{subsubsection.C.2.3}%
-\contentsline {subsubsection}{\numberline {C.2.4}Drawing the simulation box}{44}{subsubsection.C.2.4}%
-\contentsline {subsection}{\numberline {C.3}Input Script}{44}{subsection.C.3}%
-\contentsline {subsection}{\numberline {C.4}Job Submission Script}{47}{subsection.C.4}%
-\contentsline {section}{\numberline {D}Further Viewing and References}{48}{appendix.D}%
-\contentsline {section}{\numberline {E}Bibliography}{49}{appendix.E}%
+\contentsline {paragraph}{Comparison with published liquid silicon.}{40}{section*.23}%
+\contentsline {paragraph}{Implication for the quench.}{40}{section*.24}%
+\contentsline {subsubsection}{\numberline {4.1.10}Quench P22}{41}{subsubsection.4.1.10}%
+\contentsline {subsubsection}{\numberline {4.1.11}Quench pruned\_1}{41}{subsubsection.4.1.11}%
+\contentsline {subsubsection}{\numberline {4.1.12}Quench pruned\_2}{41}{subsubsection.4.1.12}%
+\contentsline {subsubsection}{\numberline {4.1.13}Quench pruned\_3}{41}{subsubsection.4.1.13}%
+\contentsline {section}{\numberline {5}Discussion}{41}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{41}{section.6}%
+\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{42}{appendix.A}%
+\contentsline {section}{\numberline {B}Bond-Orientational Order Parameters}{42}{appendix.B}%
+\contentsline {section}{\numberline {C}Command References}{43}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}PuTTY}{43}{subsection.C.1}%
+\contentsline {subsubsection}{\numberline {C.1.1}Navigating and editing files (Linux)}{43}{subsubsection.C.1.1}%
+\contentsline {subsubsection}{\numberline {C.1.2}Build Environment Commands}{44}{subsubsection.C.1.2}%
+\contentsline {subsubsection}{\numberline {C.1.3}Job Submission Commands}{44}{subsubsection.C.1.3}%
+\contentsline {subsubsection}{\numberline {C.1.4}CMake Options Used in the Build Scripts}{44}{subsubsection.C.1.4}%
+\contentsline {subsubsection}{\numberline {C.1.5}Running LAMMPS}{45}{subsubsection.C.1.5}%
+\contentsline {subsection}{\numberline {C.2}Tk Console}{45}{subsection.C.2}%
+\contentsline {subsubsection}{\numberline {C.2.1}Navigating to the files}{45}{subsubsection.C.2.1}%
+\contentsline {subsubsection}{\numberline {C.2.2}Loading a single configuration (data file)}{45}{subsubsection.C.2.2}%
+\contentsline {subsubsection}{\numberline {C.2.3}Loading a full trajectory (many frames)}{45}{subsubsection.C.2.3}%
+\contentsline {subsubsection}{\numberline {C.2.4}Drawing the simulation box}{45}{subsubsection.C.2.4}%
+\contentsline {subsection}{\numberline {C.3}Input Script}{45}{subsection.C.3}%
+\contentsline {subsection}{\numberline {C.4}Job Submission Script}{48}{subsection.C.4}%
+\contentsline {section}{\numberline {D}Further Viewing and References}{49}{appendix.D}%
+\contentsline {section}{\numberline {E}Bibliography}{50}{appendix.E}%

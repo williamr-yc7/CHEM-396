@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  31 JUL 2026 18:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  3 AUG 2026 14:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -592,8 +592,7 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 31.
  (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count362
-)
-No file Research_log.aux.
+) (Research_log.aux)
 \openout1 = `Research_log.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -614,7 +613,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-(C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count363
 \scratchdimen=\dimen329
@@ -634,6 +633,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 32.
+ (Research_log.out) (Research_log.out)
 \@outlinefile=\write4
 \openout4 = `Research_log.out'.
 
@@ -651,18 +651,23 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/erenr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-No file Research_log.toc.
+{C:/Users/erenr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Research_log.toc [1
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.90 ...ing to the files}{45}{subsubsection.C.2.1}
+                                                  % [2])
 \tf@toc=\write5
 \openout5 = `Research_log.toc'.
 
-[1
 
-]
-
-LaTeX Warning: Reference `C.D' on page 1 undefined on input line 108.
-
-
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 \clearpage
+                [3]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -670,7 +675,7 @@ l.109
        [1
 
 ]
-<c-Si-vs-a-Si.jpg, id=46, 561.09625pt x 358.33875pt>
+<c-Si-vs-a-Si.jpg, id=509, 561.09625pt x 358.33875pt>
 File: c-Si-vs-a-Si.jpg Graphic file (type jpg)
 <use c-Si-vs-a-Si.jpg>
 Package pdftex.def Info: c-Si-vs-a-Si.jpg  used on input line 118.
@@ -680,47 +685,27 @@ Overfull \hbox (8.60127pt too wide) in paragraph at lines 129--130
 []\OT1/cmr/m/n/10 Originally pro-posed for sil-ica glasses ($\OML/cmm/m/it/10 SiO[]$\OT1/cmr/m/n/10 ), the model posits a non-crystalline,
  []
 
-
-LaTeX Warning: Reference `fig:CRN' on page 2 undefined on input line 131.
-
-<Continuous Random Network.png, id=48, 1541.76pt x 1027.84pt>
+<Continuous Random Network.png, id=512, 1541.76pt x 1027.84pt>
 File: Continuous Random Network.png Graphic file (type png)
 <use Continuous Random Network.png>
 Package pdftex.def Info: Continuous Random Network.png  used on input line 135.
 (pdftex.def)             Requested size: 345.0pt x 229.99933pt.
-[2 <./c-Si-vs-a-Si.jpg>]
-
-LaTeX Warning: Reference `fig:WWW_algorithm' on page 3 undefined on input line 158.
-
-[3 <./Continuous Random Network.png (PNG copy)>]
-<Wooten-Winer-Weaire.png, id=69, 1027.84pt x 1541.76pt>
+[2 <./c-Si-vs-a-Si.jpg>] [3 <./Continuous Random Network.png (PNG copy)>]
+<Wooten-Winer-Weaire.png, id=535, 1027.84pt x 1541.76pt>
 File: Wooten-Winer-Weaire.png Graphic file (type png)
 <use Wooten-Winer-Weaire.png>
 Package pdftex.def Info: Wooten-Winer-Weaire.png  used on input line 162.
 (pdftex.def)             Requested size: 276.00105pt x 413.99881pt.
  [4 <./Wooten-Winer-Weaire.png (PNG copy)>] [5] [6]
-<paracrystallinity.png, id=102, 1541.76pt x 1027.84pt>
+<paracrystallinity.png, id=563, 1541.76pt x 1027.84pt>
 File: paracrystallinity.png Graphic file (type png)
 <use paracrystallinity.png>
 Package pdftex.def Info: paracrystallinity.png  used on input line 225.
 (pdftex.def)             Requested size: 276.00105pt x 183.99947pt.
- [7] [8 <./paracrystallinity.png (PNG copy)>]
-
-LaTeX Warning: Reference `C.D' on page 9 undefined on input line 270.
-
-[9]
-
-LaTeX Warning: Citation `chau1998' on page 10 undefined on input line 299.
-
-
-LaTeX Warning: Citation `errington2001' on page 10 undefined on input line 299.
-
-[10]
-
-LaTeX Warning: Citation `zhao2017' on page 11 undefined on input line 312.
-
-
-LaTeX Warning: Reference `RDF' on page 11 undefined on input line 327.
+ [7] [8 <./paracrystallinity.png (PNG copy)>] [9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 327--328
+[]$\OML/cmm/m/it/9 g\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 r\OT1/cmr/m/n/9 )$,
+ []
 
 
 Underfull \hbox (badness 1270) in paragraph at lines 328--329
@@ -743,9 +728,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 330--331
  []
 
 
-LaTeX Warning: Reference `CN' on page 11 undefined on input line 332.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 332--333
 []\OT1/cmr/m/n/9 Coordination
  []
@@ -756,7 +738,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--333
  []
 
 
-LaTeX Warning: Reference `MSD' on page 11 undefined on input line 337.
+Underfull \hbox (badness 10000) in paragraph at lines 337--338
+[]\OT1/cmr/m/n/9 MSD,
+ []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 338--339
@@ -767,9 +751,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 338--339
 Underfull \hbox (badness 10000) in paragraph at lines 339--340
 []\OT1/cmr/m/n/9 Linear and un-
  []
-
-
-LaTeX Warning: Reference `TOP' on page 11 undefined on input line 342.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 342--343
@@ -800,374 +781,312 @@ Overfull \hbox (11.30617pt too wide) in paragraph at lines 538--539
 Overfull \vbox (2.07448pt too high) has occurred while \output is active []
 
  [21] [22]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 608--608
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 609--609
 []    \OT1/cmtt/m/n/10 module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda[] 
  []
 
 [23] [24]
-Overfull \hbox (7.56699pt too wide) in paragraph at lines 657--658
+Overfull \hbox (7.56699pt too wide) in paragraph at lines 658--659
 [][]\OT1/cmr/bx/n/10 Definition 37 \OT1/cmr/m/n/10 (Vi-sual Molec-u-lar Dy-nam-ics)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Vi-sual Molec-u-lar Dy-nam-ics (VMD)
  []
 
-
-LaTeX Warning: Reference `InputScript' on page 25 undefined on input line 673.
-
 [25]
-
-LaTeX Warning: Reference `fig:test_in_vmd' on page 26 undefined on input line 680.
-
-<VMDtestLJSub.png, id=306, 745.78625pt x 485.31313pt>
+<VMDtestLJSub.png, id=743, 745.78625pt x 485.31313pt>
 File: VMDtestLJSub.png Graphic file (type png)
 <use VMDtestLJSub.png>
-Package pdftex.def Info: VMDtestLJSub.png  used on input line 683.
+Package pdftex.def Info: VMDtestLJSub.png  used on input line 684.
 (pdftex.def)             Requested size: 276.00105pt x 179.60007pt.
-[26 <./VMDtestLJSub.png>]
-Underfull \hbox (badness 2564) in paragraph at lines 703--703
+ [26 <./VMDtestLJSub.png>]
+Underfull \hbox (badness 2564) in paragraph at lines 704--704
 []\OT1/cmr/m/n/9 Illegal in-struc-tion (core
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 703--703
+Underfull \hbox (badness 5374) in paragraph at lines 704--704
 \OT1/cmr/m/n/9 CPU ar-chi-tec-ture in-
  []
 
 
-Underfull \hbox (badness 3386) in paragraph at lines 703--703
+Underfull \hbox (badness 3386) in paragraph at lines 704--704
 \OT1/cmr/m/n/9 com-pat-i-ble with Nar-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--704
+Underfull \hbox (badness 10000) in paragraph at lines 704--705
 []\OT1/cmr/m/n/9 Add
  []
 
 
-Overfull \hbox (50.15329pt too wide) in paragraph at lines 703--704
+Overfull \hbox (50.15329pt too wide) in paragraph at lines 704--705
 \OT1/cmtt/m/n/9 -DCMAKE[]CXX[]FLAGS="-march=core-avx2"| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--705
+Underfull \hbox (badness 10000) in paragraph at lines 706--706
 []\OT1/cmr/m/n/9 ML-MTP ab-sent from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 707--707
+Underfull \hbox (badness 10000) in paragraph at lines 708--708
 []\OT1/cmr/m/n/9 Stale nested CMake
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 707--707
+Underfull \hbox (badness 10000) in paragraph at lines 708--708
 \OT1/cmr/m/n/9 caches with an-other
  []
 
 
-Overfull \hbox (8.39937pt too wide) in paragraph at lines 699--710
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 700--711
  [][] 
  []
 
 
-Overfull \hbox (2.77545pt too wide) in paragraph at lines 714--715
+Overfull \hbox (2.77545pt too wide) in paragraph at lines 715--716
 []\OT1/cmr/m/n/10 After a clean re-build, \OT1/cmtt/m/n/10 lmp -h \OT1/cmr/m/n/10 listed \OT1/cmtt/m/n/10 ML-MTP \OT1/cmr/m/n/10 with \OT1/cmtt/m/n/10 mtp \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 mtp/extrapolation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--726
+Underfull \hbox (badness 10000) in paragraph at lines 727--727
 []\OT1/cmr/m/n/9 Script copies only
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--726
+Underfull \hbox (badness 10000) in paragraph at lines 727--727
 \OT1/cmtt/m/n/9 ML-MTP\OT1/cmr/m/n/9 ; the \OT1/cmtt/m/n/9 KOKKOS
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--729
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
 []\OT1/cmtt/m/n/9 kokkos-cuda \OT1/cmr/m/n/9 pre-set $+$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--729
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
 \OT1/cmtt/m/n/9 -DKokkos[]ARCH[]AMPERE80=ON
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 730--730
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
 []\OT1/cmtt/m/n/9 -march=core-avx2 \OT1/cmr/m/n/9 in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 732--732
+Underfull \hbox (badness 10000) in paragraph at lines 733--733
 []\OT1/cmr/m/n/9 OpenCL-based
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 732--732
+Underfull \hbox (badness 10000) in paragraph at lines 733--733
 \OT1/cmtt/m/n/9 -DPKG[]GPU=ON\OT1/cmr/m/n/9 , re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 732--732
+Underfull \hbox (badness 10000) in paragraph at lines 733--733
 \OT1/cmr/m/n/9 dun-dant along-side
  []
 
 
-Overfull \hbox (8.39937pt too wide) in paragraph at lines 722--735
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 723--736
  [][] 
  []
 
 [27] [28] [29]
-<../report/scaling.png, id=349, 375.804pt x 260.172pt>
+<../report/scaling.png, id=778, 375.804pt x 260.172pt>
 File: ../report/scaling.png Graphic file (type png)
 <use ../report/scaling.png>
-Package pdftex.def Info: ../report/scaling.png  used on input line 811.
+Package pdftex.def Info: ../report/scaling.png  used on input line 813.
 (pdftex.def)             Requested size: 207.0021pt x 143.3094pt.
  [30 <../report/scaling.png>]
-
-LaTeX Warning: Reference `tab:firstruns' on page 31 undefined on input line 828.
-
-
-LaTeX Warning: Reference `tab:scaling' on page 31 undefined on input line 828.
-
-
-Overfull \hbox (7.32896pt too wide) detected at line 833
+Overfull \hbox (7.32896pt too wide) detected at line 835
 [] \OT1/cmr/m/n/10 :  [] = 30\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7 []\OML/cmm/m/it/10 ;  [] \OT1/cmr/m/n/10 :  [] = 357 []\OML/cmm/m/it/10 ;
  []
 
 
-Overfull \hbox (47.51416pt too wide) in paragraph at lines 838--849
+Overfull \hbox (47.51416pt too wide) in paragraph at lines 840--851
  [][] 
  []
 
-[31]
-<../python/radial_dist_fct/melt_P22_rdf_output.png, id=367, 433.62pt x 289.08pt>
+[31] [32]
+<../python/radial_dist_fct/melt_P22_rdf_output.png, id=799, 433.62pt x 289.08pt>
 File: ../python/radial_dist_fct/melt_P22_rdf_output.png Graphic file (type png)
 <use ../python/radial_dist_fct/melt_P22_rdf_output.png>
-Package pdftex.def Info: ../python/radial_dist_fct/melt_P22_rdf_output.png  used on input line 880.
+Package pdftex.def Info: ../python/radial_dist_fct/melt_P22_rdf_output.png  used on input line 882.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/msd/melt_P22_msd_output.png, id=368, 433.62pt x 289.08pt>
+<../python/msd/melt_P22_msd_output.png, id=800, 433.62pt x 289.08pt>
 File: ../python/msd/melt_P22_msd_output.png Graphic file (type png)
 <use ../python/msd/melt_P22_msd_output.png>
-Package pdftex.def Info: ../python/msd/melt_P22_msd_output.png  used on input line 887.
+Package pdftex.def Info: ../python/msd/melt_P22_msd_output.png  used on input line 889.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/coord_num/melt_P22_cn_output.png, id=369, 433.62pt x 289.08pt>
+<../python/coord_num/melt_P22_cn_output.png, id=801, 433.62pt x 289.08pt>
 File: ../python/coord_num/melt_P22_cn_output.png Graphic file (type png)
 <use ../python/coord_num/melt_P22_cn_output.png>
-Package pdftex.def Info: ../python/coord_num/melt_P22_cn_output.png  used on input line 894.
+Package pdftex.def Info: ../python/coord_num/melt_P22_cn_output.png  used on input line 896.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/top/melt_P22_top_output.png, id=370, 433.62pt x 289.08pt>
+<../python/top/melt_P22_top_output.png, id=802, 433.62pt x 289.08pt>
 File: ../python/top/melt_P22_top_output.png Graphic file (type png)
 <use ../python/top/melt_P22_top_output.png>
-Package pdftex.def Info: ../python/top/melt_P22_top_output.png  used on input line 901.
+Package pdftex.def Info: ../python/top/melt_P22_top_output.png  used on input line 903.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
- [32]
-<melt_216_22almtp_2500K_final.png, id=378, 245.41687pt x 238.39063pt>
+<melt_216_22almtp_2500K_final.png, id=803, 245.41687pt x 238.39063pt>
 File: melt_216_22almtp_2500K_final.png Graphic file (type png)
 <use melt_216_22almtp_2500K_final.png>
-Package pdftex.def Info: melt_216_22almtp_2500K_final.png  used on input line 913.
+Package pdftex.def Info: melt_216_22almtp_2500K_final.png  used on input line 915.
 (pdftex.def)             Requested size: 172.5pt x 167.56706pt.
  [33 <../python/radial_dist_fct/melt_P22_rdf_output.png> <../python/msd/melt_P22_msd_output.png> <../python/coord_num/melt_P22_cn_output.png> <../python/top/melt_P22_top_output.png>] [34 <./melt_216_22almtp_2500K_final.png>]
-<../python/radial_dist_fct/melt_P26_rdf_output.png, id=397, 433.62pt x 289.08pt>
+<../python/radial_dist_fct/melt_P26_rdf_output.png, id=820, 433.62pt x 289.08pt>
 File: ../python/radial_dist_fct/melt_P26_rdf_output.png Graphic file (type png)
 <use ../python/radial_dist_fct/melt_P26_rdf_output.png>
-Package pdftex.def Info: ../python/radial_dist_fct/melt_P26_rdf_output.png  used on input line 949.
+Package pdftex.def Info: ../python/radial_dist_fct/melt_P26_rdf_output.png  used on input line 951.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/msd/melt_P26_msd_output.png, id=398, 433.62pt x 289.08pt>
+<../python/msd/melt_P26_msd_output.png, id=821, 433.62pt x 289.08pt>
 File: ../python/msd/melt_P26_msd_output.png Graphic file (type png)
 <use ../python/msd/melt_P26_msd_output.png>
-Package pdftex.def Info: ../python/msd/melt_P26_msd_output.png  used on input line 956.
+Package pdftex.def Info: ../python/msd/melt_P26_msd_output.png  used on input line 958.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/coord_num/melt_P26_cn_output.png, id=399, 433.62pt x 289.08pt>
+<../python/coord_num/melt_P26_cn_output.png, id=822, 433.62pt x 289.08pt>
 File: ../python/coord_num/melt_P26_cn_output.png Graphic file (type png)
 <use ../python/coord_num/melt_P26_cn_output.png>
-Package pdftex.def Info: ../python/coord_num/melt_P26_cn_output.png  used on input line 963.
+Package pdftex.def Info: ../python/coord_num/melt_P26_cn_output.png  used on input line 965.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/top/melt_P26_top_output.png, id=400, 433.62pt x 289.08pt>
+<../python/top/melt_P26_top_output.png, id=823, 433.62pt x 289.08pt>
 File: ../python/top/melt_P26_top_output.png Graphic file (type png)
 <use ../python/top/melt_P26_top_output.png>
-Package pdftex.def Info: ../python/top/melt_P26_top_output.png  used on input line 970.
+Package pdftex.def Info: ../python/top/melt_P26_top_output.png  used on input line 972.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-
-
-LaTeX Warning: Reference `fig:melt_signatures' on page 35 undefined on input line 974.
-
-
-LaTeX Warning: Reference `fig:melt_signatures' on page 35 undefined on input line 974.
-
-[35] [36 <../python/radial_dist_fct/melt_P26_rdf_output.png> <../python/msd/melt_P26_msd_output.png> <../python/coord_num/melt_P26_cn_output.png> <../python/top/melt_P26_top_output.png>]
-Overfull \hbox (50.42738pt too wide) in paragraph at lines 994--1008
+ [35] [36 <../python/radial_dist_fct/melt_P26_rdf_output.png> <../python/msd/melt_P26_msd_output.png> <../python/coord_num/melt_P26_cn_output.png> <../python/top/melt_P26_top_output.png>]
+Overfull \hbox (50.42738pt too wide) in paragraph at lines 996--1010
  [][] 
  []
 
-
-LaTeX Warning: Reference `tab:melt_hold_bench' on page 37 undefined on input line 1012.
-
-
-LaTeX Warning: Reference `tab:projected_cost' on page 37 undefined on input line 1012.
-
 [37]
+Overfull \hbox (11.06459pt too wide) in paragraph at lines 1026--1037
+ [][] 
+ []
 
-LaTeX Warning: Reference `tab:melt_hold_bench' on page 38 undefined on input line 1017.
-
-
-LaTeX Warning: Reference `sec:metrics' on page 38 undefined on input line 1017.
-
-<../python/radial_dist_fct/hold_all_rdf_output.png, id=425, 433.62pt x 289.08pt>
+<../python/radial_dist_fct/hold_all_rdf_output.png, id=849, 433.62pt x 289.08pt>
 File: ../python/radial_dist_fct/hold_all_rdf_output.png Graphic file (type png)
 <use ../python/radial_dist_fct/hold_all_rdf_output.png>
-Package pdftex.def Info: ../python/radial_dist_fct/hold_all_rdf_output.png  used on input line 1043.
+Package pdftex.def Info: ../python/radial_dist_fct/hold_all_rdf_output.png  used on input line 1045.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/msd/hold_all_msd_output.png, id=426, 433.62pt x 289.08pt>
+<../python/msd/hold_all_msd_output.png, id=850, 433.62pt x 289.08pt>
 File: ../python/msd/hold_all_msd_output.png Graphic file (type png)
 <use ../python/msd/hold_all_msd_output.png>
-Package pdftex.def Info: ../python/msd/hold_all_msd_output.png  used on input line 1050.
+Package pdftex.def Info: ../python/msd/hold_all_msd_output.png  used on input line 1052.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-<../python/coord_num/hold_all_cn_output.png, id=427, 433.62pt x 289.08pt>
+<../python/coord_num/hold_all_cn_output.png, id=851, 433.62pt x 289.08pt>
 File: ../python/coord_num/hold_all_cn_output.png Graphic file (type png)
 <use ../python/coord_num/hold_all_cn_output.png>
-Package pdftex.def Info: ../python/coord_num/hold_all_cn_output.png  used on input line 1057.
+Package pdftex.def Info: ../python/coord_num/hold_all_cn_output.png  used on input line 1059.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-
-LaTeX Warning: File `../python/top/hold_all_top_output.png' not found on input line 1064.
-
-
-c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex:1064: Package pdftex.def Error: File `../python/top/hold_all_top_output.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1064 ...]{../python/top/hold_all_top_output.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[38]
-
-LaTeX Warning: Citation `zhao2017' on page 39 undefined on input line 1076.
-
-[39 <../python/radial_dist_fct/hold_all_rdf_output.png> <../python/msd/hold_all_msd_output.png> <../python/coord_num/hold_all_cn_output.png>] [40] [41
+<../python/top/hold_all_top_output.png, id=852, 433.62pt x 289.08pt>
+File: ../python/top/hold_all_top_output.png Graphic file (type png)
+<use ../python/top/hold_all_top_output.png>
+Package pdftex.def Info: ../python/top/hold_all_top_output.png  used on input line 1066.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+[38] [39 <../python/radial_dist_fct/hold_all_rdf_output.png> <../python/msd/hold_all_msd_output.png> <../python/coord_num/hold_all_cn_output.png> <../python/top/hold_all_top_output.png>] [40] [41] [42
 
 ]
-
-LaTeX Warning: Citation `steinhardt1983' on page 42 undefined on input line 1122.
-
-
-LaTeX Warning: Reference `TOP' on page 42 undefined on input line 1122.
-
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1128.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1144.
 
-Overfull \hbox (3.30426pt too wide) in paragraph at lines 1141--1142
+Overfull \hbox (3.30426pt too wide) in paragraph at lines 1157--1158
 []\OT1/cmr/m/n/10 # Write ev-ery-thing be-tween the mark-
  []
 
-
-Overfull \hbox (11.33052pt too wide) in paragraph at lines 1148--1149
+[43]
+Overfull \hbox (11.33052pt too wide) in paragraph at lines 1164--1165
 []\OT1/cmr/m/n/10 # Ac-
  []
 
-[42]
-Overfull \hbox (95.7462pt too wide) in paragraph at lines 1155--1156
+
+Overfull \hbox (95.7462pt too wide) in paragraph at lines 1171--1172
 []
  []
 
 
-Overfull \hbox (27.4968pt too wide) in paragraph at lines 1156--1157
+Overfull \hbox (27.4968pt too wide) in paragraph at lines 1172--1173
 []
  []
 
-[43]
-Overfull \hbox (1.27971pt too wide) in paragraph at lines 1174--1175
+[44]
+Overfull \hbox (1.27971pt too wide) in paragraph at lines 1190--1191
 []\OT1/cmr/m/n/10 # Com-piles CPU code for the AVX2
  []
 
 
-Overfull \hbox (17.94229pt too wide) in paragraph at lines 1197--1198
+Overfull \hbox (17.94229pt too wide) in paragraph at lines 1213--1214
 []\OT1/cmr/m/n/10 # Loads a LAMMPS
  []
 
-[44]
-Overfull \hbox (16.56985pt too wide) in paragraph at lines 1215--1216
+[45]
+Overfull \hbox (16.56985pt too wide) in paragraph at lines 1231--1232
 []\OT1/cmr/m/n/10 # De-fines a cu-bic re-gion named
  []
 
 
-Overfull \hbox (9.29886pt too wide) in paragraph at lines 1219--1220
+Overfull \hbox (9.29886pt too wide) in paragraph at lines 1235--1236
 []\OT1/cmr/m/n/10 # As-signs ran-dom ini-
  []
 
-[45]
-Overfull \hbox (287.89445pt too wide) in paragraph at lines 1227--1228
-[]
- []
-
-
-Overfull \hbox (97.4261pt too wide) in paragraph at lines 1228--1229
-[]
- []
-
 [46]
-Overfull \hbox (2.03362pt too wide) in paragraph at lines 1246--1247
+Overfull \hbox (287.89445pt too wide) in paragraph at lines 1243--1244
+[]
+ []
+
+
+Overfull \hbox (97.4261pt too wide) in paragraph at lines 1244--1245
+[]
+ []
+
+[47]
+Overfull \hbox (2.03362pt too wide) in paragraph at lines 1262--1263
 []\OT1/cmr/m/n/10 # Points the shell to the custom-built LAMMPS ex-e-cutable
  []
 
 
-Overfull \hbox (5.60664pt too wide) in paragraph at lines 1248--1249
+Overfull \hbox (5.60664pt too wide) in paragraph at lines 1264--1265
 []\OT1/cmr/m/n/10 # Ex-
  []
 
-[47]
-Underfull \hbox (badness 10000) in paragraph at lines 1281--1282
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 1297--1298
 
  []
 
 
-Overfull \hbox (31.7956pt too wide) in paragraph at lines 1293--1294
+Overfull \hbox (31.7956pt too wide) in paragraph at lines 1309--1310
 []\OT1/cmr/m/n/10 Digital Re-search Al-liance of Canada. ``LAMMPS.'' [][]$\OT1/cmtt/m/n/10 https : / / docs . alliancecan .
  []
 
 
-Overfull \hbox (29.28058pt too wide) in paragraph at lines 1294--1295
+Overfull \hbox (29.28058pt too wide) in paragraph at lines 1310--1311
 \OT1/cmr/m/n/10 Glass-formers'' (dataset). [][]$\OT1/cmtt/m/n/10 https : / / aip . figshare . com / collections / MAPping _
  []
 
-[48]
-Overfull \hbox (6.6279pt too wide) in paragraph at lines 1297--1298
-[]\OT1/cmr/m/n/10 Steihardt pa-ram-e-ters. [][]$\OT1/cmtt/m/n/10 https : / / www . youtube . com / watch ? v = ou0uKgK35lE$[][]\OT1/cmr/m/n/10 . 
+[49]
+Overfull \hbox (12.18347pt too wide) in paragraph at lines 1313--1314
+[]\OT1/cmr/m/n/10 Steinhardt pa-ram-e-ters. [][]$\OT1/cmtt/m/n/10 https : / / www . youtube . com / watch ? v = ou0uKgK35lE$[][]\OT1/cmr/m/n/10 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1304--1305
+Underfull \hbox (badness 10000) in paragraph at lines 1320--1321
 [][][]$\OT1/cmtt/m/n/10 https : / / www . sciencedirect . com / science / article / abs / pii /
  []
 
-[49] (Research_log.aux)
+[50] (Research_log.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `Research_log.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Research_log.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  AF0F17C3647694B6F645710EC30632EC;15824.
+Package rerunfilecheck Info: File `Research_log.out' has not changed.
+(rerunfilecheck)             Checksum: 80ADD8161F0E7A0BBB3197F584435B01;16396.
  ) 
 Here is how much of TeX's memory you used:
- 51050 strings out of 467871
- 1320865 string characters out of 5418377
- 2053980 words of memory out of 5000000
- 79106 multiletter control sequences out of 15000+600000
+ 51138 strings out of 467871
+ 1322124 string characters out of 5418377
+ 2064235 words of memory out of 5000000
+ 79181 multiletter control sequences out of 15000+600000
  640895 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,16n,118p,1184b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1175,9 +1094,9 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.32} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\erenr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Research_log.pdf (51 pages, 7086736 bytes).
+Output written on Research_log.pdf (54 pages, 7249117 bytes).
 PDF statistics:
- 718 PDF objects out of 1000 (max. 8388607)
- 265 named destinations out of 1000 (max. 500000)
- 103 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1132 PDF objects out of 1200 (max. 8388607)
+ 270 named destinations out of 1000 (max. 500000)
+ 844 words of extra memory for PDF output out of 10000 (max. 10000000)
 

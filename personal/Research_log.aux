@@ -40,8 +40,8 @@
 \newlabel{eq:tetra}{{5}{10}{Tetrahedral Order Parameter}{equation.5}{}}
 \citation{zhao2017}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Summary of Phase Signatures}{11}{subsubsection.2.2.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Signatures distinguishing the three phases of silicon. The density row is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT thermodynamic output: melting must contract the box rather than expand it.}}{11}{table.caption.6}\protected@file@percent }
-\newlabel{tab:phase_signatures}{{1}{11}{Signatures distinguishing the three phases of silicon. The density row is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT thermodynamic output: melting must contract the box rather than expand it}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Signatures distinguishing the three phases of silicon. Melting is confirmed by the agreement of all four rather than by any one alone. The density is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT output: melting must contract the box rather than expand it.}}{11}{table.caption.6}\protected@file@percent }
+\newlabel{tab:phase_signatures}{{1}{11}{Signatures distinguishing the three phases of silicon. Melting is confirmed by the agreement of all four rather than by any one alone. The density is not an independent structural metric but follows from the coordination number, and provides a thermodynamic cross-check available directly from the NPT output: melting must contract the box rather than expand it}{table.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Interatomic Potentials}{12}{subsection.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Interatomic Potentials in Molecular Dynamics}{12}{subsubsection.2.3.1}\protected@file@percent }
 \newlabel{IP}{{17}{12}{Interatomic Potential}{definition.17}{}}
@@ -66,6 +66,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Thermodynamic Ensembles}{22}{subsection.2.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.10}Narval}{23}{subsection.2.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.10.1}Compiling on a Compute Node}{23}{subsubsection.2.10.1}\protected@file@percent }
+\newlabel{sec:compile}{{2.10.1}{23}{Compiling on a Compute Node}{subsubsection.2.10.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.11}LAMMPS}{23}{subsection.2.11}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.11.1}Simulation Workflow}{23}{subsubsection.2.11.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.11.2}Combining LAMMPS with the MTP}{24}{subsubsection.2.11.2}\protected@file@percent }
@@ -89,6 +90,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Simulation Protocol for Amorphous Silicon}{28}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Atom Type Mapping}{28}{subsubsection.3.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}First Silicon Runs and Choice of Ensemble}{29}{subsubsection.3.3.2}\protected@file@percent }
+\newlabel{sec:firstruns}{{3.3.2}{29}{First Silicon Runs and Choice of Ensemble}{subsubsection.3.3.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cost of 5000 steps on 216 atoms. Force evaluation dominates throughout ($\geq 92\%$ of loop time) and no neighbour-list rebuilds occurred in any run.}}{29}{table.caption.10}\protected@file@percent }
 \newlabel{tab:firstruns}{{4}{29}{Cost of 5000 steps on 216 atoms. Force evaluation dominates throughout ($\geq 92\%$ of loop time) and no neighbour-list rebuilds occurred in any run}{table.caption.10}{}}
 \@writefile{toc}{\contentsline {paragraph}{The two potentials prefer different volumes.}{29}{section*.11}\protected@file@percent }
@@ -137,9 +139,8 @@
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 98.7\%$ CPU use in every run). The \texttt  {22.almtp} and pruned holds start from the \texttt  {22.almtp} melted configuration; the \texttt  {26.almtp} hold starts from the \texttt  {26.almtp} melt and was run for 0.4~ns, so its throughput rather than its wall time is the comparable quantity. No run recorded any dangerous neighbour-list builds.}}{37}{table.caption.19}\protected@file@percent }
 \newlabel{tab:melt_hold_bench}{{7}{37}{Melt and hold runs for 216 atoms on 8 MPI tasks (1 OpenMP thread each, $\geq 98.7\%$ CPU use in every run). The \texttt {22.almtp} and pruned holds start from the \texttt {22.almtp} melted configuration; the \texttt {26.almtp} hold starts from the \texttt {26.almtp} melt and was run for 0.4~ns, so its throughput rather than its wall time is the comparable quantity. No run recorded any dangerous neighbour-list builds}{table.caption.19}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.9}Structural Comparison of the Hold Trajectories}{38}{subsubsection.4.1.9}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Structural and dynamical properties of the liquid at 2500~K for each potential, averaged over the final XXX~ps of each hold. $r_1$ and $r_2$ are the first and second peaks of $g(r)$, $\bar  {n}$ the mean coordination number within a XXX~\r A{} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho $ the density from the mean box volume.}}{38}{table.caption.20}\protected@file@percent }
-\newlabel{tab:hold_structural}{{8}{38}{Structural and dynamical properties of the liquid at 2500~K for each potential, averaged over the final XXX~ps of each hold. $r_1$ and $r_2$ are the first and second peaks of $g(r)$, $\bar {n}$ the mean coordination number within a XXX~\AA {} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho $ the density from the mean box volume}{table.caption.20}{}}
-\citation{zhao2017}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Structural and dynamical properties of the liquid at 2500~K for each potential, computed over the final 30~ps of each hold. $r_1$ is the first peak of $g(r)$ and $r_{\min }$ the first minimum; the second peak is a shoulder of $g(r) \approx 1.02$ near 4~\r A{} and is too weak to locate reliably. $\bar  {n}$ is the mean coordination number within a 3.15~\r A{} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho $ the density from the mean box volume. The \texttt  {26.almtp} hold is 0.4~ns rather than 1~ns, so its dynamical statistics are correspondingly poorer.}}{38}{table.caption.20}\protected@file@percent }
+\newlabel{tab:hold_structural}{{8}{38}{Structural and dynamical properties of the liquid at 2500~K for each potential, computed over the final 30~ps of each hold. $r_1$ is the first peak of $g(r)$ and $r_{\min }$ the first minimum; the second peak is a shoulder of $g(r) \approx 1.02$ near 4~\AA {} and is too weak to locate reliably. $\bar {n}$ is the mean coordination number within a 3.15~\AA {} cutoff, $q$ the mean tetrahedral order parameter, $D$ the self-diffusion coefficient from the Einstein relation, and $\rho $ the density from the mean box volume. The \texttt {26.almtp} hold is 0.4~ns rather than 1~ns, so its dynamical statistics are correspondingly poorer}{table.caption.20}{}}
 \newlabel{fig:hold_rdf}{{10a}{39}{Radial distribution function}{figure.caption.21}{}}
 \newlabel{sub@fig:hold_rdf}{{a}{39}{Radial distribution function}{figure.caption.21}{}}
 \newlabel{fig:hold_msd}{{10b}{39}{Mean square displacement}{figure.caption.21}{}}
@@ -148,40 +149,46 @@
 \newlabel{sub@fig:hold_cn}{{c}{39}{Coordination number}{figure.caption.21}{}}
 \newlabel{fig:hold_top}{{10d}{39}{Tetrahedral order parameter}{figure.caption.21}{}}
 \newlabel{sub@fig:hold_top}{{d}{39}{Tetrahedral order parameter}{figure.caption.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces XXX All five hold trajectories overlaid at 2500~K. XXX}}{39}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:hold_comparison}{{10}{39}{XXX All five hold trajectories overlaid at 2500~K. XXX}{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces All five hold trajectories at 2500~K, computed over the final 30~ps of each run. (a) The $g(r)$ curves are indistinguishable, sharing a first peak at 2.44~\r A{} and showing no structure beyond the first minimum. (b) The MSD is linear and unbounded for every potential, confirming a fully diffusive liquid; \texttt  {26.almtp} is the only visible outlier and is also the only 0.4~ns run. (c) Coordination distributions overlay to within one percentage point at every coordination number. (d) The tetrahedral order parameter distributions are likewise indistinguishable, all peaking near $q = 0.5$.}}{39}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:hold_comparison}{{10}{39}{All five hold trajectories at 2500~K, computed over the final 30~ps of each run. (a) The $g(r)$ curves are indistinguishable, sharing a first peak at 2.44~\AA {} and showing no structure beyond the first minimum. (b) The MSD is linear and unbounded for every potential, confirming a fully diffusive liquid; \texttt {26.almtp} is the only visible outlier and is also the only 0.4~ns run. (c) Coordination distributions overlay to within one percentage point at every coordination number. (d) The tetrahedral order parameter distributions are likewise indistinguishable, all peaking near $q = 0.5$}{figure.caption.21}{}}
 \@writefile{toc}{\contentsline {paragraph}{Do the pruned potentials reproduce the reference liquid?}{39}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Comparison with published liquid silicon.}{39}{section*.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implication for the quench.}{39}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{40}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{40}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{41}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B}Bond-Orientational Order Parameters}{41}{appendix.B}\protected@file@percent }
-\newlabel{BOO}{{B}{41}{Bond-Orientational Order Parameters}{appendix.B}{}}
-\newlabel{eq:steinhardt}{{13}{41}{Bond-Orientational Order Parameters}{equation.13}{}}
+\citation{zhao2017}
+\@writefile{toc}{\contentsline {paragraph}{Comparison with published liquid silicon.}{40}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implication for the quench.}{40}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.10}Quench P22}{41}{subsubsection.4.1.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.11}Quench pruned\_1}{41}{subsubsection.4.1.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.12}Quench pruned\_2}{41}{subsubsection.4.1.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.13}Quench pruned\_3}{41}{subsubsection.4.1.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{41}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{41}{section.6}\protected@file@percent }
+\citation{mickel2013}
+\@writefile{toc}{\contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{42}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Bond-Orientational Order Parameters}{42}{appendix.B}\protected@file@percent }
+\newlabel{BOO}{{B}{42}{Bond-Orientational Order Parameters}{appendix.B}{}}
+\newlabel{eq:steinhardt}{{13}{42}{Bond-Orientational Order Parameters}{equation.13}{}}
 \citation{steinhardt1983}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Command References}{42}{appendix.C}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}PuTTY}{42}{subsection.C.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.1}Navigating and editing files (Linux)}{42}{subsubsection.C.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.2}Build Environment Commands}{43}{subsubsection.C.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.3}Job Submission Commands}{43}{subsubsection.C.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.4}CMake Options Used in the Build Scripts}{43}{subsubsection.C.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.5}Running LAMMPS}{44}{subsubsection.C.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2}Tk Console}{44}{subsection.C.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.1}Navigating to the files}{44}{subsubsection.C.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.2}Loading a single configuration (data file)}{44}{subsubsection.C.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.3}Loading a full trajectory (many frames)}{44}{subsubsection.C.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.4}Drawing the simulation box}{44}{subsubsection.C.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.3}Input Script}{44}{subsection.C.3}\protected@file@percent }
-\newlabel{InputScript}{{C.3}{44}{Input Script}{subsection.C.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.4}Job Submission Script}{47}{subsection.C.4}\protected@file@percent }
-\newlabel{JSS}{{C.4}{47}{Job Submission Script}{subsection.C.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Further Viewing and References}{48}{appendix.D}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Command References}{43}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}PuTTY}{43}{subsection.C.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.1}Navigating and editing files (Linux)}{43}{subsubsection.C.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.2}Build Environment Commands}{44}{subsubsection.C.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.3}Job Submission Commands}{44}{subsubsection.C.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.4}CMake Options Used in the Build Scripts}{44}{subsubsection.C.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1.5}Running LAMMPS}{45}{subsubsection.C.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2}Tk Console}{45}{subsection.C.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.1}Navigating to the files}{45}{subsubsection.C.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.2}Loading a single configuration (data file)}{45}{subsubsection.C.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.3}Loading a full trajectory (many frames)}{45}{subsubsection.C.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2.4}Drawing the simulation box}{45}{subsubsection.C.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.3}Input Script}{45}{subsection.C.3}\protected@file@percent }
+\newlabel{InputScript}{{C.3}{45}{Input Script}{subsection.C.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.4}Job Submission Script}{48}{subsection.C.4}\protected@file@percent }
+\newlabel{JSS}{{C.4}{48}{Job Submission Script}{subsection.C.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Further Viewing and References}{49}{appendix.D}\protected@file@percent }
 \bibcite{ref1}{1}
 \bibcite{chau1998}{2}
 \bibcite{errington2001}{3}
 \bibcite{zhao2017}{4}
 \bibcite{steinhardt1983}{5}
 \bibcite{mickel2013}{6}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Bibliography}{49}{appendix.E}\protected@file@percent }
-\gdef \@abspage@last{51}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Bibliography}{50}{appendix.E}\protected@file@percent }
+\gdef \@abspage@last{54}
