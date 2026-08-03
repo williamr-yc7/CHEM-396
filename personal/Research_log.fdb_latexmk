@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1785780278.69937 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" "Research_log.pdf" "Research_log" 1785780289.66257 0
+["pdflatex"] 1785791590.80371 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" "Research_log.pdf" "Research_log" 1785791615.60127 0
   "../python/coord_num/hold_all_cn_output.png" 1785538313 87926 68aed6382292b5e52f9213269fb56ca6 ""
   "../python/coord_num/melt_P22_cn_output.png" 1785530842 72655 52051c4c10c32912b98e099bf5ea640a ""
   "../python/coord_num/melt_P26_cn_output.png" 1785536377 72647 e5841a86fd21a8779032e41298b39787 ""
@@ -263,14 +263,14 @@
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "Continuous Random Network.png" 1781911944 1414115 1549c7ad7427cefb10a9a386e3451e1e ""
-  "Research_log.aux" 1785780288 30366 4c462bcf6947b13ab9e4057818dd1182 "pdflatex"
-  "Research_log.out" 1785780288 16396 80add8161f0e7a0bbb3197f584435b01 "pdflatex"
-  "Research_log.tex" 1785780275 127793 7883f119c0dcec2b1cd870130108511f ""
-  "Research_log.toc" 1785780288 9109 957b7dc7b65e9b219df96c7fccc18971 "pdflatex"
+  "Research_log.aux" 1785791614 31051 a82c1828ef452b0441de5b62ae1dd2ce "pdflatex"
+  "Research_log.out" 1785791614 16145 155d5227b5dec80ca89dbcfbe1d6f982 "pdflatex"
+  "Research_log.tex" 1785791569 131635 3810db84035f4fe80091bb4d6c761187 ""
+  "Research_log.toc" 1785791614 8926 6419c491f4b29b196f946619c941f9a1 "pdflatex"
   "VMDtestLJSub.png" 1782831395 386947 54b81fe3aac6cf458e3483c665b58839 ""
   "Wooten-Winer-Weaire.png" 1781844803 1474632 2998dde218fde01904d6ccbe22a16b79 ""
   "c-Si-vs-a-Si.jpg" 1782090634 32787 c073ecb01ff466087cdd70e0b25f60d4 ""
-  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" 1785780275 127793 7883f119c0dcec2b1cd870130108511f ""
+  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" 1785791569 131635 3810db84035f4fe80091bb4d6c761187 ""
   "melt_216_22almtp_2500K_final.png" 1784930517 65749 19dfc6a73c9d053705422d83f2e7619d ""
   "paracrystallinity.png" 1783271601 2245367 2cd980b730192a6b9601cefca7eaa5ff ""
   (generated)
