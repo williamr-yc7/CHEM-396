@@ -402,8 +402,8 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
-INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx8.tfm
+INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmitt10.tfm
 INPUT .\VMDtestLJSub.png
 INPUT .\VMDtestLJSub.png
@@ -449,13 +449,6 @@ INPUT ..\python\top\melt_P22_top_output.png
 INPUT ..\python\top\melt_P22_top_output.png
 INPUT ..\python\top\melt_P22_top_output.png
 INPUT ..\python\top\melt_P22_top_output.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
-INPUT .\melt_216_22almtp_2500K_final.png
 INPUT ..\python\radial_dist_fct\melt_P26_rdf_output.png
 INPUT ..\python\radial_dist_fct\melt_P26_rdf_output.png
 INPUT ..\python\radial_dist_fct\melt_P26_rdf_output.png
@@ -484,6 +477,13 @@ INPUT ..\python\top\melt_P26_top_output.png
 INPUT ..\python\top\melt_P26_top_output.png
 INPUT ..\python\top\melt_P26_top_output.png
 INPUT ..\python\top\melt_P26_top_output.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
+INPUT .\melt_216_22almtp_2500K_final.png
 INPUT ..\python\radial_dist_fct\hold_all_rdf_output.png
 INPUT ..\python\radial_dist_fct\hold_all_rdf_output.png
 INPUT ..\python\radial_dist_fct\hold_all_rdf_output.png
@@ -512,6 +512,7 @@ INPUT ..\python\top\hold_all_top_output.png
 INPUT ..\python\top\hold_all_top_output.png
 INPUT ..\python\top\hold_all_top_output.png
 INPUT ..\python\top\hold_all_top_output.png
+INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
 INPUT Research_log.aux
 INPUT .\Research_log.out
 INPUT .\Research_log.out
@@ -565,5 +566,7 @@ INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
+INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt8.pfb
+INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt8.pfb
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt9.pfb
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt9.pfb
