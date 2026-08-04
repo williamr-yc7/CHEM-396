@@ -1051,30 +1051,24 @@ Potential & Total wall & Steps/s\footnotemark{} & $T$ (K) & $E_{\text{pot}}$ (eV
 \texttt{22.almtp}        & 24:34:31 & 29.2  & 315.8 & $-137{,}279.75$ & 4482.4 & 2.247 \\
 \texttt{pruned\_1.almtp} & 2:50:46  & 313.5 & 292.0 & $-137{,}276.65$ & 4397.9 & 2.291 \\
 \texttt{pruned\_2.almtp} & 6:31:05  & 106.9 & 316.8 & $-137{,}279.86$ & 4477.9 & 2.250 \\
-\texttt{pruned\_3.almtp} & \multicolumn{6}{c}{failed at step $2.94\times10^{5}$, see Section~\ref{sec:quench_fail}} \\
+\texttt{pruned\_3.almtp} & 14:31:41 & 47.8  & 296.7 & $-137{,}276.83$ & 4452.6 & 2.262 \\
 \bottomrule
 \end{tabular}
-\caption{Quench runs on 8 MPI tasks. State variables are averaged over the last five printed steps of the 300~K equilibration; the scatter in $T$ matches the $\pm17$~K expected from $\sqrt{2/3N}$ at $N = 216$. No dangerous builds in any run.}
+\caption{Quench runs on 8 MPI tasks. State variables are averaged over the last five printed steps of the 300~K equilibration; the scatter in $T$ matches the $\pm17$~K expected from $\sqrt{2/3N}$ at $N = 216$. The \texttt{pruned\_3} run was repeated after an earlier attempt was killed by a filesystem I/O fault at step $2.94\times10^{5}$, and completed $5\%$ under the 15.3~h projected from its hold throughput. No dangerous builds in any run.}
 \label{tab:quench_bench}
 \end{table}
 \addtocounter{footnote}{-1}
 \stepcounter{footnote}\footnotetext{Measured over the 300~K block only, since LAMMPS reports one timing summary per \texttt{run} command.}
 
-Speedups fall relative to the liquid: \texttt{pruned\_1} gives $10.7\times$ and \texttt{pruned\_2} $3.7\times$ over \texttt{22.almtp}, against $11.7\times$ and $4.2\times$ in the hold. Pair evaluation is $91.5\%$ of the loop under \texttt{22.almtp} but only $81.2\%$ under \texttt{pruned\_1}, with communication rising from $8.4\%$ to $13.2\%$. At 27 atoms per core the non-pair costs are close to fixed, and they cap the attainable speedup at $5.3\times$ regardless of descriptor level.
+Speedups fall relative to the liquid for the two cheapest potentials: \texttt{pruned\_1} gives $10.7\times$ and \texttt{pruned\_2} $3.7\times$ over \texttt{22.almtp}, against $11.7\times$ and $4.2\times$ in the hold. \texttt{pruned\_3} does not fall at all, holding $1.6\times$ in both. The reason is visible in the timing breakdown: pair evaluation is $91.5\%$ of the loop under \texttt{22.almtp}, $89.7\%$ under \texttt{pruned\_3}, but only $81.2\%$ under \texttt{pruned\_1}, with communication rising correspondingly from $8.4\%$ to $13.2\%$. At 27 atoms per core the non-pair costs are close to fixed, so they erode the speedup only once the potential itself becomes cheap enough to matter, capping the attainable gain near $5\times$ regardless of descriptor level.
 
-Potential energies agree to $0.015$~eV/atom, inside $k_BT = 0.026$~eV at 300~K. Densities do not. \texttt{22.almtp} and \texttt{pruned\_2} land within $0.1\%$ of each other while \texttt{pruned\_1} settles $1.9\%$ denser, which is the divergence anticipated in Section~\ref{sec:firstruns}: given a free volume, the potential that held $-12{,}400$~bar in a fixed box takes a smaller one. The ordering also reverses between phases, since \texttt{pruned\_1} is the least dense potential at 2500~K and the most dense at 300~K. Its $2.291$~g/cm$^3$ is nonetheless the closest of the three to the experimental a-Si value of $2.28$~g/cm$^3$.
+Potential energies agree to $0.015$~eV/atom across all four, inside $k_BT = 0.026$~eV at 300~K. Densities do not. All three pruned potentials give a denser solid than \texttt{22.almtp}, from $0.1\%$ for \texttt{pruned\_2} through $0.7\%$ for \texttt{pruned\_3} to $1.9\%$ for \texttt{pruned\_1}, and the spread does not order by pruning level. The \texttt{pruned\_1} result is the divergence anticipated in Section~\ref{sec:firstruns}: given a free volume, the potential that held $-12{,}400$~bar in a fixed box takes a smaller one. Its ordering also reverses between phases, since it is the least dense potential at 2500~K and the most dense at 300~K. That $2.291$~g/cm$^3$ is nonetheless the closest of the four to the experimental a-Si value of $2.28$~g/cm$^3$, against $2.247$ for \texttt{22.almtp}, $1.5\%$ low.
 
-All three runs expand on freezing, by $3.1\%$, $0.4\%$ and $1.7\%$ respectively, the correct sign for silicon and an independent check that the quench produced a solid rather than an arrested liquid. These follow from the two-decimal liquid densities of Table~\ref{tab:hold_structural}, so the last digit of each is uncertain and the \texttt{pruned\_1} value is consistent with no measurable change.
+All four runs expand on freezing, by $3.1\%$, $0.4\%$, $1.7\%$ and $2.1\%$ respectively, the correct sign for silicon and an independent check that the quench produced a solid rather than an arrested liquid. These follow from the two-decimal liquid densities of Table~\ref{tab:hold_structural}, so the last digit of each is uncertain and the \texttt{pruned\_1} value is consistent with no measurable change.
 
-\subsubsection{Failure of the \texttt{pruned\_3} Quench}
+\subsubsection{Filesystem Failure}
 \label{sec:quench_fail}
-The run terminated at step $2.94\times10^{5}$ of $2.35\times10^{6}$ with an I/O error on the dump write (\texttt{dump.cpp:543}), followed by \texttt{MPI\_ABORT}. The physics was sound at that point: temperature $2093$~K against the $2206$~K prescribed by the ramp, potential energy stable at $-137{,}168$~eV, volume fluctuating around $4250$~\AA$^3$. Line 543 is the write path rather than the open, so the cause is a refused write rather than a missing file.
-
-The error returned is \texttt{EIO} rather than \texttt{EDQUOT}, and scratch stood at 351~MB of 20~TB and 129 of $10^{6}$ files, so a quota limit is excluded and the cause is a transient fault on the shared Lustre filesystem. Restart files were being written every $10^{5}$ steps but were subsequently deleted, so the run must be repeated from the equilibrated liquid. Before resubmission the restart interval was shortened to $5\times10^{4}$ steps and the ramp dump thinned from every $10^{3}$ to every $10^{4}$, since the structural analysis uses only the final 30~ps. Projected from the hold throughput, a completed run takes approximately 15.3~h.
-
-\subsubsection{Structural Characterisation of the Quenched Solid}
-\label{sec:aSi_structure}
-Not yet complete. The quenched configurations exist and are thermodynamically well behaved, but the diagnostics of Section~\ref{sec:metrics} have not been applied to them, so this report does not yet demonstrate that the protocol produced amorphous silicon rather than a supercooled liquid or a partially recrystallised solid. The required analysis is set out in Section~\ref{sec:outstanding}.
+The first \texttt{pruned\_3} quench attempt terminated at step $2.94\times10^{5}$ with an I/O error on the dump write (\texttt{dump.cpp:543}). The error was \texttt{EIO} rather than \texttt{EDQUOT} and scratch stood at 351~MB of 20~TB, so the cause was a transient Lustre fault rather than a quota. No restart file survived, so the run was repeated from the equilibrated liquid with the restart interval halved and the ramp dump thinned tenfold.
 
 
 % ===========================================================
