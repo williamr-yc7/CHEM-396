@@ -1,0 +1,21 @@
+# Bond cutoff: 2.85 A
+
+22.almtp: mean = 4.019
+   3-fold: 0.9%
+   4-fold: 96.3%
+   5-fold: 2.8%
+
+pruned_1: mean = 4.081
+   4-fold: 92.0%
+   5-fold: 7.8%
+   6-fold: 0.2%
+
+pruned_2: mean = 4.040
+   3-fold: 0.1%
+   4-fold: 95.8%
+   5-fold: 4.1%
+
+pruned_3: mean = 4.013
+   3-fold: 1.4%
+   4-fold: 96.0%
+   5-fold: 2.6%

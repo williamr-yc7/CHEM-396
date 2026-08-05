@@ -1,0 +1,4 @@
+22.almtp: final MSD = 0.06 A^2 after 150.0 ps, D = -4.743e-14 m^2/s
+pruned_1: final MSD = 0.05 A^2 after 150.0 ps, D = 7.708e-15 m^2/s
+pruned_2: final MSD = 0.06 A^2 after 150.0 ps, D = 8.336e-14 m^2/s
+pruned_3: final MSD = 0.05 A^2 after 150.0 ps, D = -2.675e-14 m^2/s

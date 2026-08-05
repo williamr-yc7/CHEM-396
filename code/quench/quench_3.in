@@ -1,0 +1,32 @@
+# Quench stage: cooling liquid silicon from 2500 K to 300 K at 1 K/ps
+# 2,200,000 steps ramp + 150,000 steps equilibration at 300 K
+# 216 atoms, NPT (box free to resize at 0 bar), potential pruned_2.almtp
+# continues from the equilibrated liquid in ../hold/potential_pruned2/
+# type 1 = Si, type 2 = O (confirmed by density test); only Si used here
+
+# ---- Setup ----
+units		metal              # eV, Angstroms, kelvin, ps
+atom_style 	atomic
+dimension	3
+boundary        p p p              # periodic in x, y, z
+
+# ---- Build the system ----
+read_data ../hold/potential_pruned2/melt_22/hold_216_2500K_pruned_2.end_sim
+
+# ---- Potential ----
+pair_style 	mtp /home/williamh/sio_mtps/pruned/pruned_2.almtp
+
+# ---- Run settings ----
+fix		1 all npt temp 2500.0 300.0 0.1 iso 0 0 1.0   # box free to resize at 0 bar
+timestep 	0.001              # 1 fs
+thermo_style	custom step temp press vol pe
+thermo		100
+dump 		1 all atom 1000 potential_pruned2/dump_quench_216_300K_pruned2.lammpstrj
+restart		100000 potential_pruned2/quench_pruned2.restart1 potential_pruned2/quench_pruned2.restart2
+run		2200000
+unfix		1
+undump		1
+fix		2 all npt temp 300.0 300.0 0.1 iso 0 0 1.0
+dump 		2 all atom 100 potential_pruned2/dump_qhold_216_300K_pruned2.lammpstrj
+run		150000
+write_data	potential_pruned2/quench_216_2500K_pruned2.end_sim
