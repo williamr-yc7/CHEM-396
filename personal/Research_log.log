@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  7 AUG 2026 17:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  7 AUG 2026 18:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -657,7 +657,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.112 ...r Viewing and References}{52}{appendix.E}
+l.114 ...r Viewing and References}{54}{appendix.E}
                                                   % [2])
 \tf@toc=\write5
 \openout5 = `Research_log.toc'.
@@ -976,107 +976,149 @@ File: ../python/top/quench_hold_all_top_output.png Graphic file (type png)
 <use ../python/top/quench_hold_all_top_output.png>
 Package pdftex.def Info: ../python/top/quench_hold_all_top_output.png  used on input line 1170.
 (pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
-[40] [41 <../python/radial_dist_fct/quench_hold_all_rdf_output.png> <../python/msd/quench_hold_all_msd_output.png> <../python/coord_num/quench_hold_all_cn_output.png> <../python/top/quench_hold_all_top_output.png>] [42] [43
+[40] [41 <../python/radial_dist_fct/quench_hold_all_rdf_output.png> <../python/msd/quench_hold_all_msd_output.png> <../python/coord_num/quench_hold_all_cn_output.png> <../python/top/quench_hold_all_top_output.png>]
+<../python/vibrations/vibration_amplitude_22.png, id=933, 433.62pt x 289.08pt>
+File: ../python/vibrations/vibration_amplitude_22.png Graphic file (type png)
+<use ../python/vibrations/vibration_amplitude_22.png>
+Package pdftex.def Info: ../python/vibrations/vibration_amplitude_22.png  used on input line 1202.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/vibration_amplitude_pruned_1.png, id=934, 433.62pt x 289.08pt>
+File: ../python/vibrations/vibration_amplitude_pruned_1.png Graphic file (type png)
+<use ../python/vibrations/vibration_amplitude_pruned_1.png>
+Package pdftex.def Info: ../python/vibrations/vibration_amplitude_pruned_1.png  used on input line 1209.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/vibration_amplitude_pruned_2.png, id=935, 433.62pt x 289.08pt>
+File: ../python/vibrations/vibration_amplitude_pruned_2.png Graphic file (type png)
+<use ../python/vibrations/vibration_amplitude_pruned_2.png>
+Package pdftex.def Info: ../python/vibrations/vibration_amplitude_pruned_2.png  used on input line 1216.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/vibration_amplitude_pruned_3.png, id=936, 433.62pt x 289.08pt>
+File: ../python/vibrations/vibration_amplitude_pruned_3.png Graphic file (type png)
+<use ../python/vibrations/vibration_amplitude_pruned_3.png>
+Package pdftex.def Info: ../python/vibrations/vibration_amplitude_pruned_3.png  used on input line 1223.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+ [42]
+<../python/vibrations/max_displacement_22.png, id=945, 433.62pt x 289.08pt>
+File: ../python/vibrations/max_displacement_22.png Graphic file (type png)
+<use ../python/vibrations/max_displacement_22.png>
+Package pdftex.def Info: ../python/vibrations/max_displacement_22.png  used on input line 1237.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/max_displacement_pruned_1.png, id=946, 433.62pt x 289.08pt>
+File: ../python/vibrations/max_displacement_pruned_1.png Graphic file (type png)
+<use ../python/vibrations/max_displacement_pruned_1.png>
+Package pdftex.def Info: ../python/vibrations/max_displacement_pruned_1.png  used on input line 1244.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/max_displacement_pruned_2.png, id=947, 433.62pt x 289.08pt>
+File: ../python/vibrations/max_displacement_pruned_2.png Graphic file (type png)
+<use ../python/vibrations/max_displacement_pruned_2.png>
+Package pdftex.def Info: ../python/vibrations/max_displacement_pruned_2.png  used on input line 1251.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+<../python/vibrations/max_displacement_pruned_3.png, id=948, 433.62pt x 289.08pt>
+File: ../python/vibrations/max_displacement_pruned_3.png Graphic file (type png)
+<use ../python/vibrations/max_displacement_pruned_3.png>
+Package pdftex.def Info: ../python/vibrations/max_displacement_pruned_3.png  used on input line 1258.
+(pdftex.def)             Requested size: 165.59853pt x 110.3985pt.
+ [43 <../python/vibrations/vibration_amplitude_22.png> <../python/vibrations/vibration_amplitude_pruned_1.png> <../python/vibrations/vibration_amplitude_pruned_2.png> <../python/vibrations/vibration_amplitude_pruned_3.png>] [44 <../python/vibrations/max_displacement_22.png> <../python/vibrations/max_displacement_pruned_1.png> <../python/vibrations/max_displacement_pruned_2.png> <../python/vibrations/max_displacement_pruned_3.png>] [45
 
 ]
-Underfull \hbox (badness 1231) in paragraph at lines 1254--1255
+Underfull \hbox (badness 1231) in paragraph at lines 1324--1325
 []\OT1/cmr/m/n/9 Melt of the 216-atom di-a-mond lat-tice to 2500 K with
  []
 
-[44]
+[46]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1271.
- [45]
-Overfull \hbox (3.30426pt too wide) in paragraph at lines 1284--1285
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1341.
+ [47]
+Overfull \hbox (3.30426pt too wide) in paragraph at lines 1354--1355
 []\OT1/cmr/m/n/10 # Write ev-ery-thing be-tween the mark-
  []
 
 
-Overfull \hbox (19.99219pt too wide) in paragraph at lines 1287--1288
+Overfull \hbox (19.99219pt too wide) in paragraph at lines 1357--1358
 []\OT1/cmr/m/n/10 # Shows your cur-rent disk us-age and quota. Ac-cepts \OT1/cmtt/m/n/10 --scratch\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (11.33052pt too wide) in paragraph at lines 1292--1293
+Overfull \hbox (11.33052pt too wide) in paragraph at lines 1362--1363
 []\OT1/cmr/m/n/10 # Ac-
  []
 
 
-Overfull \hbox (95.7462pt too wide) in paragraph at lines 1299--1300
+Overfull \hbox (95.7462pt too wide) in paragraph at lines 1369--1370
 []
  []
 
 
-Overfull \hbox (27.4968pt too wide) in paragraph at lines 1300--1301
+Overfull \hbox (27.4968pt too wide) in paragraph at lines 1370--1371
 []
  []
 
-[46]
-Overfull \hbox (1.27971pt too wide) in paragraph at lines 1318--1319
+[48]
+Overfull \hbox (1.27971pt too wide) in paragraph at lines 1388--1389
 []\OT1/cmr/m/n/10 # Com-piles CPU code for the AVX2
  []
 
 
-Overfull \hbox (17.94229pt too wide) in paragraph at lines 1341--1342
+Overfull \hbox (17.94229pt too wide) in paragraph at lines 1411--1412
 []\OT1/cmr/m/n/10 # Loads a LAMMPS
  []
 
-[47]
-Overfull \hbox (16.56985pt too wide) in paragraph at lines 1360--1361
+[49]
+Overfull \hbox (16.56985pt too wide) in paragraph at lines 1430--1431
 []\OT1/cmr/m/n/10 # De-fines a cu-bic re-gion named
  []
 
-[48]
-Overfull \hbox (9.29886pt too wide) in paragraph at lines 1364--1365
+[50]
+Overfull \hbox (9.29886pt too wide) in paragraph at lines 1434--1435
 []\OT1/cmr/m/n/10 # As-signs ran-dom ini-
  []
 
 
-Overfull \hbox (287.89445pt too wide) in paragraph at lines 1372--1373
+Overfull \hbox (287.89445pt too wide) in paragraph at lines 1442--1443
 []
  []
 
-[49]
-Overfull \hbox (97.4261pt too wide) in paragraph at lines 1373--1374
+[51]
+Overfull \hbox (97.4261pt too wide) in paragraph at lines 1443--1444
 []
  []
 
-[50]
-Overfull \hbox (2.03362pt too wide) in paragraph at lines 1391--1392
+[52]
+Overfull \hbox (2.03362pt too wide) in paragraph at lines 1461--1462
 []\OT1/cmr/m/n/10 # Points the shell to the custom-built LAMMPS ex-e-cutable
  []
 
 
-Overfull \hbox (5.60664pt too wide) in paragraph at lines 1393--1394
+Overfull \hbox (5.60664pt too wide) in paragraph at lines 1463--1464
 []\OT1/cmr/m/n/10 # Ex-
  []
 
-[51]
-Underfull \hbox (badness 10000) in paragraph at lines 1426--1427
+[53]
+Underfull \hbox (badness 10000) in paragraph at lines 1496--1497
 
  []
 
 
-Overfull \hbox (31.7956pt too wide) in paragraph at lines 1438--1439
+Overfull \hbox (31.7956pt too wide) in paragraph at lines 1508--1509
 []\OT1/cmr/m/n/10 Digital Re-search Al-liance of Canada. ``LAMMPS.'' [][]$\OT1/cmtt/m/n/10 https : / / docs . alliancecan .
  []
 
 
-Overfull \hbox (29.28058pt too wide) in paragraph at lines 1439--1440
+Overfull \hbox (29.28058pt too wide) in paragraph at lines 1509--1510
 \OT1/cmr/m/n/10 Glass-formers'' (dataset). [][]$\OT1/cmtt/m/n/10 https : / / aip . figshare . com / collections / MAPping _
  []
 
 
-Overfull \hbox (12.18347pt too wide) in paragraph at lines 1442--1443
+Overfull \hbox (12.18347pt too wide) in paragraph at lines 1512--1513
 []\OT1/cmr/m/n/10 Steinhardt pa-ram-e-ters. [][]$\OT1/cmtt/m/n/10 https : / / www . youtube . com / watch ? v = ou0uKgK35lE$[][]\OT1/cmr/m/n/10 . 
  []
 
-[52]
-Underfull \hbox (badness 2418) in paragraph at lines 1470--1472
+[54]
+Underfull \hbox (badness 2418) in paragraph at lines 1540--1542
 []\OT1/cmr/m/n/10 Y. Meng et al., ``Kokkos-accelerated mo-ment ten-sor po-ten-tials in
  []
 
-[53] [54] [55] (Research_log.aux)
+[55] [56] [57] (Research_log.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -1085,10 +1127,10 @@ Package rerunfilecheck Info: File `Research_log.out' has not changed.
 (rerunfilecheck)             Checksum: E0E070BE7EDE68FA12CA0674D40FD7CA;15068.
  ) 
 Here is how much of TeX's memory you used:
- 51247 strings out of 467871
- 1324458 string characters out of 5418377
- 2067802 words of memory out of 5000000
- 79237 multiletter control sequences out of 15000+600000
+ 51327 strings out of 467871
+ 1327994 string characters out of 5418377
+ 2069059 words of memory out of 5000000
+ 79311 multiletter control sequences out of 15000+600000
  641063 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,16n,118p,970b,639s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1102,9 +1144,9 @@ pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\erenr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Research_log.pdf (59 pages, 7646620 bytes).
+Output written on Research_log.pdf (61 pages, 7995874 bytes).
 PDF statistics:
- 1244 PDF objects out of 1440 (max. 8388607)
- 323 named destinations out of 1000 (max. 500000)
- 803 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1276 PDF objects out of 1440 (max. 8388607)
+ 329 named destinations out of 1000 (max. 500000)
+ 843 words of extra memory for PDF output out of 10000 (max. 10000000)
 

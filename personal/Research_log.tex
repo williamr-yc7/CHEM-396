@@ -1193,6 +1193,76 @@ Zongo et al.~\cite{zongo2025} built two 216-atom models with the same potential 
 \paragraph{Correlation length.}
 Fitting $r\,|g(r)-1| \sim e^{-r/\xi}$ through the extrema of $g(r)-1$ between $3$~\AA{} and $L/2 = 8.3$~\AA{} does not give a usable number. Only six or seven extrema fall in that window, the four potentials return $\xi$ between $1.26$ and $2.89$~\AA, and $R^2$ ranges from $0.40$ to $0.60$. The low values are unphysical: $\xi \approx 1.3$~\AA{} is shorter than a Si--Si bond and would rule out the second peak at $3.88$~\AA{} that all four runs show. The box is the limit. Measuring $\xi$ properly needs one several times the expected $7$ to $8$~\AA.
 
+\paragraph{Vibration amplitude.}
+Atoms stay near their sites. The mean amplitude is $0.139$ to $0.150$~\AA{} across the four potentials, rms $0.152$ to $0.166$~\AA, which matches the MSD plateau of Table~\ref{tab:quench_structural}.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/vibration_amplitude_22.png}
+        \caption{\texttt{22.almtp}}
+        \label{fig:vib_22}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/vibration_amplitude_pruned_1.png}
+        \caption{\texttt{pruned\_1.almtp}}
+        \label{fig:vib_pr1}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/vibration_amplitude_pruned_2.png}
+        \caption{\texttt{pruned\_2.almtp}}
+        \label{fig:vib_pr2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/vibration_amplitude_pruned_3.png}
+        \caption{\texttt{pruned\_3.almtp}}
+        \label{fig:vib_pr3}
+    \end{subfigure}
+    \caption{Distribution of atomic displacement from the average position, over the full 150~ps equilibration at 300~K. Coordinates are unwrapped and the centre of mass drift is removed. The dashed line marks the $0.5$~\AA{} voxel size.}
+    \label{fig:vibrations}
+\end{figure}
+
+\paragraph{Maximum displacement.}
+No atom moves by its own size. The largest displacement from the start is $1.61$, $1.47$, $1.34$ and $1.89$~\AA, all under the $2.35$~\AA{} bond length. Repeating over $1$, $5$ and $10$~ps windows, which would catch a jump that reverses, reaches $1.79$~\AA{} at most. The spikes that appear come back down.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/max_displacement_22.png}
+        \caption{\texttt{22.almtp}}
+        \label{fig:disp_22}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/max_displacement_pruned_1.png}
+        \caption{\texttt{pruned\_1.almtp}}
+        \label{fig:disp_pr1}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/max_displacement_pruned_2.png}
+        \caption{\texttt{pruned\_2.almtp}}
+        \label{fig:disp_pr2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../python/vibrations/max_displacement_pruned_3.png}
+        \caption{\texttt{pruned\_3.almtp}}
+        \label{fig:disp_pr3}
+    \end{subfigure}
+    \caption{Largest displacement from the starting position at each frame, over the full 150~ps equilibration at 300~K. The dashed line marks $2.3$~\AA, roughly one Si--Si bond length. No potential reaches it.}
+    \label{fig:max_displacement}
+\end{figure}
+
 % ===========================================================
 %  5. DISCUSSION
 % ===========================================================
