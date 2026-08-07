@@ -32,16 +32,16 @@
 \contentsline {subsection}{\numberline {2.8}Morphological Autoregressive Protocol}{20}{subsection.2.8}%
 \contentsline {subsubsection}{\numberline {2.8.1}The MAP Framework}{20}{subsubsection.2.8.1}%
 \contentsline {subsubsection}{\numberline {2.8.2}MAP as an Anomaly Detector}{21}{subsubsection.2.8.2}%
-\contentsline {subsection}{\numberline {2.9}Thermodynamic Ensembles}{22}{subsection.2.9}%
-\contentsline {subsection}{\numberline {2.10}Narval}{23}{subsection.2.10}%
-\contentsline {subsubsection}{\numberline {2.10.1}Compiling on a Compute Node}{23}{subsubsection.2.10.1}%
+\contentsline {subsection}{\numberline {2.9}Thermodynamic Ensembles}{21}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Narval}{22}{subsection.2.10}%
+\contentsline {subsubsection}{\numberline {2.10.1}Compiling on a Compute Node}{22}{subsubsection.2.10.1}%
 \contentsline {subsubsection}{\numberline {2.10.2}Filesystems and Their Quotas}{23}{subsubsection.2.10.2}%
 \contentsline {subsection}{\numberline {2.11}LAMMPS}{23}{subsection.2.11}%
-\contentsline {subsubsection}{\numberline {2.11.1}Simulation Workflow}{24}{subsubsection.2.11.1}%
-\contentsline {subsubsection}{\numberline {2.11.2}Combining LAMMPS with the MTP}{24}{subsubsection.2.11.2}%
+\contentsline {subsubsection}{\numberline {2.11.1}Simulation Workflow}{23}{subsubsection.2.11.1}%
+\contentsline {subsubsection}{\numberline {2.11.2}Combining LAMMPS with the MTP}{23}{subsubsection.2.11.2}%
 \contentsline {subsection}{\numberline {2.12}WinSCP}{24}{subsection.2.12}%
-\contentsline {subsection}{\numberline {2.13}PuTTY}{25}{subsection.2.13}%
-\contentsline {subsubsection}{\numberline {2.13.1}Interactive Jobs}{25}{subsubsection.2.13.1}%
+\contentsline {subsection}{\numberline {2.13}PuTTY}{24}{subsection.2.13}%
+\contentsline {subsubsection}{\numberline {2.13.1}Interactive Jobs}{24}{subsubsection.2.13.1}%
 \contentsline {subsection}{\numberline {2.14}Visual Molecular Dynamics}{25}{subsection.2.14}%
 \contentsline {section}{\numberline {3}Methodology}{26}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Toolchain Validation: Lennard-Jones Melt}{26}{subsection.3.1}%
@@ -60,12 +60,36 @@
 \contentsline {subsubsection}{\numberline {3.3.5}Projected Cost}{32}{subsubsection.3.3.5}%
 \contentsline {section}{\numberline {4}Results}{33}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Melt}{33}{subsection.4.1}%
-\contentsline {paragraph}{The two potentials produce the same liquid.}{36}{section*.21}%
+\contentsline {paragraph}{Radial distribution function.}{33}{section*.18}%
+\contentsline {paragraph}{Coordination number.}{34}{section*.19}%
+\contentsline {paragraph}{Mean square displacement.}{34}{section*.20}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{34}{section*.21}%
+\contentsline {paragraph}{Density.}{34}{section*.22}%
+\contentsline {paragraph}{The two potentials produce the same liquid.}{36}{section*.25}%
 \contentsline {subsection}{\numberline {4.2}Hold}{36}{subsection.4.2}%
+\contentsline {paragraph}{Computational cost.}{37}{section*.28}%
+\contentsline {paragraph}{Potential 22 vs 26.}{37}{section*.29}%
 \contentsline {subsubsection}{\numberline {4.2.1}Structural Comparison}{37}{subsubsection.4.2.1}%
+\contentsline {paragraph}{Radial distribution function.}{38}{section*.32}%
+\contentsline {paragraph}{Coordination number.}{38}{section*.33}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{38}{section*.34}%
+\contentsline {paragraph}{Difference between pruned potentials.}{38}{section*.35}%
+\contentsline {paragraph}{Diffusion coefficient.}{39}{section*.36}%
+\contentsline {paragraph}{Hand-off.}{39}{section*.37}%
 \contentsline {subsection}{\numberline {4.3}Quench}{39}{subsection.4.3}%
+\contentsline {paragraph}{Speed.}{39}{section*.39}%
+\contentsline {paragraph}{Potential energy.}{39}{section*.40}%
+\contentsline {paragraph}{Density.}{39}{section*.41}%
+\contentsline {paragraph}{Why pruned\_1 is densest.}{40}{section*.42}%
+\contentsline {paragraph}{Expansion on freezing.}{40}{section*.43}%
 \contentsline {subsubsection}{\numberline {4.3.1}Filesystem Failure}{40}{subsubsection.4.3.1}%
 \contentsline {subsubsection}{\numberline {4.3.2}Structural Comparison}{40}{subsubsection.4.3.2}%
+\contentsline {paragraph}{Coordination cutoff.}{41}{section*.46}%
+\contentsline {paragraph}{Coordination number.}{41}{section*.47}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{41}{section*.48}%
+\contentsline {paragraph}{Mean square displacement.}{42}{section*.49}%
+\contentsline {paragraph}{Comparison with Zongo et al.}{42}{section*.50}%
+\contentsline {paragraph}{Correlation length.}{42}{section*.51}%
 \contentsline {section}{\numberline {5}Discussion}{42}{section.5}%
 \contentsline {section}{\numberline {6}Conclusion}{42}{section.6}%
 \contentsline {section}{\numberline {A}A Plain-Language Note on DFT}{43}{appendix.A}%
