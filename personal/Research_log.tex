@@ -1263,6 +1263,61 @@ No atom moves by its own size. The largest displacement from the start is $1.61$
     \label{fig:max_displacement}
 \end{figure}
 
+\paragraph{Defect breakdown.}
+Splitting the non-fourfold atoms by coordination shows that overcoordination
+dominates in every run. Floating bonds outnumber dangling bonds three to one in
+\texttt{22.almtp} and two to one in \texttt{pruned\_3}, while \texttt{pruned\_1}
+has no threefold atoms at all and is the only run to produce sixfold ones.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{l|c|c|c|c|c}
+        \toprule
+        Potential & $\bar{n}$ & 3-fold (\%) & 4-fold (\%) & 5-fold (\%) & 6-fold (\%) \\
+        \midrule
+        \texttt{22.almtp}        & 4.019 & 0.9 & 96.3 & 2.8 & --- \\
+        \texttt{pruned\_1.almtp} & 4.081 & --- & 92.0 & 7.8 & 0.2 \\
+        \texttt{pruned\_2.almtp} & 4.040 & 0.1 & 95.8 & 4.1 & --- \\
+        \texttt{pruned\_3.almtp} & 4.013 & 1.4 & 96.0 & 2.6 & --- \\
+        \bottomrule
+    \end{tabular}
+    \caption{Coordination breakdown of the quenched solid at 300~K, using a
+    2.85~\AA{} bond cutoff over the last 50~ps of each equilibration. Entries
+    below $0.1\%$ are omitted. \texttt{pruned\_1} is both the densest run
+    (Table~\ref{tab:quench_structural}) and the most overcoordinated, consistent
+    with closer packing forcing additional neighbours inside the cutoff.}
+    \label{tab:defect_breakdown}
+\end{table}
+
+\paragraph{Correlation between defects and large excursions.}
+Coordination and displacement were recomputed as matched (frame, atom) arrays so
+each atom's neighbour count could be read at the moment of its own displacement.
+For \texttt{22.almtp}, 146 of 108{,}000 sampled points lie beyond the $0.5$~\AA{}
+voxel size, and $96.6\%$ of those are non-fourfold against a $3.7\%$ background.
+The effect is carried entirely by the undercoordinated atoms, which is the
+expected asymmetry: a dangling bond is missing a neighbour and is correspondingly
+less constrained. The tail is not a population effect, however. It comes from
+nine atoms, two of which contribute 128 of the 146 points.
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{l|c|c|c}
+        \toprule
+        & Overall (\%) & In tail (\%) & Enrichment \\
+        \midrule
+        Non-fourfold & 3.7 & 96.6 & $26\times$ \\
+        3-fold       & 0.9 & 93.2 & $104\times$ \\
+        5-fold       & 2.8 & 3.4  & $1.2\times$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Coordination of the atoms in the $>0.5$~\AA{} tail of the
+    displacement distribution for \texttt{22.almtp}, over the last 50~ps at
+    300~K with a 2.85~\AA{} cutoff. The tail holds 146 of 108{,}000 samples, so
+    the percentages carry counting noise.}
+    \label{tab:defect_jump_correlation}
+\end{table}
+
 % ===========================================================
 %  5. DISCUSSION
 % ===========================================================

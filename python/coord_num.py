@@ -35,8 +35,7 @@ def load(path):
     """Open a LAMMPS dump as an MDAnalysis Universe."""
     full = os.path.abspath(os.path.join(script_dir, path))
     print(f"Looking for file at: {full}")
-    return mda.Universe(full, format="LAMMPSDUMP", topology_format="LAMMPSDUMP",
-                        lammps_coordinate_convention="scaled")
+    return mda.Universe(full, format="LAMMPSDUMP", topology_format="LAMMPSDUMP", lammps_coordinate_convention="scaled")
 
 # ---------------------------------------------------------------
 mode = input("Mode: 1 = single file (melt, two windows), 2 = multiple files (holds): ").strip()
@@ -95,8 +94,7 @@ for (label, c), col in zip(datasets, colours):
     else:
         # Filled bars overlap badly with more than two datasets,
         # so the multi-file mode draws outlines instead.
-        plt.hist(c, bins=bins, density=True, histtype="step", linewidth=2,
-                 color=col, label=label)
+        plt.hist(c, bins=bins, density=True, histtype="step", linewidth=2, color=col, label=label)
 plt.xlabel("Coordination number")
 plt.ylabel("Fraction of atoms")
 plt.title("Coordination Number Distribution")
