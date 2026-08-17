@@ -1302,6 +1302,16 @@ Coordination and displacement were recomputed as matched (frame, atom) arrays so
 \end{table}
 \footnotetext{Overall of all 108,000 cells.}
 
+\paragraph{Crystallinity.}
+The quenched structures were checked for leftover crystal order with the ``identify diamond structure'' modifier in OVITO, the same test used by Zongo et al.~\cite{zongo2025}. One frame is not enough: across the 1501 frames of the \texttt{22.almtp} equilibration the count jumps between 17 flagged atoms and none, with nothing in between. This is a single diamond-like group (one atom, its four nearest neighbours and twelve second neighbours) sitting right on the edge of what the modifier counts, so it drops in and out as the atoms vibrate. It is counted in $56.4\%$ of frames, which gives a time-averaged crystallinity of $4.5\%$. A hexagonal group shows up in 33 frames. Taking one frame alone would give either $7.9\%$ or zero, depending on which.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{crystallinity_22.png}
+    \caption{The quenched 216-atom cell for \texttt{22.almtp} at 300~K, coloured by structure type, in a frame where the cubic motif is classified. White atoms are unclassified.}
+    \label{fig:crystallinity_22}
+\end{figure}
+
 % ===========================================================
 %  5. DISCUSSION
 % ===========================================================
