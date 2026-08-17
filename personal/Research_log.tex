@@ -1377,6 +1377,13 @@ July 29 & Hold with \texttt{pruned\_3} completed in 6~h 31~min, establishing tha
 July 30 & Melt and 0.4~ns hold with \texttt{26.almtp}. \\
 August 1 & The \texttt{pruned\_3} quench terminated at step $2.94\times10^{5}$ by a filesystem I/O fault (Section~\ref{sec:quench_fail}). \\
 August 3 & Structural comparison of all five hold trajectories. Quench results collated for \texttt{22.almtp}, \texttt{pruned\_1} and \texttt{pruned\_2}. \\
+August 5 & All four quenches complete and analysed. Amorphous silicon confirmed: second peak of $g(r)$ at 3.88~\AA{} with the third absent, flat MSD, tetrahedral order recovered to 0.93. Defect fractions of 3.7--8.0\% against Zongo's 1.85\%. \\
+August 7 & Correlation length fitted from $g(r)$. The 216-atom box limits the fit to 8.3~\AA{} and returns unphysical values, so the measurement needs a larger cell. \\
+August 10 & Vibration amplitudes and maximum displacements computed for all four potentials. No atom moves by its own size over 150~ps; the largest excursion is 1.89~\AA{} against a 2.35~\AA{} bond length. Short-window analysis at 1, 5 and 10~ps finds no reversed jumps either. \\
+August 11 & Amplitude distribution replotted normalised and on a log axis at Ata's request, revealing a flat tail from 0.5 to 1.2~\AA{} above the ordinary vibrational peak. \\
+August 13 & Meeting with Lena and Ata on the quench results. Follow-up analysis assigned: whether the large-excursion atoms are the defective ones, whether defects migrate between neighbours, and the defect mean square displacement. \\
+August 14 & MAP tutorial with Ata. Voxel size left open pending a comparison of training and validation loss; grid fixed at $80^3$, implying a box near 40~\AA{} and a move to 4096 atoms. \\
+August 17 & MAP installed on Narval (\texttt{\textasciitilde/MAP-main}, virtual environment at \texttt{\textasciitilde/envMAP}). Coordination defects broken down by type: overcoordination dominates in all four potentials, and \texttt{pruned\_1} has no threefold atoms at all. Correlation established between the $>0.5$~\AA{} tail and undercoordination. Crystallinity measured in OVITO across all 1501 frames, giving a time-averaged 4.5\% carried by a single flickering motif. \\
 \bottomrule
 \end{tabular}
 \caption{Chronological record of the work described in Sections 3 and 4. All dates are 2026.}
