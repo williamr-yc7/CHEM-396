@@ -1,5 +1,3 @@
-#Take frame-to-frame differences and wrap each into [-L/2, +L/2], then cumulative-sum them. Valid as long as no atom moves more than 8.2 Å between two frames, which in a solid is never. Do this and you get a proper unwrapped trajectory from wrapped data.
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -65,13 +63,16 @@ dev = np.linalg.norm(r - site, axis=2)            # (n_frames, n_atoms)
 print(f"\nmean amplitude = {dev.mean():.3f} A")
 print(f"rms amplitude  = {np.sqrt((dev ** 2).mean()):.3f} A")
 print(f"max amplitude  = {dev.max():.3f} A")
+print(f"fraction above {voxel} A = {(dev > voxel).mean():.2e}")
 
 plt.figure(figsize=(6, 4))
-plt.hist(dev.ravel(), bins=80, color="steelblue")
+plt.hist(dev.ravel(), bins=80,
+         weights=np.ones(dev.size) / dev.size, color="steelblue")
+plt.yscale("log")
 plt.axvline(voxel, color="red", ls="--", label=f"voxel = {voxel} A")
 plt.axvline(dev.mean(), color="black", ls=":", label=f"mean = {dev.mean():.2f} A")
 plt.xlabel("displacement from average position (A)")
-plt.ylabel("count")
+plt.ylabel("fraction of counts")
 plt.title(f"Vibration amplitude, {label}")
 plt.legend()
 plt.tight_layout()
