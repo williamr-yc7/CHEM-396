@@ -10,8 +10,6 @@ import matplotlib.pyplot as plt
 # ---------------------------------------------------------------
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-outdir = os.path.join(script_dir, "defects")
-os.makedirs(outdir, exist_ok=True)
 
 def load(path):
     # Open a LAMMPS dump as an MDAnalysis Universe.
