@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  17 AUG 2026 17:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  17 AUG 2026 17:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -450,4 +450,444 @@ Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks46
 \t@pgf@tokb=\toks47
 \t@pgf@tokc=\toks48
-(C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructure.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructureext.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic
+(C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructure.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructureext.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count335
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsmatrix.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count336
+\t@pgfplotstable@a=\toks49
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsdeque.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.data.code.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.verb.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count337
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolormap.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolor.code.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstackedplots.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsplothandlers.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplothandler.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplotimage.code.tex))) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.scaling.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoordprocessing.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.errorbars.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.markers.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsticks.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.paths.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen272
+\pgfdecoratedremainingdistance=\dimen273
+\pgfdecoratedinputsegmentcompleteddistance=\dimen274
+\pgfdecoratedinputsegmentremainingdistance=\dimen275
+\pgf@decorate@distancetomove=\dimen276
+\pgf@decorate@repeatstate=\count338
+\pgfdecorationsegmentamplitude=\dimen277
+\pgfdecorationsegmentlength=\dimen278
+)
+\tikz@lib@dec@box=\box67
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibrarypgfplots.contourlua.code.tex)
+\pgfplots@numplots=\count339
+\pgfplots@xmin@reg=\dimen279
+\pgfplots@xmax@reg=\dimen280
+\pgfplots@ymin@reg=\dimen281
+\pgfplots@ymax@reg=\dimen282
+\pgfplots@zmin@reg=\dimen283
+\pgfplots@zmax@reg=\dimen284
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/circuitikz\circuitikz.sty
+Package: circuitikz 2026/01/07{} The CircuiTikz circuit drawing package version 1.8.4
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowinset=\dimen285
+\pgfarrowlength=\dimen286
+\pgfarrowwidth=\dimen287
+\pgfarrowlinewidth=\dimen288
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybending.code.tex
+File: tikzlibrarybending.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulebending.code.tex
+File: pgfmodulebending.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulenonlineartransformations.code.tex
+File: pgfmodulenonlineartransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgftransformnonlinearflatness=\dimen289
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibrarycurvilinear.code.tex
+File: pgflibrarycurvilinear.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@curvilinear@time@a=\dimen290
+\pgf@curvilinear@length@a=\dimen291
+\pgf@curvilinear@length@b=\dimen292
+\pgf@curvilinear@length@c=\dimen293
+\pgf@curvilinear@length@d=\dimen294
+)
+\pgf@arrows@the@rigidity=\dimen295
+)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfpu.code.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcirc.defines.tex
+\pgf@circ@count@a=\count340
+\pgf@circ@count@b=\count341
+\pgf@circ@count@c=\count342
+\pgf@circ@res@up=\dimen296
+\pgf@circ@res@down=\dimen297
+\pgf@circ@res@zero=\dimen298
+\pgf@circ@res@left=\dimen299
+\pgf@circ@res@right=\dimen300
+\pgf@circ@res@other=\dimen301
+\pgf@circ@res@step=\dimen302
+\pgf@circ@res@temp=\dimen303
+\pgf@circ@Rlen=\dimen304
+\pgf@circ@scaled@Rlen=\dimen305
+\pgfstartlinewidth=\dimen306
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircutils.tex
+\ctikz@scratchbox=\box68
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircpath.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircshapes.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircmonopoles.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircbipoles.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcirctripoles.tex
+\pgf@circ@res@count=\count343
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircquadpoles.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircmultipoles.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcirclabel.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircvoltage.tex
+\pgfcirc@labelshift=\dimen307
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcirccurrent.tex) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/generic/circuitikz\pgfcircflow.tex)) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count344
+\float@exts=\toks50
+\float@box=\box69
+\@float@everytoks=\toks51
+\@floatcapt=\box70
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen308
+\lightrulewidth=\dimen309
+\cmidrulewidth=\dimen310
+\belowrulesep=\dimen311
+\belowbottomsep=\dimen312
+\aboverulesep=\dimen313
+\abovetopsep=\dimen314
+\cmidrulesep=\dimen315
+\cmidrulekern=\dimen316
+\defaultaddspace=\dimen317
+\@cmidla=\count345
+\@cmidlb=\count346
+\@aboverulesep=\dimen318
+\@belowrulesep=\dimen319
+\@thisruleclass=\count347
+\@lastruleclass=\count348
+\@thisrulewidth=\dimen320
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip61
+\LTright=\skip62
+\LTpre=\skip63
+\LTpost=\skip64
+\LTchunksize=\count349
+\LTcapwidth=\dimen321
+\LT@head=\box71
+\LT@firsthead=\box72
+\LT@foot=\box73
+\LT@lastfoot=\box74
+\LT@gbox=\box75
+\LT@cols=\count350
+\LT@rows=\count351
+\c@LT@tables=\count352
+\c@LT@chunks=\count353
+\LT@p@ftn=\toks52
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen322
+\captionmargin=\dimen323
+\caption@leftmargin=\dimen324
+\caption@rightmargin=\dimen325
+\caption@width=\dimen326
+\caption@indent=\dimen327
+\caption@parindent=\dimen328
+\caption@hangindent=\dimen329
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count354
+\c@continuedfloat=\count355
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count356
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count357
+)
+\c@theorem=\count358
+\c@law=\count359
+\c@principle=\count360
+\c@definition=\count361
+\c@problem=\count362
+\c@solution=\count363
+\c@remark=\count364
+\c@proposition=\count365
+\c@algorithm=\count366
+Package hyperref Info: Option `colorlinks' set `true' on input line 32.
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count367
+) (Research_log.aux)
+\openout1 = `Research_log.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count368
+\scratchdimen=\dimen330
+\scratchbox=\box76
+\nofMPsegments=\count369
+\nofMParguments=\count370
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count371
+\MPscratchDim=\dimen331
+\MPnumerator=\count372
+\makeMPintoPDFobject=\count373
+\everyMPtoPDFconversion=\toks54
+) (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package hyperref Info: Link coloring ON on input line 33.
+ (Research_log.out) (Research_log.out)
+\@outlinefile=\write4
+\openout4 = `Research_log.out'.
+
+
+Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+(C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+ (C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{C:/Users/erenr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Research_log.toc [1
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.117 ...r Viewing and References}{56}{appendix.E}
+                                                  % [2])
+\tf@toc=\write5
+\openout5 = `Research_log.toc'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 \clearpage
+                [3]
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]\OT1/cmr/m/n/10 Bulk Mod-u-lus
+ []
+
+
+Underfull \hbox (badness 6428) in paragraph at lines 112--113
+\OT1/cmr/m/n/10 di-na-tion de-fects
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.125 ...om temperature and atmospheric pressure.}
+                                                   [1
+
+]
+<c-Si-vs-a-Si.jpg, id=472, 561.09625pt x 358.33875pt>
+File: c-Si-vs-a-Si.jpg Graphic file (type jpg)
+<use c-Si-vs-a-Si.jpg>
+Package pdftex.def Info: c-Si-vs-a-Si.jpg  used on input line 131.
+(pdftex.def)             Requested size: 276.00105pt x 176.26553pt.
+ [2
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.143 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.143 
+       <./c-Si-vs-a-Si.jpg>]
+<Continuous Random Network.png, id=491, 1541.76pt x 1027.84pt>
+File: Continuous Random Network.png Graphic file (type png)
+<use Continuous Random Network.png>
+Package pdftex.def Info: Continuous Random Network.png  used on input line 146.
+(pdftex.def)             Requested size: 345.0pt x 229.99933pt.
+ [3 <./Continuous Random Network.png (PNG copy)>]
+<Wooten-Winer-Weaire.png, id=509, 1027.84pt x 1541.76pt>
+File: Wooten-Winer-Weaire.png Graphic file (type png)
+<use Wooten-Winer-Weaire.png>
+Package pdftex.def Info: Wooten-Winer-Weaire.png  used on input line 173.
+(pdftex.def)             Requested size: 276.00105pt x 413.99881pt.
+ [4] [5 <./Wooten-Winer-Weaire.png (PNG copy)>] [6] [7]
+<paracrystallinity.png, id=545, 1541.76pt x 1027.84pt>
+File: paracrystallinity.png Graphic file (type png)
+<use paracrystallinity.png>
+Package pdftex.def Info: paracrystallinity.png  used on input line 233.
+(pdftex.def)             Requested size: 276.00105pt x 183.99947pt.
+ [8 <./paracrystallinity.png (PNG copy)>] [9] [10] [11] [12] [13] [14]
+Overfull \hbox (3.2588pt too wide) in paragraph at lines 430--431
+\OT1/cmr/m/it/10 in-ter-atomic po-ten-tials (MLIPs) are com-pu-ta-tional mod-els that use ma-chine learn-
+ []
+
+
+Overfull \hbox (11.88908pt too wide) in paragraph at lines 438--439
+[][]\OT1/cmr/bx/n/10 Definition 26 \OT1/cmr/m/n/10 (Mo-ment Ten-sor Po-ten-tial)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Mo-ment Ten-sor Po-ten-tials (MTPs) [[]]
+ []
+
+[15] [16] [17] [18]
+Overfull \hbox (29.08398pt too wide) in paragraph at lines 519--520
+[]\OT1/cmr/m/n/10 Structural qual-ity was checked with stan-dard structural-analysis tools (OVITO [[]],
+ []
+
+[19] [20] [21]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 590--590
+[]    \OT1/cmtt/m/n/10 module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda[] 
+ []
+
+[22] [23]
+Overfull \hbox (26.478pt too wide) in paragraph at lines 643--644
+[][]\OT1/cmr/bx/n/10 Definition 37 \OT1/cmr/m/n/10 (Vi-sual Molec-u-lar Dy-nam-ics)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Vi-sual Molec-u-lar Dy-nam-ics (VMD) [[]]
+ []
+
+[24] [25]
+<VMDtestLJSub.png, id=755, 745.78625pt x 485.31313pt>
+File: VMDtestLJSub.png Graphic file (type png)
+<use VMDtestLJSub.png>
+Package pdftex.def Info: VMDtestLJSub.png  used on input line 669.
+(pdftex.def)             Requested size: 276.00105pt x 179.60007pt.
+ [26
+
+]
+Underfull \hbox (badness 2564) in paragraph at lines 688--688
+[]\OT1/cmr/m/n/9 Illegal in-struc-tion (core
+ []
+
+
+Underfull \hbox (badness 5374) in paragraph at lines 688--688
+\OT1/cmr/m/n/9 CPU ar-chi-tec-ture in-
+ []
+
+
+Underfull \hbox (badness 3386) in paragraph at lines 688--688
+\OT1/cmr/m/n/9 com-pat-i-ble with Nar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+[]\OT1/cmr/m/n/9 Add
+ []
+
+
+Overfull \hbox (50.15329pt too wide) in paragraph at lines 688--689
+\OT1/cmtt/m/n/9 -DCMAKE[]CXX[]FLAGS="-march=core-avx2"| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 690--690
+[]\OT1/cmr/m/n/9 ML-MTP ab-sent from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]\OT1/cmr/m/n/9 Stale nested CMake
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+\OT1/cmr/m/n/9 caches with an-other
+ []
+
+
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 684--695
+ [][] 
+ []
+
+[27 <./VMDtestLJSub.png>]
+Overfull \hbox (2.77545pt too wide) in paragraph at lines 699--700
+[]\OT1/cmr/m/n/10 After a clean re-build, \OT1/cmtt/m/n/10 lmp -h \OT1/cmr/m/n/10 listed \OT1/cmtt/m/n/10 ML-MTP \OT1/cmr/m/n/10 with \OT1/cmtt/m/n/10 mtp \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 mtp/extrapolation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 710--710
+[]\OT1/cmr/m/n/9 Script copies only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 710--710
+\OT1/cmtt/m/n/9 ML-MTP\OT1/cmr/m/n/9 ; the \OT1/cmtt/m/n/9 KOKKOS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 712--713
+[]\OT1/cmtt/m/n/9 kokkos-cuda \OT1/cmr/m/n/9 pre-set $+$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 712--713
+\OT1/cmtt/m/n/9 -DKokkos[]ARCH[]AMPERE80=ON
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 714--714
+[]\OT1/cmtt/m/n/9 -march=core-avx2 \OT1/cmr/m/n/9 in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--716
+[]\OT1/cmr/m/n/9 OpenCL-based
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--716
+\OT1/cmtt/m/n/9 -DPKG[]GPU=ON\OT1/cmr/m/n/9 , re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--716
+\OT1/cmr/m/n/9 dun-dant along-side
+ []
+
+
+Overfull \hbox (8.39937pt too wide) in paragraph at lines 706--719
+ [][] 
+ []
+
+[28] [29] [30]
+<../report/scaling.png, id=800, 375.804pt x 260.172pt>
+File: ../report/scaling.png Graphic file (type png)
+<use ../report/scaling.png>
+Package pdftex.def Info: ../report/scaling.png  used on input line 797.
+(pdftex.def)             Requested size: 207.0021pt x 143.3094pt.
+ [31 <../report/scaling.png>]
+Overfull \hbox (7.32896pt too wide) detected at line 820
+[] \OT1/cmr/m/n/10 :  [] = 30\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7 []\OML/cmm/m/it/10 ;  [] \OT1/cmr/m/n/10 :  [] = 357 []\OML/cmm/m/it/10 ;
+ []
+
+
+Overfull \hbox (47.51416pt too wide) in paragraph at lines 825--836
+ [][] 
+ []
+
+[32] [33
+
+]
+<../python/radial_dist_fct/melt_P22_rdf_output.png, id=827, 433.62pt x 289.08pt>
+File: ../python/radial_dist_fct/melt_P22_rdf_output.png Graphic file (type png)
+<use ../python/radial_dist_fct/melt_P22_rdf_output.png>
+Package pdftex.def Info: ../python/radial_dist_fct/melt_P22_rdf_output.png  used on input line 898.
+(pdftex.def)       

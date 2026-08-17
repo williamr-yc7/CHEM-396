@@ -1360,24 +1360,21 @@ Reference values are tabulated for fcc, hcp, bcc, and icosahedral clusters~\cite
 \label{sec:worklog}
 
 \begin{longtable}{l|p{0.72\textwidth}}
-\caption{Chronological record of the work described in Sections 3 and 4. All dates are 2026.}
-\label{tab:worklog} \\
 \toprule
 Date & Activity \\
 \midrule
 \endfirsthead
-
 \multicolumn{2}{l}{\small\itshape Continued from previous page} \\
 \toprule
 Date & Activity \\
 \midrule
 \endhead
-
 \midrule
 \multicolumn{2}{r}{\small\itshape Continued on next page} \\
 \endfoot
-
 \bottomrule
+\caption{Chronological record of the work described in Sections 3 and 4. All dates are 2026.}
+\label{tab:worklog}
 \endlastfoot
 July 13 & CPU build of LAMMPS-MTP debugged and validated. Three faults in the supplied archive resolved: incompatible architecture flags, an inverted conditional that skipped the source copy, and stale nested CMake caches. Lennard-Jones validation run completed in 4~min 16~s. \\
 July 14 & GPU (Kokkos) build debugged and validated. Same Lennard-Jones case ran in $15.6$~s on an A100, a speedup of roughly $16\times$. \\
