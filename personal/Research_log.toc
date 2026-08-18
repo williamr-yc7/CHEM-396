@@ -1,0 +1,118 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Background}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Amorphous Silicon}{1}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Silicon}{1}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}The Continuous Random Network Model}{2}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Coordination Defects}{4}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Ring Defects and Medium-Range Order}{4}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Applications}{5}{subsubsection.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.1.6}The Paracrystallinity Debate}{6}{subsubsection.2.1.6}%
+\contentsline {subsection}{\numberline {2.2}Interatomic Potentials}{6}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Interatomic Potentials in Molecular Dynamics}{7}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Lennard-Jones Potential}{7}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Other Interatomic Potentials}{8}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Density Functional Theory}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Machine Learning Interatomic Potentials}{9}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Moment Tensor Potential}{10}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Why MTP?}{10}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Kokkos-accelerated Moment Tensor Potential}{10}{subsubsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.6}Activation Relaxation Technique Nouveau}{11}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Activation}{12}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Relaxation}{12}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Falling}{12}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Event Acceptance}{12}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}ARTn-MTP Models of Amorphous Silicon}{13}{subsubsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.7}Structural and Dynamical Characterization}{14}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Radial Distribution Function}{14}{subsubsection.2.7.1}%
+\contentsline {paragraph}{Two different cutoffs.}{15}{section*.6}%
+\contentsline {subsubsection}{\numberline {2.7.2}Coordination Number}{15}{subsubsection.2.7.2}%
+\contentsline {subsubsection}{\numberline {2.7.3}Mean Square Displacement}{16}{subsubsection.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}Tetrahedral Order Parameter}{17}{subsubsection.2.7.4}%
+\contentsline {subsection}{\numberline {2.8}Morphological Autoregressive Protocol}{17}{subsection.2.8}%
+\contentsline {subsubsection}{\numberline {2.8.1}The MAP Framework}{17}{subsubsection.2.8.1}%
+\contentsline {subsubsection}{\numberline {2.8.2}MAP as an Anomaly Detector}{18}{subsubsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.9}Thermodynamic Ensembles}{18}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Narval}{19}{subsection.2.10}%
+\contentsline {subsubsection}{\numberline {2.10.1}Compiling on a Compute Node}{19}{subsubsection.2.10.1}%
+\contentsline {subsubsection}{\numberline {2.10.2}Filesystems and Their Quotas}{20}{subsubsection.2.10.2}%
+\contentsline {subsection}{\numberline {2.11}LAMMPS}{20}{subsection.2.11}%
+\contentsline {subsubsection}{\numberline {2.11.1}Simulation Workflow}{20}{subsubsection.2.11.1}%
+\contentsline {subsubsection}{\numberline {2.11.2}Combining LAMMPS with the MTP}{21}{subsubsection.2.11.2}%
+\contentsline {subsection}{\numberline {2.12}WinSCP}{21}{subsection.2.12}%
+\contentsline {subsection}{\numberline {2.13}PuTTY}{21}{subsection.2.13}%
+\contentsline {subsubsection}{\numberline {2.13.1}Interactive Jobs}{21}{subsubsection.2.13.1}%
+\contentsline {subsection}{\numberline {2.14}Visual Molecular Dynamics}{22}{subsection.2.14}%
+\contentsline {section}{\numberline {3}Methodology}{23}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Toolchain Validation: Lennard-Jones Melt}{23}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Output and Validation}{23}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}VMD visualisation}{23}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Building LAMMPS with the Moment Tensor Potential}{24}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Debugging the CPU Build}{25}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Debugging the GPU Build}{25}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Simulation Protocol for Amorphous Silicon}{26}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Atom Type Mapping}{26}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}First Silicon Runs and Choice of Ensemble}{26}{subsubsection.3.3.2}%
+\contentsline {paragraph}{The two potentials prefer different volumes.}{27}{section*.11}%
+\contentsline {subsubsection}{\numberline {3.3.3}Parallel Scaling}{27}{subsubsection.3.3.3}%
+\contentsline {paragraph}{The core count is capped by the potential.}{28}{section*.13}%
+\contentsline {subsubsection}{\numberline {3.3.4}Setting the Cooling Rate}{28}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Projected Cost}{29}{subsubsection.3.3.5}%
+\contentsline {section}{\numberline {4}Results}{30}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Melt}{30}{subsection.4.1}%
+\contentsline {paragraph}{Radial distribution function.}{30}{section*.17}%
+\contentsline {paragraph}{Coordination number.}{31}{section*.18}%
+\contentsline {paragraph}{Mean square displacement.}{31}{section*.19}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{31}{section*.20}%
+\contentsline {paragraph}{Density.}{31}{section*.21}%
+\contentsline {paragraph}{The two potentials produce the same liquid.}{33}{section*.24}%
+\contentsline {subsection}{\numberline {4.2}Hold}{33}{subsection.4.2}%
+\contentsline {paragraph}{Computational cost.}{34}{section*.27}%
+\contentsline {paragraph}{Potential 22 vs 26.}{34}{section*.28}%
+\contentsline {subsubsection}{\numberline {4.2.1}Structural Comparison}{34}{subsubsection.4.2.1}%
+\contentsline {paragraph}{Radial distribution function.}{35}{section*.31}%
+\contentsline {paragraph}{Coordination number.}{35}{section*.32}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{35}{section*.33}%
+\contentsline {paragraph}{Difference between pruned potentials.}{35}{section*.34}%
+\contentsline {paragraph}{Diffusion coefficient.}{36}{section*.35}%
+\contentsline {paragraph}{Hand-off.}{36}{section*.36}%
+\contentsline {subsection}{\numberline {4.3}Quench}{36}{subsection.4.3}%
+\contentsline {paragraph}{Speed.}{36}{section*.38}%
+\contentsline {paragraph}{Potential energy.}{36}{section*.39}%
+\contentsline {paragraph}{Density.}{36}{section*.40}%
+\contentsline {paragraph}{Why pruned\_1 is densest.}{37}{section*.41}%
+\contentsline {paragraph}{Expansion on freezing.}{37}{section*.42}%
+\contentsline {subsubsection}{\numberline {4.3.1}Filesystem Failure}{37}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Structural Comparison}{37}{subsubsection.4.3.2}%
+\contentsline {paragraph}{Coordination cutoff.}{38}{section*.45}%
+\contentsline {paragraph}{Coordination number.}{38}{section*.46}%
+\contentsline {paragraph}{Tetrahedral order parameter.}{38}{section*.47}%
+\contentsline {paragraph}{Mean square displacement.}{39}{section*.48}%
+\contentsline {paragraph}{Comparison with Zongo et al.}{39}{section*.49}%
+\contentsline {paragraph}{Correlation length.}{39}{section*.50}%
+\contentsline {paragraph}{Vibration amplitude.}{39}{section*.51}%
+\contentsline {paragraph}{Maximum displacement.}{40}{section*.53}%
+\contentsline {paragraph}{Defect breakdown.}{41}{section*.55}%
+\contentsline {paragraph}{Correlation between defects and large excursions.}{42}{section*.57}%
+\contentsline {paragraph}{Crystallinity.}{42}{section*.59}%
+\contentsline {section}{\numberline {5}Discussion}{43}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{43}{section.6}%
+\contentsline {section}{\numberline {A}Wooten-Winer-Weaire Algorithm}{44}{appendix.A}%
+\contentsline {section}{\numberline {B}A Plain-Language Note on DFT}{44}{appendix.B}%
+\contentsline {section}{\numberline {C}Bond-Orientational Order Parameters}{45}{appendix.C}%
+\contentsline {section}{\numberline {D}Work Log}{46}{appendix.D}%
+\contentsline {section}{\numberline {E}Command References}{47}{appendix.E}%
+\contentsline {subsection}{\numberline {E.1}PuTTY}{47}{subsection.E.1}%
+\contentsline {subsubsection}{\numberline {E.1.1}Navigating and editing files (Linux)}{47}{subsubsection.E.1.1}%
+\contentsline {subsubsection}{\numberline {E.1.2}Build Environment Commands}{48}{subsubsection.E.1.2}%
+\contentsline {subsubsection}{\numberline {E.1.3}Job Submission Commands}{48}{subsubsection.E.1.3}%
+\contentsline {subsubsection}{\numberline {E.1.4}CMake Options Used in the Build Scripts}{49}{subsubsection.E.1.4}%
+\contentsline {subsubsection}{\numberline {E.1.5}Running LAMMPS}{49}{subsubsection.E.1.5}%
+\contentsline {subsection}{\numberline {E.2}Tk Console}{49}{subsection.E.2}%
+\contentsline {subsubsection}{\numberline {E.2.1}Navigating to the files}{49}{subsubsection.E.2.1}%
+\contentsline {subsubsection}{\numberline {E.2.2}Loading a single configuration (data file)}{49}{subsubsection.E.2.2}%
+\contentsline {subsubsection}{\numberline {E.2.3}Loading a full trajectory (many frames)}{50}{subsubsection.E.2.3}%
+\contentsline {subsubsection}{\numberline {E.2.4}Drawing the simulation box}{50}{subsubsection.E.2.4}%
+\contentsline {subsection}{\numberline {E.3}Input Script}{50}{subsection.E.3}%
+\contentsline {subsection}{\numberline {E.4}Job Submission Script}{53}{subsection.E.4}%
+\contentsline {section}{\numberline {F}Further Viewing and References}{54}{appendix.F}%
+\contentsline {section}{\numberline {G}Bibliography}{55}{appendix.G}%

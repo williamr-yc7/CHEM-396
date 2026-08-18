@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1787001385.90083 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" "Research_log.pdf" "Research_log" 1787001434.66295 0
+["pdflatex"] 1787097297.26755 "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" "Research_log.pdf" "Research_log" 1787097318.60748 0
   "../python/coord_num/hold_all_cn_output.png" 1785538313 87926 68aed6382292b5e52f9213269fb56ca6 ""
   "../python/coord_num/melt_P22_cn_output.png" 1785530842 72655 52051c4c10c32912b98e099bf5ea640a ""
   "../python/coord_num/melt_P26_cn_output.png" 1785536377 72647 e5841a86fd21a8779032e41298b39787 ""
@@ -90,6 +90,7 @@
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1247596666 32442 c975af247b6702f7ca0c299af3616b80 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
+  "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb" 1247596667 36607 d654cb3f2bc54f57509240071db3bffa ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb" 1247596667 36310 f5ddc6715cc60deb16d9db5ded6a9391 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1247596667 31099 342ef5a582aacbd3346f3cf4579679fa ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb" 1247596666 24287 6b803fa9eb1ddff9112e00519b09dd9e ""
@@ -281,14 +282,13 @@
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/erenr/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "Continuous Random Network.png" 1781911944 1414115 1549c7ad7427cefb10a9a386e3451e1e ""
-  "Research_log.aux" 1787001433 38158 264cec47b890619cbd9dbab914df5d96 "pdflatex"
-  "Research_log.out" 1787001433 15068 e0e070be7ede68fa12ca0674d40fd7ca "pdflatex"
-  "Research_log.tex" 1787001326 142461 7703c286a4e5308e4ba0ae47c5e0d959 ""
-  "Research_log.toc" 1787001433 10240 88413db68b279beb525eb50363617fd8 "pdflatex"
+  "Research_log.aux" 1787097317 38032 1fa30ac2410821aa14ec8c9b90f0a580 "pdflatex"
+  "Research_log.out" 1787097317 15087 31c42db0384e71acbbaf3c18ed403fb1 "pdflatex"
+  "Research_log.tex" 1787097204 137320 a0e853bef1ea3bc8e6c6776558cb3783 ""
+  "Research_log.toc" 1787097317 10227 3f1075ce26742b7335033c3890922069 "pdflatex"
   "VMDtestLJSub.png" 1782831395 386947 54b81fe3aac6cf458e3483c665b58839 ""
   "Wooten-Winer-Weaire.png" 1781844803 1474632 2998dde218fde01904d6ccbe22a16b79 ""
-  "c-Si-vs-a-Si.jpg" 1782090634 32787 c073ecb01ff466087cdd70e0b25f60d4 ""
-  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" 1787001326 142461 7703c286a4e5308e4ba0ae47c5e0d959 ""
+  "c:/Users/erenr/Documents/McGill/Research/Chem396-Amorphous-Silicon/personal/Research_log.tex" 1787097204 137320 a0e853bef1ea3bc8e6c6776558cb3783 ""
   "crystallinity_22.png" 1786998413 287682 b380e6e89d292a6601f2d9db0732475b ""
   "paracrystallinity.png" 1783271601 2245367 2cd980b730192a6b9601cefca7eaa5ff ""
   (generated)
