@@ -169,6 +169,10 @@ At the core of the algorithm is a local operation called a bond transposition. I
     The concentration of coordination defects is not intrinsic to a-Si but depends strongly on sample preparation.
 \end{remark}
 Experimentally, as-implanted a-Si is highly defective and strained, but these defects anneal out under thermal relaxation as the network relaxes toward a lower-energy state. The same sensitivity appears in simulation: melt-quench MD traps coordination defects, increasingly so at faster quench\footnote{Quench is rapid cooling.} rates, whereas WWW bond-switching relaxes toward near-perfect fourfold coordination. Reverse Monte Carlo (RMC), the activation-relaxation technique (ARTn), and force-enhanced atomic refinement (FEAR) each strike a different balance between matching experimental data and minimizing defect density.
+\begin{definition}[Reverse Monte Carlo]
+    Reverse Monte Carlo (RMC) randomly moves atoms until the model's computed $g(r)$ and structure factor match experimental data. It fits the measurement rather than minimizing energy, so different structures can give the same fit.
+\end{definition}
+
 \subsubsection{Ring Defects and Medium-Range Order}
 \begin{definition}[Ring in a Network]
     A ring is a closed loop of bonds connecting atoms.
@@ -182,6 +186,9 @@ Experimentally, as-implanted a-Si is highly defective and strained, but these de
 In realistic a-Si models the ring distribution peaks around five-, six-, and seven-membered rings. Three-membered rings are essentially absent, and four-membered rings are rare because both are heavily strained\footnote{The bonds are forced into shapes they don't want to be in, so they store energy and are unstable, like a bent spring that wants to snap back.}.
 
 One practical caveat is that there is no single agreed-upon rule for what counts as a ``ring'' in a disordered network. Several definitions exist (King or shortest-path, Guttman, and primitive rings), and each can count the loops in the same structure differently.
+\begin{definition}[King Criterion]
+    A ring-counting rule: for each pair of bonds at an atom, the ring is the shortest path connecting them back through the network.
+\end{definition}
 \subsubsection{The Paracrystallinity Debate}
 A long-standing debate concerns whether a-Si is genuinely a pure continuous random network, or whether real samples contain small ordered regions mixed into the disordered matrix.
 \begin{definition}[Paracrystalline Model]
@@ -244,7 +251,6 @@ Three ensembles are used in this project.
 \end{definition}
 
 \subsection{Interatomic Potentials}
-
 \begin{definition}[Interatomic Potential]
     \label{IP}
     An interatomic potential is a mathematical function that describes the potential energy of a system of atoms as a function of their positions. It is used to calculate forces and energies in MD simulations.
@@ -291,17 +297,11 @@ Since $E_{xc}$ has to be approximated, the accuracy of a DFT calculation depends
 
 The problem with DFT is its cost. The amount of computing time grows roughly as the cube of the number of electrons, so doubling the system size makes it about eight times more expensive. This quickly becomes impractical for the long simulations and large atom counts needed to model a-Si. The workaround is to run DFT only on a limited set of atomic arrangements to get accurate reference energies and forces, then train a potential like the MTP to reproduce those results at a tiny fraction of the cost.
 
-% ===========================================================
-%  MLIPs
-% ===========================================================
 \subsubsection{Machine Learning Interatomic Potentials}
 \begin{definition}[Machine Learning Interatomic Potentials]
     Machine learning interatomic potentials (MLIPs) are computational models that use machine learning techniques to predict the potential energy and forces of atomic systems based on training data from high-fidelity calculations.
 \end{definition}
 
-% ===========================================================
-%  MTP
-% ===========================================================
 \subsubsection{Moment Tensor Potential}
 \begin{definition}[Moment Tensor Potential]
     Moment Tensor Potentials (MTPs)~\cite{shapeev2016} is a specific type of MLIP that approximate DFT. Their accuracy can be dialed up in a controlled way, the model is built from a set of mathematical building blocks, and adding more of them makes it more accurate (though slower).
@@ -329,12 +329,9 @@ The package provides three implementations. The first is an optimized CPU versio
 The authors benchmarked on Narval, whose CPU nodes carry two AMD EPYC 7532 processors (32 cores each) and whose GPU nodes carry four NVIDIA A100 SXM4 (40~GB) cards. The GPU variants scale efficiently to million-atom systems. They stress that performance depends heavily on hardware, material, and simulation conditions, and recommend short single-GPU trial runs of both GPU variants, since the crossover at which the thread-parallel version overtakes the block-parallel one shifts with atom count, MTP level, and hardware.
 
 \subsection{Sampling Beyond MD}
-% ===========================================================
-%  ARTn
-% ===========================================================
 \subsubsection{Activation Relaxation Technique Nouveau}
 \begin{definition}[Activation Relaxation Technique Nouveau]
-    Activation Relaxation Technique nouveau (ARTn)~\cite{barkema1996} is a saddle-point search algorithm used to map the potential energy surface (PES)\footnote{Picture a landscape where height = how much energy a given atom arrangement has. Low valleys = stable arrangements, hilltops = unstable ones. To get from one stable arrangement to another, the atoms must pass through a higher-energy "in-between" state, that's the hill.} and identify transitions between local minima.
+    Activation Relaxation Technique nouveau (ARTn)~\cite{barkema1996} is a saddle-point search algorithm used to map the potential energy surface (PES)\footnote{Picture a landscape where height is how much energy a given atom arrangement has. Low valleys are stable arrangements, hilltops are unstable ones. To get from one stable arrangement to another, the atoms must pass through a higher-energy state in between, which is the hill.} and identify transitions between local minima.
 \end{definition}
 Unlike straight MD, which has to wait for thermal fluctuations to drive a barrier crossing, ARTn explicitly climbs out of a minimum, finds a nearby saddle, and relaxes into a new minimum. It does this in three phases.
 \paragraph{Activation}
@@ -346,14 +343,17 @@ The system is nudged just past the saddle along the unstable direction and relax
 \begin{definition}[Activated Event]
     A single transition in which the system leaves one local energy minimum, crosses a saddle point, and settles into another. ``Activated'' refers to the energy input needed to get over the barrier.
 \end{definition}
-Each ARTn cycle proposes one such event, accepted or rejected by the Metropolis criterion:
-\begin{equation}
-    P_{\text{acc}} = \min\!\left[1, \exp\!\left(-\frac{E_{\text{final}} - E_{\text{initial}}}{T}\right)\right],
-\end{equation}
-where $T$ is an artificial temperature parameter (set to $0.25$~eV in Zongo et al.~\cite{zongo2025}). Downhill events are always accepted. Uphill ones are accepted with a probability falling off exponentially with how far uphill they go, which lets the search escape shallow traps instead of sticking in the first minimum it finds. A larger $T$ accepts more uphill moves. This is what is meant by ARTn ``capturing rare events''.
+\begin{definition}[Metropolis Acceptance Probability]
+    A rule for accepting or rejecting a proposed move: always accept if it lowers the energy, otherwise accept with a probability that falls off exponentially with the energy increase,
+    \begin{equation}
+        P_{\text{acc}} = \min\!\left[1, \exp\!\left(-\frac{\Delta E}{k T}\right)\right],
+        \label{eq:metropolis}
+    \end{equation}
+    where $\Delta E$ is the energy difference between the old and new configurations, $k$ is the Boltzmann constant, and $T$ is a fictitious temperature.
+\end{definition}
+Each ARTn cycle proposes one such event, accepted or rejected by Eq.~\ref{eq:metropolis} with $T$ set to $0.25$~eV in Zongo et al.~\cite{zongo2025}. A larger $T$ accepts more uphill moves, which lets the search escape shallow traps instead of sticking in the first minimum it finds. This is what is meant by ARTn ``capturing rare events''.
 
 \subsubsection{ARTn-MTP Models of Amorphous Silicon}
-
 Zongo et al. (2025)~\cite{zongo2025} is the central benchmark study for this project. It combines ARTn with the unified Si/O/SiO\textsubscript{2} MTP of Zongo et al. (2024)~\cite{zongo2024} to build seven a-Si models of 216 to 4096 atoms, and compares them against melt-quench MD with the same potential, experimental data, and the 100{,}000-atom 100k-GAP18 reference model~\cite{deringer2018}. The MTP training set contained no a-Si configurations, so these runs also test how well the potential transfers to the amorphous phase.
 
 Most models were built by randomly filling a box at fixed density (2.20 or 2.28~g/cm$^3$) and relaxing it with ARTn, which here acts as an energy minimizer that escapes local traps by climbing through saddle points. The starting configurations were very defective, around 70\% wrong coordination in several cases.
@@ -366,7 +366,7 @@ Most models were built by randomly filling a box at fixed density (2.20 or 2.28~
 Quantity & ARTn-MTP & Reference \\
 \midrule
 Coordination defects & $<2\%$ (3\% for 1000-R, 4096-R-MD) & --- \\
-Bond angle & $109.5^\circ \pm 10^\circ$ & matches experiment \\
+Angular distribution function & peaks at $109.5^\circ$, spread $10^\circ$ & matches experiment \\
 Ring statistics & peak at 5, 6, 7 & no 3-rings, few 4-rings \\
 Bulk modulus & $\sim$77~GPa & 98.3~GPa (c-Si) \\
 Excess energy & 0.167~eV/atom & 0.191 (MD), 0.135--0.205 (exp.) \\
@@ -377,6 +377,12 @@ Excess energy & 0.167~eV/atom & 0.191 (MD), 0.135--0.205 (exp.) \\
 \end{table}
 
 Structure was checked with OVITO~\cite{ovito} for coordination (2.85~\AA{} bond cutoff), R.I.N.G.S~\cite{rings} for ring statistics under the King criterion, and ISAACS for the structure factor.
+\begin{definition}[Angular Distribution Function]
+    The distribution of bond angles $\theta$ across the structure, written $P(\theta)$. In a-Si it peaks at $109.5^\circ$ with a spread near $10^\circ$.
+\end{definition}
+\begin{definition}[Keating Potential]
+    An early empirical potential for tetrahedral semiconductors, penalizing only deviations in bond length and bond angle from their ideal values.
+\end{definition}
 
 Four models showed zero crystallinity, all four generated from a random start with no MD prerun. Three trends follow:
 \begin{enumerate}
@@ -384,6 +390,11 @@ Four models showed zero crystallinity, all four generated from a random start wi
     \item A random start gives less of it than a melt-quench start.
     \item Fewer coordination defects tend to go with more crystallinity.
 \end{enumerate}
+\begin{definition}[Core-year]
+    One CPU core running for one year. The standard unit for reporting the cost of an HPC calculation, since it does not depend on how many cores ran in parallel.
+\end{definition}
+The cost is modest: 0.0615 core-years for the 216-atom model and 0.34 for the 1000-atom one.
+
 The conclusion is that ARTn-MTP gives low crystallinity and low defects together, while MD melt-quench traps crystalline grains, making ARTn-MTP the better route to near-ideal CRN structures.
 
 \subsubsection{Morphological Autoregressive Protocol}
@@ -404,6 +415,9 @@ The structure is chopped onto a grid and built one point at a time, like generat
 where $X_i$ is the grid point being filled, $\theta$ is the atom type, and $\mathcal{N}$ is a softmax turning raw scores into probabilities that sum to one. Feeding each sampled point back in as context extends a small training sample to any size, at linear cost.
 
 The grid cells are cubes, or voxels. A $0.5$~\AA{} voxel, a quarter of the Si--Si bond length, gives $88^3$ cells for a $44$~\AA{} box.
+\begin{definition}[Hyperparameter]
+    A setting chosen before training rather than learned from the data, such as the voxel size, the number of convolutional layers, or the number of training epochs. Values are picked by trial and comparison rather than by fitting.
+\end{definition}
 \begin{definition}[PixelCNN]
     A PixelCNN is a convolutional neural network with masked filters, allowing each pixel to see only previously generated pixels.
 \end{definition}
@@ -417,6 +431,9 @@ The method was tested on liquid water. The generated samples reproduce the refer
 \paragraph{MAP as an Anomaly Detector}
 Madanchi and Simine (2026)~\cite{madanchi2026} use the same trained model in reverse: instead of generating structures, they ask whether the uneven dynamics of a supercooled liquid\footnote{A liquid cooled below its freezing point without crystallizing, on its way to becoming a glass.} can be predicted from a single static snapshot, with no information about motion. MAP already knows what a normal local arrangement looks like, so it can flag unusual ones without being told during training which regions moved.
 
+\begin{definition}[Dynamic Heterogeneity]
+    In a supercooled liquid, some regions rearrange quickly while others stay frozen, even though the material looks uniform. The motion is uneven in space rather than spread evenly.
+\end{definition}
 \begin{definition}[80:20 Kob-Andersen Mixture]
     A standard model glass-former: a binary mixture of two particle types with different interaction parameters, in an 80:20 ratio.
 \end{definition}
@@ -550,33 +567,20 @@ Crystalline silicon sits at $q = 1$ by construction. Amorphous silicon falls sli
     Narval is a general purpose cluster designed for a variety of workloads. Built by Dell Canada and CDW Canada it is located at the École de technologie supérieure in Montreal. The cluster is named in honour of the narwhal, a species of whale which has occasionally been observed in the Gulf of St. Lawrence.
 \end{definition}
 
-\paragraph{Compiling on a Compute Node}
+\paragraph{Compiling on a Compute Node.}
 \label{sec:compile}
-Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and should be run on a compute node rather than the shared login node, which is shared and reserved for lightweight tasks. A compute node is requested from the SLURM scheduler with an interactive allocation:
-\begin{verbatim}
-    salloc --account=ctb-simine --gres=gpu:1 --cpus-per-task=8
-    --mem=16G --time=1:00:00
-\end{verbatim}
-Once the scheduler grants the node (the prompt changes from \texttt{narval1} to a compute node such as \texttt{ng10403}), the required software environment is loaded and the GPU build script is run:
+Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and belongs on a compute node rather than the shared login node, which is reserved for lightweight tasks. A node is requested from the SLURM scheduler with an interactive \texttt{salloc} allocation; once granted, the prompt changes from \texttt{narval1} to a compute node such as \texttt{ng10403}, and the software environment is loaded before the build script is run. None of the required compilers or libraries are available until explicitly requested with \texttt{module load}. The exact commands are given in Appendix~\ref{JSS}.
 
-\begin{verbatim}
-    cd ~/LMP_MTP
-    module load gcc openmpi flexiblas cmake fftw eigen voro++ cuda
-    sh ./build-lmp-mtp-gpu.sh
-\end{verbatim}
-The \texttt{module load} line activates the compiler (\texttt{gcc}), the GPU toolkit (\texttt{CUDA})\footnote{CUDA is a parallel computing platform and programming model developed by NVIDIA}, and supporting math and build libraries, none of which are available until explicitly requested.
-
-\paragraph{Filesystems and Their Quotas}
+\paragraph{Filesystems and Their Quotas.}
 \label{sec:filesystems}
-Narval exposes several filesystems with different purposes and quotas, and the distinction matters for long production runs. \texttt{/home} is small and backed up; \texttt{/scratch} is large, fast, per-user and \emph{purged} on a fixed retention schedule; \texttt{/project} is the group allocation, shared between all members and quota-limited on both total size and file count; \texttt{/nearline} is tape-backed archival storage. Current usage against quota is reported by \texttt{diskusage\_report}. All production runs in this project were executed from \texttt{/scratch}, with finished configurations copied to \texttt{/project} for retention. The failure discussed in Section~\ref{sec:quench_fail} makes the practical case for this arrangement.
+Narval exposes several filesystems with different purposes and quotas, and the distinction matters for long production runs. \texttt{/home} is small and backed up; \texttt{/scratch} is large, fast, per-user and \emph{purged} on a fixed retention schedule; \texttt{/project} is the group allocation, shared between all members and quota-limited on both total size and file count; \texttt{/nearline} is tape-backed archival storage. Current usage against quota is reported by \texttt{diskusage\_report}. All production runs in this project were executed from \texttt{/scratch}, with finished configurations copied to \texttt{/project} for retention.
 
 \subsubsection{LAMMPS}
-
 \begin{definition}[LAMMPS]
-    Large-scale Atomic/Molecular Massively Parallel Simulator (LAMMPS)~\cite{plimpton1995,thompson2022}, developed and distributed by Sandia National Laboratories, is an open-source code for classical particle-based materials simulation. It is the molecular dynamics code used in this project, run on a remote computing cluster accessed via SSH (PuTTY).
+    Large-scale Atomic/Molecular Massively Parallel Simulator (LAMMPS), developed and distributed by Sandia National Laboratories, is an open-source code for classical particle-based materials simulation. It is the molecular dynamics code used in this project, run on a remote computing cluster accessed via SSH (PuTTY).
 \end{definition}
 
-\paragraph{Simulation Workflow}
+\paragraph{Simulation Workflow.}
 
 A LAMMPS run in this project involves three files:
 \begin{itemize}
@@ -585,43 +589,46 @@ A LAMMPS run in this project involves three files:
     \item The log file (log.lammps) is generated automatically by LAMMPS during the run and records the thermodynamic output (temperature, energy, and pressure at each step), along with timing information and any error messages.
 \end{itemize}
 
-\paragraph{Combining LAMMPS with the MTP}
+\paragraph{Combining LAMMPS with the MTP.}
 
 LAMMPS handles the mechanics of a simulation (tracking atomic positions, building neighbour lists, and integrating Newton's equations of motion) but it is agnostic about where the forces come from. The interatomic potential is supplied as a separate, interchangeable module selected through the \texttt{pair\_style} command. Combining LAMMPS with the MTP therefore means installing an MTP pair style into LAMMPS. Once built, the trained potential is used by pointing the input script at the model file, e.g. \texttt{pair\_style mtp model.almtp}: at every timestep, LAMMPS passes each atom's local neighbourhood to the MTP, which returns the energies and forces that LAMMPS then uses to advance the system. The division of labour is clean: the MTP decides how atoms interact, and LAMMPS decides what happens next.
 
 \subsubsection{WinSCP}
-
 \begin{definition}[WinSCP]
     WinSCP is a free and open-source software (application) for Microsoft Windows. Its main function is secure file transfer between a local and a remote computer.
 \end{definition}
-
 When logged in to WinSCP using the login node `narval.alliancecan.ca` and the username and password created through the CCDB website, enter the path `/scratch/your\_username/'. Then you can drag and drop files between your local computer and the Narval cluster. Do not click on the scratch folder in the home menu, since it will load all folders of every Narval user.
 
 \subsubsection{PuTTY}
-
 \begin{definition}[PuTTY]
     PuTTY is a free and open-source terminal emulator and serial console. It supports various network protocols, including SSH, Telnet, rlogin, and raw socket connections. In this project, PuTTY is used to establish a secure SSH connection to the Narval cluster for remote command-line access.
 \end{definition}
-
 PuTTY uses the same login credentials as WinSCP, but instead of dragging and dropping files, it lets you run commands directly on the cluster. It behaves like a standard Linux terminal: you navigate the filesystem, edit files, and launch simulations by typing commands. The typical workflow is to move into your scratch folder, then submit or run a LAMMPS job from there.
 
-\paragraph{Interactive Jobs}
+\paragraph{Interactive Jobs.}
+A regular batch job (\texttt{sbatch}) submits a fixed script to the queue and runs unattended; the user only sees the output afterwards. An interactive job instead gives direct command-line access to the compute node for the duration of the allocation, so commands can be typed, tested, and corrected in real time. This makes it the right tool for tasks that require trial and error, such as compiling software, debugging a crashing binary, or checking that modules load correctly, where waiting through the batch queue after every small change would be far too slow. Batch jobs remain preferable for long production runs, since they do not require the user to stay connected. In this project, interactive jobs were used to compile the custom LAMMPS-MTP build on a compute node (Section~\ref{sec:compile}).
 \begin{definition}[Interactive Job]
     An interactive job is a compute-node session requested through the scheduler with \texttt{salloc}, which drops the user into a live shell on the allocated node instead of running a pre-written script.
 \end{definition}
-
-A regular batch job (\texttt{sbatch}) submits a fixed script to the queue and runs unattended; the user only sees the output afterwards. An interactive job instead gives direct command-line access to the compute node for the duration of the allocation, so commands can be typed, tested, and corrected in real time. This makes it the right tool for tasks that require trial and error, such as compiling software, debugging a crashing binary, or checking that modules load correctly, where waiting through the batch queue after every small change would be far too slow. Batch jobs remain preferable for long production runs, since they do not require the user to stay connected. In this project, interactive jobs were used to compile the custom LAMMPS-MTP build on a compute node (Section~\ref{sec:compile}).
 
 
 \subsubsection{Visual Molecular Dynamics}
 
 \begin{definition}[Visual Molecular Dynamics]
-    Visual Molecular Dynamics (VMD)~\cite{vmd1996} is a molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3D graphics and built-in scripting.
+    Visual Molecular Dynamics (VMD) is a molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3D graphics and built-in scripting.
 \end{definition}
 
 In this project, VMD is used to visualize the atomic configurations and trajectories generated by LAMMPS. A practical subtlety is that LAMMPS produces two distinct kinds of output, and VMD loads each differently. A data file (such as \texttt{config.end\_sim}, written by \texttt{write\_data}) stores a single configuration, whereas a trajectory file (such as \texttt{dump.lammpstrj}, written by the \texttt{dump} command) stores many frames. The graphical loader only exposes the trajectory reader, so data files must instead be loaded through the Tk Console using the TopoTools plugin.
 
 Once a structure is loaded, the drawing method is set to VDW so atoms render as spheres, and \texttt{pbc box} draws the periodic simulation cell. For a trajectory, the playback controls in the main VMD window then animate the configuration through all stored frames.
+
+\subsubsection{OVITO and ISAACS}
+\begin{definition}[OVITO]
+    The Open Visualization Tool~\cite{ovito}, used here for coordination analysis and for the ``identify diamond structure'' crystallinity test.
+\end{definition}
+\begin{definition}[ISAACS]
+    A structure-analysis package for amorphous and crystalline systems, used by Zongo et al. to compute the structure factor.
+\end{definition}
 
 
 \clearpage
@@ -1652,22 +1659,6 @@ The `cuda' module loads the NVIDIA GPU toolkit, required for the GPU build.
     and application to impurities, surfaces, and other defects in metals,''
     \textit{Phys. Rev. B} \textbf{29}, 6443--6453 (1984).
     \url{https://doi.org/10.1103/PhysRevB.29.6443}
-
-\bibitem{plimpton1995} S. Plimpton, ``Fast parallel algorithms for short-range
-    molecular dynamics,'' \textit{J. Comput. Phys.} \textbf{117}, 1--19 (1995).
-    \url{https://doi.org/10.1006/jcph.1995.1039}
-
-\bibitem{thompson2022} A. P. Thompson, H. M. Aktulga, R. Berger, D. S. Bolintineanu,
-    W. M. Brown, P. S. Crozier, P. J. in 't Veld, A. Kohlmeyer, S. G. Moore,
-    T. D. Nguyen, R. Shan, M. J. Stevens, J. Tranchida, C. Trott and S. J. Plimpton,
-    ``LAMMPS: a flexible simulation tool for particle-based materials modeling at
-    the atomic, meso, and continuum scales,'' \textit{Comput. Phys. Commun.}
-    \textbf{271}, 108171 (2022).
-    \url{https://doi.org/10.1016/j.cpc.2021.108171}
-
-\bibitem{vmd1996} W. Humphrey, A. Dalke and K. Schulten, ``VMD: Visual molecular
-    dynamics,'' \textit{J. Mol. Graph.} \textbf{14}, 33--38 (1996).
-    \url{https://doi.org/10.1016/0263-7855(96)00018-5}
 
 \bibitem{ovito} A. Stukowski, ``Visualization and analysis of atomistic simulation
     data with OVITO -- the Open Visualization Tool,'' \textit{Modelling Simul.
