@@ -127,23 +127,18 @@ The aim of this project is to generate models of a-Si through melt-quench molecu
 \stepcounter{footnote}\footnotetext{At room temperature.}
 
 \subsubsection{The Continuous Random Network Model}
-
 \begin{definition}[Continuous Random Network]
     The continuous random network (CRN) model describes an amorphous material as a non-crystalline 3D network with no repeating long-range structure.
 \end{definition}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Continuous Random Network.png}
     \caption{The continuous random network model of amorphous silica.}
     \label{fig:CRN}
 \end{figure}
-
-
 A CRN is disordered by construction. Because the network is non-periodic, bond lengths stay tightly clustered near the crystalline value, bond angles spread around the tetrahedral value of $109.47^\circ \pm 10^\circ$, and the dihedral angles\footnote{The dihedral angle of a chain of four bonded atoms is the angle between the plane of the first three and the plane of the last three.} become essentially random. This is the key difference from periodic c-Si, where all three take sharp fixed values.
 
 The geometric freedom in such a network is limited. For an amorphous solid to form a stable, fully connected network in the first place, its local bonding must satisfy a small set of structural constraints, first set out by Zachariasen~\cite{zachariasen1932}.
-
 \begin{theorem}[Zachariasen's Rules for Glass Formation]
     \leavevmode
     \begin{itemize}
@@ -153,13 +148,10 @@ The geometric freedom in such a network is limited. For an amorphous solid to fo
         \item For 3D networks, at least three corners must be shared by polyhedra.
     \end{itemize}
 \end{theorem}
-
 Zachariasen's rules describe what a valid glass network must look like, but they tell us which structures are admissible without prescribing how to build one. To actually generate an atomic model that satisfies these constraints, we need an explicit procedure, which is precisely what the Wooten-Winer-Weaire algorithm provides~\cite{www1985}.
-
 \begin{theorem}[Wooten-Winer-Weaire Algorithm]
     The Wooten-Winer-Weaire (WWW) algorithm is a foundational Monte Carlo method used to generate realistic, CRN models of amorphous tetrahedral semiconductors.
 \end{theorem}
-
 At the core of the algorithm is a local operation called a bond transposition. In this step, two nearby bonds are broken and the atoms are reconnected in a different way. This changes the local structure of the network while keeping each atom bonded to four neighbors. The new structure is then accepted or rejected using a Monte Carlo method based on how the strain energy changes. Fig.~\ref{fig:WWW_algorithm} illustrates this process step by step.
 
 \subsubsection{Coordination Defects}
@@ -173,13 +165,10 @@ At the core of the algorithm is a local operation called a bond transposition. I
 \begin{definition}[Floating Bond]
     A floating bond is an over-coordinated (fivefold or more) silicon atom. Its excess electron delocalizes over the neighbouring bonds rather than localizing, so unlike a dangling bond it carries no strong magnetic moment and is ESR-silent.
 \end{definition}
-
 \begin{remark}
     The concentration of coordination defects is not intrinsic to a-Si but depends strongly on sample preparation.
 \end{remark}
-
 Experimentally, as-implanted a-Si is highly defective and strained, but these defects anneal out under thermal relaxation as the network relaxes toward a lower-energy state. The same sensitivity appears in simulation: melt-quench MD traps coordination defects, increasingly so at faster quench\footnote{Quench is rapid cooling.} rates, whereas WWW bond-switching relaxes toward near-perfect fourfold coordination. Reverse Monte Carlo (RMC), the activation-relaxation technique (ARTn), and force-enhanced atomic refinement (FEAR) each strike a different balance between matching experimental data and minimizing defect density.
-
 \subsubsection{Ring Defects and Medium-Range Order}
 \begin{definition}[Ring in a Network]
     A ring is a closed loop of bonds connecting atoms.
@@ -190,15 +179,24 @@ Experimentally, as-implanted a-Si is highly defective and strained, but these de
 \begin{definition}[Medium-Range Order]
     Medium-range order (MRO) is structure that persists over a few atomic spacings, beyond nearest neighbours but short of the long-range periodicity of a crystal.
 \end{definition}
-
 In realistic a-Si models the ring distribution peaks around five-, six-, and seven-membered rings. Three-membered rings are essentially absent, and four-membered rings are rare because both are heavily strained\footnote{The bonds are forced into shapes they don't want to be in, so they store energy and are unstable, like a bent spring that wants to snap back.}.
 
 One practical caveat is that there is no single agreed-upon rule for what counts as a ``ring'' in a disordered network. Several definitions exist (King or shortest-path, Guttman, and primitive rings), and each can count the loops in the same structure differently.
-
+\subsubsection{The Paracrystallinity Debate}
+A long-standing debate concerns whether a-Si is genuinely a pure continuous random network, or whether real samples contain small ordered regions mixed into the disordered matrix.
+\begin{definition}[Paracrystalline Model]
+    A model in which a-Si contains small crystal-like regions of local order (``paracrystallites'') embedded in a disordered matrix, so the structure retains correlations at the medium range rather than being fully random.
+\end{definition}
+Support for the paracrystalline picture comes from fluctuation electron microscopy (FEM), a technique that can pick up medium-range order which ordinary diffraction tends to average away. Treacy and Borisenko (2012)~\cite{treacy2012} read their FEM signals as evidence for tiny paracrystalline regions. This reading was questioned by others, and the issue stayed unresolved because the measurement is indirect rather than a direct image of the structure. More recently, the debate has reopened from the simulation side, Rosset, Drabold and Deringer (2025)~\cite{rosset2025} find paracrystalline order appearing in large machine-learning MD models of a-Si, suggesting that the pure CRN may not fully describe real samples.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{paracrystallinity.png}
+    \caption{Schematic illustration of the paracrystalline model of a-Si. The highlighted ordered domains are illustrative and are not drawn to scale.}
+    \label{fig:paracrystallinity}
+\end{figure}
 
 \subsubsection{Applications}
 a-Si is used predominantly as a semiconductor for large-area and flexible electronics. Its major commercial and industrial applications include:
-
 \begin{itemize}
     \item \textbf{Active-matrix displays.} a-Si is the foundational material for the thin-film transistor (TFT) arrays in liquid-crystal displays (LCDs), controlling individual pixels in laptops and televisions.
     \item \textbf{Photovoltaics and solar power.} It is used in lightweight, flexible, and semi-transparent thin-film solar panels. Although less efficient than c-Si, a-Si panels perform well in low-light conditions.
@@ -208,41 +206,18 @@ a-Si is used predominantly as a semiconductor for large-area and flexible electr
     \item \textbf{Quantum computers} Use a-Si in superconducting qubits and Josephson junctions\footnote{Josephson junctions are weak links between two superconductors that allow for the flow of Cooper pairs. PS: uses amorphous silicon as its weak-link or tunneling barrier material.}, where its low defect density and tunable properties help maintain coherence.
 \end{itemize}
 
-\subsubsection{The Paracrystallinity Debate}
-A long-standing debate concerns whether a-Si is genuinely a pure continuous random network, or whether real samples contain small ordered regions mixed into the disordered matrix.
-
-\begin{definition}[Paracrystalline Model]
-    A model in which a-Si contains small crystal-like regions of local order (``paracrystallites'') embedded in a disordered matrix, so the structure retains correlations at the medium range rather than being fully random.
-\end{definition}
-
-Support for the paracrystalline picture comes from fluctuation electron microscopy (FEM), a technique that can pick up medium-range order which ordinary diffraction tends to average away. Treacy and Borisenko (2012)~\cite{treacy2012} read their FEM signals as evidence for tiny paracrystalline regions. This reading was questioned by others, and the issue stayed unresolved because the measurement is indirect rather than a direct image of the structure. More recently, the debate has reopened from the simulation side, Rosset, Drabold and Deringer (2025)~\cite{rosset2025} find paracrystalline order appearing in large machine-learning MD models of a-Si, suggesting that the pure CRN may not fully describe real samples.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{paracrystallinity.png}
-    \caption{Schematic illustration of the paracrystalline model of a-Si. The highlighted ordered domains are illustrative and are not drawn to scale.}
-    \label{fig:paracrystallinity}
-\end{figure}
-
-\subsection{Interatomic Potentials}
-
-\begin{definition}[Interatomic Potential]
-    \label{IP}
-    An interatomic potential is a mathematical function that describes the potential energy of a system of atoms as a function of their positions. It is used to calculate forces and energies in MD simulations.
-\end{definition}
-
-\subsubsection{Interatomic Potentials in Molecular Dynamics}
+\subsection{Molecular Dynamics}
+\subsubsection{Equations of Motion}
 \begin{definition}[Molecular Dynamics]
     Molecular dynamics (MD) is a computational method for simulating the physical movements of atoms and molecules.
 \end{definition}
 Molecular dynamics evolves a system of atoms in time by integrating Newton's equations of motion. This requires the forces on each atom at every timestep, which means a model of the potential energy as a function of atomic positions. That model is the interatomic potential.
-
 \begin{definition}[Force Field]
     A force field\footnote{``Force field'' and ``interatomic potential'' are used interchangeably, the former more common in chemistry, the latter in materials physics.} is the complete set of functions and fitted parameters used to compute the energy and forces of a system.
 \end{definition}
-
-Potentials are classified by where their parameters come from.
-
+\begin{remark}
+    Potentials are classified by where their parameters come from.
+\end{remark}
 \begin{definition}[\textit{Ab initio}]
     Energy computed directly from quantum mechanics, no parameters fitted to data. DFT is the standard example. Accurate but expensive.
 \end{definition}
@@ -251,6 +226,28 @@ Potentials are classified by where their parameters come from.
 \end{definition}
 \begin{definition}[Machine-learned]
     No fixed functional form. The structure-energy relationship is learned from a large set of \textit{ab initio} reference calculations. MTPs belong here.
+\end{definition}
+
+\subsubsection{Thermodynamic Ensembles}
+\begin{definition}[Thermodynamic Ensemble]
+    The set of quantities held fixed during a simulation.
+\end{definition}
+Three ensembles are used in this project.
+\begin{definition}[NVE, microcanonical]
+    Constant number of atoms, volume, and total energy. Newton's equations are integrated with no thermostat, so the system exchanges nothing with its surroundings.
+\end{definition}
+\begin{definition}[NVT, canonical]
+    Constant number of atoms, volume, and temperature. A thermostat exchanges energy with the system to hold the temperature at a target value while the box stays fixed.
+\end{definition}
+\begin{definition}[NPT, isothermal-isobaric]
+    Constant number of atoms, pressure, and temperature. A barostat is added to the thermostat, letting the box expand or contract until the system reaches the target pressure. Since the volume is free to change, this is the ensemble used to find the density a potential actually prefers.
+\end{definition}
+
+\subsection{Interatomic Potentials}
+
+\begin{definition}[Interatomic Potential]
+    \label{IP}
+    An interatomic potential is a mathematical function that describes the potential energy of a system of atoms as a function of their positions. It is used to calculate forces and energies in MD simulations.
 \end{definition}
 
 \subsubsection{Lennard-Jones Potential}
@@ -270,7 +267,6 @@ Changing $\sigma$ and $\epsilon$ only rescales the curve along the $r$ and $V$ a
     \label{LJ Substance}
     A material modelled with the Lennard-Jones potential, whose interaction is set by only two parameters, $\sigma$ and $\epsilon$. These rescale the size and depth of the same fixed curve, so they change how large and how strongly bound the atoms are, but never the nature of the bonding. This restricts LJ to systems with genuinely simple, isotropic\footnote{The same in all directions, with no preferred bonding angles.} bonding, such as the noble gases.
 \end{definition}
-
 Noble gas atoms really do behave this way: spheres that weakly attract and repel when squeezed, with no preferred direction. Silicon does not. Its bonds demand specific angles, and LJ has no parameter for angles, so no choice of $\sigma$ and $\epsilon$ can represent it.
 
 \subsubsection{Other Interatomic Potentials}
@@ -281,21 +277,16 @@ Several families of potentials exist beyond LJ, each suited to different bonding
     \item \textbf{Non-parametric / machine learning potentials.} No fixed functional form. The potential is instead learned from data. Examples include Moment Tensor Potentials and neural network potentials. These can capture complex interactions and are increasingly used for materials with non-trivial bonding\footnote{Non-trivial bonding refers to bonding that is not simply pairwise, but involves more complex interactions.} such as a-Si.
 \end{itemize}
 
-\subsection{Density Functional Theory}%Continue restructuring minimization from here
+\subsubsection{Density Functional Theory}
 \begin{definition}[Density Functional Theory]
-    Density functional theory (DFT) is a quantum-mechanical method for computing the ground-state energy and electronic structure of a system of interacting electrons by treating the electron density, rather than the many-body wavefunction.\footnote{Instead of tracking each electron individually, DFT uses a 3D function $n(\mathbf{r})$ that tells how electrons are distributed in space.}
+    A quantum-mechanical method for computing the ground-state energy and electronic structure of a system of interacting electrons, using the electron density rather than the many-body wavefunction.
 \end{definition}
+The many-electron Schr\"odinger equation is unsolvable for all but the smallest systems, since its wavefunction depends on the positions of every electron at once and its complexity explodes as electrons are added. The density $n(\mathbf{r})$ avoids this: it only describes how electrons are distributed in space, so it is a function of 3 coordinates rather than $3N$ for $N$ electrons.
 
-The many-electron Schr\"odinger equation is unsolvable for all but the smallest systems, because its wavefunction depends on the positions of every electron at once, so its complexity explodes as electrons are added. DFT sidesteps this by working with the electron density $n(\mathbf{r})$, which describes only how electrons are distributed in space, a function of just 3 coordinates instead of $3N$ for $N$ electrons.
-
-What makes this valid is a result by Hohenberg and Kohn~\cite{hohenberg1964}: the ground-state energy of a system is fully determined by its electron density alone, and the true density is the one that minimizes that energy. In other words, you never actually need the full wavefunction; the density carries all the information, and finding the right density is just an energy-minimization problem.
-
-In practice the density is obtained through the Kohn-Sham scheme~\cite{kohn1965}, which replaces the hard problem of many interacting electrons with an easier one: a set of non-interacting electrons moving in an effective field chosen to reproduce the same density. This swap is not free, however all the complicated physics of how electrons truly interact gets pushed into a single leftover term, the exchange-correlation functional.
-
+Hohenberg and Kohn~\cite{hohenberg1964} showed this is valid: the ground-state energy is fully determined by the density alone, and the true density is the one that minimizes it. The full wavefunction is never needed, and finding the density becomes an energy-minimization problem. In practice it is obtained through the Kohn-Sham scheme~\cite{kohn1965}, which replaces many interacting electrons with non-interacting ones moving in an effective field chosen to reproduce the same density. The swap is not free: all the physics of how electrons truly interact gets pushed into one leftover term, the exchange-correlation functional.
 \begin{definition}[Exchange-Correlation Functional]
-    The exchange-correlation functional $E_{xc}[n]$ collects all the many-body electron interactions (exchange and correlation) not captured by the simpler kinetic and electrostatic terms.\footnote{This is the only part of DFT that is not known exactly and is responsible for most of the error in practical calculations.}
+    The exchange-correlation functional $E_{xc}[n]$\footnote{This is the only part of DFT that is not known exactly and is responsible for most of the error in practical calculations.} collects all the many-body electron interactions (exchange and correlation) not captured by the simpler kinetic and electrostatic terms.
 \end{definition}
-
 Since $E_{xc}$ has to be approximated, the accuracy of a DFT calculation depends on how good that approximation is. Two common ones are the local density approximation (LDA), which estimates $E_{xc}$ from the electron density at each point, and the generalized gradient approximation (GGA)~\cite{pbe1996}, which also looks at how quickly the density is changing from point to point.
 
 The problem with DFT is its cost. The amount of computing time grows roughly as the cube of the number of electrons, so doubling the system size makes it about eight times more expensive. This quickly becomes impractical for the long simulations and large atom counts needed to model a-Si. The workaround is to run DFT only on a limited set of atomic arrangements to get accurate reference energies and forces, then train a potential like the MTP to reproduce those results at a tiny fraction of the cost.
@@ -303,7 +294,7 @@ The problem with DFT is its cost. The amount of computing time grows roughly as 
 % ===========================================================
 %  MLIPs
 % ===========================================================
-\subsection{Machine Learning Interatomic Potentials}
+\subsubsection{Machine Learning Interatomic Potentials}
 \begin{definition}[Machine Learning Interatomic Potentials]
     Machine learning interatomic potentials (MLIPs) are computational models that use machine learning techniques to predict the potential energy and forces of atomic systems based on training data from high-fidelity calculations.
 \end{definition}
@@ -311,13 +302,13 @@ The problem with DFT is its cost. The amount of computing time grows roughly as 
 % ===========================================================
 %  MTP
 % ===========================================================
-\subsection{Moment Tensor Potential}
+\subsubsection{Moment Tensor Potential}
 \begin{definition}[Moment Tensor Potential]
     Moment Tensor Potentials (MTPs)~\cite{shapeev2016} is a specific type of MLIP that approximate DFT. Their accuracy can be dialed up in a controlled way, the model is built from a set of mathematical building blocks, and adding more of them makes it more accurate (though slower).
 \end{definition}
 
-\subsubsection{Why MTP?}
-Empirical potentials (like EAM) are fast but locked into a fixed formula, so their accuracy can only go so far. General machine-learning potentials are flexible but computationally expensive. MTP sits in between:
+\paragraph{Why MTP?}
+Empirical potentials are fast but locked into a fixed formula, so their accuracy can only go so far. General machine-learning potentials are flexible but computationally expensive. MTP sits in between:
 \begin{itemize}
     \item \textbf{Systematically improvable:} its accuracy can be increased in a controlled way by adding more building-block functions.
     \item \textbf{Physically consistent:} it gives the same energy no matter how the atoms are labelled, rotated, or mirrored, as real physics should.
@@ -325,82 +316,121 @@ Empirical potentials (like EAM) are fast but locked into a fixed formula, so the
     \item \textbf{Multi-element:} it can handle more than one atom type, with the interactions adjusted per chemical species.
 \end{itemize}
 
-\subsubsection{Kokkos-accelerated Moment Tensor Potential}
+\paragraph{Kokkos-accelerated Moment Tensor Potential}
 
-Until recently, the MTP had no GPU version even though it is widely used and already supports active learning. This limited how fast it could run on modern HPC\footnote{High-Performance Computing (HPC) systems are large computer setups made of many connected machines, using fast CPUs and GPUs to perform very large calculations.}. This matters because modern supercomputers are ``mixed systems'', meaning they combine normal CPUs with GPUs from companies like NVIDIA, AMD, or Intel, and each type of hardware usually needs different programming methods to use efficiently. Meng et al. (2026)~\cite{meng2026} solve this by extending the MTP inside the LAMMPS Kokkos package. 
+Until recently the MTP had no GPU implementation, which limited how fast it could run on modern HPC\footnote{High-Performance Computing systems are large setups of many connected machines, combining CPUs and GPUs to perform very large calculations.} systems. These machines are mixed, pairing normal CPUs with GPUs from NVIDIA, AMD, or Intel, and each type of hardware normally needs different programming methods to use efficiently. Meng et al.~\cite{meng2026} solve this by extending the MTP inside the LAMMPS Kokkos package.
+
 \begin{definition}[Kokkos]
-    Kokkos is a tool that lets one version of the code run on different hardware (CPUs and different GPUs) without rewriting it for each device.
+    A tool that lets one version of the code run on CPUs and on different GPUs without being rewritten for each device.
 \end{definition}
-This is the version used in this project through the Kokkos plugin.
 
-The package provides nine different versions of the method. These come from combining three types of usage with three types of hardware. The three usage types are: 
-\begin{itemize}
-    \item Normal use (computing energies, forces, and stresses for molecular dynamics).
-    \item Configuration-based active learning.
-    \item Neighborhood-based active learning.
-\end{itemize}
-The two active learning modes also check a score called the extrapolation grade every so often to detect when the model is unsure and needs new training data.
+The package provides three implementations. The first is an optimized CPU version (\texttt{mtp}), reaching up to a $2\times$ speedup over the earlier MLIP-3 code. The other two are GPU variants: a thread-parallel version (\texttt{mtp/kk}) for large simulations, typically 50{,}000 atoms or more per GPU, and a block-parallel version (\texttt{mtp/small/kk}) for smaller ones, typically 2000 atoms or more per GPU. To stay within GPU memory, both GPU variants use a \texttt{chunksize} parameter that splits atom processing into chunks so working memory can be reused. Cost is governed by the MTP level, which scales the number of basis functions exponentially.
 
-The three hardware versions are:
-\begin{itemize}
-    \item CPU version (improved compared to the older MLIP-3 code).
-    \item GPU version for large systems (about 50,000 atoms or more per GPU).
-    \item GPU version for smaller systems (about 2000 atoms or more per GPU), called `small'.
-\end{itemize}
- 
-Performance is governed by the MTP ``level,'' which exponentially scales the number of basis functions and hence the cost.
+The authors benchmarked on Narval, whose CPU nodes carry two AMD EPYC 7532 processors (32 cores each) and whose GPU nodes carry four NVIDIA A100 SXM4 (40~GB) cards. The GPU variants scale efficiently to million-atom systems. They stress that performance depends heavily on hardware, material, and simulation conditions, and recommend short single-GPU trial runs of both GPU variants, since the crossover at which the thread-parallel version overtakes the block-parallel one shifts with atom count, MTP level, and hardware.
 
-The authors benchmarked weak and strong scaling on Narval, whose CPU nodes each carry two AMD EPYC 7532 processors (32 cores each) and whose GPU nodes each carry four NVIDIA A100 SXM4 (40 GB) cards. The optimized CPU variant reaches up to a $2\times$ speedup over MLIP-3, while the GPU variants deliver much larger gains and scale efficiently to million-atom systems.
-
-To stay within GPU memory, the GPU implementations use a chunksize parameter that splits atom processing into reusable chunks, allowing larger systems at similar throughput.
-
-The authors stress that throughput\footnote{the rate at which a system successfully produces, processes, or delivers data over a specific period of time} depends heavily on the hardware, the material, and the simulation conditions. They therefore recommend short single-GPU trial runs of both GPU variants, since the crossover at which the thread-parallel variant overtakes the block-parallel one shifts with atom count, MTP level, and hardware.
-
-
+\subsection{Sampling Beyond MD}
 % ===========================================================
 %  ARTn
 % ===========================================================
-\subsection{Activation Relaxation Technique Nouveau}
+\subsubsection{Activation Relaxation Technique Nouveau}
 \begin{definition}[Activation Relaxation Technique Nouveau]
-    Activation Relaxation Technique nouveau (ARTn)~\cite{barkema1996} is a saddle-point search algorithm used to map the potential energy surface (PES)\footnote{Picture a landscape where height = how much energy a given atom arrangement has. Low valleys = stable arrangements, hilltops = unstable ones. To get from one stable arrangement to another, the atoms must pass through a higher-energy "in-between" state, that's the hill.} and identify transitions between local minima. It explicitly climbs out of a minimum, finds a nearby saddle, and relaxes into a new minimum, allowing for efficient exploration of the energy landscape.
+    Activation Relaxation Technique nouveau (ARTn)~\cite{barkema1996} is a saddle-point search algorithm used to map the potential energy surface (PES)\footnote{Picture a landscape where height = how much energy a given atom arrangement has. Low valleys = stable arrangements, hilltops = unstable ones. To get from one stable arrangement to another, the atoms must pass through a higher-energy "in-between" state, that's the hill.} and identify transitions between local minima.
 \end{definition}
 Unlike straight MD, which has to wait for thermal fluctuations to drive a barrier crossing, ARTn explicitly climbs out of a minimum, finds a nearby saddle, and relaxes into a new minimum. It does this in three phases.
-
-\subsubsection{Activation}
+\paragraph{Activation}
 Starting at a local energy minimum, the system is pushed in a random direction. After each push the lowest eigenvalue of the Hessian is checked (using the Lanczos algorithm, which only needs force differences and never builds the full Hessian). As long as this eigenvalue stays positive, the system is still inside the basin of the minimum, so it keeps pushing. Once the eigenvalue flips negative, a direction of negative curvature has been found, pointing toward a nearby saddle.
-
-\subsubsection{Relaxation}
+\paragraph{Relaxation}
 The system is then moved along the negative-curvature direction while the energy is simultaneously minimized in all perpendicular directions. This converges on a first-order saddle point.
-
-\subsubsection{Falling}
+\paragraph{Falling}
 The system is nudged just past the saddle along the unstable direction and relaxed normally, settling into a new local minimum on the other side of the barrier.
-
-\subsubsection{Event Acceptance}
 \begin{definition}[Activated Event]
-    An activated event is a single transition in which the system leaves one local energy minimum, crosses a saddle point, and settles into another. ``Activated'' refers to the energy input needed to get over the barrier.
+    A single transition in which the system leaves one local energy minimum, crosses a saddle point, and settles into another. ``Activated'' refers to the energy input needed to get over the barrier.
 \end{definition}
-
-Each completed ARTn cycle (activation, relaxation, falling) proposes one such event, which is then accepted or rejected using the Metropolis criterion:
+Each ARTn cycle proposes one such event, accepted or rejected by the Metropolis criterion:
 \begin{equation}
     P_{\text{acc}} = \min\!\left[1, \exp\!\left(-\frac{E_{\text{final}} - E_{\text{initial}}}{T}\right)\right],
 \end{equation}
-where $E_{\text{initial}}$ and $E_{\text{final}}$ are the energies of the starting and ending minima, and $T$ is an artificial temperature parameter (set to $0.25$~eV in Zongo et al.~\cite{zongo2025}). Any event that lowers the energy is always accepted, since the exponent is then positive and the expression exceeds one. Events that raise the energy are accepted with a probability that falls off exponentially with how much they raise it, which is what allows the search to escape shallow traps rather than becoming stuck in the first minimum it finds. The parameter $T$ controls how permissive this is: a larger value accepts more uphill moves.
-
-This is also what is meant by ARTn ``capturing rare events''. In ordinary molecular dynamics, a barrier crossing only happens when a thermal fluctuation is large enough to push the system over, so high barriers are crossed very infrequently and may not be observed at all within an accessible simulation time. ARTn does not wait for such a fluctuation; it constructs a barrier crossing deliberately at every step, and so samples transitions that MD would effectively never reach.
+where $T$ is an artificial temperature parameter (set to $0.25$~eV in Zongo et al.~\cite{zongo2025}). Downhill events are always accepted. Uphill ones are accepted with a probability falling off exponentially with how far uphill they go, which lets the search escape shallow traps instead of sticking in the first minimum it finds. A larger $T$ accepts more uphill moves. This is what is meant by ARTn ``capturing rare events''.
 
 \subsubsection{ARTn-MTP Models of Amorphous Silicon}
 
-Zongo et al. (2025)~\cite{zongo2025} is the central benchmark study for this project. It combines ARTn with the unified Si/O/SiO\textsubscript{2} MTP of Zongo et al. (2024)~\cite{zongo2024} to build seven a-Si models, ranging from 216 to 4096 atoms, and compares them against melt-quench MD using the same potential, as well as against experimental data and other high-quality models from the literature. One important point is that the MTP training set contained no a-Si configurations, so these simulations also test how well the potential transfers to the amorphous phase.
+Zongo et al. (2025)~\cite{zongo2025} is the central benchmark study for this project. It combines ARTn with the unified Si/O/SiO\textsubscript{2} MTP of Zongo et al. (2024)~\cite{zongo2024} to build seven a-Si models of 216 to 4096 atoms, and compares them against melt-quench MD with the same potential, experimental data, and the 100{,}000-atom 100k-GAP18 reference model~\cite{deringer2018}. The MTP training set contained no a-Si configurations, so these runs also test how well the potential transfers to the amorphous phase.
 
-Most models were built by randomly filling a simulation box at a fixed density (2.20 or 2.28 g/cm$^3$) and relaxing it with ARTn. Here ARTn acts as an energy minimizer that escapes local traps by climbing through saddle points, using an artificial temperature parameter (0.25 eV) that controls which structural changes it accepts. The starting configurations were very defective (around 70\% of atoms had the wrong number of bonds in several models), but the final ARTn-MTP structures brought defect levels below 2\%, apart from the 1000-R and 4096-R-MD models at roughly 3\%. The 216-R2 model reached 100\% fourfold coordination, which the authors note is rarely seen outside a handful of Keating-potential WWW models.
+Most models were built by randomly filling a box at fixed density (2.20 or 2.28~g/cm$^3$) and relaxing it with ARTn, which here acts as an energy minimizer that escapes local traps by climbing through saddle points. The starting configurations were very defective, around 70\% wrong coordination in several cases.
 
-Structural quality was checked with standard structural-analysis tools (OVITO~\cite{ovito}, the R.I.N.G.S code~\cite{rings}, and ISAACS), along with LAMMPS pseudosimulations\footnote{Pseudosimulation is a computational technique that mimics the behavior of a real system using simplified models.} for the radial and angular distributions\footnote{OVITO was used for coordination analysis with a 2.85 Angstrom bond cutoff, R.I.N.G.S for ring statistics using the King criterion, and ISAACS for the structure factor.}. The results match experiment and the 100{,}000-atom 100k-GAP18 reference model~\cite{deringer2018} closely: bond angles centre on the tetrahedral value of $109.5^\circ$ with a spread near $10^\circ$, and ring statistics peak at 5-, 6-, and 7-membered rings, with no 3-membered rings and very few 4-membered rings.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l|c|c}
+\toprule
+Quantity & ARTn-MTP & Reference \\
+\midrule
+Coordination defects & $<2\%$ (3\% for 1000-R, 4096-R-MD) & --- \\
+Bond angle & $109.5^\circ \pm 10^\circ$ & matches experiment \\
+Ring statistics & peak at 5, 6, 7 & no 3-rings, few 4-rings \\
+Bulk modulus & $\sim$77~GPa & 98.3~GPa (c-Si) \\
+Excess energy & 0.167~eV/atom & 0.191 (MD), 0.135--0.205 (exp.) \\
+\bottomrule
+\end{tabular}
+\caption{Zongo et al.~\cite{zongo2025} benchmark values for their ARTn-MTP a-Si models. The 216-R2 model reached 100\% fourfold coordination, rarely seen outside a few Keating-potential WWW models.}
+\label{tab:zongo_benchmark}
+\end{table}
 
-The mechanical and energetic properties agree just as well. The bulk modulus averages about 75 GPa across all models, well below the 98.3 GPa of c-Si, matching the softer nature of a-Si. The excess energy (how far above c-Si's energy each model sits) averages 0.167 eV/atom for the ARTn-MTP models versus 0.191 eV/atom for the MD-generated ones, both inside the experimental window of 0.135 to 0.205 eV/atom.
+Structure was checked with OVITO~\cite{ovito} for coordination (2.85~\AA{} bond cutoff), R.I.N.G.S~\cite{rings} for ring statistics under the King criterion, and ISAACS for the structure factor.
 
-Crystallinity was measured with the ``identify diamond structure'' modifier in OVITO, which flags atoms sitting in cubic or hexagonal diamond environments. Four models (216-R1, 512-R1, 512-R2, and 1000-R) showed zero crystallinity, and all four were generated from a random start with no MD prerun. From the full dataset the authors draw three trends: crystallinity depends little on system size; starting from a random state gives less crystallinity than starting from a melt-and-quench state\footnote{A melt-and-quench state is a simulation technique where a material is first heated to a liquid state and then rapidly cooled to form an amorphous structure.}; and fewer coordination defects tend to go with higher crystallinity.
+Four models showed zero crystallinity, all four generated from a random start with no MD prerun. Three trends follow:
+\begin{enumerate}
+    \item Crystallinity depends little on system size.
+    \item A random start gives less of it than a melt-quench start.
+    \item Fewer coordination defects tend to go with more crystallinity.
+\end{enumerate}
+The conclusion is that ARTn-MTP gives low crystallinity and low defects together, while MD melt-quench traps crystalline grains, making ARTn-MTP the better route to near-ideal CRN structures.
 
-The main conclusion is that ARTn-MTP produces a-Si with both low crystallinity and low coordination defects, while MD melt-quench tends to trap crystalline grains. This makes ARTn-MTP the better route to near-ideal CRN structures.
+\subsubsection{Morphological Autoregressive Protocol}
+\begin{definition}[Morphological Autoregressive Protocol]
+    The Morphological Autoregressive Protocol (MAP) is a generative machine-learning method that builds large models of disordered matter at a cost proportional to system size, rather than exponential in it.
+\end{definition}
+\begin{definition}[Autoregressive]
+    An autoregressive model is one where the prediction for the next value depends only on the previous values.
+\end{definition}
+\begin{definition}[Correlation Length]
+    The correlation length $L_c$ is the distance over which the influence of one atom on another fades out. It is read off from the radial distribution function.
+\end{definition}
+
+The structure is chopped onto a grid and built one point at a time, like generating a sequence word by word. For each grid point the model learns the probability that it holds a given atom type, based only on the points already placed within $L_c$:
+\begin{equation}
+    P(X_i = \theta \mid \{X_{j<i}\}) = \mathcal{N}\!\left[c_{b,\theta} + F_\theta\!\left(\{X_j \in L_c\}\right)\right],
+\end{equation}
+where $X_i$ is the grid point being filled, $\theta$ is the atom type, and $\mathcal{N}$ is a softmax turning raw scores into probabilities that sum to one. Feeding each sampled point back in as context extends a small training sample to any size, at linear cost.
+
+The grid cells are cubes, or voxels. A $0.5$~\AA{} voxel, a quarter of the Si--Si bond length, gives $88^3$ cells for a $44$~\AA{} box.
+\begin{definition}[PixelCNN]
+    A PixelCNN is a convolutional neural network with masked filters, allowing each pixel to see only previously generated pixels.
+\end{definition}
+\begin{definition}[Markov Chain]
+    A Markov chain is a sequence of states where each state depends only on the previous one.
+\end{definition}
+$F_\theta$ is a function that maps the local environment to the probability of an atom of type $\theta$, and is learned with a PixelCNN, extending an earlier 2D single-element version (Kilgour et al., 2020~\cite{kilgour2020}) to 3D with multiple atom types. Repeated generation forms a Markov chain that settles onto the training distribution, which is what makes the output physically meaningful rather than random.
+
+The method was tested on liquid water. The generated samples reproduce the reference radial distribution functions, bond angles and bond lengths, and are stable enough to seed MD runs, so placing atoms on a grid does not corrupt the physics.
+
+\paragraph{MAP as an Anomaly Detector}
+Madanchi and Simine (2026)~\cite{madanchi2026} use the same trained model in reverse: instead of generating structures, they ask whether the uneven dynamics of a supercooled liquid\footnote{A liquid cooled below its freezing point without crystallizing, on its way to becoming a glass.} can be predicted from a single static snapshot, with no information about motion. MAP already knows what a normal local arrangement looks like, so it can flag unusual ones without being told during training which regions moved.
+
+\begin{definition}[80:20 Kob-Andersen Mixture]
+    A standard model glass-former: a binary mixture of two particle types with different interaction parameters, in an 80:20 ratio.
+\end{definition}
+\begin{definition}[h-excitation]
+    A dynamic excitation identified directly from an MD trajectory: a particle whose positions before and after a time window $t_a$ differ by more than a displacement threshold $a$. It marks a discontinuous jump to a new location, and serves as the ground truth against which $\Omega$ is tested.
+\end{definition}
+
+The test system is the 80:20 Kob-Andersen mixture. They define a per-particle score $\Omega$, the average of six probabilities, one for each of six fragmented views $C_i$ of the particle's surroundings:
+\begin{equation}
+    \Omega_j = \frac{1}{6}\sum_{i=1}^{6} p(\mathbf{r} \mid C_i).
+\end{equation}
+Low $\Omega$ means the particle sits in an unlikely arrangement, a sign it is about to rearrange or is rearranging now. High $\Omega$ means the opposite.
+
+Comparing $\Omega$ against the h-excitations\footnote{The ``h'' refers to the Heaviside step function used to model the discontinuous jump in position.}, about 88\% show up as a dip in $\Omega$ and the rest as a bump. Pushing the threshold close to the baseline catches nearly all of them but also flags particles that are not visibly moving; more restrictive thresholds reduce the agreement to about 84\% while cutting those false positives. The flagged non-movers turn out to have an unusual number of already-moving neighbours, so $\Omega$ is picking up activity around the particle as well as in it. This gives an interpretable way to spot structural warning signs of motion with no labelled examples, useful for catching unusual regions in melt-quench simulations.
 
 \subsection{Structural and Dynamical Characterization}
 \label{sec:metrics}
@@ -514,57 +544,13 @@ The form of Eq.~\ref{eq:tetra} is fixed by its two limits. In a perfect tetrahed
 
 Crystalline silicon sits at $q = 1$ by construction. Amorphous silicon falls slightly below, since the network keeps fourfold coordination but broadens the bond-angle distribution. Liquid silicon falls further as coordination rises toward six and tetrahedral geometry is lost.
 
-\subsection{Morphological Autoregressive Protocol}
-
-\subsubsection{The MAP Framework}
-
-\begin{definition}[Morphological Autoregressive Protocol]
-    The Morphological Autoregressive Protocol (MAP) is a generative machine-learning method that builds large models of disordered matter at a cost proportional to system size, rather than exponential in it.
-\end{definition}
-
-The structure is chopped onto a grid and built one point at a time, like generating a sequence word by word (this is what ``autoregressive'' means). For each grid point the model learns the probability that it holds a given atom type, based only on the points already placed nearby. The influence of one atom on another fades out past a finite correlation length $L_c$, so only the local neighbourhood is needed:
-\begin{equation}
-    P(X_i = \theta \mid \{X_{j<i}\}) = \mathcal{N}\!\left[c_{b,\theta} + F_\theta\!\left(\{X_j \in L_c\}\right)\right],
-\end{equation}
-where $X_i$ is the grid point being filled, $\theta$ is the atom type, and $\mathcal{N}$ is a softmax turning raw scores into probabilities that sum to one. Sampling one point at a time and feeding each back in as context extends a small training sample to any size, at linear cost. $L_c$ is read off from the radial distribution function.
-
-The grid cells are cubes, or voxels. A $0.5$~\AA{} voxel, a quarter of the Si--Si bond length, gives $88^3$ cells for a $44$~\AA{} box.
-
-$F_\theta$ is learned with a PixelCNN, a network whose masked filters let each grid point see only neighbours already generated. This extends an earlier 2D single-element version (Kilgour et al., 2020~\cite{kilgour2020}) to 3D with multiple atom types. Repeated generation forms a Markov chain\footnote{a sequence of states where each one depends only on the last.} that settles onto the training distribution, which is what makes the output physically meaningful rather than random.
-
-The method was tested on liquid water. The generated samples reproduce the reference radial distribution functions, bond angles and bond lengths, and are stable enough to seed MD runs, so placing atoms on a grid does not corrupt the physics.
-
-\subsubsection{MAP as an Anomaly Detector}
-Madanchi and Simine (2026)~\cite{madanchi2026} use the same trained model in reverse: instead of generating structures, they ask whether the uneven dynamics of a supercooled liquid\footnote{A liquid cooled below its freezing point without crystallizing, on its way to becoming a glass.} can be predicted from a single static snapshot, with no information about motion. MAP already knows what a normal local arrangement looks like, so it can flag unusual ones without being told during training which regions moved.
-
-The test system is the 80:20 Kob-Andersen mixture, a standard model glass-former. They define a per-particle score $\Omega$, the average of six probabilities, one for each of six rotated copies $C_i$ of the particle's surroundings:
-\begin{equation}
-    \Omega_j = \frac{1}{6}\sum_{i=1}^{6} p(\mathbf{r} \mid C_i).
-\end{equation}
-Low $\Omega$ means the particle sits in an unlikely arrangement, a sign it is about to rearrange or is rearranging now. High $\Omega$ means the opposite.
-
-Comparing $\Omega$ against rearrangements identified separately in the MD trajectory\footnote{Called h-excitations in the paper.}, about 88\% show up as a dip in $\Omega$ and the rest as a bump. Pushing the threshold close to the baseline catches nearly all of them but also flags particles that are not visibly moving. Those turn out to have an unusual number of already-moving neighbours, so $\Omega$ is picking up activity around the particle as well as in it. This gives an interpretable way to spot structural warning signs of motion with no labelled examples, useful for catching unusual regions in melt-quench simulations.
-
-\subsection{Thermodynamic Ensembles}
-\begin{definition}[Thermodynamic Ensemble]
-    A thermodynamic ensemble is the set of macroscopic quantities held fixed during a simulation. The choice of ensemble determines which physical conditions the simulated system is subject to, and therefore which quantities are free to fluctuate.
-\end{definition}
-
-Three ensembles are used in this project, named by the quantities they conserve:
-\begin{itemize}
-    \item \textbf{NVE} (microcanonical): constant number of atoms, volume, and total energy. Newton's equations are integrated with no thermostat, so the system exchanges nothing with its surroundings. Because total energy should be exactly conserved, this ensemble is a useful check on whether the integration is numerically stable.
-    \item \textbf{NVT} (canonical): constant number, volume, and temperature. A thermostat exchanges energy with the system to hold the temperature at a target value, while the box stays fixed. This is the standard choice for production runs at a set temperature.
-    \item \textbf{NPT} (isothermal-isobaric): constant number, pressure, and temperature. In addition to the thermostat, a barostat allows the box to expand or contract so that the system reaches the target pressure. Since the volume is free to change, this is the ensemble used to find the density a potential actually prefers.
-\end{itemize}
-
-The distinction matters in practice because the box size is only a free parameter under NPT. Running NVT at the wrong volume forces the system into a compressed or stretched state, which shows up as a persistent non-zero pressure.
-
-\subsection{Narval}
+\subsection{Computational Environment}
+\subsubsection{Narval}
 \begin{definition}[Narval]
     Narval is a general purpose cluster designed for a variety of workloads. Built by Dell Canada and CDW Canada it is located at the École de technologie supérieure in Montreal. The cluster is named in honour of the narwhal, a species of whale which has occasionally been observed in the Gulf of St. Lawrence.
 \end{definition}
 
-\subsubsection{Compiling on a Compute Node}
+\paragraph{Compiling on a Compute Node}
 \label{sec:compile}
 Compilation\footnote{Compilation is the process of converting source code into an executable program.} is CPU-intensive and should be run on a compute node rather than the shared login node, which is shared and reserved for lightweight tasks. A compute node is requested from the SLURM scheduler with an interactive allocation:
 \begin{verbatim}
@@ -580,17 +566,17 @@ Once the scheduler grants the node (the prompt changes from \texttt{narval1} to 
 \end{verbatim}
 The \texttt{module load} line activates the compiler (\texttt{gcc}), the GPU toolkit (\texttt{CUDA})\footnote{CUDA is a parallel computing platform and programming model developed by NVIDIA}, and supporting math and build libraries, none of which are available until explicitly requested.
 
-\subsubsection{Filesystems and Their Quotas}
+\paragraph{Filesystems and Their Quotas}
 \label{sec:filesystems}
 Narval exposes several filesystems with different purposes and quotas, and the distinction matters for long production runs. \texttt{/home} is small and backed up; \texttt{/scratch} is large, fast, per-user and \emph{purged} on a fixed retention schedule; \texttt{/project} is the group allocation, shared between all members and quota-limited on both total size and file count; \texttt{/nearline} is tape-backed archival storage. Current usage against quota is reported by \texttt{diskusage\_report}. All production runs in this project were executed from \texttt{/scratch}, with finished configurations copied to \texttt{/project} for retention. The failure discussed in Section~\ref{sec:quench_fail} makes the practical case for this arrangement.
 
-\subsection{LAMMPS}
+\subsubsection{LAMMPS}
 
 \begin{definition}[LAMMPS]
     Large-scale Atomic/Molecular Massively Parallel Simulator (LAMMPS)~\cite{plimpton1995,thompson2022}, developed and distributed by Sandia National Laboratories, is an open-source code for classical particle-based materials simulation. It is the molecular dynamics code used in this project, run on a remote computing cluster accessed via SSH (PuTTY).
 \end{definition}
 
-\subsubsection{Simulation Workflow}
+\paragraph{Simulation Workflow}
 
 A LAMMPS run in this project involves three files:
 \begin{itemize}
@@ -599,11 +585,11 @@ A LAMMPS run in this project involves three files:
     \item The log file (log.lammps) is generated automatically by LAMMPS during the run and records the thermodynamic output (temperature, energy, and pressure at each step), along with timing information and any error messages.
 \end{itemize}
 
-\subsubsection{Combining LAMMPS with the MTP}
+\paragraph{Combining LAMMPS with the MTP}
 
 LAMMPS handles the mechanics of a simulation (tracking atomic positions, building neighbour lists, and integrating Newton's equations of motion) but it is agnostic about where the forces come from. The interatomic potential is supplied as a separate, interchangeable module selected through the \texttt{pair\_style} command. Combining LAMMPS with the MTP therefore means installing an MTP pair style into LAMMPS. Once built, the trained potential is used by pointing the input script at the model file, e.g. \texttt{pair\_style mtp model.almtp}: at every timestep, LAMMPS passes each atom's local neighbourhood to the MTP, which returns the energies and forces that LAMMPS then uses to advance the system. The division of labour is clean: the MTP decides how atoms interact, and LAMMPS decides what happens next.
 
-\subsection{WinSCP}
+\subsubsection{WinSCP}
 
 \begin{definition}[WinSCP]
     WinSCP is a free and open-source software (application) for Microsoft Windows. Its main function is secure file transfer between a local and a remote computer.
@@ -611,7 +597,7 @@ LAMMPS handles the mechanics of a simulation (tracking atomic positions, buildin
 
 When logged in to WinSCP using the login node `narval.alliancecan.ca` and the username and password created through the CCDB website, enter the path `/scratch/your\_username/'. Then you can drag and drop files between your local computer and the Narval cluster. Do not click on the scratch folder in the home menu, since it will load all folders of every Narval user.
 
-\subsection{PuTTY}
+\subsubsection{PuTTY}
 
 \begin{definition}[PuTTY]
     PuTTY is a free and open-source terminal emulator and serial console. It supports various network protocols, including SSH, Telnet, rlogin, and raw socket connections. In this project, PuTTY is used to establish a secure SSH connection to the Narval cluster for remote command-line access.
@@ -619,7 +605,7 @@ When logged in to WinSCP using the login node `narval.alliancecan.ca` and the us
 
 PuTTY uses the same login credentials as WinSCP, but instead of dragging and dropping files, it lets you run commands directly on the cluster. It behaves like a standard Linux terminal: you navigate the filesystem, edit files, and launch simulations by typing commands. The typical workflow is to move into your scratch folder, then submit or run a LAMMPS job from there.
 
-\subsubsection{Interactive Jobs}
+\paragraph{Interactive Jobs}
 \begin{definition}[Interactive Job]
     An interactive job is a compute-node session requested through the scheduler with \texttt{salloc}, which drops the user into a live shell on the allocated node instead of running a pre-written script.
 \end{definition}
@@ -627,7 +613,7 @@ PuTTY uses the same login credentials as WinSCP, but instead of dragging and dro
 A regular batch job (\texttt{sbatch}) submits a fixed script to the queue and runs unattended; the user only sees the output afterwards. An interactive job instead gives direct command-line access to the compute node for the duration of the allocation, so commands can be typed, tested, and corrected in real time. This makes it the right tool for tasks that require trial and error, such as compiling software, debugging a crashing binary, or checking that modules load correctly, where waiting through the batch queue after every small change would be far too slow. Batch jobs remain preferable for long production runs, since they do not require the user to stay connected. In this project, interactive jobs were used to compile the custom LAMMPS-MTP build on a compute node (Section~\ref{sec:compile}).
 
 
-\subsection{Visual Molecular Dynamics}
+\subsubsection{Visual Molecular Dynamics}
 
 \begin{definition}[Visual Molecular Dynamics]
     Visual Molecular Dynamics (VMD)~\cite{vmd1996} is a molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3D graphics and built-in scripting.
@@ -714,13 +700,13 @@ The GPU build then compiled with \texttt{mtp/kk} and \texttt{mtp/extrapolation/k
 
 \subsection{Simulation Protocol for Amorphous Silicon}
 Ata provided five silicon MTPs for this project, split into two groups. Two are melt-stable (levels 22 and 26), fitted explicitly to remain robust at the high temperatures of a melt. The other three are pruned potentials (\texttt{pruned\_1}, \texttt{pruned\_2}, \texttt{pruned\_3}), ordered by increasing computational cost and accuracy, but potentially unstable in a melt. The a-Si is produced by a melt-quench protocol:
-
 \begin{enumerate}
     \item \textbf{Melt.} Heat a c-Si lattice to about 2500~K with a melt-stable potential, and save a snapshot.
     \item \textbf{Hold.} Hold the melt at temperature for 1~ns to erase memory of the crystal.
     \item \textbf{Hand off.} Reload the snapshot with a pruned potential; the atoms are unchanged, only the force model changes.
     \item \textbf{Quench.} Cool from the melt temperature to 300~K, fast enough that the liquid structure freezes in as a-Si rather than recrystallizing.
 \end{enumerate}
+All production runs use the CPU build. The 216-atom cell is well below the $\sim$2000 atoms per GPU at which even the block-parallel GPU variant becomes worthwhile~\cite{meng2026}, so the GPU build validated in Section 3.2 was not used beyond that validation.
 
 \subsubsection{Atom Type Mapping}
 The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for c-Si. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
@@ -1578,15 +1564,16 @@ The `cuda' module loads the NVIDIA GPU toolkit, required for the GPU build.
 
 % ---- Entries below marked VERIFY are reconstructed from the reading list
 % ---- and must be checked against the PDFs before submission.
+\bibitem{zongo2025} K. Zongo, H. Sun, C. Ouellet-Plamondon, N. Mousseau and
+    L. K. Béland, ``Amorphous silicon structures generated using a moment tensor
+    potential and the activation relaxation technique nouveau,''
+    \textit{Phys. Rev. B} \textbf{111}, 214209 (2025).
+    \url{https://doi.org/10.1103/w12r-gwzb}
 
-\bibitem{zongo2025} % VERIFY volume, page, DOI
-    K. Zongo, L. K. Béland and N. Mousseau, ``Amorphous silicon models
-    generated with the activation-relaxation technique nouveau and a moment
-    tensor potential,'' \textit{Phys. Rev. B} (2025).
-
-\bibitem{zongo2024} % VERIFY authors, journal, volume, page, DOI
-    K. Zongo et al., ``A unified moment tensor potential for silicon, oxygen
-    and silica,'' (2024).
+\bibitem{zongo2024} K. Zongo, H. Sun, C. Ouellet-Plamondon and L. K. Béland,
+    ``A unified moment tensor potential for silicon, oxygen, and silica,''
+    \textit{npj Comput. Mater.} \textbf{10}, 218 (2024).
+    \url{https://doi.org/10.1038/s41524-024-01390-8}
 
 \bibitem{madanchi2024} % VERIFY volume, page, DOI
     A. Madanchi et al., ``Simulations of disordered matter in 3D with the
@@ -1597,17 +1584,19 @@ The `cuda' module loads the NVIDIA GPU toolkit, required for the GPU build.
     A. Madanchi and L. Simine, ``MAPping dynamic heterogeneity in supercooled
     glass-formers,'' (2026).
 
-\bibitem{meng2026} % VERIFY authors, journal, volume, page, DOI
-    Y. Meng et al., ``Kokkos-accelerated moment tensor potentials in LAMMPS,''
-    (2026).
+\bibitem{meng2026} Z. Meng, K. Zongo, E. Torres, C. Maxwell, R. Grant and
+    L. K. Béland, ``A Kokkos-accelerated Moment Tensor Potential implementation
+    for LAMMPS,'' \textit{SoftwareX} \textbf{33}, 102524 (2026).
+    \url{https://doi.org/10.1016/j.softx.2026.102524}
 
 \bibitem{kilgour2020} % VERIFY authors, journal, volume, page, DOI
     M. Kilgour et al., ``Generating disordered structures with autoregressive
     neural networks,'' (2020).
 
-\bibitem{rosset2025} % VERIFY journal, volume, page, DOI
-    L. Rosset, D. A. Drabold and V. L. Deringer, ``Paracrystallinity in
-    amorphous silicon,'' (2025).
+\bibitem{rosset2025} L. A. Rosset, D. A. Drabold and V. L. Deringer,
+    ``Signatures of paracrystallinity in amorphous silicon from
+    machine-learning-driven molecular dynamics,'' \textit{Nat. Commun.}
+    \textbf{16}, 2360 (2025).
 
 % ---- Entries below are complete.
 
