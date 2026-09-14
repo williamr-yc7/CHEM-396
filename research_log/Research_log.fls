@@ -1,6 +1,6 @@
-PWD c:\Users\erenr\Documents\McGill\Research\Chem396-Amorphous-Silicon\personal
+PWD c:\Users\erenr\Documents\McGill\Research\Chem396-Amorphous-Silicon\research_log
 INPUT C:\Users\erenr\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\erenr\Documents\McGill\Research\Chem396-Amorphous-Silicon\personal\Research_log.tex
+INPUT c:\Users\erenr\Documents\McGill\Research\Chem396-Amorphous-Silicon\research_log\Research_log.tex
 OUTPUT Research_log.log
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\erenr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

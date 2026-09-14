@@ -639,10 +639,10 @@ Once a structure is loaded, the drawing method is set to VDW so atoms render as 
 
 \subsection{Toolchain Validation: Lennard-Jones Melt}
 
-Before simulating a-Si, a standard Lennard-Jones (LJ) melt was run on Narval to confirm that the full toolchain (job submission, LAMMPS execution, and output writing) functioned correctly. This is a generic LJ fluid and not a-Si; its only purpose is validation. A line-by-line annotation of the input script is given in Appendix~\ref{InputScript}.
+Before simulating a-Si, a standard Lennard-Jones (LJ) melt was run on Narval to confirm that the full toolchain (job submission, LAMMPS execution, and output writing) functioned correctly. This is a generic LJ fluid and not a-Si; its only purpose is validation. The input script can be found in \texttt{code/lj\_toolchain\_tests/test.in}.
 
 \subsubsection{Output and Validation}
-The total energy per atom remained essentially constant at approximately $-4.62$\footnote{Here energy is negative to signify it would cost energy to pull this system apart.} throughout the run. Because the NVE ensemble conserves energy, this constancy confirms that the integration was stable and the simulation parameters were sound. The temperature\footnote{In reduced LJ units, temperature is dimensionless (measured in units of $\epsilon/k_B$).} relaxed from its initial value of $1.44$ to a steady value near $0.70$ as the initial lattice melted and equilibrated. The run completed $10{,}000$ steps on $13{,}500$ atoms in roughly $95$ seconds of wall time, with no dangerous neighbour-list builds reported, confirming a working toolchain.
+The total energy\footnote{Here energy is negative to signify it would cost energy to pull this system apart.} per atom remained essentially constant at approximately $-4.62$ throughout the run. Because the NVE ensemble conserves energy, this constancy confirms that the integration was stable and the simulation parameters were sound. The temperature\footnote{In reduced LJ units, temperature is dimensionless (measured in units of $\epsilon/k_B$).} relaxed from its initial value of $1.44$ to a steady value near $0.70$ as the initial lattice melted and equilibrated. The run completed $10{,}000$ steps on $13{,}500$ atoms in roughly $95$ seconds of wall time, with no dangerous neighbour-list builds reported, confirming a working toolchain.
 
 
 \subsubsection{VMD visualisation}
@@ -710,10 +710,10 @@ Ata provided five silicon MTPs for this project, split into two groups. Two are 
 \begin{enumerate}
     \item \textbf{Melt.} Heat a c-Si lattice to about 2500~K with a melt-stable potential, and save a snapshot.
     \item \textbf{Hold.} Hold the melt at temperature for 1~ns to erase memory of the crystal.
-    \item \textbf{Hand off.} Reload the snapshot with a pruned potential; the atoms are unchanged, only the force model changes.
     \item \textbf{Quench.} Cool from the melt temperature to 300~K, fast enough that the liquid structure freezes in as a-Si rather than recrystallizing.
+    \item \textbf{Equilibrate.} Hold at 300~K for 150~ps to relax the structure and remove any residual stress.
 \end{enumerate}
-All production runs use the CPU build. The 216-atom cell is well below the $\sim$2000 atoms per GPU at which even the block-parallel GPU variant becomes worthwhile~\cite{meng2026}, so the GPU build validated in Section 3.2 was not used beyond that validation.
+All production runs use the CPU build. The 216-atom cell is well below the $\sim$2000 atoms per GPU at which even the block-parallel GPU variant becomes worthwhile, so the GPU build validated in Section 3.2 was not used beyond that validation.
 
 \subsubsection{Atom Type Mapping}
 The potential file declares \texttt{species\_count = 2} without stating which type is which element. This was settled by two NVT runs with potential \texttt{22.almtp} on 216 atoms at 300~K in a fixed box of $4433$~\AA$^3$. Assigning the atoms to type 1 gave a stable run at a density of $2.27$~g/cm$^3$, close to the measured $2.33$~g/cm$^3$ for c-Si. Assigning them to type 2 gave a starting pressure of $-2.24\times10^{6}$~bar and the box collapsed within a few steps into a neighbour-list overflow. Type 1 is therefore silicon and type 2 oxygen, consistent with a potential trained on the Si/O/SiO$_2$ system.
@@ -724,7 +724,7 @@ Both ensembles (NVT and NPT) were tested on a 216-atom diamond lattice ($3\times
 
 The protocol was subsequently fixed to NPT only, following Zongo et al.~\cite{zongo2025}, so the NVT stage was dropped. The runs below are retained here as a benchmark of the potentials and of parallel scaling.
 
-The NPT test was run at 300~K and 0~bar and expanded the box from $4325$ to $4433$~\AA$^3$, corresponding to $a=5.476$~\AA. This is $0.8\%$ above the measured value of $5.431$~\AA, an overestimate consistent with the PBE\footnote{Perdew-Burke-Ernzerhof, the generalized gradient approximation exchange-correlation functional used to generate the MTP training data.}~\cite{pbe1996} reference data used to train the potential.
+The NPT test was run at 300~K and 0~bar and expanded the box from $4325$ to $4433$~\AA$^3$, corresponding to a lattice parameter of $a=5.476$~\AA. This is $0.8\%$ above the measured value of $5.431$~\AA, an overestimate consistent with the PBE\footnote{Perdew-Burke-Ernzerhof, the generalized gradient approximation exchange-correlation functional used to generate the MTP training data.}~\cite{pbe1996} reference data used to train the potential.
 
 The NVT test was then performed with the lattice rebuilt at $a=5.476$~\AA{}, the volume stayed locked, the pressure settled to order $10^2$--$10^3$~bar rather than the several-thousand-bar swings seen under NPT, and the potential energy showed no drift.
 
@@ -821,6 +821,39 @@ Total & & 3.2~ns & $3.2 \times 10^6$ & 11~h \\
 \end{table}
 
 The hold at 2500~K dominates despite involving less than half the steps of the cooling stage, purely because of the factor of twelve in cost per step. Whether the hold genuinely requires the melt-stable potential, or whether the switch to a pruned one can happen earlier, has been raised with the group. These figures also assume the cost per step stays as measured on a static 300~K crystal; a hot liquid rearranges continuously and will trigger neighbour-list rebuilds that the earlier runs did not (all benchmark runs recorded zero rebuilds), so the true cost will be somewhat higher.
+
+
+\subsection{Running MAP}
+
+MAP was installed to \texttt{\textasciitilde/MAP-main} with a virtual environment at \texttt{\textasciitilde/envMAP}, requiring \texttt{python/3.11} and \texttt{scipy-stack}.
+
+Inspecting the bundled water dataset settled the data format. The files are \texttt{water.npy}, shape $(1000, 648, 3)$, and \texttt{water\_identity.npy}, shape $(1000, 648)$ of species strings. MAP is not given a voxel grid; it voxelizes internally. The a-Si equivalent is therefore just $(500, 216, 3)$ coordinates paired with a $(500, 216)$ array of \texttt{'Si'}.
+
+The code writes checkpoints and reads data from hardcoded paths relative to the working directory, which would scatter output into the quota-limited home filesystem. Runs are executed from \texttt{/scratch} with \texttt{training\_samples} symlinked in and the \texttt{ckpts/} prefix stripped from \texttt{save\_ckpt}.
+
+A validation run on unmodified water data was killed by the out-of-memory killer. This is host RAM rather than GPU memory. The fix was to request \texttt{--mem-per-gpu=100G}, matching the configuration used by the MAP authors, after which training ran to completion: 81 epochs at roughly $940$~s each, with the test negative log-likelihood falling from $0.0102$ to $0.0069$ and flattening past epoch 58. Generation of a single sample then ran its full 80 steps in 1~h 17~min before failing on the last line, where \texttt{np.save} writes to the relative path \texttt{samples/run\_0.npy} and the directory does not exist.
+
+This is the same fault as the \texttt{ckpts/} prefix and points at a general property of the code: every output path is relative to the working directory and none is created if absent. The fix was to write the sample to an absolute path under \texttt{/scratch}. Since no checkpoint is written for a completed training stage, recovering the sample required repeating all 81 epochs, so a dry run at low \texttt{max\_epochs} is worth doing after any change to the output paths.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.28\textwidth}|p{0.28\textwidth}|p{0.32\textwidth}}
+\toprule
+Item & Current & Required for a-Si \\
+\midrule
+Data filenames & water & a-Si equivalents \\
+\hline
+Augmentation slices & Index 40, assuming $80^3$ & $\sim$34 per side at 0.5~\AA \\
+\hline
+\texttt{max\_epochs} & 80 & 500 \\
+\bottomrule
+\end{tabular}
+\caption{Changes required to train MAP on a-Si.}
+\label{tab:map_changes}
+\end{table}
+
+The voxel size remains undecided between 0.25 and 0.5~\AA. The larger value follows the quarter-bond-length rule, but Fig.~\ref{fig:vibrations} shows only $\sim1.3\times10^{-3}$ of atom-frames exceed 0.5~\AA, so most atoms never leave their voxel and successive training frames are near-identical. The choice will be made on training loss and sample quality.
 
 \clearpage
 % ===========================================================
@@ -1296,16 +1329,7 @@ The quenched structures were checked for leftover crystal order with the ``ident
     \label{fig:crystallinity_22}
 \end{figure}
 
-% ===========================================================
-%  5. DISCUSSION
-% ===========================================================
-\section{Discussion}
 
-
-% ===========================================================
-%  6. CONCLUSION
-% ===========================================================
-\section{Conclusion}
 
 \clearpage
 % ===========================================================
@@ -1386,6 +1410,9 @@ August 7 & Correlation length fitted from $g(r)$. The 216-atom box limits the fi
 August 10 & Vibration amplitudes and maximum displacements computed for all four potentials. No atom moves by its own size over 150~ps; the largest excursion is 1.89~\AA{} against a 2.35~\AA{} bond length. Short-window analysis at 1, 5 and 10~ps finds no reversed jumps either. \\
 August 11 & Amplitude distribution replotted normalised and on a log axis at Ata's request, revealing a flat tail from 0.5 to 1.2~\AA{} above the ordinary vibrational peak. \\
 August 17 & MAP installed on Narval (\texttt{\textasciitilde/MAP-main}, virtual environment at \texttt{\textasciitilde/envMAP}). Coordination defects broken down by type: overcoordination dominates in all four potentials, and \texttt{pruned\_1} has no threefold atoms at all. Correlation established between the $>0.5$~\AA{} tail and undercoordination. Crystallinity measured in OVITO across all 1501 frames, giving a time-averaged 4.5\% carried by a single flickering motif. \\
+August 19 & MAP validation run on the bundled water data killed by the out-of-memory killer. Diagnosed as host RAM rather than GPU memory and resolved with \texttt{--mem-per-gpu=100G}, matching the configuration used by the MAP authors. The \texttt{ckpts/} prefix was stripped from \texttt{save\_ckpt} so checkpoints write to the run directory rather than the quota-limited home filesystem. \\
+September 5 & Water validation run completed. Training converged over 81 epochs, the test negative log-likelihood falling from $0.0102$ to $0.0069$ and flattening past epoch 58, at roughly $940$~s per training epoch and $80$~s per test pass. Generation of a single sample ran the full 80 steps in 1~h 17~min, then failed at the final write: \texttt{np.save} was called on the relative path \texttt{samples/run\_0.npy} and no such directory existed. The same class of fault as the \texttt{ckpts/} prefix, and the second time MAP's hardcoded relative output paths have cost a run. \\
+September 14 & Save path in \texttt{utils.py} redirected to \texttt{/scratch}, and the water run resubmitted in full. No checkpoint was written for the completed training, so all 81 epochs are repeated to reach the generation stage. \\
 \end{longtable}
 
 \section{Command References}
